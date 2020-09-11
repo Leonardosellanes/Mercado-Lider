@@ -41,42 +41,43 @@ Partial Class frmPrincipal
         Me.Label3 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.tbRegristro = New System.Windows.Forms.TabPage()
+        Me.lblRegistroBienvenido = New System.Windows.Forms.Label()
         Me.lblRegistradoCorrectamente = New System.Windows.Forms.Label()
-        Me.Label101 = New System.Windows.Forms.Label()
-        Me.Label102 = New System.Windows.Forms.Label()
-        Me.Label92 = New System.Windows.Forms.Label()
-        Me.Label91 = New System.Windows.Forms.Label()
-        Me.Label90 = New System.Windows.Forms.Label()
-        Me.Label57 = New System.Windows.Forms.Label()
-        Me.Label54 = New System.Windows.Forms.Label()
-        Me.Label53 = New System.Windows.Forms.Label()
-        Me.ComboBoxRol = New System.Windows.Forms.ComboBox()
-        Me.Label87 = New System.Windows.Forms.Label()
-        Me.Label86 = New System.Windows.Forms.Label()
-        Me.Label84 = New System.Windows.Forms.Label()
+        Me.lblCamposAsterisco = New System.Windows.Forms.Label()
         Me.buttonRegister = New System.Windows.Forms.Button()
-        Me.Label39 = New System.Windows.Forms.Label()
-        Me.txtPass = New System.Windows.Forms.TextBox()
-        Me.Label34 = New System.Windows.Forms.Label()
-        Me.txtTelefono = New System.Windows.Forms.TextBox()
-        Me.Label33 = New System.Windows.Forms.Label()
-        Me.txtEmail = New System.Windows.Forms.TextBox()
-        Me.Label32 = New System.Windows.Forms.Label()
+        Me.lblUsername = New System.Windows.Forms.Label()
+        Me.lblRegistroNuevoUser = New System.Windows.Forms.Label()
+        Me.Label101 = New System.Windows.Forms.Label()
+        Me.Label86 = New System.Windows.Forms.Label()
         Me.txtUsername = New System.Windows.Forms.TextBox()
-        Me.Label31 = New System.Windows.Forms.Label()
+        Me.Label87 = New System.Windows.Forms.Label()
+        Me.Label102 = New System.Windows.Forms.Label()
+        Me.Label84 = New System.Windows.Forms.Label()
+        Me.lblEmail = New System.Windows.Forms.Label()
+        Me.cbxRol = New System.Windows.Forms.ComboBox()
+        Me.Label92 = New System.Windows.Forms.Label()
+        Me.lblRol = New System.Windows.Forms.Label()
+        Me.txtEmail = New System.Windows.Forms.TextBox()
+        Me.txtPass = New System.Windows.Forms.TextBox()
+        Me.Label91 = New System.Windows.Forms.Label()
+        Me.lblAsterisco = New System.Windows.Forms.Label()
+        Me.lblTelefono = New System.Windows.Forms.Label()
+        Me.lblPass = New System.Windows.Forms.Label()
+        Me.Label90 = New System.Windows.Forms.Label()
+        Me.txtTelefono = New System.Windows.Forms.TextBox()
         Me.tbSesion = New System.Windows.Forms.TabPage()
-        Me.lblNombreUser = New System.Windows.Forms.Label()
+        Me.lblNoExisteUser = New System.Windows.Forms.Label()
         Me.lblBienvenido = New System.Windows.Forms.Label()
-        Me.Label94 = New System.Windows.Forms.Label()
-        Me.Label93 = New System.Windows.Forms.Label()
+        Me.lblPassVaciaLogin = New System.Windows.Forms.Label()
+        Me.lblUsernameVacioLogin = New System.Windows.Forms.Label()
         Me.Label77 = New System.Windows.Forms.Label()
         Me.lblNotienesCuentas = New System.Windows.Forms.Label()
         Me.btnSign = New System.Windows.Forms.Button()
         Me.btnIngresar = New System.Windows.Forms.Button()
         Me.txtpasslogin = New System.Windows.Forms.TextBox()
-        Me.Label36 = New System.Windows.Forms.Label()
+        Me.lblContraseñaLogin = New System.Windows.Forms.Label()
         Me.txtusernamelogin = New System.Windows.Forms.TextBox()
-        Me.Label37 = New System.Windows.Forms.Label()
+        Me.lblUsernameLogin = New System.Windows.Forms.Label()
         Me.tbMisArticulos = New System.Windows.Forms.TabPage()
         Me.Label40 = New System.Windows.Forms.Label()
         Me.Button39 = New System.Windows.Forms.Button()
@@ -221,36 +222,35 @@ Partial Class frmPrincipal
         Me.Label122 = New System.Windows.Forms.Label()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.pnlMenu = New System.Windows.Forms.Panel()
-        Me.Button14 = New System.Windows.Forms.Button()
-        Me.Label124 = New System.Windows.Forms.Label()
+        Me.btnLogin = New System.Windows.Forms.Button()
+        Me.btnRegistrar = New System.Windows.Forms.Button()
         Me.btnConfigOcultar = New System.Windows.Forms.Button()
         Me.Panel9 = New System.Windows.Forms.Panel()
-        Me.btnAgregar = New System.Windows.Forms.Button()
+        Me.btnPublicar = New System.Windows.Forms.Button()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.pnlCat = New System.Windows.Forms.Panel()
+        Me.pnlConfig = New System.Windows.Forms.Panel()
         Me.pnlCarrito = New System.Windows.Forms.Panel()
         Me.pnlInicio = New System.Windows.Forms.Panel()
         Me.btnConfig = New System.Windows.Forms.Button()
-        Me.btnLogin = New System.Windows.Forms.Button()
-        Me.btnRegistrar = New System.Windows.Forms.Button()
         Me.btnCarrito = New System.Windows.Forms.Button()
         Me.btnInicio = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnBuscar = New System.Windows.Forms.Button()
         Me.tbxBuscar = New System.Windows.Forms.TextBox()
+        Me.btnCerrarSesion = New System.Windows.Forms.Button()
         Me.panelbotonescarrito = New System.Windows.Forms.Panel()
         Me.pnlCom = New System.Windows.Forms.Panel()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.pnlEnca = New System.Windows.Forms.Panel()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
-        Me.pnPerfil = New System.Windows.Forms.Panel()
+        Me.pnlPerfil = New System.Windows.Forms.Panel()
         Me.btnMisVentas = New System.Windows.Forms.Button()
-        Me.Button13 = New System.Windows.Forms.Button()
+        Me.btnOcultarMiInfo = New System.Windows.Forms.Button()
         Me.btnCambiarPass = New System.Windows.Forms.Button()
         Me.btnMisArticulos = New System.Windows.Forms.Button()
-        Me.Panel8 = New System.Windows.Forms.Panel()
+        Me.pnlMiInfo = New System.Windows.Forms.Panel()
         Me.lblRolInfo = New System.Windows.Forms.Label()
         Me.Label76 = New System.Windows.Forms.Label()
         Me.btnModificarInfo = New System.Windows.Forms.Button()
@@ -303,8 +303,8 @@ Partial Class frmPrincipal
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlMenu.SuspendLayout()
         Me.panelbotonescarrito.SuspendLayout()
-        Me.pnPerfil.SuspendLayout()
-        Me.Panel8.SuspendLayout()
+        Me.pnlPerfil.SuspendLayout()
+        Me.pnlMiInfo.SuspendLayout()
         Me.SuspendLayout()
         '
         'tbTodos
@@ -535,29 +535,30 @@ Partial Class frmPrincipal
         '
         'tbRegristro
         '
+        Me.tbRegristro.Controls.Add(Me.lblRegistroBienvenido)
         Me.tbRegristro.Controls.Add(Me.lblRegistradoCorrectamente)
-        Me.tbRegristro.Controls.Add(Me.Label101)
-        Me.tbRegristro.Controls.Add(Me.Label102)
-        Me.tbRegristro.Controls.Add(Me.Label92)
-        Me.tbRegristro.Controls.Add(Me.Label91)
-        Me.tbRegristro.Controls.Add(Me.Label90)
-        Me.tbRegristro.Controls.Add(Me.Label57)
-        Me.tbRegristro.Controls.Add(Me.Label54)
-        Me.tbRegristro.Controls.Add(Me.Label53)
-        Me.tbRegristro.Controls.Add(Me.ComboBoxRol)
-        Me.tbRegristro.Controls.Add(Me.Label87)
-        Me.tbRegristro.Controls.Add(Me.Label86)
-        Me.tbRegristro.Controls.Add(Me.Label84)
+        Me.tbRegristro.Controls.Add(Me.lblCamposAsterisco)
         Me.tbRegristro.Controls.Add(Me.buttonRegister)
-        Me.tbRegristro.Controls.Add(Me.Label39)
-        Me.tbRegristro.Controls.Add(Me.txtPass)
-        Me.tbRegristro.Controls.Add(Me.Label34)
-        Me.tbRegristro.Controls.Add(Me.txtTelefono)
-        Me.tbRegristro.Controls.Add(Me.Label33)
-        Me.tbRegristro.Controls.Add(Me.txtEmail)
-        Me.tbRegristro.Controls.Add(Me.Label32)
+        Me.tbRegristro.Controls.Add(Me.lblUsername)
+        Me.tbRegristro.Controls.Add(Me.lblRegistroNuevoUser)
+        Me.tbRegristro.Controls.Add(Me.Label101)
+        Me.tbRegristro.Controls.Add(Me.Label86)
         Me.tbRegristro.Controls.Add(Me.txtUsername)
-        Me.tbRegristro.Controls.Add(Me.Label31)
+        Me.tbRegristro.Controls.Add(Me.Label87)
+        Me.tbRegristro.Controls.Add(Me.Label102)
+        Me.tbRegristro.Controls.Add(Me.Label84)
+        Me.tbRegristro.Controls.Add(Me.lblEmail)
+        Me.tbRegristro.Controls.Add(Me.cbxRol)
+        Me.tbRegristro.Controls.Add(Me.Label92)
+        Me.tbRegristro.Controls.Add(Me.lblRol)
+        Me.tbRegristro.Controls.Add(Me.txtEmail)
+        Me.tbRegristro.Controls.Add(Me.txtPass)
+        Me.tbRegristro.Controls.Add(Me.Label91)
+        Me.tbRegristro.Controls.Add(Me.lblAsterisco)
+        Me.tbRegristro.Controls.Add(Me.lblTelefono)
+        Me.tbRegristro.Controls.Add(Me.lblPass)
+        Me.tbRegristro.Controls.Add(Me.Label90)
+        Me.tbRegristro.Controls.Add(Me.txtTelefono)
         Me.tbRegristro.Location = New System.Drawing.Point(4, 22)
         Me.tbRegristro.Name = "tbRegristro"
         Me.tbRegristro.Padding = New System.Windows.Forms.Padding(3)
@@ -566,166 +567,42 @@ Partial Class frmPrincipal
         Me.tbRegristro.Text = "Registro"
         Me.tbRegristro.UseVisualStyleBackColor = True
         '
+        'lblRegistroBienvenido
+        '
+        Me.lblRegistroBienvenido.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.lblRegistroBienvenido.AutoSize = True
+        Me.lblRegistroBienvenido.Font = New System.Drawing.Font("Microsoft Sans Serif", 40.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRegistroBienvenido.Location = New System.Drawing.Point(282, 243)
+        Me.lblRegistroBienvenido.Name = "lblRegistroBienvenido"
+        Me.lblRegistroBienvenido.Size = New System.Drawing.Size(390, 63)
+        Me.lblRegistroBienvenido.TabIndex = 28
+        Me.lblRegistroBienvenido.Text = "¡BIENVENIDO!"
+        Me.lblRegistroBienvenido.Visible = False
+        '
         'lblRegistradoCorrectamente
         '
         Me.lblRegistradoCorrectamente.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.lblRegistradoCorrectamente.AutoSize = True
         Me.lblRegistradoCorrectamente.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblRegistradoCorrectamente.ForeColor = System.Drawing.Color.Green
-        Me.lblRegistradoCorrectamente.Location = New System.Drawing.Point(361, 486)
+        Me.lblRegistradoCorrectamente.Location = New System.Drawing.Point(360, 353)
         Me.lblRegistradoCorrectamente.Name = "lblRegistradoCorrectamente"
         Me.lblRegistradoCorrectamente.Size = New System.Drawing.Size(239, 24)
         Me.lblRegistradoCorrectamente.TabIndex = 27
         Me.lblRegistradoCorrectamente.Text = "¡Registrado Correctamente!"
         Me.lblRegistradoCorrectamente.Visible = False
         '
-        'Label101
+        'lblCamposAsterisco
         '
-        Me.Label101.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label101.AutoSize = True
-        Me.Label101.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label101.ForeColor = System.Drawing.Color.Red
-        Me.Label101.Location = New System.Drawing.Point(597, 169)
-        Me.Label101.Name = "Label101"
-        Me.Label101.Size = New System.Drawing.Size(213, 12)
-        Me.Label101.TabIndex = 26
-        Me.Label101.Text = "*Debe ingresar un nombre con mas de 3 caracteres"
-        Me.Label101.Visible = False
-        '
-        'Label102
-        '
-        Me.Label102.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label102.AutoSize = True
-        Me.Label102.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label102.ForeColor = System.Drawing.Color.Red
-        Me.Label102.Location = New System.Drawing.Point(596, 231)
-        Me.Label102.Name = "Label102"
-        Me.Label102.Size = New System.Drawing.Size(133, 12)
-        Me.Label102.TabIndex = 25
-        Me.Label102.Text = "*Debe ingresar un correo valido"
-        Me.Label102.Visible = False
-        '
-        'Label92
-        '
-        Me.Label92.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label92.AutoSize = True
-        Me.Label92.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label92.ForeColor = System.Drawing.Color.Red
-        Me.Label92.Location = New System.Drawing.Point(396, 442)
-        Me.Label92.Name = "Label92"
-        Me.Label92.Size = New System.Drawing.Size(170, 13)
-        Me.Label92.TabIndex = 24
-        Me.Label92.Text = "*Este campo no puede estar vacio"
-        Me.Label92.Visible = False
-        '
-        'Label91
-        '
-        Me.Label91.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label91.AutoSize = True
-        Me.Label91.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label91.ForeColor = System.Drawing.Color.Red
-        Me.Label91.Location = New System.Drawing.Point(396, 315)
-        Me.Label91.Name = "Label91"
-        Me.Label91.Size = New System.Drawing.Size(170, 13)
-        Me.Label91.TabIndex = 23
-        Me.Label91.Text = "*Este campo no puede estar vacio"
-        Me.Label91.Visible = False
-        '
-        'Label90
-        '
-        Me.Label90.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label90.AutoSize = True
-        Me.Label90.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label90.ForeColor = System.Drawing.Color.Red
-        Me.Label90.Location = New System.Drawing.Point(396, 250)
-        Me.Label90.Name = "Label90"
-        Me.Label90.Size = New System.Drawing.Size(170, 13)
-        Me.Label90.TabIndex = 22
-        Me.Label90.Text = "*Este campo no puede estar vacio"
-        Me.Label90.Visible = False
-        '
-        'Label57
-        '
-        Me.Label57.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label57.AutoSize = True
-        Me.Label57.Location = New System.Drawing.Point(144, 167)
-        Me.Label57.Name = "Label57"
-        Me.Label57.Size = New System.Drawing.Size(211, 65)
-        Me.Label57.TabIndex = 21
-        Me.Label57.Text = "Los campos con un asterisco (*)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "son opcionales." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Por Defecto,sera Registrado com" &
+        Me.lblCamposAsterisco.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblCamposAsterisco.AutoSize = True
+        Me.lblCamposAsterisco.Location = New System.Drawing.Point(144, 145)
+        Me.lblCamposAsterisco.Name = "lblCamposAsterisco"
+        Me.lblCamposAsterisco.Size = New System.Drawing.Size(211, 65)
+        Me.lblCamposAsterisco.TabIndex = 21
+        Me.lblCamposAsterisco.Text = "Los campos con un asterisco (*)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "son opcionales." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Por Defecto,sera Registrado com" &
     "o cliente," & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "si desea registrarse como vendedor,puede" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "hacerlo dese la configurac" &
     "ion-info-modificar" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'Label54
-        '
-        Me.Label54.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label54.AutoSize = True
-        Me.Label54.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label54.Location = New System.Drawing.Point(596, 358)
-        Me.Label54.Name = "Label54"
-        Me.Label54.Size = New System.Drawing.Size(13, 17)
-        Me.Label54.TabIndex = 20
-        Me.Label54.Text = "*"
-        '
-        'Label53
-        '
-        Me.Label53.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label53.AutoSize = True
-        Me.Label53.Location = New System.Drawing.Point(367, 339)
-        Me.Label53.Name = "Label53"
-        Me.Label53.Size = New System.Drawing.Size(26, 13)
-        Me.Label53.TabIndex = 19
-        Me.Label53.Text = "Rol:"
-        '
-        'ComboBoxRol
-        '
-        Me.ComboBoxRol.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.ComboBoxRol.FormattingEnabled = True
-        Me.ComboBoxRol.Items.AddRange(New Object() {"Cliente", "Vendedor"})
-        Me.ComboBoxRol.Location = New System.Drawing.Point(370, 355)
-        Me.ComboBoxRol.Name = "ComboBoxRol"
-        Me.ComboBoxRol.Size = New System.Drawing.Size(220, 21)
-        Me.ComboBoxRol.TabIndex = 18
-        Me.ComboBoxRol.Text = "Cliente"
-        '
-        'Label87
-        '
-        Me.Label87.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label87.AutoSize = True
-        Me.Label87.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label87.ForeColor = System.Drawing.Color.Red
-        Me.Label87.Location = New System.Drawing.Point(396, 187)
-        Me.Label87.Name = "Label87"
-        Me.Label87.Size = New System.Drawing.Size(170, 13)
-        Me.Label87.TabIndex = 17
-        Me.Label87.Text = "*Este campo no puede estar vacio"
-        Me.Label87.Visible = False
-        '
-        'Label86
-        '
-        Me.Label86.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label86.AutoSize = True
-        Me.Label86.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label86.ForeColor = System.Drawing.Color.Red
-        Me.Label86.Location = New System.Drawing.Point(596, 423)
-        Me.Label86.Name = "Label86"
-        Me.Label86.Size = New System.Drawing.Size(176, 12)
-        Me.Label86.TabIndex = 16
-        Me.Label86.Text = "*Debe ingresar como minimo 8 caracteres"
-        Me.Label86.Visible = False
-        '
-        'Label84
-        '
-        Me.Label84.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label84.AutoSize = True
-        Me.Label84.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label84.ForeColor = System.Drawing.Color.Red
-        Me.Label84.Location = New System.Drawing.Point(596, 296)
-        Me.Label84.Name = "Label84"
-        Me.Label84.Size = New System.Drawing.Size(111, 12)
-        Me.Label84.TabIndex = 14
-        Me.Label84.Text = "*Debe ingresar 9 números"
-        Me.Label84.Visible = False
         '
         'buttonRegister
         '
@@ -734,112 +611,248 @@ Partial Class frmPrincipal
         Me.buttonRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.buttonRegister.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.buttonRegister.ForeColor = System.Drawing.Color.Black
-        Me.buttonRegister.Location = New System.Drawing.Point(425, 526)
+        Me.buttonRegister.Location = New System.Drawing.Point(424, 527)
         Me.buttonRegister.Name = "buttonRegister"
         Me.buttonRegister.Size = New System.Drawing.Size(108, 23)
         Me.buttonRegister.TabIndex = 11
         Me.buttonRegister.Text = "REGISTRARME"
         Me.buttonRegister.UseVisualStyleBackColor = False
         '
-        'Label39
+        'lblUsername
         '
-        Me.Label39.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.Label39.AutoSize = True
-        Me.Label39.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label39.Location = New System.Drawing.Point(260, 33)
-        Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(463, 31)
-        Me.Label39.TabIndex = 10
-        Me.Label39.Text = "REGISTRO DE NUEVO USUARIO"
+        Me.lblUsername.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblUsername.AutoSize = True
+        Me.lblUsername.Location = New System.Drawing.Point(367, 125)
+        Me.lblUsername.Name = "lblUsername"
+        Me.lblUsername.Size = New System.Drawing.Size(99, 13)
+        Me.lblUsername.TabIndex = 0
+        Me.lblUsername.Text = "Nombre de usuario:"
+        '
+        'lblRegistroNuevoUser
+        '
+        Me.lblRegistroNuevoUser.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.lblRegistroNuevoUser.AutoSize = True
+        Me.lblRegistroNuevoUser.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRegistroNuevoUser.Location = New System.Drawing.Point(254, 47)
+        Me.lblRegistroNuevoUser.Name = "lblRegistroNuevoUser"
+        Me.lblRegistroNuevoUser.Size = New System.Drawing.Size(463, 31)
+        Me.lblRegistroNuevoUser.TabIndex = 10
+        Me.lblRegistroNuevoUser.Text = "REGISTRO DE NUEVO USUARIO"
+        '
+        'Label101
+        '
+        Me.Label101.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label101.AutoSize = True
+        Me.Label101.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label101.ForeColor = System.Drawing.Color.Red
+        Me.Label101.Location = New System.Drawing.Point(597, 147)
+        Me.Label101.Name = "Label101"
+        Me.Label101.Size = New System.Drawing.Size(213, 12)
+        Me.Label101.TabIndex = 26
+        Me.Label101.Text = "*Debe ingresar un nombre con mas de 3 caracteres"
+        Me.Label101.Visible = False
+        '
+        'Label86
+        '
+        Me.Label86.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label86.AutoSize = True
+        Me.Label86.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label86.ForeColor = System.Drawing.Color.Red
+        Me.Label86.Location = New System.Drawing.Point(596, 401)
+        Me.Label86.Name = "Label86"
+        Me.Label86.Size = New System.Drawing.Size(176, 12)
+        Me.Label86.TabIndex = 16
+        Me.Label86.Text = "*Debe ingresar como minimo 8 caracteres"
+        Me.Label86.Visible = False
+        '
+        'txtUsername
+        '
+        Me.txtUsername.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.txtUsername.Location = New System.Drawing.Point(370, 142)
+        Me.txtUsername.Name = "txtUsername"
+        Me.txtUsername.Size = New System.Drawing.Size(220, 20)
+        Me.txtUsername.TabIndex = 1
+        '
+        'Label87
+        '
+        Me.Label87.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label87.AutoSize = True
+        Me.Label87.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label87.ForeColor = System.Drawing.Color.Red
+        Me.Label87.Location = New System.Drawing.Point(396, 165)
+        Me.Label87.Name = "Label87"
+        Me.Label87.Size = New System.Drawing.Size(170, 13)
+        Me.Label87.TabIndex = 17
+        Me.Label87.Text = "*Este campo no puede estar vacio"
+        Me.Label87.Visible = False
+        '
+        'Label102
+        '
+        Me.Label102.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label102.AutoSize = True
+        Me.Label102.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label102.ForeColor = System.Drawing.Color.Red
+        Me.Label102.Location = New System.Drawing.Point(596, 209)
+        Me.Label102.Name = "Label102"
+        Me.Label102.Size = New System.Drawing.Size(133, 12)
+        Me.Label102.TabIndex = 25
+        Me.Label102.Text = "*Debe ingresar un correo valido"
+        Me.Label102.Visible = False
+        '
+        'Label84
+        '
+        Me.Label84.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label84.AutoSize = True
+        Me.Label84.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label84.ForeColor = System.Drawing.Color.Red
+        Me.Label84.Location = New System.Drawing.Point(596, 274)
+        Me.Label84.Name = "Label84"
+        Me.Label84.Size = New System.Drawing.Size(111, 12)
+        Me.Label84.TabIndex = 14
+        Me.Label84.Text = "*Debe ingresar 9 números"
+        Me.Label84.Visible = False
+        '
+        'lblEmail
+        '
+        Me.lblEmail.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblEmail.AutoSize = True
+        Me.lblEmail.Location = New System.Drawing.Point(367, 188)
+        Me.lblEmail.Name = "lblEmail"
+        Me.lblEmail.Size = New System.Drawing.Size(97, 13)
+        Me.lblEmail.TabIndex = 2
+        Me.lblEmail.Text = "Correo Electronico:"
+        '
+        'cbxRol
+        '
+        Me.cbxRol.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.cbxRol.FormattingEnabled = True
+        Me.cbxRol.Items.AddRange(New Object() {"Cliente", "Vendedor"})
+        Me.cbxRol.Location = New System.Drawing.Point(370, 333)
+        Me.cbxRol.Name = "cbxRol"
+        Me.cbxRol.Size = New System.Drawing.Size(220, 21)
+        Me.cbxRol.TabIndex = 18
+        Me.cbxRol.Text = "Cliente"
+        '
+        'Label92
+        '
+        Me.Label92.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label92.AutoSize = True
+        Me.Label92.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label92.ForeColor = System.Drawing.Color.Red
+        Me.Label92.Location = New System.Drawing.Point(396, 420)
+        Me.Label92.Name = "Label92"
+        Me.Label92.Size = New System.Drawing.Size(170, 13)
+        Me.Label92.TabIndex = 24
+        Me.Label92.Text = "*Este campo no puede estar vacio"
+        Me.Label92.Visible = False
+        '
+        'lblRol
+        '
+        Me.lblRol.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblRol.AutoSize = True
+        Me.lblRol.Location = New System.Drawing.Point(367, 317)
+        Me.lblRol.Name = "lblRol"
+        Me.lblRol.Size = New System.Drawing.Size(26, 13)
+        Me.lblRol.TabIndex = 19
+        Me.lblRol.Text = "Rol:"
+        '
+        'txtEmail
+        '
+        Me.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.txtEmail.Location = New System.Drawing.Point(370, 205)
+        Me.txtEmail.Name = "txtEmail"
+        Me.txtEmail.Size = New System.Drawing.Size(220, 20)
+        Me.txtEmail.TabIndex = 3
         '
         'txtPass
         '
         Me.txtPass.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.txtPass.Location = New System.Drawing.Point(370, 419)
+        Me.txtPass.Location = New System.Drawing.Point(370, 397)
         Me.txtPass.Name = "txtPass"
         Me.txtPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPass.Size = New System.Drawing.Size(220, 20)
         Me.txtPass.TabIndex = 7
         '
-        'Label34
+        'Label91
         '
-        Me.Label34.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label34.AutoSize = True
-        Me.Label34.Location = New System.Drawing.Point(367, 402)
-        Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(64, 13)
-        Me.Label34.TabIndex = 6
-        Me.Label34.Text = "Contraseña:"
+        Me.Label91.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label91.AutoSize = True
+        Me.Label91.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label91.ForeColor = System.Drawing.Color.Red
+        Me.Label91.Location = New System.Drawing.Point(396, 293)
+        Me.Label91.Name = "Label91"
+        Me.Label91.Size = New System.Drawing.Size(170, 13)
+        Me.Label91.TabIndex = 23
+        Me.Label91.Text = "*Este campo no puede estar vacio"
+        Me.Label91.Visible = False
+        '
+        'lblAsterisco
+        '
+        Me.lblAsterisco.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblAsterisco.AutoSize = True
+        Me.lblAsterisco.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAsterisco.Location = New System.Drawing.Point(596, 336)
+        Me.lblAsterisco.Name = "lblAsterisco"
+        Me.lblAsterisco.Size = New System.Drawing.Size(13, 17)
+        Me.lblAsterisco.TabIndex = 20
+        Me.lblAsterisco.Text = "*"
+        '
+        'lblTelefono
+        '
+        Me.lblTelefono.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblTelefono.AutoSize = True
+        Me.lblTelefono.Location = New System.Drawing.Point(367, 253)
+        Me.lblTelefono.Name = "lblTelefono"
+        Me.lblTelefono.Size = New System.Drawing.Size(52, 13)
+        Me.lblTelefono.TabIndex = 4
+        Me.lblTelefono.Text = "Telefono:"
+        '
+        'lblPass
+        '
+        Me.lblPass.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblPass.AutoSize = True
+        Me.lblPass.Location = New System.Drawing.Point(367, 380)
+        Me.lblPass.Name = "lblPass"
+        Me.lblPass.Size = New System.Drawing.Size(64, 13)
+        Me.lblPass.TabIndex = 6
+        Me.lblPass.Text = "Contraseña:"
+        '
+        'Label90
+        '
+        Me.Label90.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label90.AutoSize = True
+        Me.Label90.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label90.ForeColor = System.Drawing.Color.Red
+        Me.Label90.Location = New System.Drawing.Point(396, 228)
+        Me.Label90.Name = "Label90"
+        Me.Label90.Size = New System.Drawing.Size(170, 13)
+        Me.Label90.TabIndex = 22
+        Me.Label90.Text = "*Este campo no puede estar vacio"
+        Me.Label90.Visible = False
         '
         'txtTelefono
         '
         Me.txtTelefono.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.txtTelefono.Location = New System.Drawing.Point(370, 292)
+        Me.txtTelefono.Location = New System.Drawing.Point(370, 270)
         Me.txtTelefono.MaxLength = 9
         Me.txtTelefono.Name = "txtTelefono"
         Me.txtTelefono.Size = New System.Drawing.Size(220, 20)
         Me.txtTelefono.TabIndex = 5
         '
-        'Label33
-        '
-        Me.Label33.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(367, 275)
-        Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(52, 13)
-        Me.Label33.TabIndex = 4
-        Me.Label33.Text = "Telefono:"
-        '
-        'txtEmail
-        '
-        Me.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.txtEmail.Location = New System.Drawing.Point(370, 227)
-        Me.txtEmail.Name = "txtEmail"
-        Me.txtEmail.Size = New System.Drawing.Size(220, 20)
-        Me.txtEmail.TabIndex = 3
-        '
-        'Label32
-        '
-        Me.Label32.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(367, 210)
-        Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(97, 13)
-        Me.Label32.TabIndex = 2
-        Me.Label32.Text = "Correo Electronico:"
-        '
-        'txtUsername
-        '
-        Me.txtUsername.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.txtUsername.Location = New System.Drawing.Point(370, 164)
-        Me.txtUsername.Name = "txtUsername"
-        Me.txtUsername.Size = New System.Drawing.Size(220, 20)
-        Me.txtUsername.TabIndex = 1
-        '
-        'Label31
-        '
-        Me.Label31.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(367, 147)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(99, 13)
-        Me.Label31.TabIndex = 0
-        Me.Label31.Text = "Nombre de usuario:"
-        '
         'tbSesion
         '
-        Me.tbSesion.Controls.Add(Me.lblNombreUser)
+        Me.tbSesion.Controls.Add(Me.lblNoExisteUser)
         Me.tbSesion.Controls.Add(Me.lblBienvenido)
-        Me.tbSesion.Controls.Add(Me.Label94)
-        Me.tbSesion.Controls.Add(Me.Label93)
+        Me.tbSesion.Controls.Add(Me.lblPassVaciaLogin)
+        Me.tbSesion.Controls.Add(Me.lblUsernameVacioLogin)
         Me.tbSesion.Controls.Add(Me.Label77)
         Me.tbSesion.Controls.Add(Me.lblNotienesCuentas)
         Me.tbSesion.Controls.Add(Me.btnSign)
         Me.tbSesion.Controls.Add(Me.btnIngresar)
         Me.tbSesion.Controls.Add(Me.txtpasslogin)
-        Me.tbSesion.Controls.Add(Me.Label36)
+        Me.tbSesion.Controls.Add(Me.lblContraseñaLogin)
         Me.tbSesion.Controls.Add(Me.txtusernamelogin)
-        Me.tbSesion.Controls.Add(Me.Label37)
+        Me.tbSesion.Controls.Add(Me.lblUsernameLogin)
         Me.tbSesion.Location = New System.Drawing.Point(4, 22)
         Me.tbSesion.Name = "tbSesion"
         Me.tbSesion.Padding = New System.Windows.Forms.Padding(3)
@@ -848,19 +861,18 @@ Partial Class frmPrincipal
         Me.tbSesion.Text = "Inicio Sesion"
         Me.tbSesion.UseVisualStyleBackColor = True
         '
-        'lblNombreUser
+        'lblNoExisteUser
         '
-        Me.lblNombreUser.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.lblNombreUser.AutoSize = True
-        Me.lblNombreUser.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.lblNombreUser.Font = New System.Drawing.Font("Microsoft Sans Serif", 40.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNombreUser.Location = New System.Drawing.Point(284, 300)
-        Me.lblNombreUser.Name = "lblNombreUser"
-        Me.lblNombreUser.Size = New System.Drawing.Size(42, 63)
-        Me.lblNombreUser.TabIndex = 13
-        Me.lblNombreUser.Text = "."
-        Me.lblNombreUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.lblNombreUser.Visible = False
+        Me.lblNoExisteUser.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblNoExisteUser.AutoSize = True
+        Me.lblNoExisteUser.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNoExisteUser.ForeColor = System.Drawing.Color.Red
+        Me.lblNoExisteUser.Location = New System.Drawing.Point(145, 120)
+        Me.lblNoExisteUser.Name = "lblNoExisteUser"
+        Me.lblNoExisteUser.Size = New System.Drawing.Size(652, 25)
+        Me.lblNoExisteUser.TabIndex = 13
+        Me.lblNoExisteUser.Text = "No existe un usuario con ese nombre y contraseña,intente con otros datos"
+        Me.lblNoExisteUser.Visible = False
         '
         'lblBienvenido
         '
@@ -868,7 +880,7 @@ Partial Class frmPrincipal
         Me.lblBienvenido.AutoSize = True
         Me.lblBienvenido.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.lblBienvenido.Font = New System.Drawing.Font("Microsoft Sans Serif", 40.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblBienvenido.Location = New System.Drawing.Point(284, 186)
+        Me.lblBienvenido.Location = New System.Drawing.Point(280, 248)
         Me.lblBienvenido.Name = "lblBienvenido"
         Me.lblBienvenido.Size = New System.Drawing.Size(390, 63)
         Me.lblBienvenido.TabIndex = 12
@@ -876,36 +888,36 @@ Partial Class frmPrincipal
         Me.lblBienvenido.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.lblBienvenido.Visible = False
         '
-        'Label94
+        'lblPassVaciaLogin
         '
-        Me.Label94.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label94.AutoSize = True
-        Me.Label94.ForeColor = System.Drawing.Color.Red
-        Me.Label94.Location = New System.Drawing.Point(384, 327)
-        Me.Label94.Name = "Label94"
-        Me.Label94.Size = New System.Drawing.Size(180, 13)
-        Me.Label94.TabIndex = 11
-        Me.Label94.Text = "*Este campo no puede quedar vacio"
-        Me.Label94.Visible = False
+        Me.lblPassVaciaLogin.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblPassVaciaLogin.AutoSize = True
+        Me.lblPassVaciaLogin.ForeColor = System.Drawing.Color.Red
+        Me.lblPassVaciaLogin.Location = New System.Drawing.Point(384, 327)
+        Me.lblPassVaciaLogin.Name = "lblPassVaciaLogin"
+        Me.lblPassVaciaLogin.Size = New System.Drawing.Size(180, 13)
+        Me.lblPassVaciaLogin.TabIndex = 11
+        Me.lblPassVaciaLogin.Text = "*Este campo no puede quedar vacio"
+        Me.lblPassVaciaLogin.Visible = False
         '
-        'Label93
+        'lblUsernameVacioLogin
         '
-        Me.Label93.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label93.AutoSize = True
-        Me.Label93.ForeColor = System.Drawing.Color.Red
-        Me.Label93.Location = New System.Drawing.Point(384, 236)
-        Me.Label93.Name = "Label93"
-        Me.Label93.Size = New System.Drawing.Size(180, 13)
-        Me.Label93.TabIndex = 10
-        Me.Label93.Text = "*Este campo no puede quedar vacio"
-        Me.Label93.Visible = False
+        Me.lblUsernameVacioLogin.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblUsernameVacioLogin.AutoSize = True
+        Me.lblUsernameVacioLogin.ForeColor = System.Drawing.Color.Red
+        Me.lblUsernameVacioLogin.Location = New System.Drawing.Point(384, 236)
+        Me.lblUsernameVacioLogin.Name = "lblUsernameVacioLogin"
+        Me.lblUsernameVacioLogin.Size = New System.Drawing.Size(180, 13)
+        Me.lblUsernameVacioLogin.TabIndex = 10
+        Me.lblUsernameVacioLogin.Text = "*Este campo no puede quedar vacio"
+        Me.lblUsernameVacioLogin.Visible = False
         '
         'Label77
         '
         Me.Label77.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Label77.AutoSize = True
         Me.Label77.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label77.Location = New System.Drawing.Point(307, 56)
+        Me.Label77.Location = New System.Drawing.Point(308, 56)
         Me.Label77.Name = "Label77"
         Me.Label77.Size = New System.Drawing.Size(333, 39)
         Me.Label77.TabIndex = 9
@@ -960,15 +972,15 @@ Partial Class frmPrincipal
         Me.txtpasslogin.Size = New System.Drawing.Size(220, 20)
         Me.txtpasslogin.TabIndex = 5
         '
-        'Label36
+        'lblContraseñaLogin
         '
-        Me.Label36.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label36.AutoSize = True
-        Me.Label36.Location = New System.Drawing.Point(358, 287)
-        Me.Label36.Name = "Label36"
-        Me.Label36.Size = New System.Drawing.Size(61, 13)
-        Me.Label36.TabIndex = 4
-        Me.Label36.Text = "Contraseña"
+        Me.lblContraseñaLogin.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblContraseñaLogin.AutoSize = True
+        Me.lblContraseñaLogin.Location = New System.Drawing.Point(358, 287)
+        Me.lblContraseñaLogin.Name = "lblContraseñaLogin"
+        Me.lblContraseñaLogin.Size = New System.Drawing.Size(61, 13)
+        Me.lblContraseñaLogin.TabIndex = 4
+        Me.lblContraseñaLogin.Text = "Contraseña"
         '
         'txtusernamelogin
         '
@@ -978,15 +990,15 @@ Partial Class frmPrincipal
         Me.txtusernamelogin.Size = New System.Drawing.Size(220, 20)
         Me.txtusernamelogin.TabIndex = 3
         '
-        'Label37
+        'lblUsernameLogin
         '
-        Me.Label37.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label37.AutoSize = True
-        Me.Label37.Location = New System.Drawing.Point(358, 196)
-        Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(101, 13)
-        Me.Label37.TabIndex = 2
-        Me.Label37.Text = "Nombre de Usuario:"
+        Me.lblUsernameLogin.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblUsernameLogin.AutoSize = True
+        Me.lblUsernameLogin.Location = New System.Drawing.Point(358, 196)
+        Me.lblUsernameLogin.Name = "lblUsernameLogin"
+        Me.lblUsernameLogin.Size = New System.Drawing.Size(101, 13)
+        Me.lblUsernameLogin.TabIndex = 2
+        Me.lblUsernameLogin.Text = "Nombre de Usuario:"
         '
         'tbMisArticulos
         '
@@ -2702,18 +2714,16 @@ Partial Class frmPrincipal
         Me.pnlMenu.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlMenu.BackColor = System.Drawing.Color.FromArgb(CType(CType(16, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(36, Byte), Integer))
-        Me.pnlMenu.Controls.Add(Me.Button14)
-        Me.pnlMenu.Controls.Add(Me.Label124)
+        Me.pnlMenu.Controls.Add(Me.btnLogin)
+        Me.pnlMenu.Controls.Add(Me.btnRegistrar)
         Me.pnlMenu.Controls.Add(Me.btnConfigOcultar)
         Me.pnlMenu.Controls.Add(Me.Panel9)
-        Me.pnlMenu.Controls.Add(Me.btnAgregar)
+        Me.pnlMenu.Controls.Add(Me.btnPublicar)
         Me.pnlMenu.Controls.Add(Me.ComboBox1)
-        Me.pnlMenu.Controls.Add(Me.pnlCat)
+        Me.pnlMenu.Controls.Add(Me.pnlConfig)
         Me.pnlMenu.Controls.Add(Me.pnlCarrito)
         Me.pnlMenu.Controls.Add(Me.pnlInicio)
         Me.pnlMenu.Controls.Add(Me.btnConfig)
-        Me.pnlMenu.Controls.Add(Me.btnLogin)
-        Me.pnlMenu.Controls.Add(Me.btnRegistrar)
         Me.pnlMenu.Controls.Add(Me.btnCarrito)
         Me.pnlMenu.Controls.Add(Me.btnInicio)
         Me.pnlMenu.Controls.Add(Me.Label2)
@@ -2725,36 +2735,37 @@ Partial Class frmPrincipal
         Me.pnlMenu.Size = New System.Drawing.Size(961, 86)
         Me.pnlMenu.TabIndex = 1
         '
-        'Button14
+        'btnLogin
         '
-        Me.Button14.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Button14.FlatAppearance.BorderColor = System.Drawing.Color.White
-        Me.Button14.FlatAppearance.BorderSize = 0
-        Me.Button14.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(63, Byte), Integer))
-        Me.Button14.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button14.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button14.ForeColor = System.Drawing.Color.White
-        Me.Button14.Location = New System.Drawing.Point(765, 54)
-        Me.Button14.Name = "Button14"
-        Me.Button14.Size = New System.Drawing.Size(89, 21)
-        Me.Button14.TabIndex = 20
-        Me.Button14.Text = "cerrar sesion"
-        Me.Button14.UseVisualStyleBackColor = True
-        Me.Button14.Visible = False
+        Me.btnLogin.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.btnLogin.FlatAppearance.BorderColor = System.Drawing.Color.White
+        Me.btnLogin.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(63, Byte), Integer))
+        Me.btnLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnLogin.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnLogin.ForeColor = System.Drawing.Color.White
+        Me.btnLogin.Location = New System.Drawing.Point(864, 6)
+        Me.btnLogin.Name = "btnLogin"
+        Me.btnLogin.Size = New System.Drawing.Size(82, 27)
+        Me.btnLogin.TabIndex = 9
+        Me.btnLogin.Text = "Login"
+        Me.btnLogin.UseVisualStyleBackColor = True
         '
-        'Label124
+        'btnRegistrar
         '
-        Me.Label124.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label124.AutoSize = True
-        Me.Label124.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label124.ForeColor = System.Drawing.Color.White
-        Me.Label124.Location = New System.Drawing.Point(775, 38)
-        Me.Label124.Name = "Label124"
-        Me.Label124.Size = New System.Drawing.Size(71, 16)
-        Me.Label124.TabIndex = 19
-        Me.Label124.Text = "Label124"
-        Me.Label124.Visible = False
+        Me.btnRegistrar.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.btnRegistrar.FlatAppearance.BorderColor = System.Drawing.Color.White
+        Me.btnRegistrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(63, Byte), Integer))
+        Me.btnRegistrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnRegistrar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnRegistrar.ForeColor = System.Drawing.Color.White
+        Me.btnRegistrar.Location = New System.Drawing.Point(759, 6)
+        Me.btnRegistrar.Name = "btnRegistrar"
+        Me.btnRegistrar.Size = New System.Drawing.Size(99, 27)
+        Me.btnRegistrar.TabIndex = 8
+        Me.btnRegistrar.Text = "Registrarme"
+        Me.btnRegistrar.UseVisualStyleBackColor = True
         '
         'btnConfigOcultar
         '
@@ -2778,27 +2789,30 @@ Partial Class frmPrincipal
         '
         Me.Panel9.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Panel9.BackColor = System.Drawing.Color.FromArgb(CType(CType(237, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(45, Byte), Integer))
-        Me.Panel9.Location = New System.Drawing.Point(870, 82)
+        Me.Panel9.Location = New System.Drawing.Point(793, 82)
         Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(32, 6)
+        Me.Panel9.Size = New System.Drawing.Size(108, 6)
         Me.Panel9.TabIndex = 17
         '
-        'btnAgregar
+        'btnPublicar
         '
-        Me.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnAgregar.FlatAppearance.BorderColor = System.Drawing.Color.White
-        Me.btnAgregar.FlatAppearance.BorderSize = 0
-        Me.btnAgregar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(63, Byte), Integer))
-        Me.btnAgregar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAgregar.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAgregar.ForeColor = System.Drawing.Color.FromArgb(CType(CType(237, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(45, Byte), Integer))
-        Me.btnAgregar.Image = CType(resources.GetObject("btnAgregar.Image"), System.Drawing.Image)
-        Me.btnAgregar.Location = New System.Drawing.Point(869, 49)
-        Me.btnAgregar.Name = "btnAgregar"
-        Me.btnAgregar.Size = New System.Drawing.Size(32, 33)
-        Me.btnAgregar.TabIndex = 16
-        Me.btnAgregar.UseVisualStyleBackColor = True
+        Me.btnPublicar.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.btnPublicar.FlatAppearance.BorderColor = System.Drawing.Color.White
+        Me.btnPublicar.FlatAppearance.BorderSize = 0
+        Me.btnPublicar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(63, Byte), Integer))
+        Me.btnPublicar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnPublicar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnPublicar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnPublicar.ForeColor = System.Drawing.Color.White
+        Me.btnPublicar.Image = CType(resources.GetObject("btnPublicar.Image"), System.Drawing.Image)
+        Me.btnPublicar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnPublicar.Location = New System.Drawing.Point(793, 49)
+        Me.btnPublicar.Name = "btnPublicar"
+        Me.btnPublicar.Size = New System.Drawing.Size(108, 33)
+        Me.btnPublicar.TabIndex = 16
+        Me.btnPublicar.Text = "      PUBLICAR"
+        Me.btnPublicar.UseVisualStyleBackColor = True
+        Me.btnPublicar.Visible = False
         '
         'ComboBox1
         '
@@ -2815,14 +2829,14 @@ Partial Class frmPrincipal
         Me.ComboBox1.TabIndex = 15
         Me.ComboBox1.Text = "CATEGORIAS"
         '
-        'pnlCat
+        'pnlConfig
         '
-        Me.pnlCat.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.pnlCat.BackColor = System.Drawing.Color.FromArgb(CType(CType(237, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(45, Byte), Integer))
-        Me.pnlCat.Location = New System.Drawing.Point(914, 82)
-        Me.pnlCat.Name = "pnlCat"
-        Me.pnlCat.Size = New System.Drawing.Size(32, 6)
-        Me.pnlCat.TabIndex = 14
+        Me.pnlConfig.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.pnlConfig.BackColor = System.Drawing.Color.FromArgb(CType(CType(237, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(45, Byte), Integer))
+        Me.pnlConfig.Location = New System.Drawing.Point(914, 82)
+        Me.pnlConfig.Name = "pnlConfig"
+        Me.pnlConfig.Size = New System.Drawing.Size(32, 6)
+        Me.pnlConfig.TabIndex = 14
         '
         'pnlCarrito
         '
@@ -2858,38 +2872,7 @@ Partial Class frmPrincipal
         Me.btnConfig.Size = New System.Drawing.Size(32, 32)
         Me.btnConfig.TabIndex = 10
         Me.btnConfig.UseVisualStyleBackColor = True
-        '
-        'btnLogin
-        '
-        Me.btnLogin.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnLogin.FlatAppearance.BorderColor = System.Drawing.Color.White
-        Me.btnLogin.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(63, Byte), Integer))
-        Me.btnLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnLogin.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnLogin.ForeColor = System.Drawing.Color.White
-        Me.btnLogin.Location = New System.Drawing.Point(870, 8)
-        Me.btnLogin.Name = "btnLogin"
-        Me.btnLogin.Size = New System.Drawing.Size(82, 27)
-        Me.btnLogin.TabIndex = 9
-        Me.btnLogin.Text = "Login"
-        Me.btnLogin.UseVisualStyleBackColor = True
-        '
-        'btnRegistrar
-        '
-        Me.btnRegistrar.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnRegistrar.FlatAppearance.BorderColor = System.Drawing.Color.White
-        Me.btnRegistrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(63, Byte), Integer))
-        Me.btnRegistrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.btnRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnRegistrar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnRegistrar.ForeColor = System.Drawing.Color.White
-        Me.btnRegistrar.Location = New System.Drawing.Point(765, 8)
-        Me.btnRegistrar.Name = "btnRegistrar"
-        Me.btnRegistrar.Size = New System.Drawing.Size(99, 27)
-        Me.btnRegistrar.TabIndex = 8
-        Me.btnRegistrar.Text = "Registrarme"
-        Me.btnRegistrar.UseVisualStyleBackColor = True
+        Me.btnConfig.Visible = False
         '
         'btnCarrito
         '
@@ -2906,6 +2889,7 @@ Partial Class frmPrincipal
         Me.btnCarrito.TabIndex = 5
         Me.btnCarrito.Text = "MI CARRITO"
         Me.btnCarrito.UseVisualStyleBackColor = True
+        Me.btnCarrito.Visible = False
         '
         'btnInicio
         '
@@ -2975,6 +2959,23 @@ Partial Class frmPrincipal
         Me.tbxBuscar.Size = New System.Drawing.Size(345, 25)
         Me.tbxBuscar.TabIndex = 0
         Me.tbxBuscar.Text = "Buscar Artículos"
+        '
+        'btnCerrarSesion
+        '
+        Me.btnCerrarSesion.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnCerrarSesion.FlatAppearance.BorderColor = System.Drawing.Color.White
+        Me.btnCerrarSesion.FlatAppearance.BorderSize = 0
+        Me.btnCerrarSesion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(63, Byte), Integer))
+        Me.btnCerrarSesion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCerrarSesion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCerrarSesion.ForeColor = System.Drawing.Color.White
+        Me.btnCerrarSesion.Location = New System.Drawing.Point(0, 222)
+        Me.btnCerrarSesion.Name = "btnCerrarSesion"
+        Me.btnCerrarSesion.Size = New System.Drawing.Size(170, 30)
+        Me.btnCerrarSesion.TabIndex = 20
+        Me.btnCerrarSesion.Text = "CERRAR SESION"
+        Me.btnCerrarSesion.UseVisualStyleBackColor = True
         '
         'panelbotonescarrito
         '
@@ -3053,28 +3054,29 @@ Partial Class frmPrincipal
         Me.Button7.ForeColor = System.Drawing.Color.White
         Me.Button7.Location = New System.Drawing.Point(0, 525)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(206, 28)
+        Me.Button7.Size = New System.Drawing.Size(170, 28)
         Me.Button7.TabIndex = 18
         Me.Button7.Text = "¿QUIENES SOMOS?"
         Me.Button7.UseVisualStyleBackColor = False
         '
-        'pnPerfil
+        'pnlPerfil
         '
-        Me.pnPerfil.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.pnlPerfil.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.pnPerfil.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.pnPerfil.Controls.Add(Me.btnMisVentas)
-        Me.pnPerfil.Controls.Add(Me.Button13)
-        Me.pnPerfil.Controls.Add(Me.Button7)
-        Me.pnPerfil.Controls.Add(Me.btnCambiarPass)
-        Me.pnPerfil.Controls.Add(Me.btnMisArticulos)
-        Me.pnPerfil.Controls.Add(Me.Panel8)
-        Me.pnPerfil.Controls.Add(Me.Button28)
-        Me.pnPerfil.Location = New System.Drawing.Point(757, 82)
-        Me.pnPerfil.Name = "pnPerfil"
-        Me.pnPerfil.Size = New System.Drawing.Size(206, 553)
-        Me.pnPerfil.TabIndex = 3
-        Me.pnPerfil.Visible = False
+        Me.pnlPerfil.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.pnlPerfil.Controls.Add(Me.btnCerrarSesion)
+        Me.pnlPerfil.Controls.Add(Me.btnMisVentas)
+        Me.pnlPerfil.Controls.Add(Me.btnOcultarMiInfo)
+        Me.pnlPerfil.Controls.Add(Me.Button7)
+        Me.pnlPerfil.Controls.Add(Me.btnCambiarPass)
+        Me.pnlPerfil.Controls.Add(Me.btnMisArticulos)
+        Me.pnlPerfil.Controls.Add(Me.pnlMiInfo)
+        Me.pnlPerfil.Controls.Add(Me.Button28)
+        Me.pnlPerfil.Location = New System.Drawing.Point(793, 82)
+        Me.pnlPerfil.Name = "pnlPerfil"
+        Me.pnlPerfil.Size = New System.Drawing.Size(170, 553)
+        Me.pnlPerfil.TabIndex = 3
+        Me.pnlPerfil.Visible = False
         '
         'btnMisVentas
         '
@@ -3087,27 +3089,27 @@ Partial Class frmPrincipal
         Me.btnMisVentas.ForeColor = System.Drawing.Color.White
         Me.btnMisVentas.Location = New System.Drawing.Point(0, 195)
         Me.btnMisVentas.Name = "btnMisVentas"
-        Me.btnMisVentas.Size = New System.Drawing.Size(206, 27)
+        Me.btnMisVentas.Size = New System.Drawing.Size(170, 27)
         Me.btnMisVentas.TabIndex = 23
         Me.btnMisVentas.Text = "MIS VENTAS"
         Me.btnMisVentas.UseVisualStyleBackColor = True
         '
-        'Button13
+        'btnOcultarMiInfo
         '
-        Me.Button13.FlatAppearance.BorderSize = 0
-        Me.Button13.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(63, Byte), Integer))
-        Me.Button13.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button13.ForeColor = System.Drawing.Color.White
-        Me.Button13.Image = CType(resources.GetObject("Button13.Image"), System.Drawing.Image)
-        Me.Button13.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button13.Location = New System.Drawing.Point(0, 0)
-        Me.Button13.Name = "Button13"
-        Me.Button13.Size = New System.Drawing.Size(144, 39)
-        Me.Button13.TabIndex = 16
-        Me.Button13.Text = "     MI INFO"
-        Me.Button13.UseVisualStyleBackColor = True
+        Me.btnOcultarMiInfo.FlatAppearance.BorderSize = 0
+        Me.btnOcultarMiInfo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(63, Byte), Integer))
+        Me.btnOcultarMiInfo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnOcultarMiInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnOcultarMiInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnOcultarMiInfo.ForeColor = System.Drawing.Color.White
+        Me.btnOcultarMiInfo.Image = CType(resources.GetObject("btnOcultarMiInfo.Image"), System.Drawing.Image)
+        Me.btnOcultarMiInfo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnOcultarMiInfo.Location = New System.Drawing.Point(0, 0)
+        Me.btnOcultarMiInfo.Name = "btnOcultarMiInfo"
+        Me.btnOcultarMiInfo.Size = New System.Drawing.Size(170, 39)
+        Me.btnOcultarMiInfo.TabIndex = 16
+        Me.btnOcultarMiInfo.Text = "     MI INFO"
+        Me.btnOcultarMiInfo.UseVisualStyleBackColor = True
         '
         'btnCambiarPass
         '
@@ -3120,7 +3122,7 @@ Partial Class frmPrincipal
         Me.btnCambiarPass.ForeColor = System.Drawing.Color.White
         Me.btnCambiarPass.Location = New System.Drawing.Point(0, 168)
         Me.btnCambiarPass.Name = "btnCambiarPass"
-        Me.btnCambiarPass.Size = New System.Drawing.Size(206, 27)
+        Me.btnCambiarPass.Size = New System.Drawing.Size(170, 27)
         Me.btnCambiarPass.TabIndex = 22
         Me.btnCambiarPass.Text = "CAMBIAR CONTRASEÑA"
         Me.btnCambiarPass.UseVisualStyleBackColor = True
@@ -3136,26 +3138,26 @@ Partial Class frmPrincipal
         Me.btnMisArticulos.ForeColor = System.Drawing.Color.White
         Me.btnMisArticulos.Location = New System.Drawing.Point(0, 141)
         Me.btnMisArticulos.Name = "btnMisArticulos"
-        Me.btnMisArticulos.Size = New System.Drawing.Size(206, 27)
+        Me.btnMisArticulos.Size = New System.Drawing.Size(170, 27)
         Me.btnMisArticulos.TabIndex = 20
         Me.btnMisArticulos.Text = "MIS ARTICULOS"
         Me.btnMisArticulos.UseVisualStyleBackColor = True
         '
-        'Panel8
+        'pnlMiInfo
         '
-        Me.Panel8.Controls.Add(Me.lblRolInfo)
-        Me.Panel8.Controls.Add(Me.Label76)
-        Me.Panel8.Controls.Add(Me.btnModificarInfo)
-        Me.Panel8.Controls.Add(Me.lblEmailInfo)
-        Me.Panel8.Controls.Add(Me.Label74)
-        Me.Panel8.Controls.Add(Me.lblUserInfo)
-        Me.Panel8.Controls.Add(Me.Label19)
-        Me.Panel8.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel8.Location = New System.Drawing.Point(0, 39)
-        Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(206, 102)
-        Me.Panel8.TabIndex = 17
-        Me.Panel8.Visible = False
+        Me.pnlMiInfo.Controls.Add(Me.lblRolInfo)
+        Me.pnlMiInfo.Controls.Add(Me.Label76)
+        Me.pnlMiInfo.Controls.Add(Me.btnModificarInfo)
+        Me.pnlMiInfo.Controls.Add(Me.lblEmailInfo)
+        Me.pnlMiInfo.Controls.Add(Me.Label74)
+        Me.pnlMiInfo.Controls.Add(Me.lblUserInfo)
+        Me.pnlMiInfo.Controls.Add(Me.Label19)
+        Me.pnlMiInfo.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pnlMiInfo.Location = New System.Drawing.Point(0, 39)
+        Me.pnlMiInfo.Name = "pnlMiInfo"
+        Me.pnlMiInfo.Size = New System.Drawing.Size(170, 102)
+        Me.pnlMiInfo.TabIndex = 17
+        Me.pnlMiInfo.Visible = False
         '
         'lblRolInfo
         '
@@ -3185,9 +3187,9 @@ Partial Class frmPrincipal
         Me.btnModificarInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnModificarInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnModificarInfo.ForeColor = System.Drawing.Color.White
-        Me.btnModificarInfo.Location = New System.Drawing.Point(-1, 74)
+        Me.btnModificarInfo.Location = New System.Drawing.Point(0, 75)
         Me.btnModificarInfo.Name = "btnModificarInfo"
-        Me.btnModificarInfo.Size = New System.Drawing.Size(142, 23)
+        Me.btnModificarInfo.Size = New System.Drawing.Size(169, 23)
         Me.btnModificarInfo.TabIndex = 16
         Me.btnModificarInfo.Text = "Modificar"
         Me.btnModificarInfo.UseVisualStyleBackColor = True
@@ -3245,7 +3247,7 @@ Partial Class frmPrincipal
         Me.Button28.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button28.Location = New System.Drawing.Point(0, 0)
         Me.Button28.Name = "Button28"
-        Me.Button28.Size = New System.Drawing.Size(206, 39)
+        Me.Button28.Size = New System.Drawing.Size(170, 39)
         Me.Button28.TabIndex = 15
         Me.Button28.Text = "     MI INFO"
         Me.Button28.UseVisualStyleBackColor = True
@@ -3275,7 +3277,7 @@ Partial Class frmPrincipal
         Me.ClientSize = New System.Drawing.Size(961, 633)
         Me.Controls.Add(Me.pnlMenu)
         Me.Controls.Add(Me.panelbotonescarrito)
-        Me.Controls.Add(Me.pnPerfil)
+        Me.Controls.Add(Me.pnlPerfil)
         Me.Controls.Add(Me.tbTodos)
         Me.MinimumSize = New System.Drawing.Size(963, 672)
         Me.Name = "frmPrincipal"
@@ -3335,9 +3337,9 @@ Partial Class frmPrincipal
         Me.pnlMenu.ResumeLayout(False)
         Me.pnlMenu.PerformLayout()
         Me.panelbotonescarrito.ResumeLayout(False)
-        Me.pnPerfil.ResumeLayout(False)
-        Me.Panel8.ResumeLayout(False)
-        Me.Panel8.PerformLayout()
+        Me.pnlPerfil.ResumeLayout(False)
+        Me.pnlMiInfo.ResumeLayout(False)
+        Me.pnlMiInfo.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3356,7 +3358,7 @@ Partial Class frmPrincipal
     Friend WithEvents btnLogin As Button
     Friend WithEvents btnRegistrar As Button
     Friend WithEvents pnlInicio As Panel
-    Friend WithEvents pnlCat As Panel
+    Friend WithEvents pnlConfig As Panel
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents PictureBox3 As PictureBox
@@ -3368,22 +3370,22 @@ Partial Class frmPrincipal
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents buttonRegister As Button
-    Friend WithEvents Label39 As Label
+    Friend WithEvents lblRegistroNuevoUser As Label
     Friend WithEvents txtPass As TextBox
-    Friend WithEvents Label34 As Label
+    Friend WithEvents lblPass As Label
     Friend WithEvents txtTelefono As TextBox
-    Friend WithEvents Label33 As Label
+    Friend WithEvents lblTelefono As Label
     Friend WithEvents txtEmail As TextBox
-    Friend WithEvents Label32 As Label
+    Friend WithEvents lblEmail As Label
     Friend WithEvents txtUsername As TextBox
-    Friend WithEvents Label31 As Label
+    Friend WithEvents lblUsername As Label
     Friend WithEvents lblNotienesCuentas As Label
     Friend WithEvents btnSign As Button
     Friend WithEvents btnIngresar As Button
     Friend WithEvents txtpasslogin As TextBox
-    Friend WithEvents Label36 As Label
+    Friend WithEvents lblContraseñaLogin As Label
     Friend WithEvents txtusernamelogin As TextBox
-    Friend WithEvents Label37 As Label
+    Friend WithEvents lblUsernameLogin As Label
     Friend WithEvents tbArticulos As TabPage
     Friend WithEvents Label50 As Label
     Friend WithEvents Label49 As Label
@@ -3391,7 +3393,7 @@ Partial Class frmPrincipal
     Friend WithEvents PictureBox17 As PictureBox
     Friend WithEvents tbAgregar As TabPage
     Friend WithEvents Panel9 As Panel
-    Friend WithEvents btnAgregar As Button
+    Friend WithEvents btnPublicar As Button
     Friend WithEvents PictureBox18 As PictureBox
     Friend WithEvents Button5 As Button
     Friend WithEvents Label51 As Label
@@ -3443,7 +3445,7 @@ Partial Class frmPrincipal
     Friend WithEvents Label71 As Label
     Friend WithEvents Label72 As Label
     Friend WithEvents PictureBox29 As PictureBox
-    Friend WithEvents pnPerfil As Panel
+    Friend WithEvents pnlPerfil As Panel
     Friend WithEvents panelbotonescarrito As Panel
     Friend WithEvents pnlCom As Panel
     Friend WithEvents Button2 As Button
@@ -3451,7 +3453,7 @@ Partial Class frmPrincipal
     Friend WithEvents Button1 As Button
     Friend WithEvents btnCambiarPass As Button
     Friend WithEvents btnMisArticulos As Button
-    Friend WithEvents Panel8 As Panel
+    Friend WithEvents pnlMiInfo As Panel
     Friend WithEvents lblRolInfo As Label
     Friend WithEvents Label76 As Label
     Friend WithEvents btnModificarInfo As Button
@@ -3504,7 +3506,7 @@ Partial Class frmPrincipal
     Friend WithEvents Label86 As Label
     Friend WithEvents Label87 As Label
     Friend WithEvents Button12 As Button
-    Friend WithEvents Button13 As Button
+    Friend WithEvents btnOcultarMiInfo As Button
     Friend WithEvents TextBox22 As TextBox
     Friend WithEvents txtTelefonoModificarPerfil As TextBox
     Friend WithEvents Label89 As Label
@@ -3523,16 +3525,16 @@ Partial Class frmPrincipal
     Friend WithEvents Button54 As Button
     Friend WithEvents tbHistorialVentas As TabPage
     Friend WithEvents btnMisVentas As Button
-    Friend WithEvents Label57 As Label
-    Friend WithEvents Label54 As Label
-    Friend WithEvents Label53 As Label
-    Friend WithEvents ComboBoxRol As ComboBox
+    Friend WithEvents lblCamposAsterisco As Label
+    Friend WithEvents lblAsterisco As Label
+    Friend WithEvents lblRol As Label
+    Friend WithEvents cbxRol As ComboBox
     Friend WithEvents DataGridView2 As DataGridView
     Friend WithEvents Label92 As Label
     Friend WithEvents Label91 As Label
     Friend WithEvents Label90 As Label
-    Friend WithEvents Label94 As Label
-    Friend WithEvents Label93 As Label
+    Friend WithEvents lblPassVaciaLogin As Label
+    Friend WithEvents lblUsernameVacioLogin As Label
     Friend WithEvents Label102 As Label
     Friend WithEvents LabelErrorCorreo As Label
     Friend WithEvents LabelErrorUsername As Label
@@ -3573,13 +3575,13 @@ Partial Class frmPrincipal
     Friend WithEvents PictureBox11 As PictureBox
     Friend WithEvents Label122 As Label
     Friend WithEvents lblRegistradoCorrectamente As Label
-    Friend WithEvents Label124 As Label
     Friend WithEvents lblBienvenido As Label
-    Friend WithEvents Button14 As Button
+    Friend WithEvents btnCerrarSesion As Button
     Friend WithEvents pnlCarrito As Panel
-    Friend WithEvents lblNombreUser As Label
     Friend WithEvents OpenFileImagen1 As OpenFileDialog
     Friend WithEvents OpenFileImagen2 As OpenFileDialog
     Friend WithEvents OpenFileImagen3 As OpenFileDialog
     Friend WithEvents OpenFilePortada As OpenFileDialog
+    Friend WithEvents lblRegistroBienvenido As Label
+    Friend WithEvents lblNoExisteUser As Label
 End Class
