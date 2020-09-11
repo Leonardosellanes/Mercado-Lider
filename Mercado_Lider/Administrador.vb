@@ -23,7 +23,6 @@
         OcultarBarras()
         pnlTransacciones.Visible = True
     End Sub
-
     Private Sub Administrador_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         frmPrincipal.Show()
     End Sub

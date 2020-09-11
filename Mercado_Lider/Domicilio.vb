@@ -1,16 +1,8 @@
 ﻿Public Class Domicilio
-
-
-
     Public Sub New()
-
-
-
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
-
     End Sub
     Private Sub Domicilio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -35,7 +27,6 @@
             e.Handled = True
         End If
     End Sub
-
     Private Sub TextBox4_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox4.KeyPress
         Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
         KeyAscii = CShort(SoloNumeros(KeyAscii))
@@ -45,12 +36,8 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
-
-
         Me.Hide()
     End Sub
-
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.Hide()
     End Sub
