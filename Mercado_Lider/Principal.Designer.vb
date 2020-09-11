@@ -3280,7 +3280,7 @@ Partial Class frmPrincipal
         Me.MinimumSize = New System.Drawing.Size(963, 672)
         Me.Name = "frmPrincipal"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Mercado Lider"
+        Me.Text = "a"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.tbTodos.ResumeLayout(False)
         Me.tbPrincipal.ResumeLayout(False)
