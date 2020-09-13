@@ -1,4 +1,5 @@
-﻿Imports System.Security.Cryptography
+﻿Imports System.IO
+Imports System.Security.Cryptography
 Imports System.Text
 Imports System.Text.RegularExpressions
 Imports MySql.Data.MySqlClient
@@ -342,7 +343,375 @@ Public Class frmPrincipal
             conexion.Close()
         End If
     End Sub
+
+    ''EVENTO DE EL BOTON DE LOGEO''
+    Private Sub Button12_Click(sender As Object, e As EventArgs) Handles btnIngresar.Click
+        Dim log As Integer
+        If txtusernamelogin.Text = "" Then
+            lblUsernameVacioLogin.Visible = True
+        Else
+            log = log + 1
+        End If
+        '==========================================
+        If txtpasslogin.Text = "" Then
+            lblPassVaciaLogin.Visible = True
+        Else
+            log = log + 1
+        End If
+        If (log = 2) Then
+            conexion.Open()
+            cmd.Connection = conexion
+
+            cmd.CommandText = "SELECT usuario.id, usuario.username,usuario.Nombre, usuario.Apellido, usuario.telefono, usuario.rol , useremail.email from usuario,useremail where username=@nombre and password=@pass and useremail.user_id = usuario.id"
+            cmd.Prepare()
+            cmd.Parameters.Clear()
+            cmd.Parameters.AddWithValue("@nombre", txtusernamelogin.Text)
+            cmd.Parameters.AddWithValue("@pass", generarClaveSHA1(txtpasslogin.Text))
+            Dim r As MySqlDataReader = cmd.ExecuteReader()
+            If r.HasRows Then
+                If r.Read Then
+                    ID = r("id")
+                    Username = r("username")
+                    Nombre = r("Nombre").ToString
+                    Apellido = r("Apellido").ToString
+                    Email = r("email")
+                    Rol = r("rol")
+                    'CI = r("ci")
+                    Telefono = r("telefono").ToString
+                    If (Rol = "Administrador") Then
+                        Administrador.Show()
+                        Me.Hide()
+                    Else
+                        lblUserInfo.Text = Username
+                        lblEmailInfo.Text = Email
+                        lblRolInfo.Text = Rol
+                        txtusernamelogin.Clear()
+                        txtpasslogin.Clear()
+                        ocultarLogin(False, True)
+                    End If
+                End If
+            Else
+                lblNoExisteUser.Visible = True
+            End If
+            r.Close()
+            conexion.Close()
+        End If
+        log = 0
+    End Sub
+
+
+
+    ''EVENTO DE CLICK DE EL BOTON DE ACTUALIZAR INFORMACION
+    Private Sub buttonSetInfo_Click(sender As Object, e As EventArgs) Handles buttonSetInfo.Click, btnCerrarSesion.Click
+        'VALIDACION DE FORMULARIO DE MODIFICACION DE PERFIL' 
+
+        Dim validacion As Integer = 0
+
+        Dim user = txtUsernameModificarPerfil.Text
+        Dim correo = txtCorreoModificarPerfil.Text
+        Dim nombre = txtNombreModificarPerfil.Text
+        Dim telefono = txtTelefonoModificarPerfil.Text
+        Dim apellido = txtApellidoModificarPerfil.Text
+
+        ''Domicilio
+        Dim nroCalle = frmDomicilio.TextBox1.Text
+        Dim calle = frmDomicilio.TextBox2.Text
+        Dim esq = frmDomicilio.TextBox3.Text
+        Dim nroApto = frmDomicilio.TextBox4.Text
+        Dim ciudad = frmDomicilio.TextBox5.Text
+
+
+        If user = "" Then
+            LabelErrorUsername.Text = "*Este campo no puede estar vacio"
+        Else
+            If Not txtUsernameModificarPerfil.TextLength <= 6 Then
+                validacion = validacion + 1
+
+            Else
+                LabelErrorUsername.Visible = True
+                LabelErrorUsername.Text = "*El nombre debe tener mas de 6 caracteres"
+            End If
+        End If
+
+        If correo = "" Then
+            LabelErrorCorreo.Text = "*Este campo no puede estar vacio"
+        Else
+            If (VerificarCorreo(correo)) Then
+                validacion = validacion + 1
+            Else
+                LabelErrorCorreo.Visible = True
+                LabelErrorCorreo.Text = "*debes ingresar un correo valido"
+            End If
+        End If
+        '==========================================
+        If nombre = "" Then
+
+            nombre = Nothing
+            ''Informacion adicional',no necesariamente necesita no estar vacio
+
+        Else
+            If txtNombreModificarPerfil.TextLength < 3 Then
+                Label97.Visible = True
+            Else
+
+
+
+            End If
+        End If
+        '==========================================
+        If apellido = "" Then
+
+            apellido = Nothing
+
+            ''Informacion adicional',no necesariamente necesita no estar vacio
+        Else
+            If txtApellidoModificarPerfil.TextLength < 3 Then
+                Label100.Visible = True
+            Else
+
+            End If
+        End If
+
+        If (validacion = 2) Then
+            Dim result As DialogResult = MessageBox.Show("¿Seguro que quieres actualizar tu información? ", "Modificar perfil ", MessageBoxButtons.YesNo)
+            If result = DialogResult.Yes Then
+                Try
+                    conexion.Close()
+                    conexion.Open()
+                    cmd.Connection = conexion
+
+
+                    cmd.CommandText = "UPDATE usuario,useremail SET usuario.username=@username, usuario.Nombre=@nombre, usuario.Apellido=@apellido,usuario.telefono=@telefono, usuario.rol=@rol,usuario.nroCalle = @nro , usuario.calle=@calle, usuario.nroApto=@nroapto,usuario.esq=@esq,usuario.ciudad=@ciudad ,useremail.email = @email WHERE usuario.id=@id AND usuario.id = useremail.user_id"
+                    cmd.Prepare()
+                    cmd.Parameters.Clear()
+                    cmd.Parameters.AddWithValue("@username", user)
+                    cmd.Parameters.AddWithValue("@nombre", nombre)
+                    cmd.Parameters.AddWithValue("@apellido", apellido)
+                    cmd.Parameters.AddWithValue("@telefono", telefono)
+                    cmd.Parameters.AddWithValue("@rol", ComboBoxRolModificarPerfil.Text)
+                    cmd.Parameters.AddWithValue("@nro", nroCalle)
+                    cmd.Parameters.AddWithValue("@calle", calle)
+                    cmd.Parameters.AddWithValue("@nroapto", nroApto)
+                    cmd.Parameters.AddWithValue("@esq", esq)
+                    cmd.Parameters.AddWithValue("@ciudad", ciudad)
+                    cmd.Parameters.AddWithValue("@email", correo)
+                    cmd.Parameters.AddWithValue("@id", ID)
+                    cmd.ExecuteNonQuery()
+                    MsgBox("Datos Actualizados correctamente")
+                    UpdateUserInfo(ID)
+                Catch ex As Exception
+                    MsgBox(ex.ToString)
+                End Try
+                conexion.Close()
+            End If
+        End If
+    End Sub
+
+
+    ''EVENTO DE BOTON DE PUBLICAR ARTICULO''
+
+
+    Private Sub buttonPublicarArticulo_Click(sender As Object, e As EventArgs) Handles buttonPublicarArticulo.Click
+        Dim validacionFrmArticulo As Integer = 0
+
+
+
+        If txtStockArticulo.Text = "" Then
+            Label114.Visible = True
+        Else
+            validacionFrmArticulo = validacionFrmArticulo + 1
+
+
+        End If
+
+
+        '==========================================
+        If txtNombreArticulo.Text = "" Then
+            Label115.Visible = True
+        Else
+            If txtNombreArticulo.TextLength < 2 Then
+                Label116.Visible = True
+            Else
+                validacionFrmArticulo = validacionFrmArticulo + 1
+
+
+            End If
+        End If
+        '==========================================
+        If txtPrecio.Text = "" Then
+            Label120.Visible = True
+        Else
+            validacionFrmArticulo = validacionFrmArticulo + 1
+        End If
+        '==========================================
+        If txtDescripcionArticulo.Text = "" Then
+            Label118.Visible = True
+        Else
+            If txtDescripcionArticulo.TextLength < 10 Then
+                Label119.Visible = True
+
+            Else
+                validacionFrmArticulo = validacionFrmArticulo + 1
+            End If
+
+        End If
+
+        If Not PictureBoxPortada.Image Is Nothing Then
+            validacionFrmArticulo = validacionFrmArticulo + 1
+
+        Else
+            MsgBox("Necesitas agregar una foto de portada")
+        End If
+
+        If Not PictureBoxImagen1.Image Is Nothing Then
+            validacionFrmArticulo = validacionFrmArticulo + 1
+        Else
+            MsgBox("Necesitas agregar una primer imagen")
+
+        End If
+
+        If Not PictureBoxImagen2.Image Is Nothing Then
+            validacionFrmArticulo = validacionFrmArticulo + 1
+        Else
+            MsgBox("Necesitas agregar una segunda imagen")
+
+        End If
+
+
+
+        If Not PictureBoxImagen3.Image Is Nothing Then
+            validacionFrmArticulo = validacionFrmArticulo + 1
+        Else
+            MsgBox("Necesitas agregar una tercera imagen")
+
+        End If
+
+
+
+        If validacionFrmArticulo = 8 Then
+
+
+
+
+            Dim ms As New System.IO.MemoryStream()   ''Crea un buffer o reserva un espacio en memoria ran directamente  ram donde a futuro se trabajara con cantidad de datos importantes
+            PictureBoxPortada.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
+            Dim portada As Byte() = ms.GetBuffer
+
+
+
+
+
+
+
+
+            Try
+
+                conexion.Open()
+                cmd.CommandText = "INSERT INTO articulos(Nombre,Precio,Descripcion,portada,stock,usuario_id) VALUES(@nombre,@precio,@descripcion,@portada,@stock,@usuario_id)"
+
+                cmd.Parameters.Clear()
+                cmd.Parameters.AddWithValue("@nombre", txtNombreArticulo.Text)
+                cmd.Parameters.AddWithValue("@precio", txtPrecio.Text)
+                cmd.Parameters.AddWithValue("@descripcion", txtDescripcionArticulo.Text)
+                cmd.Parameters.AddWithValue("@portada", portada)
+                cmd.Parameters.AddWithValue("@stock", txtStockArticulo.Text)
+                cmd.Parameters.AddWithValue("@usuario_id", ID)
+
+
+
+
+                cmd.ExecuteNonQuery()
+
+
+                ''EXTRAER EL ID DE EL ARTICULO INGRESADO ANTERIORMENTE'
+
+                Dim idArticulo As Integer
+                cmd.CommandText = "SELECT MAX(id) As id FROM articulos"
+                r = cmd.ExecuteReader
+                If (r.HasRows) Then
+                    If r.Read Then
+                        idArticulo = r("id")
+
+                    End If
+
+
+                End If
+                r.Close()
+
+
+                ''ARRAY DE los 3 PictureBox ya cargados''
+                Dim arrayFotos(2) As PictureBox
+                arrayFotos(0) = PictureBoxImagen1
+                arrayFotos(1) = PictureBoxImagen2
+                arrayFotos(2) = PictureBoxImagen3
+
+
+                Dim nroFoto = 0
+                For Each fotito As PictureBox In arrayFotos ''BUCLE FOREACH que insertara las 3 imagenes ingresadas como fotos de los articulos en la tabla galeria 
+                    nroFoto = nroFoto + 1
+
+                    fotito.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
+                    Dim foto As Byte() = ms.GetBuffer
+
+                    cmd.CommandText = "INSERT INTO galeria(articulo_id,fotos,nroFoto) VALUES(@articulo_id,@foto,@nroFoto)"
+
+                    cmd.Parameters.Clear()
+                    cmd.Parameters.AddWithValue("@articulo_id", idArticulo)
+                    cmd.Parameters.AddWithValue("@foto", foto)
+                    cmd.Parameters.AddWithValue("@nroFoto", nroFoto)
+
+                    cmd.ExecuteNonQuery()
+
+
+
+
+
+                    ms.Close()
+
+                Next
+
+
+
+                MsgBox("Articulo insertado correctamente")
+                conexion.Close()
+
+
+
+
+
+
+            Catch ex As Exception
+                MsgBox(ex.ToString)
+                conexion.Close()
+
+            End Try
+
+
+
+
+        End If
+
+
+
+    End Sub
+
+
+
     ''A PARTIR DE AQUI HACIA ABAJO ES CODIGO DE  DE ITERACCION DE USUARIO DENTRO DE LA INTERFAZ CON LOS DISTINTOS ELEMENTOS
+
+
+    Private Sub modificarButton(sender As Object, e As EventArgs) Handles btnModificarInfo.Click
+        UpdateUserInfo(ID)
+        tbTodos.SelectedTab = tbTodos.TabPages.Item(10)
+        Ocultarpaneles()
+        btnConfigOcultar.Visible = False
+    End Sub
+    Private Sub btnCambiarPass_Click(sender As Object, e As EventArgs) Handles btnCambiarPass.Click
+        tbTodos.SelectedTab = tbTodos.TabPages.Item(9)
+        pnlMiInfo.Visible = False
+        btnConfigOcultar.Visible = False
+        Ocultarpaneles()
+    End Sub
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Domicilio.Hide()
         ocultarbarritas()
@@ -560,60 +929,7 @@ Public Class frmPrincipal
         Label86.Visible = False
     End Sub
 
-    ''EVENTO DE EL BOTON DE LOGEO''
-    Private Sub Button12_Click(sender As Object, e As EventArgs) Handles btnIngresar.Click
-        Dim log As Integer
-        If txtusernamelogin.Text = "" Then
-            lblUsernameVacioLogin.Visible = True
-        Else
-            log = log + 1
-        End If
-        '==========================================
-        If txtpasslogin.Text = "" Then
-            lblPassVaciaLogin.Visible = True
-        Else
-            log = log + 1
-        End If
-        If (log = 2) Then
-            conexion.Open()
-            cmd.Connection = conexion
 
-            cmd.CommandText = "SELECT usuario.id, usuario.username,usuario.Nombre, usuario.Apellido, usuario.telefono, usuario.rol , useremail.email from usuario,useremail where username=@nombre and password=@pass and useremail.user_id = usuario.id"
-            cmd.Prepare()
-            cmd.Parameters.Clear()
-            cmd.Parameters.AddWithValue("@nombre", txtusernamelogin.Text)
-            cmd.Parameters.AddWithValue("@pass", generarClaveSHA1(txtpasslogin.Text))
-            Dim r As MySqlDataReader = cmd.ExecuteReader()
-            If r.HasRows Then
-                If r.Read Then
-                    ID = r("id")
-                    Username = r("username")
-                    Nombre = r("Nombre").ToString
-                    Apellido = r("Apellido").ToString
-                    Email = r("email")
-                    Rol = r("rol")
-                    'CI = r("ci")
-                    Telefono = r("telefono").ToString
-                    If (Rol = "Administrador") Then
-                        Administrador.Show()
-                        Me.Hide()
-                    Else
-                        lblUserInfo.Text = Username
-                        lblEmailInfo.Text = Email
-                        lblRolInfo.Text = Rol
-                        txtusernamelogin.Clear()
-                        txtpasslogin.Clear()
-                        ocultarLogin(False, True)
-                    End If
-                End If
-            Else
-                lblNoExisteUser.Visible = True
-            End If
-            r.Close()
-            conexion.Close()
-        End If
-        log = 0
-    End Sub
     Private Sub TextBox7_Click(sender As Object, e As EventArgs) Handles txtusernamelogin.Click
         lblUsernameVacioLogin.Visible = False
         lblNoExisteUser.Visible = False
@@ -689,14 +1005,14 @@ Public Class frmPrincipal
         Label111.Visible = False
         Label109.Visible = False
     End Sub
-    Private Sub TextBox10_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox10.KeyPress
+    Private Sub TextBox10_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtStockArticulo.KeyPress
         Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
         KeyAscii = CShort(SoloNumeros(KeyAscii))
         If KeyAscii = 0 Then
             e.Handled = True
         End If
     End Sub
-    Private Sub TextBox9_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox9.KeyPress
+    Private Sub TextBox9_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtPrecio.KeyPress
         Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
         KeyAscii = CShort(SoloNumeros(KeyAscii))
         If KeyAscii = 0 Then
@@ -704,17 +1020,17 @@ Public Class frmPrincipal
         End If
     End Sub
 
-    Private Sub TextBox10_Click(sender As Object, e As EventArgs) Handles TextBox10.Click
+    Private Sub TextBox10_Click(sender As Object, e As EventArgs) Handles txtStockArticulo.Click
         Label114.Visible = False
     End Sub
-    Private Sub TextBox8_Click(sender As Object, e As EventArgs) Handles TextBox8.Click
+    Private Sub TextBox8_Click(sender As Object, e As EventArgs) Handles txtNombreArticulo.Click
         Label115.Visible = False
         Label116.Visible = False
     End Sub
-    Private Sub TextBox9_Click(sender As Object, e As EventArgs) Handles TextBox9.Click
+    Private Sub TextBox9_Click(sender As Object, e As EventArgs) Handles txtPrecio.Click
         Label120.Visible = False
     End Sub
-    Private Sub TextBox23_Click(sender As Object, e As EventArgs) Handles TextBox23.Click
+    Private Sub TextBox23_Click(sender As Object, e As EventArgs) Handles txtDescripcionArticulo.Click
         Label118.Visible = False
         Label119.Visible = False
     End Sub
@@ -728,182 +1044,6 @@ Public Class frmPrincipal
         Ocultarpaneles()
     End Sub
 
-    Private Sub buttonSetInfo_Click(sender As Object, e As EventArgs) Handles buttonSetInfo.Click, btnCerrarSesion.Click
-        'VALIDACION DE FORMULARIO DE MODIFICACION DE PERFIL' 
-
-        Dim validacion As Integer = 0
-
-        Dim user = txtUsernameModificarPerfil.Text
-        Dim correo = txtCorreoModificarPerfil.Text
-        Dim nombre = txtNombreModificarPerfil.Text
-        Dim telefono = txtTelefonoModificarPerfil.Text
-        Dim apellido = txtApellidoModificarPerfil.Text
-
-        ''Domicilio
-        Dim nroCalle = frmDomicilio.TextBox1.Text
-        Dim calle = frmDomicilio.TextBox2.Text
-        Dim esq = frmDomicilio.TextBox3.Text
-        Dim nroApto = frmDomicilio.TextBox4.Text
-        Dim ciudad = frmDomicilio.TextBox5.Text
-
-
-        If user = "" Then
-            LabelErrorUsername.Text = "*Este campo no puede estar vacio"
-        Else
-            If Not txtUsernameModificarPerfil.TextLength <= 6 Then
-                validacion = validacion + 1
-
-            Else
-                LabelErrorUsername.Visible = True
-                LabelErrorUsername.Text = "*El nombre debe tener mas de 6 caracteres"
-            End If
-        End If
-
-        If correo = "" Then
-            LabelErrorCorreo.Text = "*Este campo no puede estar vacio"
-        Else
-            If (VerificarCorreo(correo)) Then
-                validacion = validacion + 1
-            Else
-                LabelErrorCorreo.Visible = True
-                LabelErrorCorreo.Text = "*debes ingresar un correo valido"
-            End If
-        End If
-        '==========================================
-        If nombre = "" Then
-
-            nombre = Nothing
-            ''Informacion adicional',no necesariamente necesita no estar vacio
-
-        Else
-            If txtNombreModificarPerfil.TextLength < 3 Then
-                Label97.Visible = True
-            Else
-
-
-
-            End If
-        End If
-        '==========================================
-        If apellido = "" Then
-
-            apellido = Nothing
-
-            ''Informacion adicional',no necesariamente necesita no estar vacio
-        Else
-            If txtApellidoModificarPerfil.TextLength < 3 Then
-                Label100.Visible = True
-            Else
-
-            End If
-        End If
-
-        If (validacion = 2) Then
-            Dim result As DialogResult = MessageBox.Show("¿Seguro que quieres actualizar tu información? ", "Modificar perfil ", MessageBoxButtons.YesNo)
-            If result = DialogResult.Yes Then
-                Try
-                    conexion.Close()
-                    conexion.Open()
-                    cmd.Connection = conexion
-
-
-                    cmd.CommandText = "UPDATE usuario,useremail SET usuario.username=@username, usuario.Nombre=@nombre, usuario.Apellido=@apellido,usuario.telefono=@telefono, usuario.rol=@rol,usuario.nroCalle = @nro , usuario.calle=@calle, usuario.nroApto=@nroapto,usuario.esq=@esq,usuario.ciudad=@ciudad ,useremail.email = @email WHERE usuario.id=@id AND usuario.id = useremail.user_id"
-                    cmd.Prepare()
-                    cmd.Parameters.Clear()
-                    cmd.Parameters.AddWithValue("@username", user)
-                    cmd.Parameters.AddWithValue("@nombre", nombre)
-                    cmd.Parameters.AddWithValue("@apellido", apellido)
-                    cmd.Parameters.AddWithValue("@telefono", telefono)
-                    cmd.Parameters.AddWithValue("@rol", ComboBoxRolModificarPerfil.Text)
-                    cmd.Parameters.AddWithValue("@nro", nroCalle)
-                    cmd.Parameters.AddWithValue("@calle", calle)
-                    cmd.Parameters.AddWithValue("@nroapto", nroApto)
-                    cmd.Parameters.AddWithValue("@esq", esq)
-                    cmd.Parameters.AddWithValue("@ciudad", ciudad)
-                    cmd.Parameters.AddWithValue("@email", correo)
-                    cmd.Parameters.AddWithValue("@id", ID)
-                    cmd.ExecuteNonQuery()
-                    MsgBox("Datos Actualizados correctamente")
-                    UpdateUserInfo(ID)
-                Catch ex As Exception
-                    MsgBox(ex.ToString)
-                End Try
-                conexion.Close()
-            End If
-        End If
-    End Sub
-    Private Sub modificarButton(sender As Object, e As EventArgs) Handles btnModificarInfo.Click
-        UpdateUserInfo(ID)
-        tbTodos.SelectedTab = tbTodos.TabPages.Item(10)
-        Ocultarpaneles()
-        btnConfigOcultar.Visible = False
-    End Sub
-    Private Sub btnCambiarPass_Click(sender As Object, e As EventArgs) Handles btnCambiarPass.Click
-        tbTodos.SelectedTab = tbTodos.TabPages.Item(9)
-        pnlMiInfo.Visible = False
-        btnConfigOcultar.Visible = False
-        Ocultarpaneles()
-    End Sub
-
-    Private Sub tbPrincipal_Click(sender As Object, e As EventArgs) Handles tbPrincipal.Click
-
-    End Sub
-
-
-
-    ''EVENTO DE BOTON DE PUBLICAR ARTICULO''
-    Private Sub buttonPublicarArticulo_Click(sender As Object, e As EventArgs) Handles buttonPublicarArticulo.Click
-        If TextBox10.Text = "" Then
-            Label114.Visible = True
-
-        End If
-
-
-        '==========================================
-        If TextBox8.Text = "" Then
-            Label115.Visible = True
-        Else
-            If TextBox8.TextLength < 2 Then
-                Label116.Visible = True
-            End If
-        End If
-        '==========================================
-        If TextBox9.Text = "" Then
-            Label120.Visible = True
-        End If
-        '==========================================
-        If TextBox23.Text = "" Then
-            Label118.Visible = True
-        Else
-            If TextBox23.TextLength < 10 Then
-                Label119.Visible = True
-            End If
-        End If
-
-        If Not PictureBoxPortada.Image Is Nothing Then
-            MsgBox("No esta vacio")
-        Else
-
-        End If
-
-        If Not PictureBoxImagen1.Image Is Nothing Then
-            MsgBox("No esta vacio")
-        Else
-
-        End If
-
-        If Not PictureBoxImagen2.Image Is Nothing Then
-            MsgBox("No esta vacio")
-        Else
-
-        End If
-
-        If Not PictureBoxImagen3.Image Is Nothing Then
-            MsgBox("No esta vacio")
-        Else
-
-        End If
-    End Sub
     Private Sub Button14_Click(sender As Object, e As EventArgs) Handles btnCerrarSesion.Click
         ocultarLogin(True, False)
         ocultarregistro(True, False)
@@ -911,5 +1051,6 @@ Public Class frmPrincipal
         btnConfigOcultar.Visible = False
         pnlConfig.Visible = False
     End Sub
-    'comentario de pruba de github
+
+
 End Class

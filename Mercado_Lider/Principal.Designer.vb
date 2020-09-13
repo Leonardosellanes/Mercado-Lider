@@ -115,15 +115,15 @@ Partial Class frmPrincipal
         Me.Label115 = New System.Windows.Forms.Label()
         Me.Label114 = New System.Windows.Forms.Label()
         Me.Label52 = New System.Windows.Forms.Label()
-        Me.TextBox23 = New System.Windows.Forms.TextBox()
+        Me.txtDescripcionArticulo = New System.Windows.Forms.TextBox()
         Me.button_agregarImagen1 = New System.Windows.Forms.Button()
         Me.button_agregarPortada = New System.Windows.Forms.Button()
         Me.buttonPublicarArticulo = New System.Windows.Forms.Button()
-        Me.TextBox10 = New System.Windows.Forms.TextBox()
+        Me.txtStockArticulo = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
-        Me.TextBox9 = New System.Windows.Forms.TextBox()
+        Me.txtPrecio = New System.Windows.Forms.TextBox()
         Me.Label56 = New System.Windows.Forms.Label()
-        Me.TextBox8 = New System.Windows.Forms.TextBox()
+        Me.txtNombreArticulo = New System.Windows.Forms.TextBox()
         Me.Label55 = New System.Windows.Forms.Label()
         Me.PictureBoxPortada = New System.Windows.Forms.PictureBox()
         Me.PictureBoxImagen1 = New System.Windows.Forms.PictureBox()
@@ -1294,15 +1294,15 @@ Partial Class frmPrincipal
         Me.tbAgregar.Controls.Add(Me.Label115)
         Me.tbAgregar.Controls.Add(Me.Label114)
         Me.tbAgregar.Controls.Add(Me.Label52)
-        Me.tbAgregar.Controls.Add(Me.TextBox23)
+        Me.tbAgregar.Controls.Add(Me.txtDescripcionArticulo)
         Me.tbAgregar.Controls.Add(Me.button_agregarImagen1)
         Me.tbAgregar.Controls.Add(Me.button_agregarPortada)
         Me.tbAgregar.Controls.Add(Me.buttonPublicarArticulo)
-        Me.tbAgregar.Controls.Add(Me.TextBox10)
+        Me.tbAgregar.Controls.Add(Me.txtStockArticulo)
         Me.tbAgregar.Controls.Add(Me.Label21)
-        Me.tbAgregar.Controls.Add(Me.TextBox9)
+        Me.tbAgregar.Controls.Add(Me.txtPrecio)
         Me.tbAgregar.Controls.Add(Me.Label56)
-        Me.tbAgregar.Controls.Add(Me.TextBox8)
+        Me.tbAgregar.Controls.Add(Me.txtNombreArticulo)
         Me.tbAgregar.Controls.Add(Me.Label55)
         Me.tbAgregar.Controls.Add(Me.PictureBoxPortada)
         Me.tbAgregar.Controls.Add(Me.PictureBoxImagen1)
@@ -1463,15 +1463,15 @@ Partial Class frmPrincipal
         Me.Label52.TabIndex = 22
         Me.Label52.Text = "Descripcion:"
         '
-        'TextBox23
+        'txtDescripcionArticulo
         '
-        Me.TextBox23.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.TextBox23.Location = New System.Drawing.Point(207, 246)
-        Me.TextBox23.Multiline = True
-        Me.TextBox23.Name = "TextBox23"
-        Me.TextBox23.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox23.Size = New System.Drawing.Size(532, 97)
-        Me.TextBox23.TabIndex = 21
+        Me.txtDescripcionArticulo.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.txtDescripcionArticulo.Location = New System.Drawing.Point(207, 246)
+        Me.txtDescripcionArticulo.Multiline = True
+        Me.txtDescripcionArticulo.Name = "txtDescripcionArticulo"
+        Me.txtDescripcionArticulo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtDescripcionArticulo.Size = New System.Drawing.Size(532, 97)
+        Me.txtDescripcionArticulo.TabIndex = 21
         '
         'button_agregarImagen1
         '
@@ -1518,13 +1518,13 @@ Partial Class frmPrincipal
         Me.buttonPublicarArticulo.Text = "PUBLICAR"
         Me.buttonPublicarArticulo.UseVisualStyleBackColor = False
         '
-        'TextBox10
+        'txtStockArticulo
         '
-        Me.TextBox10.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.TextBox10.Location = New System.Drawing.Point(348, 60)
-        Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.Size = New System.Drawing.Size(178, 20)
-        Me.TextBox10.TabIndex = 15
+        Me.txtStockArticulo.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.txtStockArticulo.Location = New System.Drawing.Point(348, 60)
+        Me.txtStockArticulo.Name = "txtStockArticulo"
+        Me.txtStockArticulo.Size = New System.Drawing.Size(178, 20)
+        Me.txtStockArticulo.TabIndex = 15
         '
         'Label21
         '
@@ -1536,13 +1536,13 @@ Partial Class frmPrincipal
         Me.Label21.TabIndex = 14
         Me.Label21.Text = "Stock:"
         '
-        'TextBox9
+        'txtPrecio
         '
-        Me.TextBox9.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.TextBox9.Location = New System.Drawing.Point(348, 182)
-        Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.Size = New System.Drawing.Size(178, 20)
-        Me.TextBox9.TabIndex = 10
+        Me.txtPrecio.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.txtPrecio.Location = New System.Drawing.Point(348, 182)
+        Me.txtPrecio.Name = "txtPrecio"
+        Me.txtPrecio.Size = New System.Drawing.Size(178, 20)
+        Me.txtPrecio.TabIndex = 10
         '
         'Label56
         '
@@ -1554,13 +1554,13 @@ Partial Class frmPrincipal
         Me.Label56.TabIndex = 9
         Me.Label56.Text = "Precio(en pesos uruguayos):"
         '
-        'TextBox8
+        'txtNombreArticulo
         '
-        Me.TextBox8.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.TextBox8.Location = New System.Drawing.Point(348, 118)
-        Me.TextBox8.Name = "TextBox8"
-        Me.TextBox8.Size = New System.Drawing.Size(178, 20)
-        Me.TextBox8.TabIndex = 8
+        Me.txtNombreArticulo.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.txtNombreArticulo.Location = New System.Drawing.Point(348, 118)
+        Me.txtNombreArticulo.Name = "txtNombreArticulo"
+        Me.txtNombreArticulo.Size = New System.Drawing.Size(178, 20)
+        Me.txtNombreArticulo.TabIndex = 8
         '
         'Label55
         '
@@ -1579,6 +1579,7 @@ Partial Class frmPrincipal
         Me.PictureBoxPortada.Location = New System.Drawing.Point(618, 60)
         Me.PictureBoxPortada.Name = "PictureBoxPortada"
         Me.PictureBoxPortada.Size = New System.Drawing.Size(114, 110)
+        Me.PictureBoxPortada.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBoxPortada.TabIndex = 11
         Me.PictureBoxPortada.TabStop = False
         '
@@ -2625,7 +2626,7 @@ Partial Class frmPrincipal
         '
         Me.ComboBoxRolModificarPerfil.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.ComboBoxRolModificarPerfil.FormattingEnabled = True
-        Me.ComboBoxRolModificarPerfil.Items.AddRange(New Object() {"VENDEDOR"})
+        Me.ComboBoxRolModificarPerfil.Items.AddRange(New Object() {"CLIENTE", "VENDEDOR"})
         Me.ComboBoxRolModificarPerfil.Location = New System.Drawing.Point(512, 346)
         Me.ComboBoxRolModificarPerfil.Name = "ComboBoxRolModificarPerfil"
         Me.ComboBoxRolModificarPerfil.Size = New System.Drawing.Size(188, 21)
@@ -2972,7 +2973,7 @@ Partial Class frmPrincipal
         Me.btnCerrarSesion.ForeColor = System.Drawing.Color.White
         Me.btnCerrarSesion.Location = New System.Drawing.Point(0, 222)
         Me.btnCerrarSesion.Name = "btnCerrarSesion"
-        Me.btnCerrarSesion.Size = New System.Drawing.Size(170, 30)
+        Me.btnCerrarSesion.Size = New System.Drawing.Size(153, 30)
         Me.btnCerrarSesion.TabIndex = 20
         Me.btnCerrarSesion.Text = "CERRAR SESION"
         Me.btnCerrarSesion.UseVisualStyleBackColor = True
@@ -3054,7 +3055,7 @@ Partial Class frmPrincipal
         Me.Button7.ForeColor = System.Drawing.Color.White
         Me.Button7.Location = New System.Drawing.Point(0, 525)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(170, 28)
+        Me.Button7.Size = New System.Drawing.Size(153, 28)
         Me.Button7.TabIndex = 18
         Me.Button7.Text = "¿QUIENES SOMOS?"
         Me.Button7.UseVisualStyleBackColor = False
@@ -3072,9 +3073,9 @@ Partial Class frmPrincipal
         Me.pnlPerfil.Controls.Add(Me.btnMisArticulos)
         Me.pnlPerfil.Controls.Add(Me.pnlMiInfo)
         Me.pnlPerfil.Controls.Add(Me.Button28)
-        Me.pnlPerfil.Location = New System.Drawing.Point(793, 82)
+        Me.pnlPerfil.Location = New System.Drawing.Point(810, 82)
         Me.pnlPerfil.Name = "pnlPerfil"
-        Me.pnlPerfil.Size = New System.Drawing.Size(170, 553)
+        Me.pnlPerfil.Size = New System.Drawing.Size(153, 553)
         Me.pnlPerfil.TabIndex = 3
         Me.pnlPerfil.Visible = False
         '
@@ -3089,7 +3090,7 @@ Partial Class frmPrincipal
         Me.btnMisVentas.ForeColor = System.Drawing.Color.White
         Me.btnMisVentas.Location = New System.Drawing.Point(0, 195)
         Me.btnMisVentas.Name = "btnMisVentas"
-        Me.btnMisVentas.Size = New System.Drawing.Size(170, 27)
+        Me.btnMisVentas.Size = New System.Drawing.Size(153, 27)
         Me.btnMisVentas.TabIndex = 23
         Me.btnMisVentas.Text = "MIS VENTAS"
         Me.btnMisVentas.UseVisualStyleBackColor = True
@@ -3122,7 +3123,7 @@ Partial Class frmPrincipal
         Me.btnCambiarPass.ForeColor = System.Drawing.Color.White
         Me.btnCambiarPass.Location = New System.Drawing.Point(0, 168)
         Me.btnCambiarPass.Name = "btnCambiarPass"
-        Me.btnCambiarPass.Size = New System.Drawing.Size(170, 27)
+        Me.btnCambiarPass.Size = New System.Drawing.Size(153, 27)
         Me.btnCambiarPass.TabIndex = 22
         Me.btnCambiarPass.Text = "CAMBIAR CONTRASEÑA"
         Me.btnCambiarPass.UseVisualStyleBackColor = True
@@ -3138,7 +3139,7 @@ Partial Class frmPrincipal
         Me.btnMisArticulos.ForeColor = System.Drawing.Color.White
         Me.btnMisArticulos.Location = New System.Drawing.Point(0, 141)
         Me.btnMisArticulos.Name = "btnMisArticulos"
-        Me.btnMisArticulos.Size = New System.Drawing.Size(170, 27)
+        Me.btnMisArticulos.Size = New System.Drawing.Size(153, 27)
         Me.btnMisArticulos.TabIndex = 20
         Me.btnMisArticulos.Text = "MIS ARTICULOS"
         Me.btnMisArticulos.UseVisualStyleBackColor = True
@@ -3155,7 +3156,7 @@ Partial Class frmPrincipal
         Me.pnlMiInfo.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlMiInfo.Location = New System.Drawing.Point(0, 39)
         Me.pnlMiInfo.Name = "pnlMiInfo"
-        Me.pnlMiInfo.Size = New System.Drawing.Size(170, 102)
+        Me.pnlMiInfo.Size = New System.Drawing.Size(153, 102)
         Me.pnlMiInfo.TabIndex = 17
         Me.pnlMiInfo.Visible = False
         '
@@ -3247,7 +3248,7 @@ Partial Class frmPrincipal
         Me.Button28.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button28.Location = New System.Drawing.Point(0, 0)
         Me.Button28.Name = "Button28"
-        Me.Button28.Size = New System.Drawing.Size(170, 39)
+        Me.Button28.Size = New System.Drawing.Size(153, 39)
         Me.Button28.TabIndex = 15
         Me.Button28.Text = "     MI INFO"
         Me.Button28.UseVisualStyleBackColor = True
@@ -3397,9 +3398,9 @@ Partial Class frmPrincipal
     Friend WithEvents PictureBox18 As PictureBox
     Friend WithEvents Button5 As Button
     Friend WithEvents Label51 As Label
-    Friend WithEvents TextBox9 As TextBox
+    Friend WithEvents txtPrecio As TextBox
     Friend WithEvents Label56 As Label
-    Friend WithEvents TextBox8 As TextBox
+    Friend WithEvents txtNombreArticulo As TextBox
     Friend WithEvents Label55 As Label
     Friend WithEvents PictureBoxImagen1 As PictureBox
     Friend WithEvents PictureBoxPortada As PictureBox
@@ -3465,7 +3466,7 @@ Partial Class frmPrincipal
     Friend WithEvents Label77 As Label
     Friend WithEvents Button7 As Button
     Friend WithEvents Label1 As Label
-    Friend WithEvents TextBox10 As TextBox
+    Friend WithEvents txtStockArticulo As TextBox
     Friend WithEvents Label21 As Label
     Friend WithEvents tbCambiarContraseña As TabPage
     Friend WithEvents Button36 As Button
@@ -3519,7 +3520,7 @@ Partial Class frmPrincipal
     Friend WithEvents txtNombreModificarPerfil As TextBox
     Friend WithEvents Label35 As Label
     Friend WithEvents Label52 As Label
-    Friend WithEvents TextBox23 As TextBox
+    Friend WithEvents txtDescripcionArticulo As TextBox
     Friend WithEvents button_agregarImagen1 As Button
     Friend WithEvents button_agregarPortada As Button
     Friend WithEvents Button54 As Button
