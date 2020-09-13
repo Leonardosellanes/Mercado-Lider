@@ -35,3 +35,4 @@ C:\Users\snowi\Documents\GitHub\Mercado-Lider\Mercado_Lider\obj\Debug\Mercado_Li
 C:\Users\snowi\Documents\GitHub\Mercado-Lider\Mercado_Lider\obj\Debug\Mercado_Lider.exe
 C:\Users\snowi\Documents\GitHub\Mercado-Lider\Mercado_Lider\obj\Debug\Mercado_Lider.xml
 C:\Users\snowi\Documents\GitHub\Mercado-Lider\Mercado_Lider\obj\Debug\Mercado_Lider.pdb
+C:\Users\artec\OneDrive\Documentos\GitHub\Mercado-Lider\Mercado_Lider\bin\Debug\BouncyCastle.Crypto.dll

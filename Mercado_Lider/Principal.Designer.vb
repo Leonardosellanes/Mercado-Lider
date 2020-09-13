@@ -1347,6 +1347,7 @@ Partial Class frmPrincipal
         Me.PictureBoxImagen3.Location = New System.Drawing.Point(598, 372)
         Me.PictureBoxImagen3.Name = "PictureBoxImagen3"
         Me.PictureBoxImagen3.Size = New System.Drawing.Size(114, 110)
+        Me.PictureBoxImagen3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBoxImagen3.TabIndex = 37
         Me.PictureBoxImagen3.TabStop = False
         '
@@ -1372,6 +1373,7 @@ Partial Class frmPrincipal
         Me.PictureBoxImagen2.Location = New System.Drawing.Point(424, 372)
         Me.PictureBoxImagen2.Name = "PictureBoxImagen2"
         Me.PictureBoxImagen2.Size = New System.Drawing.Size(114, 110)
+        Me.PictureBoxImagen2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBoxImagen2.TabIndex = 35
         Me.PictureBoxImagen2.TabStop = False
         '
@@ -1590,6 +1592,7 @@ Partial Class frmPrincipal
         Me.PictureBoxImagen1.Location = New System.Drawing.Point(247, 372)
         Me.PictureBoxImagen1.Name = "PictureBoxImagen1"
         Me.PictureBoxImagen1.Size = New System.Drawing.Size(114, 110)
+        Me.PictureBoxImagen1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBoxImagen1.TabIndex = 1
         Me.PictureBoxImagen1.TabStop = False
         '
@@ -3188,9 +3191,9 @@ Partial Class frmPrincipal
         Me.btnModificarInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnModificarInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnModificarInfo.ForeColor = System.Drawing.Color.White
-        Me.btnModificarInfo.Location = New System.Drawing.Point(0, 75)
+        Me.btnModificarInfo.Location = New System.Drawing.Point(0, 76)
         Me.btnModificarInfo.Name = "btnModificarInfo"
-        Me.btnModificarInfo.Size = New System.Drawing.Size(169, 23)
+        Me.btnModificarInfo.Size = New System.Drawing.Size(153, 23)
         Me.btnModificarInfo.TabIndex = 16
         Me.btnModificarInfo.Text = "Modificar"
         Me.btnModificarInfo.UseVisualStyleBackColor = True

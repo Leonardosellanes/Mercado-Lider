@@ -182,6 +182,7 @@ Public Class frmPrincipal
     ''ACTUALIZA LA INFORMACION  DE EL USUARIO DE LOS CAMPOS Y ETIQUETAS,CUANDO SE HACE ALGUN TIPO DE CAMBIO
     Private Sub UpdateUserInfo(ByVal id As Integer)
         Try
+            conexion.Close()
             conexion.Open()
             cmd.Connection = conexion
 
@@ -695,11 +696,7 @@ Public Class frmPrincipal
 
     End Sub
 
-
-
     ''A PARTIR DE AQUI HACIA ABAJO ES CODIGO DE  DE ITERACCION DE USUARIO DENTRO DE LA INTERFAZ CON LOS DISTINTOS ELEMENTOS
-
-
     Private Sub modificarButton(sender As Object, e As EventArgs) Handles btnModificarInfo.Click
         UpdateUserInfo(ID)
         tbTodos.SelectedTab = tbTodos.TabPages.Item(10)
@@ -1050,7 +1047,7 @@ Public Class frmPrincipal
         pnlPerfil.Visible = False
         btnConfigOcultar.Visible = False
         pnlConfig.Visible = False
+        tbTodos.SelectedTab = tbTodos.TabPages.Item(0)
+        pnlInicio.Visible = True
     End Sub
-
-
 End Class
