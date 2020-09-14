@@ -224,22 +224,26 @@ Public Class frmPrincipal
     Private Sub button_agregarImagen1_Click(sender As Object, e As EventArgs) Handles button_agregarImagen1.Click
         If OpenFileImagen1.ShowDialog() = DialogResult.OK Then
             PictureBoxImagen1.Load(OpenFileImagen1.FileName)
+            lblErrorImagen1.Visible = False
         End If
     End Sub
     Private Sub button_agregarImagen2_Click(sender As Object, e As EventArgs) Handles button_agregarImagen2.Click
         If OpenFileImagen2.ShowDialog() = DialogResult.OK Then
             PictureBoxImagen2.Load(OpenFileImagen2.FileName)
+            lblErrorImagen2.Visible = False
         End If
     End Sub
     Private Sub button_agregarImagen3_Click(sender As Object, e As EventArgs) Handles button_agregarImagen3.Click
         If OpenFileImagen3.ShowDialog() = DialogResult.OK Then
             PictureBoxImagen3.Load(OpenFileImagen3.FileName)
+            lblErrorImagen3.Visible = False
         End If
     End Sub
     Private Sub button_agregarPortada_Click(sender As Object, e As EventArgs) Handles button_agregarPortada.Click
         If OpenFilePortada.ShowDialog() = DialogResult.OK Then
             PictureBoxPortada.Load(OpenFilePortada.FileName)
         End If
+        lblErrorPortada.Visible = False
     End Sub
 
     ''EVENTO DE EL BOTON DE CAMBIAR CONTRASEÑA 
@@ -508,24 +512,15 @@ Public Class frmPrincipal
         End If
     End Sub
 
-
     ''EVENTO DE BOTON DE PUBLICAR ARTICULO''
-
-
     Private Sub buttonPublicarArticulo_Click(sender As Object, e As EventArgs) Handles buttonPublicarArticulo.Click
         Dim validacionFrmArticulo As Integer = 0
-
-
 
         If txtStockArticulo.Text = "" Then
             Label114.Visible = True
         Else
             validacionFrmArticulo = validacionFrmArticulo + 1
-
-
         End If
-
-
         '==========================================
         If txtNombreArticulo.Text = "" Then
             Label115.Visible = True
@@ -534,8 +529,6 @@ Public Class frmPrincipal
                 Label116.Visible = True
             Else
                 validacionFrmArticulo = validacionFrmArticulo + 1
-
-
             End If
         End If
         '==========================================
@@ -550,63 +543,41 @@ Public Class frmPrincipal
         Else
             If txtDescripcionArticulo.TextLength < 10 Then
                 Label119.Visible = True
-
             Else
                 validacionFrmArticulo = validacionFrmArticulo + 1
             End If
-
         End If
 
         If Not PictureBoxPortada.Image Is Nothing Then
             validacionFrmArticulo = validacionFrmArticulo + 1
-
         Else
-            MsgBox("Necesitas agregar una foto de portada")
+            lblErrorPortada.Visible = True
         End If
 
         If Not PictureBoxImagen1.Image Is Nothing Then
             validacionFrmArticulo = validacionFrmArticulo + 1
         Else
-            MsgBox("Necesitas agregar una primer imagen")
-
+            lblErrorImagen1.Visible = True
         End If
-
         If Not PictureBoxImagen2.Image Is Nothing Then
             validacionFrmArticulo = validacionFrmArticulo + 1
         Else
-            MsgBox("Necesitas agregar una segunda imagen")
-
+            lblErrorImagen2.Visible = True
         End If
-
-
 
         If Not PictureBoxImagen3.Image Is Nothing Then
             validacionFrmArticulo = validacionFrmArticulo + 1
         Else
-            MsgBox("Necesitas agregar una tercera imagen")
-
+            lblErrorImagen3.Visible = True
         End If
 
-
-
         If validacionFrmArticulo = 8 Then
-
-
-
 
             Dim ms As New System.IO.MemoryStream()   ''Crea un buffer o reserva un espacio en memoria ran directamente  ram donde a futuro se trabajara con cantidad de datos importantes
             PictureBoxPortada.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
             Dim portada As Byte() = ms.GetBuffer
 
-
-
-
-
-
-
-
             Try
-
                 conexion.Open()
                 cmd.CommandText = "INSERT INTO articulos(Nombre,Precio,Descripcion,portada,stock,usuario_id) VALUES(@nombre,@precio,@descripcion,@portada,@stock,@usuario_id)"
 
@@ -618,11 +589,7 @@ Public Class frmPrincipal
                 cmd.Parameters.AddWithValue("@stock", txtStockArticulo.Text)
                 cmd.Parameters.AddWithValue("@usuario_id", ID)
 
-
-
-
                 cmd.ExecuteNonQuery()
-
 
                 ''EXTRAER EL ID DE EL ARTICULO INGRESADO ANTERIORMENTE'
 
@@ -632,13 +599,9 @@ Public Class frmPrincipal
                 If (r.HasRows) Then
                     If r.Read Then
                         idArticulo = r("id")
-
                     End If
-
-
                 End If
                 r.Close()
-
 
                 ''ARRAY DE los 3 PictureBox ya cargados''
                 Dim arrayFotos(2) As PictureBox
@@ -663,37 +626,14 @@ Public Class frmPrincipal
 
                     cmd.ExecuteNonQuery()
 
-
-
-
-
                     ms.Close()
-
                 Next
-
-
-
                 MsgBox("Articulo insertado correctamente")
-                conexion.Close()
-
-
-
-
-
-
             Catch ex As Exception
                 MsgBox(ex.ToString)
-                conexion.Close()
-
             End Try
-
-
-
-
+            conexion.Close()
         End If
-
-
-
     End Sub
 
     ''A PARTIR DE AQUI HACIA ABAJO ES CODIGO DE  DE ITERACCION DE USUARIO DENTRO DE LA INTERFAZ CON LOS DISTINTOS ELEMENTOS

@@ -263,6 +263,10 @@ Partial Class frmPrincipal
         Me.OpenFileImagen2 = New System.Windows.Forms.OpenFileDialog()
         Me.OpenFileImagen3 = New System.Windows.Forms.OpenFileDialog()
         Me.OpenFilePortada = New System.Windows.Forms.OpenFileDialog()
+        Me.lblErrorImagen1 = New System.Windows.Forms.Label()
+        Me.lblErrorImagen2 = New System.Windows.Forms.Label()
+        Me.lblErrorImagen3 = New System.Windows.Forms.Label()
+        Me.lblErrorPortada = New System.Windows.Forms.Label()
         Me.tbTodos.SuspendLayout()
         Me.tbPrincipal.SuspendLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1282,6 +1286,10 @@ Partial Class frmPrincipal
         'tbAgregar
         '
         Me.tbAgregar.AutoScroll = True
+        Me.tbAgregar.Controls.Add(Me.lblErrorPortada)
+        Me.tbAgregar.Controls.Add(Me.lblErrorImagen3)
+        Me.tbAgregar.Controls.Add(Me.lblErrorImagen2)
+        Me.tbAgregar.Controls.Add(Me.lblErrorImagen1)
         Me.tbAgregar.Controls.Add(Me.Label113)
         Me.tbAgregar.Controls.Add(Me.button_agregarImagen3)
         Me.tbAgregar.Controls.Add(Me.PictureBoxImagen3)
@@ -1333,7 +1341,7 @@ Partial Class frmPrincipal
         Me.button_agregarImagen3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.button_agregarImagen3.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.button_agregarImagen3.ForeColor = System.Drawing.Color.Black
-        Me.button_agregarImagen3.Location = New System.Drawing.Point(590, 518)
+        Me.button_agregarImagen3.Location = New System.Drawing.Point(592, 518)
         Me.button_agregarImagen3.Name = "button_agregarImagen3"
         Me.button_agregarImagen3.Size = New System.Drawing.Size(129, 20)
         Me.button_agregarImagen3.TabIndex = 38
@@ -1359,7 +1367,7 @@ Partial Class frmPrincipal
         Me.button_agregarImagen2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.button_agregarImagen2.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.button_agregarImagen2.ForeColor = System.Drawing.Color.Black
-        Me.button_agregarImagen2.Location = New System.Drawing.Point(415, 518)
+        Me.button_agregarImagen2.Location = New System.Drawing.Point(417, 518)
         Me.button_agregarImagen2.Name = "button_agregarImagen2"
         Me.button_agregarImagen2.Size = New System.Drawing.Size(129, 20)
         Me.button_agregarImagen2.TabIndex = 36
@@ -1498,7 +1506,7 @@ Partial Class frmPrincipal
         Me.button_agregarPortada.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.button_agregarPortada.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.button_agregarPortada.ForeColor = System.Drawing.Color.Black
-        Me.button_agregarPortada.Location = New System.Drawing.Point(610, 176)
+        Me.button_agregarPortada.Location = New System.Drawing.Point(610, 195)
         Me.button_agregarPortada.Name = "button_agregarPortada"
         Me.button_agregarPortada.Size = New System.Drawing.Size(129, 20)
         Me.button_agregarPortada.TabIndex = 17
@@ -3272,6 +3280,58 @@ Partial Class frmPrincipal
         '
         Me.OpenFilePortada.FileName = "OpenFileDialog4"
         '
+        'lblErrorImagen1
+        '
+        Me.lblErrorImagen1.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblErrorImagen1.AutoSize = True
+        Me.lblErrorImagen1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblErrorImagen1.ForeColor = System.Drawing.Color.Red
+        Me.lblErrorImagen1.Location = New System.Drawing.Point(238, 485)
+        Me.lblErrorImagen1.Name = "lblErrorImagen1"
+        Me.lblErrorImagen1.Size = New System.Drawing.Size(132, 13)
+        Me.lblErrorImagen1.TabIndex = 40
+        Me.lblErrorImagen1.Text = "*Debe insertar una imagen"
+        Me.lblErrorImagen1.Visible = False
+        '
+        'lblErrorImagen2
+        '
+        Me.lblErrorImagen2.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblErrorImagen2.AutoSize = True
+        Me.lblErrorImagen2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblErrorImagen2.ForeColor = System.Drawing.Color.Red
+        Me.lblErrorImagen2.Location = New System.Drawing.Point(415, 485)
+        Me.lblErrorImagen2.Name = "lblErrorImagen2"
+        Me.lblErrorImagen2.Size = New System.Drawing.Size(132, 13)
+        Me.lblErrorImagen2.TabIndex = 41
+        Me.lblErrorImagen2.Text = "*Debe insertar una imagen"
+        Me.lblErrorImagen2.Visible = False
+        '
+        'lblErrorImagen3
+        '
+        Me.lblErrorImagen3.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblErrorImagen3.AutoSize = True
+        Me.lblErrorImagen3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblErrorImagen3.ForeColor = System.Drawing.Color.Red
+        Me.lblErrorImagen3.Location = New System.Drawing.Point(589, 485)
+        Me.lblErrorImagen3.Name = "lblErrorImagen3"
+        Me.lblErrorImagen3.Size = New System.Drawing.Size(132, 13)
+        Me.lblErrorImagen3.TabIndex = 42
+        Me.lblErrorImagen3.Text = "*Debe insertar una imagen"
+        Me.lblErrorImagen3.Visible = False
+        '
+        'lblErrorPortada
+        '
+        Me.lblErrorPortada.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblErrorPortada.AutoSize = True
+        Me.lblErrorPortada.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblErrorPortada.ForeColor = System.Drawing.Color.Red
+        Me.lblErrorPortada.Location = New System.Drawing.Point(610, 173)
+        Me.lblErrorPortada.Name = "lblErrorPortada"
+        Me.lblErrorPortada.Size = New System.Drawing.Size(132, 13)
+        Me.lblErrorPortada.TabIndex = 43
+        Me.lblErrorPortada.Text = "*Debe insertar una imagen"
+        Me.lblErrorPortada.Visible = False
+        '
         'frmPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3286,7 +3346,7 @@ Partial Class frmPrincipal
         Me.MinimumSize = New System.Drawing.Size(963, 672)
         Me.Name = "frmPrincipal"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "a"
+        Me.Text = "Mercado Lider"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.tbTodos.ResumeLayout(False)
         Me.tbPrincipal.ResumeLayout(False)
@@ -3588,4 +3648,8 @@ Partial Class frmPrincipal
     Friend WithEvents OpenFilePortada As OpenFileDialog
     Friend WithEvents lblRegistroBienvenido As Label
     Friend WithEvents lblNoExisteUser As Label
+    Friend WithEvents lblErrorPortada As Label
+    Friend WithEvents lblErrorImagen3 As Label
+    Friend WithEvents lblErrorImagen2 As Label
+    Friend WithEvents lblErrorImagen1 As Label
 End Class
