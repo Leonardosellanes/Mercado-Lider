@@ -29,6 +29,7 @@ Public Class frmPrincipal
         InitializeComponent()
         conexion = New MySqlConnection
         conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=root; pwd=;"
+        cmd.Connection = conexion
 
 
         'Agregue cualquier inicialización después de la llamada a InitializeComponent().
@@ -176,8 +177,13 @@ Public Class frmPrincipal
             con.Close()
             Return False
         End If
-        dr.Close()
+
     End Function
+
+
+
+
+
 
     ''ACTUALIZA LA INFORMACION  DE EL USUARIO DE LOS CAMPOS Y ETIQUETAS,CUANDO SE HACE ALGUN TIPO DE CAMBIO
     Private Sub UpdateUserInfo(ByVal id As Integer)
@@ -248,6 +254,11 @@ Public Class frmPrincipal
     ''EVENTO DE EL BOTON DE CAMBIAR CONTRASEÑA 
     Private Sub Button48_Click(sender As Object, e As EventArgs) Handles btnAceptarPasswd.Click
         Dim H As Integer
+
+        If txtContraseñaActual.Text = "" Then
+            Label117.Visible = True
+        End If
+
         '==========================================
         If txtContraseñaNueva.Text = "" Then
             Label107.Visible = True
@@ -299,11 +310,12 @@ Public Class frmPrincipal
 
                 txtRepetirContraseña.Clear()
             End If
+          
         End If
         '==========================================
-        If txtContraseñaActual.Text = "" Then
-            Label117.Visible = True
-        End If
+
+
+
     End Sub
 
     'EVENTO DE BOTON DE EL FORMULARIO DE REGISTRO DE USUARIO
@@ -336,8 +348,10 @@ Public Class frmPrincipal
                             rd.Close()   ''Cierre de DataReader''
                             insertEmailTable(id, txtEmail.Text, conexion)   ''Inserta el email en la tabla 
                         End If
+                    Else
+                        rd.Close()
                     End If
-                    rd.Close()
+
                 Catch ex As Exception
                     MsgBox(ex.Message)
                 End Try
@@ -371,7 +385,7 @@ Public Class frmPrincipal
             cmd.Parameters.Clear()
             cmd.Parameters.AddWithValue("@nombre", txtusernamelogin.Text)
             cmd.Parameters.AddWithValue("@pass", generarClaveSHA1(txtpasslogin.Text))
-            Dim r As MySqlDataReader = cmd.ExecuteReader()
+            r = cmd.ExecuteReader()
             If r.HasRows Then
                 If r.Read Then
                     ID = r("id")
@@ -380,7 +394,7 @@ Public Class frmPrincipal
                     Apellido = r("Apellido").ToString
                     Email = r("email")
                     Rol = r("rol")
-                    'CI = r("ci")
+
                     Telefono = r("telefono").ToString
                     If (Rol = "Administrador") Then
                         Administrador.Show()
@@ -570,19 +584,22 @@ Public Class frmPrincipal
             lblErrorImagen3.Visible = True
         End If
 
-        Dim valid As Integer
-        Dim Arrayvalor(3) As CheckBox
+        Dim valid As Integer = 0
+        Dim ArrayChecksCategoria(3) As CheckBox
 
-        Arrayvalor(0) = cbRopa
-        Arrayvalor(1) = cbElectronico
-        Arrayvalor(2) = cbHogar
-        Arrayvalor(3) = cbAutomovil
+        ArrayChecksCategoria(0) = cbRopa
+        ArrayChecksCategoria(1) = cbElectronico
+        ArrayChecksCategoria(2) = cbHogar
+        ArrayChecksCategoria(3) = cbAutomovil
 
-        For Each check As CheckBox In Arrayvalor
+
+
+        ''Bucle foreach que valida que haya al menos un checkbox seleccionado
+        For Each check As CheckBox In ArrayChecksCategoria
             If check.Checked Then
                 valid = valid + 1
             Else
-                MsgBox("hola")
+                ''  MsgBox("Checkbox:" & valid & "No esta marcado")
             End If
         Next
 
@@ -594,11 +611,15 @@ Public Class frmPrincipal
 
         If validacionFrmArticulo = 9 Then
 
-            Dim ms As New System.IO.MemoryStream()   ''Crea un buffer o reserva un espacio en memoria ram directamente  ram donde a futuro se trabajara con cantidad de datos importantes
-            PictureBoxPortada.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
-            Dim portada As Byte() = ms.GetBuffer
-            ms.Close()
+            ''INSERCION DE ARTICULOS''
 
+            Dim ms As New System.IO.MemoryStream()   ''Crea un buffer o reserva un espacio en memoria ram directamente.
+            PictureBoxPortada.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg) ''Almacenamos la imagen cargada de el picturebox portada
+            Dim portada As Byte() = ms.GetBuffer  ''Guardamos en portada,la cadena de bytes de la imagen mediante el metodo getBuffer
+            ms.Close()                       ''Cerramos el buffer
+
+
+            ''Insercion en la tabla articulos
             Try
                 conexion.Open()
                 cmd.CommandText = "INSERT INTO articulos(Nombre,Precio,Descripcion,portada,stock,usuario_id) VALUES(@nombre,@precio,@descripcion,@portada,@stock,@usuario_id)"
@@ -619,11 +640,15 @@ Public Class frmPrincipal
                 cmd.CommandText = "SELECT MAX(id) As id FROM articulos"
                 r = cmd.ExecuteReader
                 If (r.HasRows) Then
+
+
                     If r.Read Then
                         idArticulo = r("id")
                     End If
                 End If
                 r.Close()
+
+
 
                 ''ARRAY DE los 3 PictureBox ya cargados''
                 Dim arrayFotos(2) As PictureBox
@@ -650,31 +675,36 @@ Public Class frmPrincipal
                     ms2.Close()
                 Next
 
-                For Each check As CheckBox In Arrayvalor
-                    Try
-                        If check.Checked Then
-                            MsgBox("jujuu")
-                            cmd.CommandText = "SELECT id FROM `categoria` WHERE categoria.categoria = @nomb"
-                            cmd.Parameters.Clear()
-                            cmd.Parameters.AddWithValue("@nomb", check.Text)
-                            Dim per As MySqlDataReader = cmd.ExecuteReader
-                            If per.Read Then
-                                Dim idcategoria As String = per("id")
+                For Each check As CheckBox In ArrayChecksCategoria  ''Bucle foreach que recorre cada valor de el array
+
+                    If check.Checked Then    ''Checkea si el checkbox fue selecionado
+
+                        cmd.CommandText = "SELECT id FROM `categoria` WHERE categoria.categoria = @nomb"
+                        cmd.Parameters.AddWithValue("@nomb", check.Text)
+
+                        r = cmd.ExecuteReader
+                        If r.HasRows Then
+                            If r.Read Then
+                                Dim idcategoria As String = r("id")  ''Extrae el id de la categoria selecionada
+                                r.Close()
                                 cmd.CommandText = "insert into articulo_categoria(articulo_id,categoria_id) values (@articulo,@categoria)"
                                 cmd.Parameters.Clear()
                                 cmd.Parameters.AddWithValue("@articulo", idArticulo)
                                 cmd.Parameters.AddWithValue("@categoria", idcategoria)
-                                cmd.ExecuteNonQuery()
+                                cmd.ExecuteNonQuery()  ''Inserta el id de el articulo ultimamente registrado y el id de categoria
+
+
+
+
+                                MsgBox("Categorias insertada correctamente")
                             End If
-                            per.Close()
-                        Else
-                            MsgBox("")
                         End If
-                    Catch ex As Exception
-                        MsgBox(ex.Message)
-                    End Try
+                    End If
+
 
                 Next
+
+
 
                 MsgBox("Articulo insertado correctamente")
                 PictureBoxPortada.Image.Dispose()
