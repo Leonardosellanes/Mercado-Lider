@@ -182,7 +182,6 @@ Public Class frmPrincipal
     ''ACTUALIZA LA INFORMACION  DE EL USUARIO DE LOS CAMPOS Y ETIQUETAS,CUANDO SE HACE ALGUN TIPO DE CAMBIO
     Private Sub UpdateUserInfo(ByVal id As Integer)
         Try
-            conexion.Close()
             conexion.Open()
             cmd.Connection = conexion
 
@@ -213,11 +212,11 @@ Public Class frmPrincipal
                     frmDomicilio.TextBox5.Text = Convert.ToString(r.Item("ciudad"))
                 End If
             End If
-            r.Close()
-            conexion.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
+        conexion.Close()
+        r.Close()
     End Sub
 
     ''BOTONES DE IMPORTACION DE IMAGENES A EL PICTURE BOX''
@@ -481,7 +480,6 @@ Public Class frmPrincipal
             Dim result As DialogResult = MessageBox.Show("¿Seguro que quieres actualizar tu información? ", "Modificar perfil ", MessageBoxButtons.YesNo)
             If result = DialogResult.Yes Then
                 Try
-                    conexion.Close()
                     conexion.Open()
                     cmd.Connection = conexion
 
@@ -503,6 +501,7 @@ Public Class frmPrincipal
                     cmd.Parameters.AddWithValue("@id", ID)
                     cmd.ExecuteNonQuery()
                     MsgBox("Datos Actualizados correctamente")
+                    conexion.Close()
                     UpdateUserInfo(ID)
                 Catch ex As Exception
                     MsgBox(ex.ToString)
@@ -571,7 +570,29 @@ Public Class frmPrincipal
             lblErrorImagen3.Visible = True
         End If
 
-        If validacionFrmArticulo = 8 Then
+        Dim valid As Integer
+        Dim Arrayvalor(3) As CheckBox
+
+        Arrayvalor(0) = cbRopa
+        Arrayvalor(1) = cbElectronico
+        Arrayvalor(2) = cbHogar
+        Arrayvalor(3) = cbAutomovil
+
+        For Each check As CheckBox In Arrayvalor
+            If check.Checked Then
+                valid = valid + 1
+            Else
+                MsgBox("hola")
+            End If
+        Next
+
+        If valid < 1 Then
+            MsgBox("debe seleccionar una categoria")
+        Else
+            validacionFrmArticulo = validacionFrmArticulo + 1
+        End If
+
+        If validacionFrmArticulo = 9 Then
 
             Dim ms As New System.IO.MemoryStream()   ''Crea un buffer o reserva un espacio en memoria ram directamente  ram donde a futuro se trabajara con cantidad de datos importantes
             PictureBoxPortada.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
@@ -597,7 +618,6 @@ Public Class frmPrincipal
                 Dim idArticulo As Integer
                 cmd.CommandText = "SELECT MAX(id) As id FROM articulos"
                 r = cmd.ExecuteReader
-
                 If (r.HasRows) Then
                     If r.Read Then
                         idArticulo = r("id")
@@ -621,19 +641,38 @@ Public Class frmPrincipal
 
                     fotito.Image.Save(ms2, System.Drawing.Imaging.ImageFormat.Jpeg)
                     Dim foto As Byte() = ms2.GetBuffer
-
-
                     cmd.CommandText = "INSERT INTO galeria(articulo_id,fotos,nroFoto) VALUES(@articulo_id,@foto,@nroFoto)"
-
                     cmd.Parameters.Clear()
                     cmd.Parameters.AddWithValue("@articulo_id", idArticulo)
                     cmd.Parameters.AddWithValue("@foto", foto)
                     cmd.Parameters.AddWithValue("@nroFoto", nroFoto)
-
                     cmd.ExecuteNonQuery()
-
                     ms2.Close()
+                Next
 
+                For Each check As CheckBox In Arrayvalor
+                    Try
+                        If check.Checked Then
+                            MsgBox("jujuu")
+                            cmd.CommandText = "SELECT id FROM `categoria` WHERE categoria.categoria = @nomb"
+                            cmd.Parameters.Clear()
+                            cmd.Parameters.AddWithValue("@nomb", check.Text)
+                            Dim per As MySqlDataReader = cmd.ExecuteReader
+                            If per.Read Then
+                                Dim idcategoria As String = per("id")
+                                cmd.CommandText = "insert into articulo_categoria(articulo_id,categoria_id) values (@articulo,@categoria)"
+                                cmd.Parameters.Clear()
+                                cmd.Parameters.AddWithValue("@articulo", idArticulo)
+                                cmd.Parameters.AddWithValue("@categoria", idcategoria)
+                                cmd.ExecuteNonQuery()
+                            End If
+                            per.Close()
+                        Else
+                            MsgBox("")
+                        End If
+                    Catch ex As Exception
+                        MsgBox(ex.Message)
+                    End Try
 
                 Next
 
@@ -650,10 +689,8 @@ Public Class frmPrincipal
                 txtStockArticulo.Clear()
                 txtNombreArticulo.Clear()
                 txtPrecio.Clear()
-
             Catch ex As Exception
                 MsgBox(ex.ToString)
-
             End Try
             conexion.Close()
         End If
@@ -888,8 +925,6 @@ Public Class frmPrincipal
         Label92.Visible = False
         Label86.Visible = False
     End Sub
-
-
     Private Sub TextBox7_Click(sender As Object, e As EventArgs) Handles txtusernamelogin.Click
         lblUsernameVacioLogin.Visible = False
         lblNoExisteUser.Visible = False
@@ -902,7 +937,6 @@ Public Class frmPrincipal
         tbxBuscar.Clear()
         tbxBuscar.ForeColor = Color.Black
     End Sub
-
     Private Sub TextBox13_Click(sender As Object, e As EventArgs) Handles txtUsernameModificarPerfil.Click
         LabelErrorUsername.Visible = False
     End Sub
@@ -949,11 +983,7 @@ Public Class frmPrincipal
         Label100.Visible = False
     End Sub
     Private Sub TextBox20_Click(sender As Object, e As EventArgs) Handles txtDomicilioModificarPerfil.Click
-
         frmDomicilio.Show()
-    End Sub
-    Private Sub TextBox17_Click(sender As Object, e As EventArgs)
-
     End Sub
     Private Sub TextBox16_Click(sender As Object, e As EventArgs) Handles txtContraseñaNueva.Click
         Label107.Visible = False
@@ -979,7 +1009,6 @@ Public Class frmPrincipal
             e.Handled = True
         End If
     End Sub
-
     Private Sub TextBox10_Click(sender As Object, e As EventArgs) Handles txtStockArticulo.Click
         Label114.Visible = False
     End Sub
@@ -1003,7 +1032,6 @@ Public Class frmPrincipal
         btnConfigOcultar.Visible = False
         Ocultarpaneles()
     End Sub
-
     Private Sub Button14_Click(sender As Object, e As EventArgs) Handles btnCerrarSesion.Click
         ocultarLogin(True, False)
         ocultarregistro(True, False)

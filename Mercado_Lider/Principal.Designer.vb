@@ -103,6 +103,10 @@ Partial Class frmPrincipal
         Me.Label48 = New System.Windows.Forms.Label()
         Me.PictureBox17 = New System.Windows.Forms.PictureBox()
         Me.tbAgregar = New System.Windows.Forms.TabPage()
+        Me.lblErrorPortada = New System.Windows.Forms.Label()
+        Me.lblErrorImagen3 = New System.Windows.Forms.Label()
+        Me.lblErrorImagen2 = New System.Windows.Forms.Label()
+        Me.lblErrorImagen1 = New System.Windows.Forms.Label()
         Me.Label113 = New System.Windows.Forms.Label()
         Me.button_agregarImagen3 = New System.Windows.Forms.Button()
         Me.PictureBoxImagen3 = New System.Windows.Forms.PictureBox()
@@ -263,10 +267,16 @@ Partial Class frmPrincipal
         Me.OpenFileImagen2 = New System.Windows.Forms.OpenFileDialog()
         Me.OpenFileImagen3 = New System.Windows.Forms.OpenFileDialog()
         Me.OpenFilePortada = New System.Windows.Forms.OpenFileDialog()
-        Me.lblErrorImagen1 = New System.Windows.Forms.Label()
-        Me.lblErrorImagen2 = New System.Windows.Forms.Label()
-        Me.lblErrorImagen3 = New System.Windows.Forms.Label()
-        Me.lblErrorPortada = New System.Windows.Forms.Label()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.Button8 = New System.Windows.Forms.Button()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
+        Me.lblCategorias = New System.Windows.Forms.Label()
+        Me.cbRopa = New System.Windows.Forms.CheckBox()
+        Me.cbElectronico = New System.Windows.Forms.CheckBox()
+        Me.cbHogar = New System.Windows.Forms.CheckBox()
+        Me.cbAutomovil = New System.Windows.Forms.CheckBox()
         Me.tbTodos.SuspendLayout()
         Me.tbPrincipal.SuspendLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -309,6 +319,7 @@ Partial Class frmPrincipal
         Me.panelbotonescarrito.SuspendLayout()
         Me.pnlPerfil.SuspendLayout()
         Me.pnlMiInfo.SuspendLayout()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tbTodos
@@ -337,6 +348,11 @@ Partial Class frmPrincipal
         'tbPrincipal
         '
         Me.tbPrincipal.AutoScroll = True
+        Me.tbPrincipal.Controls.Add(Me.Button6)
+        Me.tbPrincipal.Controls.Add(Me.Button8)
+        Me.tbPrincipal.Controls.Add(Me.Label9)
+        Me.tbPrincipal.Controls.Add(Me.Label10)
+        Me.tbPrincipal.Controls.Add(Me.PictureBox4)
         Me.tbPrincipal.Controls.Add(Me.Button46)
         Me.tbPrincipal.Controls.Add(Me.Button47)
         Me.tbPrincipal.Controls.Add(Me.Button44)
@@ -1286,6 +1302,11 @@ Partial Class frmPrincipal
         'tbAgregar
         '
         Me.tbAgregar.AutoScroll = True
+        Me.tbAgregar.Controls.Add(Me.cbAutomovil)
+        Me.tbAgregar.Controls.Add(Me.cbHogar)
+        Me.tbAgregar.Controls.Add(Me.cbElectronico)
+        Me.tbAgregar.Controls.Add(Me.cbRopa)
+        Me.tbAgregar.Controls.Add(Me.lblCategorias)
         Me.tbAgregar.Controls.Add(Me.lblErrorPortada)
         Me.tbAgregar.Controls.Add(Me.lblErrorImagen3)
         Me.tbAgregar.Controls.Add(Me.lblErrorImagen2)
@@ -1322,6 +1343,58 @@ Partial Class frmPrincipal
         Me.tbAgregar.Text = "Publicar"
         Me.tbAgregar.UseVisualStyleBackColor = True
         '
+        'lblErrorPortada
+        '
+        Me.lblErrorPortada.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblErrorPortada.AutoSize = True
+        Me.lblErrorPortada.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblErrorPortada.ForeColor = System.Drawing.Color.Red
+        Me.lblErrorPortada.Location = New System.Drawing.Point(485, 173)
+        Me.lblErrorPortada.Name = "lblErrorPortada"
+        Me.lblErrorPortada.Size = New System.Drawing.Size(132, 13)
+        Me.lblErrorPortada.TabIndex = 43
+        Me.lblErrorPortada.Text = "*Debe insertar una imagen"
+        Me.lblErrorPortada.Visible = False
+        '
+        'lblErrorImagen3
+        '
+        Me.lblErrorImagen3.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblErrorImagen3.AutoSize = True
+        Me.lblErrorImagen3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblErrorImagen3.ForeColor = System.Drawing.Color.Red
+        Me.lblErrorImagen3.Location = New System.Drawing.Point(465, 485)
+        Me.lblErrorImagen3.Name = "lblErrorImagen3"
+        Me.lblErrorImagen3.Size = New System.Drawing.Size(132, 13)
+        Me.lblErrorImagen3.TabIndex = 42
+        Me.lblErrorImagen3.Text = "*Debe insertar una imagen"
+        Me.lblErrorImagen3.Visible = False
+        '
+        'lblErrorImagen2
+        '
+        Me.lblErrorImagen2.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblErrorImagen2.AutoSize = True
+        Me.lblErrorImagen2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblErrorImagen2.ForeColor = System.Drawing.Color.Red
+        Me.lblErrorImagen2.Location = New System.Drawing.Point(291, 485)
+        Me.lblErrorImagen2.Name = "lblErrorImagen2"
+        Me.lblErrorImagen2.Size = New System.Drawing.Size(132, 13)
+        Me.lblErrorImagen2.TabIndex = 41
+        Me.lblErrorImagen2.Text = "*Debe insertar una imagen"
+        Me.lblErrorImagen2.Visible = False
+        '
+        'lblErrorImagen1
+        '
+        Me.lblErrorImagen1.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblErrorImagen1.AutoSize = True
+        Me.lblErrorImagen1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblErrorImagen1.ForeColor = System.Drawing.Color.Red
+        Me.lblErrorImagen1.Location = New System.Drawing.Point(114, 485)
+        Me.lblErrorImagen1.Name = "lblErrorImagen1"
+        Me.lblErrorImagen1.Size = New System.Drawing.Size(132, 13)
+        Me.lblErrorImagen1.TabIndex = 40
+        Me.lblErrorImagen1.Text = "*Debe insertar una imagen"
+        Me.lblErrorImagen1.Visible = False
+        '
         'Label113
         '
         Me.Label113.Anchor = System.Windows.Forms.AnchorStyles.Top
@@ -1341,7 +1414,7 @@ Partial Class frmPrincipal
         Me.button_agregarImagen3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.button_agregarImagen3.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.button_agregarImagen3.ForeColor = System.Drawing.Color.Black
-        Me.button_agregarImagen3.Location = New System.Drawing.Point(592, 518)
+        Me.button_agregarImagen3.Location = New System.Drawing.Point(468, 518)
         Me.button_agregarImagen3.Name = "button_agregarImagen3"
         Me.button_agregarImagen3.Size = New System.Drawing.Size(129, 20)
         Me.button_agregarImagen3.TabIndex = 38
@@ -1352,7 +1425,7 @@ Partial Class frmPrincipal
         '
         Me.PictureBoxImagen3.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBoxImagen3.BackColor = System.Drawing.Color.Gray
-        Me.PictureBoxImagen3.Location = New System.Drawing.Point(598, 372)
+        Me.PictureBoxImagen3.Location = New System.Drawing.Point(473, 372)
         Me.PictureBoxImagen3.Name = "PictureBoxImagen3"
         Me.PictureBoxImagen3.Size = New System.Drawing.Size(114, 110)
         Me.PictureBoxImagen3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1367,7 +1440,7 @@ Partial Class frmPrincipal
         Me.button_agregarImagen2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.button_agregarImagen2.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.button_agregarImagen2.ForeColor = System.Drawing.Color.Black
-        Me.button_agregarImagen2.Location = New System.Drawing.Point(417, 518)
+        Me.button_agregarImagen2.Location = New System.Drawing.Point(293, 518)
         Me.button_agregarImagen2.Name = "button_agregarImagen2"
         Me.button_agregarImagen2.Size = New System.Drawing.Size(129, 20)
         Me.button_agregarImagen2.TabIndex = 36
@@ -1378,7 +1451,7 @@ Partial Class frmPrincipal
         '
         Me.PictureBoxImagen2.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBoxImagen2.BackColor = System.Drawing.Color.Gray
-        Me.PictureBoxImagen2.Location = New System.Drawing.Point(424, 372)
+        Me.PictureBoxImagen2.Location = New System.Drawing.Point(299, 372)
         Me.PictureBoxImagen2.Name = "PictureBoxImagen2"
         Me.PictureBoxImagen2.Size = New System.Drawing.Size(114, 110)
         Me.PictureBoxImagen2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1391,7 +1464,7 @@ Partial Class frmPrincipal
         Me.Label120.AutoSize = True
         Me.Label120.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label120.ForeColor = System.Drawing.Color.Red
-        Me.Label120.Location = New System.Drawing.Point(351, 205)
+        Me.Label120.Location = New System.Drawing.Point(226, 205)
         Me.Label120.Name = "Label120"
         Me.Label120.Size = New System.Drawing.Size(170, 13)
         Me.Label120.TabIndex = 34
@@ -1404,7 +1477,7 @@ Partial Class frmPrincipal
         Me.Label119.AutoSize = True
         Me.Label119.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label119.ForeColor = System.Drawing.Color.Red
-        Me.Label119.Location = New System.Drawing.Point(394, 231)
+        Me.Label119.Location = New System.Drawing.Point(269, 231)
         Me.Label119.Name = "Label119"
         Me.Label119.Size = New System.Drawing.Size(156, 12)
         Me.Label119.TabIndex = 33
@@ -1417,7 +1490,7 @@ Partial Class frmPrincipal
         Me.Label118.AutoSize = True
         Me.Label118.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label118.ForeColor = System.Drawing.Color.Red
-        Me.Label118.Location = New System.Drawing.Point(380, 346)
+        Me.Label118.Location = New System.Drawing.Point(255, 346)
         Me.Label118.Name = "Label118"
         Me.Label118.Size = New System.Drawing.Size(183, 13)
         Me.Label118.TabIndex = 32
@@ -1430,7 +1503,7 @@ Partial Class frmPrincipal
         Me.Label116.AutoSize = True
         Me.Label116.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label116.ForeColor = System.Drawing.Color.Red
-        Me.Label116.Location = New System.Drawing.Point(344, 103)
+        Me.Label116.Location = New System.Drawing.Point(219, 103)
         Me.Label116.Name = "Label116"
         Me.Label116.Size = New System.Drawing.Size(190, 12)
         Me.Label116.TabIndex = 30
@@ -1443,7 +1516,7 @@ Partial Class frmPrincipal
         Me.Label115.AutoSize = True
         Me.Label115.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label115.ForeColor = System.Drawing.Color.Red
-        Me.Label115.Location = New System.Drawing.Point(351, 142)
+        Me.Label115.Location = New System.Drawing.Point(226, 142)
         Me.Label115.Name = "Label115"
         Me.Label115.Size = New System.Drawing.Size(170, 13)
         Me.Label115.TabIndex = 29
@@ -1456,7 +1529,7 @@ Partial Class frmPrincipal
         Me.Label114.AutoSize = True
         Me.Label114.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label114.ForeColor = System.Drawing.Color.Red
-        Me.Label114.Location = New System.Drawing.Point(351, 83)
+        Me.Label114.Location = New System.Drawing.Point(226, 83)
         Me.Label114.Name = "Label114"
         Me.Label114.Size = New System.Drawing.Size(170, 13)
         Me.Label114.TabIndex = 27
@@ -1467,7 +1540,7 @@ Partial Class frmPrincipal
         '
         Me.Label52.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label52.AutoSize = True
-        Me.Label52.Location = New System.Drawing.Point(204, 230)
+        Me.Label52.Location = New System.Drawing.Point(79, 230)
         Me.Label52.Name = "Label52"
         Me.Label52.Size = New System.Drawing.Size(66, 13)
         Me.Label52.TabIndex = 22
@@ -1476,7 +1549,7 @@ Partial Class frmPrincipal
         'txtDescripcionArticulo
         '
         Me.txtDescripcionArticulo.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.txtDescripcionArticulo.Location = New System.Drawing.Point(207, 246)
+        Me.txtDescripcionArticulo.Location = New System.Drawing.Point(82, 246)
         Me.txtDescripcionArticulo.Multiline = True
         Me.txtDescripcionArticulo.Name = "txtDescripcionArticulo"
         Me.txtDescripcionArticulo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -1491,7 +1564,7 @@ Partial Class frmPrincipal
         Me.button_agregarImagen1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.button_agregarImagen1.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.button_agregarImagen1.ForeColor = System.Drawing.Color.Black
-        Me.button_agregarImagen1.Location = New System.Drawing.Point(239, 518)
+        Me.button_agregarImagen1.Location = New System.Drawing.Point(115, 518)
         Me.button_agregarImagen1.Name = "button_agregarImagen1"
         Me.button_agregarImagen1.Size = New System.Drawing.Size(129, 20)
         Me.button_agregarImagen1.TabIndex = 18
@@ -1506,7 +1579,7 @@ Partial Class frmPrincipal
         Me.button_agregarPortada.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.button_agregarPortada.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.button_agregarPortada.ForeColor = System.Drawing.Color.Black
-        Me.button_agregarPortada.Location = New System.Drawing.Point(610, 195)
+        Me.button_agregarPortada.Location = New System.Drawing.Point(485, 195)
         Me.button_agregarPortada.Name = "button_agregarPortada"
         Me.button_agregarPortada.Size = New System.Drawing.Size(129, 20)
         Me.button_agregarPortada.TabIndex = 17
@@ -1531,7 +1604,7 @@ Partial Class frmPrincipal
         'txtStockArticulo
         '
         Me.txtStockArticulo.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.txtStockArticulo.Location = New System.Drawing.Point(348, 60)
+        Me.txtStockArticulo.Location = New System.Drawing.Point(223, 60)
         Me.txtStockArticulo.Name = "txtStockArticulo"
         Me.txtStockArticulo.Size = New System.Drawing.Size(178, 20)
         Me.txtStockArticulo.TabIndex = 15
@@ -1540,7 +1613,7 @@ Partial Class frmPrincipal
         '
         Me.Label21.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(204, 63)
+        Me.Label21.Location = New System.Drawing.Point(79, 63)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(38, 13)
         Me.Label21.TabIndex = 14
@@ -1549,7 +1622,7 @@ Partial Class frmPrincipal
         'txtPrecio
         '
         Me.txtPrecio.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.txtPrecio.Location = New System.Drawing.Point(348, 182)
+        Me.txtPrecio.Location = New System.Drawing.Point(223, 182)
         Me.txtPrecio.Name = "txtPrecio"
         Me.txtPrecio.Size = New System.Drawing.Size(178, 20)
         Me.txtPrecio.TabIndex = 10
@@ -1558,7 +1631,7 @@ Partial Class frmPrincipal
         '
         Me.Label56.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label56.AutoSize = True
-        Me.Label56.Location = New System.Drawing.Point(204, 185)
+        Me.Label56.Location = New System.Drawing.Point(79, 185)
         Me.Label56.Name = "Label56"
         Me.Label56.Size = New System.Drawing.Size(141, 13)
         Me.Label56.TabIndex = 9
@@ -1567,7 +1640,7 @@ Partial Class frmPrincipal
         'txtNombreArticulo
         '
         Me.txtNombreArticulo.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.txtNombreArticulo.Location = New System.Drawing.Point(348, 118)
+        Me.txtNombreArticulo.Location = New System.Drawing.Point(223, 118)
         Me.txtNombreArticulo.Name = "txtNombreArticulo"
         Me.txtNombreArticulo.Size = New System.Drawing.Size(178, 20)
         Me.txtNombreArticulo.TabIndex = 8
@@ -1576,7 +1649,7 @@ Partial Class frmPrincipal
         '
         Me.Label55.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label55.AutoSize = True
-        Me.Label55.Location = New System.Drawing.Point(204, 121)
+        Me.Label55.Location = New System.Drawing.Point(79, 121)
         Me.Label55.Name = "Label55"
         Me.Label55.Size = New System.Drawing.Size(101, 13)
         Me.Label55.TabIndex = 7
@@ -1586,7 +1659,7 @@ Partial Class frmPrincipal
         '
         Me.PictureBoxPortada.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBoxPortada.BackColor = System.Drawing.Color.Gray
-        Me.PictureBoxPortada.Location = New System.Drawing.Point(618, 60)
+        Me.PictureBoxPortada.Location = New System.Drawing.Point(493, 60)
         Me.PictureBoxPortada.Name = "PictureBoxPortada"
         Me.PictureBoxPortada.Size = New System.Drawing.Size(114, 110)
         Me.PictureBoxPortada.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1597,7 +1670,7 @@ Partial Class frmPrincipal
         '
         Me.PictureBoxImagen1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBoxImagen1.BackColor = System.Drawing.Color.Gray
-        Me.PictureBoxImagen1.Location = New System.Drawing.Point(247, 372)
+        Me.PictureBoxImagen1.Location = New System.Drawing.Point(122, 372)
         Me.PictureBoxImagen1.Name = "PictureBoxImagen1"
         Me.PictureBoxImagen1.Size = New System.Drawing.Size(114, 110)
         Me.PictureBoxImagen1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -3280,57 +3353,121 @@ Partial Class frmPrincipal
         '
         Me.OpenFilePortada.FileName = "OpenFileDialog4"
         '
-        'lblErrorImagen1
+        'Button6
         '
-        Me.lblErrorImagen1.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.lblErrorImagen1.AutoSize = True
-        Me.lblErrorImagen1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblErrorImagen1.ForeColor = System.Drawing.Color.Red
-        Me.lblErrorImagen1.Location = New System.Drawing.Point(238, 485)
-        Me.lblErrorImagen1.Name = "lblErrorImagen1"
-        Me.lblErrorImagen1.Size = New System.Drawing.Size(132, 13)
-        Me.lblErrorImagen1.TabIndex = 40
-        Me.lblErrorImagen1.Text = "*Debe insertar una imagen"
-        Me.lblErrorImagen1.Visible = False
+        Me.Button6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button6.BackColor = System.Drawing.Color.Transparent
+        Me.Button6.FlatAppearance.BorderColor = System.Drawing.Color.DarkGreen
+        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button6.ForeColor = System.Drawing.Color.DarkGreen
+        Me.Button6.Location = New System.Drawing.Point(593, 529)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(167, 23)
+        Me.Button6.TabIndex = 39
+        Me.Button6.Text = "AGREGAR AL CARRITO"
+        Me.Button6.UseVisualStyleBackColor = False
         '
-        'lblErrorImagen2
+        'Button8
         '
-        Me.lblErrorImagen2.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.lblErrorImagen2.AutoSize = True
-        Me.lblErrorImagen2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblErrorImagen2.ForeColor = System.Drawing.Color.Red
-        Me.lblErrorImagen2.Location = New System.Drawing.Point(415, 485)
-        Me.lblErrorImagen2.Name = "lblErrorImagen2"
-        Me.lblErrorImagen2.Size = New System.Drawing.Size(132, 13)
-        Me.lblErrorImagen2.TabIndex = 41
-        Me.lblErrorImagen2.Text = "*Debe insertar una imagen"
-        Me.lblErrorImagen2.Visible = False
+        Me.Button8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button8.BackColor = System.Drawing.Color.Transparent
+        Me.Button8.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button8.ForeColor = System.Drawing.Color.Black
+        Me.Button8.Location = New System.Drawing.Point(661, 488)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(99, 23)
+        Me.Button8.TabIndex = 38
+        Me.Button8.Text = "VER MAS"
+        Me.Button8.UseVisualStyleBackColor = False
         '
-        'lblErrorImagen3
+        'Label9
         '
-        Me.lblErrorImagen3.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.lblErrorImagen3.AutoSize = True
-        Me.lblErrorImagen3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblErrorImagen3.ForeColor = System.Drawing.Color.Red
-        Me.lblErrorImagen3.Location = New System.Drawing.Point(589, 485)
-        Me.lblErrorImagen3.Name = "lblErrorImagen3"
-        Me.lblErrorImagen3.Size = New System.Drawing.Size(132, 13)
-        Me.lblErrorImagen3.TabIndex = 42
-        Me.lblErrorImagen3.Text = "*Debe insertar una imagen"
-        Me.lblErrorImagen3.Visible = False
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(366, 533)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(53, 20)
+        Me.Label9.TabIndex = 37
+        Me.Label9.Text = "Precio"
         '
-        'lblErrorPortada
+        'Label10
         '
-        Me.lblErrorPortada.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.lblErrorPortada.AutoSize = True
-        Me.lblErrorPortada.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblErrorPortada.ForeColor = System.Drawing.Color.Red
-        Me.lblErrorPortada.Location = New System.Drawing.Point(610, 173)
-        Me.lblErrorPortada.Name = "lblErrorPortada"
-        Me.lblErrorPortada.Size = New System.Drawing.Size(132, 13)
-        Me.lblErrorPortada.TabIndex = 43
-        Me.lblErrorPortada.Text = "*Debe insertar una imagen"
-        Me.lblErrorPortada.Visible = False
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(313, 488)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(165, 25)
+        Me.Label10.TabIndex = 36
+        Me.Label10.Text = "Nombre Articulo"
+        '
+        'PictureBox4
+        '
+        Me.PictureBox4.BackColor = System.Drawing.Color.Gray
+        Me.PictureBox4.Location = New System.Drawing.Point(193, 472)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(97, 93)
+        Me.PictureBox4.TabIndex = 35
+        Me.PictureBox4.TabStop = False
+        '
+        'lblCategorias
+        '
+        Me.lblCategorias.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblCategorias.AutoSize = True
+        Me.lblCategorias.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCategorias.ForeColor = System.Drawing.Color.Black
+        Me.lblCategorias.Location = New System.Drawing.Point(655, 60)
+        Me.lblCategorias.Name = "lblCategorias"
+        Me.lblCategorias.Size = New System.Drawing.Size(236, 13)
+        Me.lblCategorias.TabIndex = 44
+        Me.lblCategorias.Text = "Categorias:(Pude seleccionar una o mas de una)"
+        Me.lblCategorias.Visible = False
+        '
+        'cbRopa
+        '
+        Me.cbRopa.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.cbRopa.AutoSize = True
+        Me.cbRopa.Location = New System.Drawing.Point(658, 97)
+        Me.cbRopa.Name = "cbRopa"
+        Me.cbRopa.Size = New System.Drawing.Size(52, 17)
+        Me.cbRopa.TabIndex = 45
+        Me.cbRopa.Text = "Ropa"
+        Me.cbRopa.UseVisualStyleBackColor = True
+        '
+        'cbElectronico
+        '
+        Me.cbElectronico.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.cbElectronico.AutoSize = True
+        Me.cbElectronico.Location = New System.Drawing.Point(658, 126)
+        Me.cbElectronico.Name = "cbElectronico"
+        Me.cbElectronico.Size = New System.Drawing.Size(79, 17)
+        Me.cbElectronico.TabIndex = 46
+        Me.cbElectronico.Text = "Electronico"
+        Me.cbElectronico.UseVisualStyleBackColor = True
+        '
+        'cbHogar
+        '
+        Me.cbHogar.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.cbHogar.AutoSize = True
+        Me.cbHogar.Location = New System.Drawing.Point(658, 153)
+        Me.cbHogar.Name = "cbHogar"
+        Me.cbHogar.Size = New System.Drawing.Size(55, 17)
+        Me.cbHogar.TabIndex = 47
+        Me.cbHogar.Text = "Hogar"
+        Me.cbHogar.UseVisualStyleBackColor = True
+        '
+        'cbAutomovil
+        '
+        Me.cbAutomovil.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.cbAutomovil.AutoSize = True
+        Me.cbAutomovil.Location = New System.Drawing.Point(658, 183)
+        Me.cbAutomovil.Name = "cbAutomovil"
+        Me.cbAutomovil.Size = New System.Drawing.Size(72, 17)
+        Me.cbAutomovil.TabIndex = 48
+        Me.cbAutomovil.Text = "Automovil"
+        Me.cbAutomovil.UseVisualStyleBackColor = True
         '
         'frmPrincipal
         '
@@ -3404,6 +3541,7 @@ Partial Class frmPrincipal
         Me.pnlPerfil.ResumeLayout(False)
         Me.pnlMiInfo.ResumeLayout(False)
         Me.pnlMiInfo.PerformLayout()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3652,4 +3790,14 @@ Partial Class frmPrincipal
     Friend WithEvents lblErrorImagen3 As Label
     Friend WithEvents lblErrorImagen2 As Label
     Friend WithEvents lblErrorImagen1 As Label
+    Friend WithEvents Button6 As Button
+    Friend WithEvents Button8 As Button
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents PictureBox4 As PictureBox
+    Friend WithEvents cbAutomovil As CheckBox
+    Friend WithEvents cbHogar As CheckBox
+    Friend WithEvents cbElectronico As CheckBox
+    Friend WithEvents cbRopa As CheckBox
+    Friend WithEvents lblCategorias As Label
 End Class
