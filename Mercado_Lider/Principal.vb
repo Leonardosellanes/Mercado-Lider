@@ -193,12 +193,12 @@ Public Class frmPrincipal
             If (r.HasRows) Then
                 If (r.Read) Then
                     ''Set campos de el formulario de modificar perfil''
-                    txtNombreModificarPerfil.Text = r("Nombre")
+                    txtNombreModificarPerfil.Text = Convert.ToString(r.Item("Nombre"))
                     txtUsernameModificarPerfil.Text = r("username")
                     txtCorreoModificarPerfil.Text = r("email")
-                    txtApellidoModificarPerfil.Text = r("Apellido")
-                    txtTelefonoModificarPerfil.Text = r("telefono")
-                    ComboBoxRolModificarPerfil.Text = r("Rol")
+                    txtApellidoModificarPerfil.Text = Convert.ToString(r.Item("Apellido"))
+                    txtTelefonoModificarPerfil.Text = Convert.ToString(r.Item("telefono"))
+                    ComboBoxRolModificarPerfil.Text = r.Item("rol")
 
                     ''Set labels de informacion 
                     lblUserInfo.Text = r("username")
@@ -206,11 +206,11 @@ Public Class frmPrincipal
                     lblEmailInfo.Text = r("email")
 
                     ''SET campos de Domicilio Modal''
-                    frmDomicilio.TextBox1.Text = r("nroCalle")
-                    frmDomicilio.TextBox2.Text = r("calle")
-                    frmDomicilio.TextBox3.Text = r("esq")
-                    frmDomicilio.TextBox4.Text = r("nroApto")
-                    frmDomicilio.TextBox5.Text = r("ciudad")
+                    frmDomicilio.TextBox1.Text = Convert.ToString(r.Item("nroCalle"))
+                    frmDomicilio.TextBox2.Text = Convert.ToString(r.Item("calle"))
+                    frmDomicilio.TextBox3.Text = Convert.ToString(r.Item("esq"))
+                    frmDomicilio.TextBox4.Text = Convert.ToString(r.Item("nroApto"))
+                    frmDomicilio.TextBox5.Text = Convert.ToString(r.Item("ciudad"))
                 End If
             End If
             r.Close()
@@ -220,7 +220,7 @@ Public Class frmPrincipal
         End Try
     End Sub
 
-    ''BOTONES DE IMPORTACION DE IMAGENES PARA INSERTAR ARTICULO EN LA BASE DE DATOS''
+    ''BOTONES DE IMPORTACION DE IMAGENES A EL PICTURE BOX''
     Private Sub button_agregarImagen1_Click(sender As Object, e As EventArgs) Handles button_agregarImagen1.Click
         If OpenFileImagen1.ShowDialog() = DialogResult.OK Then
             PictureBoxImagen1.Load(OpenFileImagen1.FileName)
@@ -573,9 +573,10 @@ Public Class frmPrincipal
 
         If validacionFrmArticulo = 8 Then
 
-            Dim ms As New System.IO.MemoryStream()   ''Crea un buffer o reserva un espacio en memoria ran directamente  ram donde a futuro se trabajara con cantidad de datos importantes
+            Dim ms As New System.IO.MemoryStream()   ''Crea un buffer o reserva un espacio en memoria ram directamente  ram donde a futuro se trabajara con cantidad de datos importantes
             PictureBoxPortada.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
             Dim portada As Byte() = ms.GetBuffer
+            ms.Close()
 
             Try
                 conexion.Open()
@@ -596,6 +597,7 @@ Public Class frmPrincipal
                 Dim idArticulo As Integer
                 cmd.CommandText = "SELECT MAX(id) As id FROM articulos"
                 r = cmd.ExecuteReader
+
                 If (r.HasRows) Then
                     If r.Read Then
                         idArticulo = r("id")
@@ -611,11 +613,15 @@ Public Class frmPrincipal
 
 
                 Dim nroFoto = 0
+
                 For Each fotito As PictureBox In arrayFotos ''BUCLE FOREACH que insertara las 3 imagenes ingresadas como fotos de los articulos en la tabla galeria 
+                    Dim ms2 = New System.IO.MemoryStream()
+
                     nroFoto = nroFoto + 1
 
-                    fotito.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
-                    Dim foto As Byte() = ms.GetBuffer
+                    fotito.Image.Save(ms2, System.Drawing.Imaging.ImageFormat.Jpeg)
+                    Dim foto As Byte() = ms2.GetBuffer
+
 
                     cmd.CommandText = "INSERT INTO galeria(articulo_id,fotos,nroFoto) VALUES(@articulo_id,@foto,@nroFoto)"
 
@@ -626,11 +632,28 @@ Public Class frmPrincipal
 
                     cmd.ExecuteNonQuery()
 
-                    ms.Close()
+                    ms2.Close()
+
+
                 Next
+
                 MsgBox("Articulo insertado correctamente")
+                PictureBoxPortada.Image.Dispose()
+                PictureBoxPortada.Image = Nothing
+                PictureBoxImagen1.Image.Dispose()
+                PictureBoxImagen1.Image = Nothing
+                PictureBoxImagen2.Image.Dispose()
+                PictureBoxImagen2.Image = Nothing
+                PictureBoxImagen3.Image.Dispose()
+                PictureBoxImagen3.Image = Nothing
+                txtDescripcionArticulo.Clear()
+                txtStockArticulo.Clear()
+                txtNombreArticulo.Clear()
+                txtPrecio.Clear()
+
             Catch ex As Exception
                 MsgBox(ex.ToString)
+
             End Try
             conexion.Close()
         End If
