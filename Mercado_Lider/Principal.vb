@@ -900,13 +900,13 @@ Public Class frmPrincipal
     Private Sub Button39_Click(sender As Object, e As EventArgs) Handles Button39.Click
         tbTodos.SelectedTab = tbTodos.TabPages.Item(6)
     End Sub
-    Private Sub Button43_Click(sender As Object, e As EventArgs) Handles Button43.Click
+    Private Sub Button43_Click(sender As Object, e As EventArgs)
         tbTodos.SelectedTab = tbTodos.TabPages.Item(4)
     End Sub
-    Private Sub Button45_Click(sender As Object, e As EventArgs) Handles Button45.Click
+    Private Sub Button45_Click(sender As Object, e As EventArgs)
         tbTodos.SelectedTab = tbTodos.TabPages.Item(4)
     End Sub
-    Private Sub Button47_Click(sender As Object, e As EventArgs) Handles Button47.Click
+    Private Sub Button47_Click(sender As Object, e As EventArgs)
         tbTodos.SelectedTab = tbTodos.TabPages.Item(4)
     End Sub
     Private Sub Button49_Click(sender As Object, e As EventArgs) Handles btnConfigOcultar.Click
@@ -1070,5 +1070,12 @@ Public Class frmPrincipal
         pnlConfig.Visible = False
         tbTodos.SelectedTab = tbTodos.TabPages.Item(0)
         pnlInicio.Visible = True
+    End Sub
+    Private Sub grdInicio_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles grdInicio.CellClick
+        tbTodos.SelectedTab = tbTodos.TabPages.Item(4)
+    End Sub
+
+    Private Sub btnVolver_Click(sender As Object, e As EventArgs) Handles btnVolver.Click
+        tbTodos.SelectedTab = tbTodos.TabPages.Item(0)
     End Sub
 End Class

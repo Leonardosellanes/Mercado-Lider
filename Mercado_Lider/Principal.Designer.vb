@@ -25,21 +25,11 @@ Partial Class frmPrincipal
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPrincipal))
         Me.tbTodos = New System.Windows.Forms.TabControl()
         Me.tbPrincipal = New System.Windows.Forms.TabPage()
-        Me.Button46 = New System.Windows.Forms.Button()
-        Me.Button47 = New System.Windows.Forms.Button()
-        Me.Button44 = New System.Windows.Forms.Button()
-        Me.Button45 = New System.Windows.Forms.Button()
-        Me.Button42 = New System.Windows.Forms.Button()
-        Me.Button43 = New System.Windows.Forms.Button()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.grdInicio = New System.Windows.Forms.DataGridView()
+        Me.Prueba = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbRegristro = New System.Windows.Forms.TabPage()
         Me.lblRegistroBienvenido = New System.Windows.Forms.Label()
         Me.lblRegistradoCorrectamente = New System.Windows.Forms.Label()
@@ -96,13 +86,18 @@ Partial Class frmPrincipal
         Me.PictureBox10 = New System.Windows.Forms.PictureBox()
         Me.PictureBox9 = New System.Windows.Forms.PictureBox()
         Me.PictureBox18 = New System.Windows.Forms.PictureBox()
-        Me.Button5 = New System.Windows.Forms.Button()
+        Me.btnAgregarAlCarrito = New System.Windows.Forms.Button()
         Me.Label51 = New System.Windows.Forms.Label()
-        Me.Label50 = New System.Windows.Forms.Label()
+        Me.lblPrecioArticulo = New System.Windows.Forms.Label()
         Me.Label49 = New System.Windows.Forms.Label()
         Me.Label48 = New System.Windows.Forms.Label()
         Me.PictureBox17 = New System.Windows.Forms.PictureBox()
         Me.tbAgregar = New System.Windows.Forms.TabPage()
+        Me.cbAutomovil = New System.Windows.Forms.CheckBox()
+        Me.cbHogar = New System.Windows.Forms.CheckBox()
+        Me.cbElectronico = New System.Windows.Forms.CheckBox()
+        Me.cbRopa = New System.Windows.Forms.CheckBox()
+        Me.lblCategorias = New System.Windows.Forms.Label()
         Me.lblErrorPortada = New System.Windows.Forms.Label()
         Me.lblErrorImagen3 = New System.Windows.Forms.Label()
         Me.lblErrorImagen2 = New System.Windows.Forms.Label()
@@ -267,21 +262,10 @@ Partial Class frmPrincipal
         Me.OpenFileImagen2 = New System.Windows.Forms.OpenFileDialog()
         Me.OpenFileImagen3 = New System.Windows.Forms.OpenFileDialog()
         Me.OpenFilePortada = New System.Windows.Forms.OpenFileDialog()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button8 = New System.Windows.Forms.Button()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
-        Me.lblCategorias = New System.Windows.Forms.Label()
-        Me.cbRopa = New System.Windows.Forms.CheckBox()
-        Me.cbElectronico = New System.Windows.Forms.CheckBox()
-        Me.cbHogar = New System.Windows.Forms.CheckBox()
-        Me.cbAutomovil = New System.Windows.Forms.CheckBox()
+        Me.btnVolver = New System.Windows.Forms.Button()
         Me.tbTodos.SuspendLayout()
         Me.tbPrincipal.SuspendLayout()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdInicio, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tbRegristro.SuspendLayout()
         Me.tbSesion.SuspendLayout()
         Me.tbMisArticulos.SuspendLayout()
@@ -319,7 +303,6 @@ Partial Class frmPrincipal
         Me.panelbotonescarrito.SuspendLayout()
         Me.pnlPerfil.SuspendLayout()
         Me.pnlMiInfo.SuspendLayout()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tbTodos
@@ -348,26 +331,7 @@ Partial Class frmPrincipal
         'tbPrincipal
         '
         Me.tbPrincipal.AutoScroll = True
-        Me.tbPrincipal.Controls.Add(Me.Button6)
-        Me.tbPrincipal.Controls.Add(Me.Button8)
-        Me.tbPrincipal.Controls.Add(Me.Label9)
-        Me.tbPrincipal.Controls.Add(Me.Label10)
-        Me.tbPrincipal.Controls.Add(Me.PictureBox4)
-        Me.tbPrincipal.Controls.Add(Me.Button46)
-        Me.tbPrincipal.Controls.Add(Me.Button47)
-        Me.tbPrincipal.Controls.Add(Me.Button44)
-        Me.tbPrincipal.Controls.Add(Me.Button45)
-        Me.tbPrincipal.Controls.Add(Me.Button42)
-        Me.tbPrincipal.Controls.Add(Me.Button43)
-        Me.tbPrincipal.Controls.Add(Me.Label7)
-        Me.tbPrincipal.Controls.Add(Me.Label8)
-        Me.tbPrincipal.Controls.Add(Me.PictureBox3)
-        Me.tbPrincipal.Controls.Add(Me.Label5)
-        Me.tbPrincipal.Controls.Add(Me.Label6)
-        Me.tbPrincipal.Controls.Add(Me.PictureBox2)
-        Me.tbPrincipal.Controls.Add(Me.Label4)
-        Me.tbPrincipal.Controls.Add(Me.Label3)
-        Me.tbPrincipal.Controls.Add(Me.PictureBox1)
+        Me.tbPrincipal.Controls.Add(Me.grdInicio)
         Me.tbPrincipal.Location = New System.Drawing.Point(4, 22)
         Me.tbPrincipal.Name = "tbPrincipal"
         Me.tbPrincipal.Padding = New System.Windows.Forms.Padding(3)
@@ -376,182 +340,46 @@ Partial Class frmPrincipal
         Me.tbPrincipal.Text = "Inicio"
         Me.tbPrincipal.UseVisualStyleBackColor = True
         '
-        'Button46
+        'grdInicio
         '
-        Me.Button46.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button46.BackColor = System.Drawing.Color.Transparent
-        Me.Button46.FlatAppearance.BorderColor = System.Drawing.Color.DarkGreen
-        Me.Button46.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button46.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button46.ForeColor = System.Drawing.Color.DarkGreen
-        Me.Button46.Location = New System.Drawing.Point(593, 386)
-        Me.Button46.Name = "Button46"
-        Me.Button46.Size = New System.Drawing.Size(167, 23)
-        Me.Button46.TabIndex = 34
-        Me.Button46.Text = "AGREGAR AL CARRITO"
-        Me.Button46.UseVisualStyleBackColor = False
+        Me.grdInicio.AllowUserToAddRows = False
+        Me.grdInicio.AllowUserToDeleteRows = False
+        Me.grdInicio.AllowUserToResizeColumns = False
+        Me.grdInicio.AllowUserToResizeRows = False
+        Me.grdInicio.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grdInicio.BackgroundColor = System.Drawing.Color.Gray
+        Me.grdInicio.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.grdInicio.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+        Me.grdInicio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.grdInicio.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Prueba, Me.Column1, Me.Column2, Me.Column3})
+        Me.grdInicio.GridColor = System.Drawing.Color.White
+        Me.grdInicio.Location = New System.Drawing.Point(3, 23)
+        Me.grdInicio.Name = "grdInicio"
+        Me.grdInicio.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        Me.grdInicio.Size = New System.Drawing.Size(964, 542)
+        Me.grdInicio.TabIndex = 0
         '
-        'Button47
+        'Prueba
         '
-        Me.Button47.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button47.BackColor = System.Drawing.Color.Transparent
-        Me.Button47.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.Button47.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button47.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button47.ForeColor = System.Drawing.Color.Black
-        Me.Button47.Location = New System.Drawing.Point(661, 345)
-        Me.Button47.Name = "Button47"
-        Me.Button47.Size = New System.Drawing.Size(99, 23)
-        Me.Button47.TabIndex = 33
-        Me.Button47.Text = "VER MAS"
-        Me.Button47.UseVisualStyleBackColor = False
+        Me.Prueba.HeaderText = "prueba"
+        Me.Prueba.Name = "Prueba"
         '
-        'Button44
+        'Column1
         '
-        Me.Button44.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button44.BackColor = System.Drawing.Color.Transparent
-        Me.Button44.FlatAppearance.BorderColor = System.Drawing.Color.DarkGreen
-        Me.Button44.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button44.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button44.ForeColor = System.Drawing.Color.DarkGreen
-        Me.Button44.Location = New System.Drawing.Point(593, 240)
-        Me.Button44.Name = "Button44"
-        Me.Button44.Size = New System.Drawing.Size(167, 23)
-        Me.Button44.TabIndex = 32
-        Me.Button44.Text = "AGREGAR AL CARRITO"
-        Me.Button44.UseVisualStyleBackColor = False
+        Me.Column1.HeaderText = "Column1"
+        Me.Column1.Name = "Column1"
         '
-        'Button45
+        'Column2
         '
-        Me.Button45.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button45.BackColor = System.Drawing.Color.Transparent
-        Me.Button45.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.Button45.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button45.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button45.ForeColor = System.Drawing.Color.Black
-        Me.Button45.Location = New System.Drawing.Point(661, 199)
-        Me.Button45.Name = "Button45"
-        Me.Button45.Size = New System.Drawing.Size(99, 23)
-        Me.Button45.TabIndex = 31
-        Me.Button45.Text = "VER MAS"
-        Me.Button45.UseVisualStyleBackColor = False
+        Me.Column2.HeaderText = "Column2"
+        Me.Column2.Name = "Column2"
         '
-        'Button42
+        'Column3
         '
-        Me.Button42.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button42.BackColor = System.Drawing.Color.Transparent
-        Me.Button42.FlatAppearance.BorderColor = System.Drawing.Color.DarkGreen
-        Me.Button42.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button42.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button42.ForeColor = System.Drawing.Color.DarkGreen
-        Me.Button42.Location = New System.Drawing.Point(593, 97)
-        Me.Button42.Name = "Button42"
-        Me.Button42.Size = New System.Drawing.Size(167, 23)
-        Me.Button42.TabIndex = 30
-        Me.Button42.Text = "AGREGAR AL CARRITO"
-        Me.Button42.UseVisualStyleBackColor = False
-        '
-        'Button43
-        '
-        Me.Button43.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button43.BackColor = System.Drawing.Color.Transparent
-        Me.Button43.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.Button43.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button43.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button43.ForeColor = System.Drawing.Color.Black
-        Me.Button43.Location = New System.Drawing.Point(661, 56)
-        Me.Button43.Name = "Button43"
-        Me.Button43.Size = New System.Drawing.Size(99, 23)
-        Me.Button43.TabIndex = 29
-        Me.Button43.Text = "VER MAS"
-        Me.Button43.UseVisualStyleBackColor = False
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(366, 390)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(53, 20)
-        Me.Label7.TabIndex = 8
-        Me.Label7.Text = "Precio"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(313, 345)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(165, 25)
-        Me.Label8.TabIndex = 7
-        Me.Label8.Text = "Nombre Articulo"
-        '
-        'PictureBox3
-        '
-        Me.PictureBox3.BackColor = System.Drawing.Color.Gray
-        Me.PictureBox3.Location = New System.Drawing.Point(193, 329)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(97, 93)
-        Me.PictureBox3.TabIndex = 6
-        Me.PictureBox3.TabStop = False
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(366, 244)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(53, 20)
-        Me.Label5.TabIndex = 5
-        Me.Label5.Text = "Precio"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(313, 199)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(165, 25)
-        Me.Label6.TabIndex = 4
-        Me.Label6.Text = "Nombre Articulo"
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.BackColor = System.Drawing.Color.Gray
-        Me.PictureBox2.Location = New System.Drawing.Point(193, 183)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(97, 93)
-        Me.PictureBox2.TabIndex = 3
-        Me.PictureBox2.TabStop = False
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(366, 101)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(53, 20)
-        Me.Label4.TabIndex = 2
-        Me.Label4.Text = "Precio"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(313, 56)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(165, 25)
-        Me.Label3.TabIndex = 1
-        Me.Label3.Text = "Nombre Articulo"
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.BackColor = System.Drawing.Color.Gray
-        Me.PictureBox1.Location = New System.Drawing.Point(193, 40)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(97, 93)
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
+        Me.Column3.HeaderText = "Column3"
+        Me.Column3.Name = "Column3"
         '
         'tbRegristro
         '
@@ -1189,12 +1017,13 @@ Partial Class frmPrincipal
         '
         'tbArticulos
         '
+        Me.tbArticulos.Controls.Add(Me.btnVolver)
         Me.tbArticulos.Controls.Add(Me.PictureBox10)
         Me.tbArticulos.Controls.Add(Me.PictureBox9)
         Me.tbArticulos.Controls.Add(Me.PictureBox18)
-        Me.tbArticulos.Controls.Add(Me.Button5)
+        Me.tbArticulos.Controls.Add(Me.btnAgregarAlCarrito)
         Me.tbArticulos.Controls.Add(Me.Label51)
-        Me.tbArticulos.Controls.Add(Me.Label50)
+        Me.tbArticulos.Controls.Add(Me.lblPrecioArticulo)
         Me.tbArticulos.Controls.Add(Me.Label49)
         Me.tbArticulos.Controls.Add(Me.Label48)
         Me.tbArticulos.Controls.Add(Me.PictureBox17)
@@ -1210,7 +1039,7 @@ Partial Class frmPrincipal
         '
         Me.PictureBox10.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox10.BackColor = System.Drawing.Color.Gray
-        Me.PictureBox10.Location = New System.Drawing.Point(572, 309)
+        Me.PictureBox10.Location = New System.Drawing.Point(612, 309)
         Me.PictureBox10.Name = "PictureBox10"
         Me.PictureBox10.Size = New System.Drawing.Size(144, 146)
         Me.PictureBox10.TabIndex = 10
@@ -1220,7 +1049,7 @@ Partial Class frmPrincipal
         '
         Me.PictureBox9.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox9.BackColor = System.Drawing.Color.Gray
-        Me.PictureBox9.Location = New System.Drawing.Point(363, 309)
+        Me.PictureBox9.Location = New System.Drawing.Point(403, 309)
         Me.PictureBox9.Name = "PictureBox9"
         Me.PictureBox9.Size = New System.Drawing.Size(144, 146)
         Me.PictureBox9.TabIndex = 9
@@ -1235,18 +1064,18 @@ Partial Class frmPrincipal
         Me.PictureBox18.TabIndex = 8
         Me.PictureBox18.TabStop = False
         '
-        'Button5
+        'btnAgregarAlCarrito
         '
-        Me.Button5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button5.ForeColor = System.Drawing.Color.Green
-        Me.Button5.Location = New System.Drawing.Point(772, 493)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(154, 27)
-        Me.Button5.TabIndex = 7
-        Me.Button5.Text = "AÑADIR AL CARRITO"
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.btnAgregarAlCarrito.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAgregarAlCarrito.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAgregarAlCarrito.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAgregarAlCarrito.ForeColor = System.Drawing.Color.Green
+        Me.btnAgregarAlCarrito.Location = New System.Drawing.Point(772, 493)
+        Me.btnAgregarAlCarrito.Name = "btnAgregarAlCarrito"
+        Me.btnAgregarAlCarrito.Size = New System.Drawing.Size(154, 27)
+        Me.btnAgregarAlCarrito.TabIndex = 7
+        Me.btnAgregarAlCarrito.Text = "AÑADIR AL CARRITO"
+        Me.btnAgregarAlCarrito.UseVisualStyleBackColor = True
         '
         'Label51
         '
@@ -1258,16 +1087,16 @@ Partial Class frmPrincipal
         Me.Label51.TabIndex = 6
         Me.Label51.Text = "Codigo"
         '
-        'Label50
+        'lblPrecioArticulo
         '
-        Me.Label50.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label50.AutoSize = True
-        Me.Label50.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label50.Location = New System.Drawing.Point(835, 466)
-        Me.Label50.Name = "Label50"
-        Me.Label50.Size = New System.Drawing.Size(73, 25)
-        Me.Label50.TabIndex = 5
-        Me.Label50.Text = "Precio"
+        Me.lblPrecioArticulo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblPrecioArticulo.AutoSize = True
+        Me.lblPrecioArticulo.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPrecioArticulo.Location = New System.Drawing.Point(835, 466)
+        Me.lblPrecioArticulo.Name = "lblPrecioArticulo"
+        Me.lblPrecioArticulo.Size = New System.Drawing.Size(73, 25)
+        Me.lblPrecioArticulo.TabIndex = 5
+        Me.lblPrecioArticulo.Text = "Precio"
         '
         'Label49
         '
@@ -1293,7 +1122,7 @@ Partial Class frmPrincipal
         '
         Me.PictureBox17.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox17.BackColor = System.Drawing.Color.Gray
-        Me.PictureBox17.Location = New System.Drawing.Point(151, 309)
+        Me.PictureBox17.Location = New System.Drawing.Point(191, 309)
         Me.PictureBox17.Name = "PictureBox17"
         Me.PictureBox17.Size = New System.Drawing.Size(144, 146)
         Me.PictureBox17.TabIndex = 0
@@ -1342,6 +1171,63 @@ Partial Class frmPrincipal
         Me.tbAgregar.TabIndex = 7
         Me.tbAgregar.Text = "Publicar"
         Me.tbAgregar.UseVisualStyleBackColor = True
+        '
+        'cbAutomovil
+        '
+        Me.cbAutomovil.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.cbAutomovil.AutoSize = True
+        Me.cbAutomovil.Location = New System.Drawing.Point(658, 183)
+        Me.cbAutomovil.Name = "cbAutomovil"
+        Me.cbAutomovil.Size = New System.Drawing.Size(72, 17)
+        Me.cbAutomovil.TabIndex = 48
+        Me.cbAutomovil.Text = "Automovil"
+        Me.cbAutomovil.UseVisualStyleBackColor = True
+        '
+        'cbHogar
+        '
+        Me.cbHogar.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.cbHogar.AutoSize = True
+        Me.cbHogar.Location = New System.Drawing.Point(658, 153)
+        Me.cbHogar.Name = "cbHogar"
+        Me.cbHogar.Size = New System.Drawing.Size(55, 17)
+        Me.cbHogar.TabIndex = 47
+        Me.cbHogar.Text = "Hogar"
+        Me.cbHogar.UseVisualStyleBackColor = True
+        '
+        'cbElectronico
+        '
+        Me.cbElectronico.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.cbElectronico.AutoSize = True
+        Me.cbElectronico.Location = New System.Drawing.Point(658, 126)
+        Me.cbElectronico.Name = "cbElectronico"
+        Me.cbElectronico.Size = New System.Drawing.Size(79, 17)
+        Me.cbElectronico.TabIndex = 46
+        Me.cbElectronico.Text = "Electronico"
+        Me.cbElectronico.UseVisualStyleBackColor = True
+        '
+        'cbRopa
+        '
+        Me.cbRopa.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.cbRopa.AutoSize = True
+        Me.cbRopa.Location = New System.Drawing.Point(658, 97)
+        Me.cbRopa.Name = "cbRopa"
+        Me.cbRopa.Size = New System.Drawing.Size(52, 17)
+        Me.cbRopa.TabIndex = 45
+        Me.cbRopa.Text = "Ropa"
+        Me.cbRopa.UseVisualStyleBackColor = True
+        '
+        'lblCategorias
+        '
+        Me.lblCategorias.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblCategorias.AutoSize = True
+        Me.lblCategorias.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCategorias.ForeColor = System.Drawing.Color.Black
+        Me.lblCategorias.Location = New System.Drawing.Point(655, 60)
+        Me.lblCategorias.Name = "lblCategorias"
+        Me.lblCategorias.Size = New System.Drawing.Size(236, 13)
+        Me.lblCategorias.TabIndex = 44
+        Me.lblCategorias.Text = "Categorias:(Pude seleccionar una o mas de una)"
+        Me.lblCategorias.Visible = False
         '
         'lblErrorPortada
         '
@@ -3353,121 +3239,17 @@ Partial Class frmPrincipal
         '
         Me.OpenFilePortada.FileName = "OpenFileDialog4"
         '
-        'Button6
+        'btnVolver
         '
-        Me.Button6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button6.BackColor = System.Drawing.Color.Transparent
-        Me.Button6.FlatAppearance.BorderColor = System.Drawing.Color.DarkGreen
-        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button6.ForeColor = System.Drawing.Color.DarkGreen
-        Me.Button6.Location = New System.Drawing.Point(593, 529)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(167, 23)
-        Me.Button6.TabIndex = 39
-        Me.Button6.Text = "AGREGAR AL CARRITO"
-        Me.Button6.UseVisualStyleBackColor = False
-        '
-        'Button8
-        '
-        Me.Button8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button8.BackColor = System.Drawing.Color.Transparent
-        Me.Button8.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button8.ForeColor = System.Drawing.Color.Black
-        Me.Button8.Location = New System.Drawing.Point(661, 488)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(99, 23)
-        Me.Button8.TabIndex = 38
-        Me.Button8.Text = "VER MAS"
-        Me.Button8.UseVisualStyleBackColor = False
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(366, 533)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(53, 20)
-        Me.Label9.TabIndex = 37
-        Me.Label9.Text = "Precio"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(313, 488)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(165, 25)
-        Me.Label10.TabIndex = 36
-        Me.Label10.Text = "Nombre Articulo"
-        '
-        'PictureBox4
-        '
-        Me.PictureBox4.BackColor = System.Drawing.Color.Gray
-        Me.PictureBox4.Location = New System.Drawing.Point(193, 472)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(97, 93)
-        Me.PictureBox4.TabIndex = 35
-        Me.PictureBox4.TabStop = False
-        '
-        'lblCategorias
-        '
-        Me.lblCategorias.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.lblCategorias.AutoSize = True
-        Me.lblCategorias.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCategorias.ForeColor = System.Drawing.Color.Black
-        Me.lblCategorias.Location = New System.Drawing.Point(655, 60)
-        Me.lblCategorias.Name = "lblCategorias"
-        Me.lblCategorias.Size = New System.Drawing.Size(236, 13)
-        Me.lblCategorias.TabIndex = 44
-        Me.lblCategorias.Text = "Categorias:(Pude seleccionar una o mas de una)"
-        Me.lblCategorias.Visible = False
-        '
-        'cbRopa
-        '
-        Me.cbRopa.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.cbRopa.AutoSize = True
-        Me.cbRopa.Location = New System.Drawing.Point(658, 97)
-        Me.cbRopa.Name = "cbRopa"
-        Me.cbRopa.Size = New System.Drawing.Size(52, 17)
-        Me.cbRopa.TabIndex = 45
-        Me.cbRopa.Text = "Ropa"
-        Me.cbRopa.UseVisualStyleBackColor = True
-        '
-        'cbElectronico
-        '
-        Me.cbElectronico.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.cbElectronico.AutoSize = True
-        Me.cbElectronico.Location = New System.Drawing.Point(658, 126)
-        Me.cbElectronico.Name = "cbElectronico"
-        Me.cbElectronico.Size = New System.Drawing.Size(79, 17)
-        Me.cbElectronico.TabIndex = 46
-        Me.cbElectronico.Text = "Electronico"
-        Me.cbElectronico.UseVisualStyleBackColor = True
-        '
-        'cbHogar
-        '
-        Me.cbHogar.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.cbHogar.AutoSize = True
-        Me.cbHogar.Location = New System.Drawing.Point(658, 153)
-        Me.cbHogar.Name = "cbHogar"
-        Me.cbHogar.Size = New System.Drawing.Size(55, 17)
-        Me.cbHogar.TabIndex = 47
-        Me.cbHogar.Text = "Hogar"
-        Me.cbHogar.UseVisualStyleBackColor = True
-        '
-        'cbAutomovil
-        '
-        Me.cbAutomovil.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.cbAutomovil.AutoSize = True
-        Me.cbAutomovil.Location = New System.Drawing.Point(658, 183)
-        Me.cbAutomovil.Name = "cbAutomovil"
-        Me.cbAutomovil.Size = New System.Drawing.Size(72, 17)
-        Me.cbAutomovil.TabIndex = 48
-        Me.cbAutomovil.Text = "Automovil"
-        Me.cbAutomovil.UseVisualStyleBackColor = True
+        Me.btnVolver.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnVolver.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnVolver.Location = New System.Drawing.Point(44, 493)
+        Me.btnVolver.Name = "btnVolver"
+        Me.btnVolver.Size = New System.Drawing.Size(101, 27)
+        Me.btnVolver.TabIndex = 11
+        Me.btnVolver.Text = "VOLVER"
+        Me.btnVolver.UseVisualStyleBackColor = True
         '
         'frmPrincipal
         '
@@ -3487,10 +3269,7 @@ Partial Class frmPrincipal
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.tbTodos.ResumeLayout(False)
         Me.tbPrincipal.ResumeLayout(False)
-        Me.tbPrincipal.PerformLayout()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdInicio, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tbRegristro.ResumeLayout(False)
         Me.tbRegristro.PerformLayout()
         Me.tbSesion.ResumeLayout(False)
@@ -3541,7 +3320,6 @@ Partial Class frmPrincipal
         Me.pnlPerfil.ResumeLayout(False)
         Me.pnlMiInfo.ResumeLayout(False)
         Me.pnlMiInfo.PerformLayout()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3561,15 +3339,6 @@ Partial Class frmPrincipal
     Friend WithEvents btnRegistrar As Button
     Friend WithEvents pnlInicio As Panel
     Friend WithEvents pnlConfig As Panel
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Label8 As Label
-    Friend WithEvents PictureBox3 As PictureBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents PictureBox2 As PictureBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents buttonRegister As Button
     Friend WithEvents lblRegistroNuevoUser As Label
@@ -3589,7 +3358,7 @@ Partial Class frmPrincipal
     Friend WithEvents txtusernamelogin As TextBox
     Friend WithEvents lblUsernameLogin As Label
     Friend WithEvents tbArticulos As TabPage
-    Friend WithEvents Label50 As Label
+    Friend WithEvents lblPrecioArticulo As Label
     Friend WithEvents Label49 As Label
     Friend WithEvents Label48 As Label
     Friend WithEvents PictureBox17 As PictureBox
@@ -3597,7 +3366,7 @@ Partial Class frmPrincipal
     Friend WithEvents Panel9 As Panel
     Friend WithEvents btnPublicar As Button
     Friend WithEvents PictureBox18 As PictureBox
-    Friend WithEvents Button5 As Button
+    Friend WithEvents btnAgregarAlCarrito As Button
     Friend WithEvents Label51 As Label
     Friend WithEvents txtPrecio As TextBox
     Friend WithEvents Label56 As Label
@@ -3688,14 +3457,8 @@ Partial Class frmPrincipal
     Friend WithEvents Label26 As Label
     Friend WithEvents txtUsernameModificarPerfil As TextBox
     Friend WithEvents usernameLabelModificarPerfil As Label
-    Friend WithEvents Button42 As Button
-    Friend WithEvents Button43 As Button
     Friend WithEvents buttonPublicarArticulo As Button
     Friend WithEvents Label30 As Label
-    Friend WithEvents Button44 As Button
-    Friend WithEvents Button45 As Button
-    Friend WithEvents Button46 As Button
-    Friend WithEvents Button47 As Button
     Friend WithEvents Label82 As Label
     Friend WithEvents txtRepetirContraseña As TextBox
     Friend WithEvents Label81 As Label
@@ -3790,14 +3553,15 @@ Partial Class frmPrincipal
     Friend WithEvents lblErrorImagen3 As Label
     Friend WithEvents lblErrorImagen2 As Label
     Friend WithEvents lblErrorImagen1 As Label
-    Friend WithEvents Button6 As Button
-    Friend WithEvents Button8 As Button
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Label10 As Label
-    Friend WithEvents PictureBox4 As PictureBox
     Friend WithEvents cbAutomovil As CheckBox
     Friend WithEvents cbHogar As CheckBox
     Friend WithEvents cbElectronico As CheckBox
     Friend WithEvents cbRopa As CheckBox
     Friend WithEvents lblCategorias As Label
+    Friend WithEvents grdInicio As DataGridView
+    Friend WithEvents Prueba As DataGridViewTextBoxColumn
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents btnVolver As Button
 End Class
