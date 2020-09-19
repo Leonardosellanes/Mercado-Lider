@@ -10,7 +10,9 @@ Public Class frmPrincipal
     Dim r As MySqlDataReader
 
     ''Informacion de usuario''
-    Dim ID As Integer
+
+    Dim sesion As Boolean = False
+    Dim ID As Integer = Nothing
     Dim Username As String
     Dim Nombre As String
     Dim Apellido As String
@@ -20,16 +22,22 @@ Public Class frmPrincipal
     Dim Telefono As String
 
 
+    Dim carrito As New ArrayList
+
+
+
     'Objeto frmDomicilio para control de frm de domicilio'
     Dim frmDomicilio As Domicilio = New Domicilio
 
 
     Public Sub New()
         'Esta llamada es exigida por el diseñador.
-        InitializeComponent()
         conexion = New MySqlConnection
         conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=root; pwd=;"
         cmd.Connection = conexion
+
+        InitializeComponent()
+
 
 
         'Agregue cualquier inicialización después de la llamada a InitializeComponent().
@@ -141,9 +149,9 @@ Public Class frmPrincipal
 
     'Funcion que inserta email en la tabla
     Private Sub insertEmailTable(ByVal id As Integer, ByVal email As String, ByVal con As MySqlConnection)
-        Dim cmd As New MySqlCommand
+        ''Para usar este metodo debe ya haber una conexion abierta
 
-        cmd.Connection = con
+
         cmd.CommandText = "INSERT INTO useremail VALUES(@user_email,@email)"
         cmd.Parameters.Clear()
         cmd.Parameters.AddWithValue("@user_email", id)
@@ -160,30 +168,75 @@ Public Class frmPrincipal
 
     ''Check if Username existe''
     Private Function UserExist(ByVal username As String, ByVal con As MySqlConnection)
-        Dim cmd As New MySqlCommand
-        Dim dr As MySqlDataReader
+
         con.Open()
-        cmd.Connection = con
+
         cmd.CommandText = "SELECT * FROM usuario WHERE username=@user"
         cmd.Parameters.Clear()
         cmd.Parameters.AddWithValue("@user", username)
-        dr = cmd.ExecuteReader
-        If (dr.HasRows) Then
-            dr.Close()
+        r = cmd.ExecuteReader
+        If (r.HasRows) Then
+            r.Close()
             con.Close()
             Return True
         Else
-            dr.Close()
+            r.Close()
             con.Close()
             Return False
         End If
 
     End Function
 
+    Private Sub loadComboBoxCategoria()
+        Try
+
+            conexion.Open()
+            cmd.CommandText = "SELECT categoria.categoria FROM categoria"
+
+            r = cmd.ExecuteReader()
+
+            While r.Read()
+                Dim categoria = r.GetString("categoria")
+                ComboBoxCategorias.Items.Add(categoria)
 
 
 
+            End While
 
+            conexion.Close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            conexion.Close()
+
+        End Try
+    End Sub
+
+    Sub ActualizarSelectArticulos()
+        Dim ds As DataSet = New DataSet
+        Dim adaptador As MySqlDataAdapter = New MySqlDataAdapter
+        Try
+            conexion.Open()
+
+            If (sesion = False) Then
+                cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,usuario WHERE usuario.id=articulos.usuario_id ORDER BY nombre ASC"
+            Else
+                cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,usuario WHERE usuario.id=articulos.usuario_id and usuario.id!=@userID ORDER BY nombre ASC"
+                cmd.Parameters.Clear()
+                cmd.Parameters.AddWithValue("@userID", ID)
+            End If
+
+
+            adaptador.SelectCommand = cmd
+            adaptador.Fill(ds, "Tabla")
+            grdInicio.DataSource = ds
+            grdInicio.DataMember = "Tabla"
+            conexion.Close()
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            conexion.Close()
+        End Try
+    End Sub
 
     ''ACTUALIZA LA INFORMACION  DE EL USUARIO DE LOS CAMPOS Y ETIQUETAS,CUANDO SE HACE ALGUN TIPO DE CAMBIO
     Private Sub UpdateUserInfo(ByVal id As Integer)
@@ -244,6 +297,26 @@ Public Class frmPrincipal
             lblErrorImagen3.Visible = False
         End If
     End Sub
+
+
+    Private Sub UpdateGridCart(ByVal cartArray As ArrayList)
+
+
+        For Each elem In cartArray
+
+        Next
+
+        Try
+            conexion.Open()
+            cmd.CommandText = ""
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+
+
     Private Sub button_agregarPortada_Click(sender As Object, e As EventArgs) Handles button_agregarPortada.Click
         If OpenFilePortada.ShowDialog() = DialogResult.OK Then
             PictureBoxPortada.Load(OpenFilePortada.FileName)
@@ -388,6 +461,11 @@ Public Class frmPrincipal
             r = cmd.ExecuteReader()
             If r.HasRows Then
                 If r.Read Then
+
+                    sesion = True  'Creacion de sesion'
+
+
+
                     ID = r("id")
                     Username = r("username")
                     Nombre = r("Nombre").ToString
@@ -420,7 +498,7 @@ Public Class frmPrincipal
 
 
     ''EVENTO DE CLICK DE EL BOTON DE ACTUALIZAR INFORMACION
-    Private Sub buttonSetInfo_Click(sender As Object, e As EventArgs) Handles buttonSetInfo.Click, btnCerrarSesion.Click
+    Private Sub buttonSetInfo_Click(sender As Object, e As EventArgs) Handles buttonSetInfo.Click
         'VALIDACION DE FORMULARIO DE MODIFICACION DE PERFIL' 
 
         Dim validacion As Integer = 0
@@ -745,6 +823,14 @@ Public Class frmPrincipal
         subbarritas()
         pnlInicio.Visible = True
         Combobox()
+        ComboBoxCategorias.Text = "TODOS"
+        loadComboBoxCategoria()
+        ActualizarSelectArticulos()
+        grdInicio.Columns(0).Width = 200
+        grdInicio.Columns(1).Width = 200
+        grdInicio.Columns(2).Width = 200
+        grdInicio.Columns(3).Width = 200
+        ajustarGrid()
     End Sub
     Private Sub Ocultarpaneles()
         panelbotonescarrito.Visible = False
@@ -763,7 +849,7 @@ Public Class frmPrincipal
         pnlCom.Visible = False
     End Sub
     Private Sub Combobox()
-        ComboBox1.DropDownStyle = ComboBoxStyle.DropDownList
+        ComboBoxCategorias.DropDownStyle = ComboBoxStyle.DropDownList
         ComboBoxRolModificarPerfil.DropDownStyle = ComboBoxStyle.DropDownList
         cbxRol.DropDownStyle = ComboBoxStyle.DropDownList
     End Sub
@@ -808,6 +894,8 @@ Public Class frmPrincipal
         ocultarbarritas()
         Ocultarpaneles()
         pnlInicio.Visible = True
+        ActualizarSelectArticulos()
+        ajustarGrid()
     End Sub
     Private Sub btnRegistrar_Click(sender As Object, e As EventArgs) Handles btnRegistrar.Click
         tbTodos.SelectedTab = tbTodos.TabPages.Item(1)
@@ -891,13 +979,13 @@ Public Class frmPrincipal
         Ocultarpaneles()
         btnConfigOcultar.Visible = False
     End Sub
-    Private Sub Button37_Click(sender As Object, e As EventArgs) Handles Button37.Click
+    Private Sub Button37_Click(sender As Object, e As EventArgs)
         tbTodos.SelectedTab = tbTodos.TabPages.Item(6)
     End Sub
-    Private Sub Button38_Click(sender As Object, e As EventArgs) Handles Button38.Click
+    Private Sub Button38_Click(sender As Object, e As EventArgs)
         tbTodos.SelectedTab = tbTodos.TabPages.Item(6)
     End Sub
-    Private Sub Button39_Click(sender As Object, e As EventArgs) Handles Button39.Click
+    Private Sub Button39_Click(sender As Object, e As EventArgs)
         tbTodos.SelectedTab = tbTodos.TabPages.Item(6)
     End Sub
     Private Sub Button43_Click(sender As Object, e As EventArgs)
@@ -908,6 +996,15 @@ Public Class frmPrincipal
     End Sub
     Private Sub Button47_Click(sender As Object, e As EventArgs)
         tbTodos.SelectedTab = tbTodos.TabPages.Item(4)
+    End Sub
+    Private Sub ajustarGrid()
+        grdInicio.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 20)
+        Dim contador As Integer
+        For Each grd In grdInicio.Rows
+            Dim row As DataGridViewRow = grdInicio.Rows(contador)
+            row.Height = 200
+            contador = contador + 1
+        Next
     End Sub
     Private Sub Button49_Click(sender As Object, e As EventArgs) Handles btnConfigOcultar.Click
         pnlPerfil.Visible = False
@@ -963,9 +1060,9 @@ Public Class frmPrincipal
         lblPassVaciaLogin.Visible = False
         lblNoExisteUser.Visible = False
     End Sub
-    Private Sub tbxBuscar_Click(sender As Object, e As EventArgs) Handles tbxBuscar.Click
-        tbxBuscar.Clear()
-        tbxBuscar.ForeColor = Color.Black
+    Private Sub tbxBuscar_Click(sender As Object, e As EventArgs) Handles txtBuscar.Click
+        txtBuscar.Clear()
+        txtBuscar.ForeColor = Color.Black
     End Sub
     Private Sub TextBox13_Click(sender As Object, e As EventArgs) Handles txtUsernameModificarPerfil.Click
         LabelErrorUsername.Visible = False
@@ -1061,6 +1158,39 @@ Public Class frmPrincipal
         pnlMiInfo.Visible = False
         btnConfigOcultar.Visible = False
         Ocultarpaneles()
+
+        Dim ds As DataSet = New DataSet
+        Dim adaptador As MySqlDataAdapter = New MySqlDataAdapter
+        Try
+            conexion.Open()
+
+
+            cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,usuario WHERE usuario.id=articulos.usuario_id and articulos.usuario_id = @userID"
+            cmd.Parameters.Clear()
+            cmd.Parameters.AddWithValue("@userID", ID)
+
+            adaptador.SelectCommand = cmd
+            adaptador.Fill(ds, "Tabla")
+            grdMisArticulos.DataSource = ds
+            grdMisArticulos.DataMember = "Tabla"
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        conexion.Close()
+
+        Dim contador3 As Integer
+        For Each grd In grdMisArticulos.Rows
+            Dim row As DataGridViewRow = grdMisArticulos.Rows(contador3)
+            row.Height = 200
+            contador3 = contador3 + 1
+        Next
+        grdMisArticulos.Columns(0).Width = 200
+        grdMisArticulos.Columns(1).Width = 200
+        grdMisArticulos.Columns(2).Width = 200
+        grdMisArticulos.Columns(3).Width = 200
+    End Sub
+    Private Sub grdMisArticulos_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles grdMisArticulos.CellClick
+        tbTodos.SelectedTab = tbTodos.TabPages.Item(6)
     End Sub
     Private Sub Button14_Click(sender As Object, e As EventArgs) Handles btnCerrarSesion.Click
         ocultarLogin(True, False)
@@ -1070,12 +1200,207 @@ Public Class frmPrincipal
         pnlConfig.Visible = False
         tbTodos.SelectedTab = tbTodos.TabPages.Item(0)
         pnlInicio.Visible = True
+
+
+        'Destruye la sesion'
+        sesion = False
+        ActualizarSelectArticulos()
+        ajustarGrid()
     End Sub
     Private Sub grdInicio_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles grdInicio.CellClick
         tbTodos.SelectedTab = tbTodos.TabPages.Item(4)
+
     End Sub
 
     Private Sub btnVolver_Click(sender As Object, e As EventArgs) Handles btnVolver.Click
         tbTodos.SelectedTab = tbTodos.TabPages.Item(0)
+    End Sub
+
+
+    ''Metodo que se ejecuta cuando se seleciona un elemento de la tabla de articulos
+
+    Private Sub grdInicio_SelectionChanged(sender As Object, e As EventArgs) Handles grdInicio.SelectionChanged
+        If (grdInicio.SelectedRows.Count > 0) Then
+            Dim articuloID = grdInicio.Item("id", grdInicio.SelectedRows(0).Index).Value
+
+            lblNomArticuloFicha.Text = grdInicio.Item("Nombre", grdInicio.SelectedRows(0).Index).Value
+            codigoFichaLbl.Text = grdInicio.Item("id", grdInicio.SelectedRows(0).Index).Value
+
+            Dim portadaByte() As Byte = grdInicio.Item("portada", grdInicio.SelectedRows(0).Index).Value
+            Dim ms As New System.IO.MemoryStream(portadaByte)
+            PictureBoxPortadaFicha.Image = System.Drawing.Image.FromStream(ms)
+            ms.Close()
+
+            ''AGREGAR DATOS ADICIONALES A LA FICHA'
+
+            Try
+                conexion.Close()
+                conexion.Open()
+                cmd.CommandText = "SELECT articulos.Precio,articulos.Descripcion FROM articulos WHERE articulos.id = @idArt"
+                cmd.Parameters.Clear()
+                cmd.Parameters.AddWithValue("@idArt", articuloID)
+                r = cmd.ExecuteReader()
+                If (r.Read()) Then
+                    lblPrecioArticulo.Text = r("Precio") & "$"
+                    txtDescripcionArticuloFicha.Text = r("Descripcion")
+                End If
+                r.Close()
+                cmd.CommandText = "SELECT galeria.fotos from galeria,articulos WHERE articulos.id=@idArt and articulos.id=galeria.articulo_id"
+                r = cmd.ExecuteReader()
+
+                Dim arrayFotosFicha(2) As PictureBox
+                arrayFotosFicha(0) = PictureBoxImagen1Ficha
+                arrayFotosFicha(1) = PictureBoxImagen2Ficha
+                arrayFotosFicha(2) = PictureBoxImagen3Ficha
+
+                Dim cont = 0
+                While r.Read()
+                    Dim foto() As Byte = r("fotos")
+                    Dim ms2 = New System.IO.MemoryStream(foto)
+                    arrayFotosFicha(cont).Image = System.Drawing.Image.FromStream(ms2)
+                    ms2.Close()
+                    cont = cont + 1
+                End While
+                r.Close()
+                conexion.Close()
+            Catch ex As Exception
+                MsgBox(ex.ToString())
+            End Try
+            conexion.Close()
+        End If
+    End Sub
+
+    Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
+        ''Evento de el boton buscar que filtrara por texto en descripcion y categoria
+        tbTodos.SelectedTab = tbTodos.TabPages.Item(0)
+
+        Dim ds As DataSet = New DataSet
+        Dim adaptador As MySqlDataAdapter = New MySqlDataAdapter
+        Try
+            conexion.Open()
+
+            If ComboBoxCategorias.Text = "TODOS" Then  ''Si el combobox categoria tiene valor todos
+                If (sesion = True) Then   ''Si existe una sesion de usuario abierta
+                    ''Seleciona todos los articulos menos los publicados por el usuario con sesion de la sesion, filtrado por descripcion pasado a traves de el TextBox de busqueda 
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,Articulos.precio FROM articulos,usuario WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.usuario_id=usuario.id AND usuario.id!=" & ID & ""  '
+                Else
+                    ''De lo contrario seleciona todos los articulos
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,Articulos.precio FROM articulos WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%'"
+
+                End If
+
+            Else
+                'Si el combobox no esta selecionado en Todos,es decir que tiene una categoria,por lo tanto
+                If (sesion = True) Then
+                    'Si existe una sesion,selecciona todos los articulos menos los de el usuario de la sesion,filtrado por descripcion y categoria
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,Articulos.precio FROM articulos,categoria,articulo_categoria,usuario
+WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=articulo_categoria.articulo_id AND categoria.id = articulo_categoria.categoria_id AND categoria.categoria='" & ComboBoxCategorias.Text & "' AND articulos.usuario_id=usuario.id AND usuario.id!=" & ID & ""
+                Else
+                    ''Si no existe una sesion ,filtra igual por descripcion y categoria,pero incluye los de el usuario de la sesion
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,Articulos.precio FROM articulos,categoria,articulo_categoria WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=articulo_categoria.articulo_id AND categoria.id = articulo_categoria.categoria_id AND categoria.categoria='" & ComboBoxCategorias.Text & "'"
+                End If
+            End If
+            adaptador.SelectCommand = cmd
+            adaptador.Fill(ds, "Tabla")
+            grdInicio.DataSource = ds
+            grdInicio.DataMember = "Tabla"
+            conexion.Close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            conexion.Close()
+        End Try
+        ajustarGrid()
+    End Sub
+
+    Private Sub ComboBoxCategorias_TextChanged(sender As Object, e As EventArgs) Handles ComboBoxCategorias.TextChanged
+
+        ''Evento que registra cuando se cambia o se seleciona un Item de el combobox
+        lblCategoria.Text = ComboBoxCategorias.Text()
+        Dim ds As DataSet = New DataSet
+        Dim adaptador As MySqlDataAdapter = New MySqlDataAdapter
+        Try
+            conexion.Open()
+
+            If ComboBoxCategorias.Text = "TODOS" Then
+                If (sesion = True) Then
+                    ''Seleciona todos los articulos ,sin incluir los articulos de el usuario logeado
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,Articulos.precio FROM articulos,usuario WHERE  articulos.usuario_id=usuario.id AND usuario.id!=" & ID & ""
+                Else
+
+                    ''Seleciona todos los articulos.
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,Articulos. FROM articulos"
+                End If
+            Else
+                If (sesion = True) Then
+                    ''Seleciona todos los articulos filtrados unicamente por categoria ,sin incluir los articulos de el usuario
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,Articulos.precio FROM articulos,categoria,articulo_categoria,usuario WHERE  articulos.id=articulo_categoria.articulo_id AND categoria.id = articulo_categoria.categoria_id AND categoria.categoria='" & ComboBoxCategorias.Text & "' AND articulos.usuario_id=usuario.id AND usuario.id!=" & ID & ""
+                Else
+                    ''Seleciona todos los articulos filtrados unicamente por su categoria
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,Articulos.precio FROM articulos,categoria,articulo_categoria WHERE  articulos.id=articulo_categoria.articulo_id AND categoria.id = articulo_categoria.categoria_id AND categoria.categoria='" & ComboBoxCategorias.Text & "'"
+                End If
+            End If
+                adaptador.SelectCommand = cmd
+            adaptador.Fill(ds, "Tabla")
+            grdInicio.DataSource = ds
+            grdInicio.DataMember = "Tabla"
+            conexion.Close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            conexion.Close()
+        End Try
+        ajustarGrid()
+    End Sub
+
+    Private Sub btnAgregarAlCarrito_Click(sender As Object, e As EventArgs) Handles btnAgregarAlCarrito.Click
+        If (Not sesion) Then
+            MsgBox("Necesitas iniciar sesion para agregar al carrito")
+        Else
+            Dim repetido As Boolean = False
+
+            For Each num In carrito
+                If (codigoFichaLbl.Text = num) Then
+                    repetido = True
+                End If
+            Next
+            If (Not repetido) Then
+                carrito.Add(codigoFichaLbl.Text)
+            Else
+                MsgBox("Ya esta este producto en el carrito")
+            End If
+        End If
+    End Sub
+
+    Private Sub btnVolverEditarArticulos_Click(sender As Object, e As EventArgs) Handles btnVolverEditarArticulos.Click
+        tbTodos.SelectedTab = tbTodos.TabPages.Item(3)
+
+        Dim ds As DataSet = New DataSet
+        Dim adaptador As MySqlDataAdapter = New MySqlDataAdapter
+        Try
+            conexion.Open()
+
+
+            cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,usuario WHERE usuario.id=articulos.usuario_id and articulos.usuario_id = @userID"
+            cmd.Parameters.Clear()
+            cmd.Parameters.AddWithValue("@userID", ID)
+
+            adaptador.SelectCommand = cmd
+            adaptador.Fill(ds, "Tabla")
+            grdMisArticulos.DataSource = ds
+            grdMisArticulos.DataMember = "Tabla"
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        conexion.Close()
+
+        Dim contador3 As Integer
+        For Each grd In grdMisArticulos.Rows
+            Dim row As DataGridViewRow = grdMisArticulos.Rows(contador3)
+            row.Height = 200
+            contador3 = contador3 + 1
+        Next
+        grdMisArticulos.Columns(0).Width = 200
+        grdMisArticulos.Columns(1).Width = 200
+        grdMisArticulos.Columns(2).Width = 200
+        grdMisArticulos.Columns(3).Width = 200
     End Sub
 End Class
