@@ -24,7 +24,7 @@ Public Class frmPrincipal
 
     Dim carrito As New ArrayList
 
-
+    Dim stock As Boolean
 
     'Objeto frmDomicilio para control de frm de domicilio'
     Dim frmDomicilio As Domicilio = New Domicilio
@@ -1324,22 +1324,22 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
             If ComboBoxCategorias.Text = "TODOS" Then
                 If (sesion = True) Then
                     ''Seleciona todos los articulos ,sin incluir los articulos de el usuario logeado
-                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,Articulos.precio FROM articulos,usuario WHERE  articulos.usuario_id=usuario.id AND usuario.id!=" & ID & ""
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,usuario WHERE  articulos.usuario_id=usuario.id AND usuario.id!= " & ID & ""
                 Else
 
                     ''Seleciona todos los articulos.
-                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,Articulos. FROM articulos"
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre FROM articulos"
                 End If
             Else
                 If (sesion = True) Then
                     ''Seleciona todos los articulos filtrados unicamente por categoria ,sin incluir los articulos de el usuario
-                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,Articulos.precio FROM articulos,categoria,articulo_categoria,usuario WHERE  articulos.id=articulo_categoria.articulo_id AND categoria.id = articulo_categoria.categoria_id AND categoria.categoria='" & ComboBoxCategorias.Text & "' AND articulos.usuario_id=usuario.id AND usuario.id!=" & ID & ""
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,categoria,articulo_categoria,usuario WHERE articulos.id=articulo_categoria.articulo_id AND categoria.id = articulo_categoria.categoria_id AND categoria.categoria='" + ComboBoxCategorias.Text + "' AND articulos.usuario_id=usuario.id AND usuario.id!=" + ID + ""
                 Else
                     ''Seleciona todos los articulos filtrados unicamente por su categoria
-                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,Articulos.precio FROM articulos,categoria,articulo_categoria WHERE  articulos.id=articulo_categoria.articulo_id AND categoria.id = articulo_categoria.categoria_id AND categoria.categoria='" & ComboBoxCategorias.Text & "'"
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,categoria,articulo_categoria WHERE articulos.id=articulo_categoria.articulo_id AND categoria.id = articulo_categoria.categoria_id AND categoria.categoria='" + ComboBoxCategorias.Text + "'"
                 End If
             End If
-                adaptador.SelectCommand = cmd
+            adaptador.SelectCommand = cmd
             adaptador.Fill(ds, "Tabla")
             grdInicio.DataSource = ds
             grdInicio.DataMember = "Tabla"
@@ -1373,24 +1373,24 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
     Private Sub btnVolverEditarArticulos_Click(sender As Object, e As EventArgs) Handles btnVolverEditarArticulos.Click
         tbTodos.SelectedTab = tbTodos.TabPages.Item(3)
 
-        Dim ds As DataSet = New DataSet
-        Dim adaptador As MySqlDataAdapter = New MySqlDataAdapter
-        Try
-            conexion.Open()
+        'Dim ds As DataSet = New DataSet
+        ' Dim adaptador As MySqlDataAdapter = New MySqlDataAdapter
+        'Try
+        'conexion.Open()
 
 
-            cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,usuario WHERE usuario.id=articulos.usuario_id and articulos.usuario_id = @userID"
-            cmd.Parameters.Clear()
-            cmd.Parameters.AddWithValue("@userID", ID)
+        'cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,usuario WHERE usuario.id=articulos.usuario_id and articulos.usuario_id = @userID"
+        'cmd.Parameters.Clear()
+        ' cmd.Parameters.AddWithValue("@userID", ID)
 
-            adaptador.SelectCommand = cmd
-            adaptador.Fill(ds, "Tabla")
-            grdMisArticulos.DataSource = ds
-            grdMisArticulos.DataMember = "Tabla"
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-        conexion.Close()
+        'adaptador.SelectCommand = cmd
+        'adaptador.Fill(ds, "Tabla")
+        'grdMisArticulos.DataSource = ds
+        'grdMisArticulos.DataMember = "Tabla"
+        'Catch ex As Exception
+        'MsgBox(ex.ToString)
+        'End Try
+        'conexion.Close()
 
         Dim contador3 As Integer
         For Each grd In grdMisArticulos.Rows
@@ -1402,5 +1402,70 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
         grdMisArticulos.Columns(1).Width = 200
         grdMisArticulos.Columns(2).Width = 200
         grdMisArticulos.Columns(3).Width = 200
+    End Sub
+
+    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles btnStock.Click
+
+        If stock = False Then
+            btnStock.Text = "SIN STOCK"
+            btnStock.ForeColor = Color.Red
+            stock = True
+        Else
+            btnStock.Text = "CON STOCK"
+            btnStock.ForeColor = Color.DarkGreen
+            stock = False
+        End If
+    End Sub
+
+    Private Sub grdMisArticulos_SelectionChanged(sender As Object, e As EventArgs) Handles grdMisArticulos.SelectionChanged
+        If (grdMisArticulos.SelectedRows.Count > 0) Then
+            Dim articuloID = grdMisArticulos.Item("id", grdInicio.SelectedRows(0).Index).Value
+
+            txtEditarNombreArticulo.Text = grdMisArticulos.Item("Nombre", grdMisArticulos.SelectedRows(0).Index).Value
+            lblCodigoEditar.Text = grdMisArticulos.Item("id", grdMisArticulos.SelectedRows(0).Index).Value
+            txtEditarPrecio.Text = grdMisArticulos.Item("precio", grdMisArticulos.SelectedRows(0).Index).Value
+
+            Dim portadaByte() As Byte = grdMisArticulos.Item("portada", grdMisArticulos.SelectedRows(0).Index).Value
+            Dim ms As New System.IO.MemoryStream(portadaByte)
+            pbCambiarPortada.Image = System.Drawing.Image.FromStream(ms)
+            ms.Close()
+
+            ''AGREGAR DATOS ADICIONALES A LA FICHA'
+
+            Try
+                conexion.Close()
+                conexion.Open()
+                cmd.CommandText = "SELECT articulos.id,articulos.nombre,articulos.descripcion,articulos.portada,articulos.Precio,articulos.stock FROM articulos WHERE articulos.id = @idArt "
+                cmd.Parameters.Clear()
+                cmd.Parameters.AddWithValue("@idArt", articuloID)
+                r = cmd.ExecuteReader()
+                If r.Read Then
+                    txtCambiarDescripcion.Text = r("descripcion")
+                    txtStock.Text = r("stock")
+                End If
+                r.Close()
+                cmd.CommandText = "SELECT galeria.fotos from galeria,articulos WHERE articulos.id=@idArt and articulos.id=galeria.articulo_id"
+                r = cmd.ExecuteReader()
+
+                Dim arrayFotosFicha(2) As PictureBox
+                arrayFotosFicha(0) = pbCambiarImg1
+                arrayFotosFicha(1) = pbCambiarImg2
+                arrayFotosFicha(2) = pbCambiarImg3
+
+                Dim cont99 = 0
+                While r.Read()
+                    Dim foto2() As Byte = r("fotos")
+                    Dim ms3 = New System.IO.MemoryStream(foto2)
+                    arrayFotosFicha(cont99).Image = System.Drawing.Image.FromStream(ms3)
+                    ms3.Close()
+                    cont99 = cont99 + 1
+                End While
+                r.Close()
+                conexion.Close()
+            Catch ex As Exception
+                MsgBox(ex.ToString())
+            End Try
+            conexion.Close()
+        End If
     End Sub
 End Class

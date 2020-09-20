@@ -22,16 +22,16 @@ Partial Class frmPrincipal
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPrincipal))
         Me.tbTodos = New System.Windows.Forms.TabControl()
         Me.tbPrincipal = New System.Windows.Forms.TabPage()
@@ -127,26 +127,20 @@ Partial Class frmPrincipal
         Me.PictureBoxPortada = New System.Windows.Forms.PictureBox()
         Me.PictureBoxImagen1 = New System.Windows.Forms.PictureBox()
         Me.tbDescripcion = New System.Windows.Forms.TabPage()
+        Me.btnVolverEditarArticulos = New System.Windows.Forms.Button()
         Me.Button16 = New System.Windows.Forms.Button()
-        Me.Button17 = New System.Windows.Forms.Button()
-        Me.PictureBox12 = New System.Windows.Forms.PictureBox()
+        Me.pbCambiarImg3 = New System.Windows.Forms.PictureBox()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.PictureBox11 = New System.Windows.Forms.PictureBox()
+        Me.pbCambiarImg1 = New System.Windows.Forms.PictureBox()
         Me.Button54 = New System.Windows.Forms.Button()
-        Me.TextBox22 = New System.Windows.Forms.TextBox()
-        Me.Button22 = New System.Windows.Forms.Button()
-        Me.Button21 = New System.Windows.Forms.Button()
-        Me.Button20 = New System.Windows.Forms.Button()
-        Me.Button19 = New System.Windows.Forms.Button()
-        Me.Button18 = New System.Windows.Forms.Button()
-        Me.Button15 = New System.Windows.Forms.Button()
-        Me.Label47 = New System.Windows.Forms.Label()
-        Me.Label58 = New System.Windows.Forms.Label()
-        Me.Label59 = New System.Windows.Forms.Label()
-        Me.Label60 = New System.Windows.Forms.Label()
-        Me.PictureBox16 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox23 = New System.Windows.Forms.PictureBox()
+        Me.txtCambiarDescripcion = New System.Windows.Forms.TextBox()
+        Me.btnCambiarPortada = New System.Windows.Forms.Button()
+        Me.btnStock = New System.Windows.Forms.Button()
+        Me.lblCodigoEditar = New System.Windows.Forms.Label()
+        Me.lblPrecio = New System.Windows.Forms.Label()
+        Me.txtDescripcion = New System.Windows.Forms.Label()
+        Me.pbCambiarPortada = New System.Windows.Forms.PictureBox()
+        Me.pbCambiarImg2 = New System.Windows.Forms.PictureBox()
         Me.tbEnCarrito = New System.Windows.Forms.TabPage()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Button5 = New System.Windows.Forms.Button()
@@ -256,7 +250,12 @@ Partial Class frmPrincipal
         Me.OpenFileImagen2 = New System.Windows.Forms.OpenFileDialog()
         Me.OpenFileImagen3 = New System.Windows.Forms.OpenFileDialog()
         Me.OpenFilePortada = New System.Windows.Forms.OpenFileDialog()
-        Me.btnVolverEditarArticulos = New System.Windows.Forms.Button()
+        Me.txtEditarNombreArticulo = New System.Windows.Forms.TextBox()
+        Me.txtEditarPrecio = New System.Windows.Forms.TextBox()
+        Me.lblStock = New System.Windows.Forms.Label()
+        Me.txtStock = New System.Windows.Forms.TextBox()
+        Me.btnGuardarCambios = New System.Windows.Forms.Button()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.tbTodos.SuspendLayout()
         Me.tbPrincipal.SuspendLayout()
         CType(Me.grdInicio, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -275,10 +274,10 @@ Partial Class frmPrincipal
         CType(Me.PictureBoxPortada, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBoxImagen1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tbDescripcion.SuspendLayout()
-        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox16, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox23, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbCambiarImg3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbCambiarImg1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbCambiarPortada, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbCambiarImg2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tbEnCarrito.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -372,47 +371,47 @@ Partial Class frmPrincipal
         Me.grdInicio.AllowUserToDeleteRows = False
         Me.grdInicio.AllowUserToResizeColumns = False
         Me.grdInicio.AllowUserToResizeRows = False
-        DataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.Silver
-        DataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.Black
-        Me.grdInicio.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle21
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black
+        Me.grdInicio.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle11
         Me.grdInicio.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
         Me.grdInicio.BackgroundColor = System.Drawing.Color.White
         Me.grdInicio.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.grdInicio.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
-        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle22.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.Silver
-        DataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.grdInicio.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle22
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.grdInicio.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle12
         Me.grdInicio.ColumnHeadersHeight = 30
-        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.Silver
-        DataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.grdInicio.DefaultCellStyle = DataGridViewCellStyle23
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.grdInicio.DefaultCellStyle = DataGridViewCellStyle13
         Me.grdInicio.GridColor = System.Drawing.Color.White
         Me.grdInicio.Location = New System.Drawing.Point(46, 41)
         Me.grdInicio.Name = "grdInicio"
         Me.grdInicio.ReadOnly = True
         Me.grdInicio.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle24.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow
-        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.grdInicio.RowHeadersDefaultCellStyle = DataGridViewCellStyle24
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.grdInicio.RowHeadersDefaultCellStyle = DataGridViewCellStyle14
         Me.grdInicio.RowHeadersWidth = 60
-        DataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.Silver
-        DataGridViewCellStyle25.SelectionForeColor = System.Drawing.Color.Black
-        Me.grdInicio.RowsDefaultCellStyle = DataGridViewCellStyle25
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black
+        Me.grdInicio.RowsDefaultCellStyle = DataGridViewCellStyle15
         Me.grdInicio.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.grdInicio.Size = New System.Drawing.Size(880, 524)
         Me.grdInicio.TabIndex = 0
@@ -903,47 +902,47 @@ Partial Class frmPrincipal
         Me.grdMisArticulos.AllowUserToDeleteRows = False
         Me.grdMisArticulos.AllowUserToResizeColumns = False
         Me.grdMisArticulos.AllowUserToResizeRows = False
-        DataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.Silver
-        DataGridViewCellStyle26.SelectionForeColor = System.Drawing.Color.Black
-        Me.grdMisArticulos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle26
+        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.Black
+        Me.grdMisArticulos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle16
         Me.grdMisArticulos.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
         Me.grdMisArticulos.BackgroundColor = System.Drawing.Color.White
         Me.grdMisArticulos.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.grdMisArticulos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
-        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle27.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.Silver
-        DataGridViewCellStyle27.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.grdMisArticulos.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle27
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle17.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.grdMisArticulos.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle17
         Me.grdMisArticulos.ColumnHeadersHeight = 30
-        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle28.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.Silver
-        DataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.grdMisArticulos.DefaultCellStyle = DataGridViewCellStyle28
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.grdMisArticulos.DefaultCellStyle = DataGridViewCellStyle18
         Me.grdMisArticulos.GridColor = System.Drawing.Color.White
         Me.grdMisArticulos.Location = New System.Drawing.Point(47, 59)
         Me.grdMisArticulos.Name = "grdMisArticulos"
         Me.grdMisArticulos.ReadOnly = True
         Me.grdMisArticulos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle29.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow
-        DataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.grdMisArticulos.RowHeadersDefaultCellStyle = DataGridViewCellStyle29
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle19.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow
+        DataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.grdMisArticulos.RowHeadersDefaultCellStyle = DataGridViewCellStyle19
         Me.grdMisArticulos.RowHeadersWidth = 60
-        DataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.Silver
-        DataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.Black
-        Me.grdMisArticulos.RowsDefaultCellStyle = DataGridViewCellStyle30
+        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Black
+        Me.grdMisArticulos.RowsDefaultCellStyle = DataGridViewCellStyle20
         Me.grdMisArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.grdMisArticulos.Size = New System.Drawing.Size(880, 502)
         Me.grdMisArticulos.TabIndex = 28
@@ -1535,27 +1534,26 @@ Partial Class frmPrincipal
         '
         'tbDescripcion
         '
+        Me.tbDescripcion.Controls.Add(Me.Label7)
+        Me.tbDescripcion.Controls.Add(Me.btnGuardarCambios)
+        Me.tbDescripcion.Controls.Add(Me.txtStock)
+        Me.tbDescripcion.Controls.Add(Me.lblStock)
+        Me.tbDescripcion.Controls.Add(Me.txtEditarPrecio)
+        Me.tbDescripcion.Controls.Add(Me.txtEditarNombreArticulo)
         Me.tbDescripcion.Controls.Add(Me.btnVolverEditarArticulos)
         Me.tbDescripcion.Controls.Add(Me.Button16)
-        Me.tbDescripcion.Controls.Add(Me.Button17)
-        Me.tbDescripcion.Controls.Add(Me.PictureBox12)
+        Me.tbDescripcion.Controls.Add(Me.pbCambiarImg3)
         Me.tbDescripcion.Controls.Add(Me.Button3)
-        Me.tbDescripcion.Controls.Add(Me.Button4)
-        Me.tbDescripcion.Controls.Add(Me.PictureBox11)
+        Me.tbDescripcion.Controls.Add(Me.pbCambiarImg1)
         Me.tbDescripcion.Controls.Add(Me.Button54)
-        Me.tbDescripcion.Controls.Add(Me.TextBox22)
-        Me.tbDescripcion.Controls.Add(Me.Button22)
-        Me.tbDescripcion.Controls.Add(Me.Button21)
-        Me.tbDescripcion.Controls.Add(Me.Button20)
-        Me.tbDescripcion.Controls.Add(Me.Button19)
-        Me.tbDescripcion.Controls.Add(Me.Button18)
-        Me.tbDescripcion.Controls.Add(Me.Button15)
-        Me.tbDescripcion.Controls.Add(Me.Label47)
-        Me.tbDescripcion.Controls.Add(Me.Label58)
-        Me.tbDescripcion.Controls.Add(Me.Label59)
-        Me.tbDescripcion.Controls.Add(Me.Label60)
-        Me.tbDescripcion.Controls.Add(Me.PictureBox16)
-        Me.tbDescripcion.Controls.Add(Me.PictureBox23)
+        Me.tbDescripcion.Controls.Add(Me.txtCambiarDescripcion)
+        Me.tbDescripcion.Controls.Add(Me.btnCambiarPortada)
+        Me.tbDescripcion.Controls.Add(Me.btnStock)
+        Me.tbDescripcion.Controls.Add(Me.lblCodigoEditar)
+        Me.tbDescripcion.Controls.Add(Me.lblPrecio)
+        Me.tbDescripcion.Controls.Add(Me.txtDescripcion)
+        Me.tbDescripcion.Controls.Add(Me.pbCambiarPortada)
+        Me.tbDescripcion.Controls.Add(Me.pbCambiarImg2)
         Me.tbDescripcion.Location = New System.Drawing.Point(4, 22)
         Me.tbDescripcion.Name = "tbDescripcion"
         Me.tbDescripcion.Padding = New System.Windows.Forms.Padding(3)
@@ -1564,41 +1562,42 @@ Partial Class frmPrincipal
         Me.tbDescripcion.Text = "descripcion"
         Me.tbDescripcion.UseVisualStyleBackColor = True
         '
+        'btnVolverEditarArticulos
+        '
+        Me.btnVolverEditarArticulos.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnVolverEditarArticulos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnVolverEditarArticulos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnVolverEditarArticulos.ForeColor = System.Drawing.Color.Black
+        Me.btnVolverEditarArticulos.Location = New System.Drawing.Point(42, 506)
+        Me.btnVolverEditarArticulos.Name = "btnVolverEditarArticulos"
+        Me.btnVolverEditarArticulos.Size = New System.Drawing.Size(77, 27)
+        Me.btnVolverEditarArticulos.TabIndex = 31
+        Me.btnVolverEditarArticulos.Text = "VOLVER"
+        Me.btnVolverEditarArticulos.UseVisualStyleBackColor = True
+        '
         'Button16
         '
         Me.Button16.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button16.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button16.ForeColor = System.Drawing.Color.Black
-        Me.Button16.Location = New System.Drawing.Point(679, 456)
+        Me.Button16.Location = New System.Drawing.Point(599, 456)
         Me.Button16.Name = "Button16"
-        Me.Button16.Size = New System.Drawing.Size(69, 19)
+        Me.Button16.Size = New System.Drawing.Size(149, 19)
         Me.Button16.TabIndex = 30
-        Me.Button16.Text = "AGREGAR"
+        Me.Button16.Text = "CAMBIAR IMAGEN"
         Me.Button16.UseVisualStyleBackColor = True
         '
-        'Button17
+        'pbCambiarImg3
         '
-        Me.Button17.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button17.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button17.ForeColor = System.Drawing.Color.Black
-        Me.Button17.Location = New System.Drawing.Point(596, 456)
-        Me.Button17.Name = "Button17"
-        Me.Button17.Size = New System.Drawing.Size(69, 19)
-        Me.Button17.TabIndex = 29
-        Me.Button17.Text = "ELIMINAR"
-        Me.Button17.UseVisualStyleBackColor = True
-        '
-        'PictureBox12
-        '
-        Me.PictureBox12.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.PictureBox12.BackColor = System.Drawing.Color.Gray
-        Me.PictureBox12.Location = New System.Drawing.Point(599, 306)
-        Me.PictureBox12.Name = "PictureBox12"
-        Me.PictureBox12.Size = New System.Drawing.Size(149, 144)
-        Me.PictureBox12.TabIndex = 28
-        Me.PictureBox12.TabStop = False
+        Me.pbCambiarImg3.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.pbCambiarImg3.BackColor = System.Drawing.Color.Gray
+        Me.pbCambiarImg3.Location = New System.Drawing.Point(599, 306)
+        Me.pbCambiarImg3.Name = "pbCambiarImg3"
+        Me.pbCambiarImg3.Size = New System.Drawing.Size(149, 144)
+        Me.pbCambiarImg3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbCambiarImg3.TabIndex = 28
+        Me.pbCambiarImg3.TabStop = False
         '
         'Button3
         '
@@ -1606,35 +1605,23 @@ Partial Class frmPrincipal
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button3.ForeColor = System.Drawing.Color.Black
-        Me.Button3.Location = New System.Drawing.Point(257, 456)
+        Me.Button3.Location = New System.Drawing.Point(177, 456)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(69, 19)
+        Me.Button3.Size = New System.Drawing.Size(149, 19)
         Me.Button3.TabIndex = 27
-        Me.Button3.Text = "AGREGAR"
+        Me.Button3.Text = "CAMBIAR IMAGEN"
         Me.Button3.UseVisualStyleBackColor = True
         '
-        'Button4
+        'pbCambiarImg1
         '
-        Me.Button4.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button4.ForeColor = System.Drawing.Color.Black
-        Me.Button4.Location = New System.Drawing.Point(174, 456)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(69, 19)
-        Me.Button4.TabIndex = 26
-        Me.Button4.Text = "ELIMINAR"
-        Me.Button4.UseVisualStyleBackColor = True
-        '
-        'PictureBox11
-        '
-        Me.PictureBox11.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.PictureBox11.BackColor = System.Drawing.Color.Gray
-        Me.PictureBox11.Location = New System.Drawing.Point(177, 306)
-        Me.PictureBox11.Name = "PictureBox11"
-        Me.PictureBox11.Size = New System.Drawing.Size(149, 144)
-        Me.PictureBox11.TabIndex = 25
-        Me.PictureBox11.TabStop = False
+        Me.pbCambiarImg1.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.pbCambiarImg1.BackColor = System.Drawing.Color.Gray
+        Me.pbCambiarImg1.Location = New System.Drawing.Point(177, 306)
+        Me.pbCambiarImg1.Name = "pbCambiarImg1"
+        Me.pbCambiarImg1.Size = New System.Drawing.Size(149, 144)
+        Me.pbCambiarImg1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbCambiarImg1.TabIndex = 25
+        Me.pbCambiarImg1.TabStop = False
         '
         'Button54
         '
@@ -1642,156 +1629,98 @@ Partial Class frmPrincipal
         Me.Button54.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button54.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button54.ForeColor = System.Drawing.Color.Black
-        Me.Button54.Location = New System.Drawing.Point(471, 456)
+        Me.Button54.Location = New System.Drawing.Point(391, 456)
         Me.Button54.Name = "Button54"
-        Me.Button54.Size = New System.Drawing.Size(69, 19)
+        Me.Button54.Size = New System.Drawing.Size(149, 19)
         Me.Button54.TabIndex = 24
-        Me.Button54.Text = "AGREGAR"
+        Me.Button54.Text = "CAMBIAR IMAGEN"
         Me.Button54.UseVisualStyleBackColor = True
         '
-        'TextBox22
+        'txtCambiarDescripcion
         '
-        Me.TextBox22.Location = New System.Drawing.Point(220, 96)
-        Me.TextBox22.Multiline = True
-        Me.TextBox22.Name = "TextBox22"
-        Me.TextBox22.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox22.Size = New System.Drawing.Size(386, 83)
-        Me.TextBox22.TabIndex = 23
+        Me.txtCambiarDescripcion.Location = New System.Drawing.Point(220, 96)
+        Me.txtCambiarDescripcion.Multiline = True
+        Me.txtCambiarDescripcion.Name = "txtCambiarDescripcion"
+        Me.txtCambiarDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtCambiarDescripcion.Size = New System.Drawing.Size(386, 83)
+        Me.txtCambiarDescripcion.TabIndex = 23
         '
-        'Button22
+        'btnCambiarPortada
         '
-        Me.Button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button22.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button22.ForeColor = System.Drawing.Color.Black
-        Me.Button22.Location = New System.Drawing.Point(487, 185)
-        Me.Button22.Name = "Button22"
-        Me.Button22.Size = New System.Drawing.Size(119, 19)
-        Me.Button22.TabIndex = 22
-        Me.Button22.Text = "EDITAR DESCRIPCION"
-        Me.Button22.UseVisualStyleBackColor = True
+        Me.btnCambiarPortada.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCambiarPortada.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCambiarPortada.ForeColor = System.Drawing.Color.Black
+        Me.btnCambiarPortada.Location = New System.Drawing.Point(83, 183)
+        Me.btnCambiarPortada.Name = "btnCambiarPortada"
+        Me.btnCambiarPortada.Size = New System.Drawing.Size(112, 19)
+        Me.btnCambiarPortada.TabIndex = 20
+        Me.btnCambiarPortada.Text = "CAMBIAR PORTADA"
+        Me.btnCambiarPortada.UseVisualStyleBackColor = True
         '
-        'Button21
+        'btnStock
         '
-        Me.Button21.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button21.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button21.ForeColor = System.Drawing.Color.Black
-        Me.Button21.Location = New System.Drawing.Point(388, 456)
-        Me.Button21.Name = "Button21"
-        Me.Button21.Size = New System.Drawing.Size(69, 19)
-        Me.Button21.TabIndex = 21
-        Me.Button21.Text = "ELIMINAR"
-        Me.Button21.UseVisualStyleBackColor = True
+        Me.btnStock.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnStock.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnStock.ForeColor = System.Drawing.Color.DarkGreen
+        Me.btnStock.Location = New System.Drawing.Point(805, 511)
+        Me.btnStock.Name = "btnStock"
+        Me.btnStock.Size = New System.Drawing.Size(132, 27)
+        Me.btnStock.TabIndex = 16
+        Me.btnStock.Text = "CON STOCK"
+        Me.btnStock.UseVisualStyleBackColor = True
         '
-        'Button20
+        'lblCodigoEditar
         '
-        Me.Button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button20.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button20.ForeColor = System.Drawing.Color.Black
-        Me.Button20.Location = New System.Drawing.Point(83, 183)
-        Me.Button20.Name = "Button20"
-        Me.Button20.Size = New System.Drawing.Size(112, 19)
-        Me.Button20.TabIndex = 20
-        Me.Button20.Text = "CAMBIAR PORTADA"
-        Me.Button20.UseVisualStyleBackColor = True
+        Me.lblCodigoEditar.AutoSize = True
+        Me.lblCodigoEditar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCodigoEditar.Location = New System.Drawing.Point(259, 56)
+        Me.lblCodigoEditar.Name = "lblCodigoEditar"
+        Me.lblCodigoEditar.Size = New System.Drawing.Size(43, 13)
+        Me.lblCodigoEditar.TabIndex = 15
+        Me.lblCodigoEditar.Text = "Codigo:"
         '
-        'Button19
+        'lblPrecio
         '
-        Me.Button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button19.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button19.ForeColor = System.Drawing.Color.Black
-        Me.Button19.Location = New System.Drawing.Point(386, 35)
-        Me.Button19.Name = "Button19"
-        Me.Button19.Size = New System.Drawing.Size(98, 19)
-        Me.Button19.TabIndex = 19
-        Me.Button19.Text = "EDITAR NOMBRE"
-        Me.Button19.UseVisualStyleBackColor = True
+        Me.lblPrecio.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblPrecio.AutoSize = True
+        Me.lblPrecio.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPrecio.Location = New System.Drawing.Point(828, 436)
+        Me.lblPrecio.Name = "lblPrecio"
+        Me.lblPrecio.Size = New System.Drawing.Size(73, 25)
+        Me.lblPrecio.TabIndex = 14
+        Me.lblPrecio.Text = "Precio"
         '
-        'Button18
+        'txtDescripcion
         '
-        Me.Button18.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button18.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button18.ForeColor = System.Drawing.Color.Black
-        Me.Button18.Location = New System.Drawing.Point(839, 470)
-        Me.Button18.Name = "Button18"
-        Me.Button18.Size = New System.Drawing.Size(98, 19)
-        Me.Button18.TabIndex = 18
-        Me.Button18.Text = "EDITAR PRECIO"
-        Me.Button18.UseVisualStyleBackColor = True
+        Me.txtDescripcion.AutoSize = True
+        Me.txtDescripcion.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtDescripcion.Location = New System.Drawing.Point(216, 72)
+        Me.txtDescripcion.Name = "txtDescripcion"
+        Me.txtDescripcion.Size = New System.Drawing.Size(96, 20)
+        Me.txtDescripcion.TabIndex = 13
+        Me.txtDescripcion.Text = "Descripcion:"
         '
-        'Button15
+        'pbCambiarPortada
         '
-        Me.Button15.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button15.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button15.ForeColor = System.Drawing.Color.DarkGreen
-        Me.Button15.Location = New System.Drawing.Point(777, 506)
-        Me.Button15.Name = "Button15"
-        Me.Button15.Size = New System.Drawing.Size(160, 27)
-        Me.Button15.TabIndex = 16
-        Me.Button15.Text = "MARCAR ""SIN STOCK"""
-        Me.Button15.UseVisualStyleBackColor = True
+        Me.pbCambiarPortada.BackColor = System.Drawing.Color.Gray
+        Me.pbCambiarPortada.Location = New System.Drawing.Point(68, 29)
+        Me.pbCambiarPortada.Name = "pbCambiarPortada"
+        Me.pbCambiarPortada.Size = New System.Drawing.Size(143, 150)
+        Me.pbCambiarPortada.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbCambiarPortada.TabIndex = 17
+        Me.pbCambiarPortada.TabStop = False
         '
-        'Label47
+        'pbCambiarImg2
         '
-        Me.Label47.AutoSize = True
-        Me.Label47.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label47.Location = New System.Drawing.Point(217, 54)
-        Me.Label47.Name = "Label47"
-        Me.Label47.Size = New System.Drawing.Size(40, 13)
-        Me.Label47.TabIndex = 15
-        Me.Label47.Text = "Codigo"
-        '
-        'Label58
-        '
-        Me.Label58.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label58.AutoSize = True
-        Me.Label58.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label58.Location = New System.Drawing.Point(864, 445)
-        Me.Label58.Name = "Label58"
-        Me.Label58.Size = New System.Drawing.Size(73, 25)
-        Me.Label58.TabIndex = 14
-        Me.Label58.Text = "Precio"
-        '
-        'Label59
-        '
-        Me.Label59.AutoSize = True
-        Me.Label59.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label59.Location = New System.Drawing.Point(216, 72)
-        Me.Label59.Name = "Label59"
-        Me.Label59.Size = New System.Drawing.Size(92, 20)
-        Me.Label59.TabIndex = 13
-        Me.Label59.Text = "Descripcion"
-        '
-        'Label60
-        '
-        Me.Label60.AutoSize = True
-        Me.Label60.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label60.Location = New System.Drawing.Point(215, 29)
-        Me.Label60.Name = "Label60"
-        Me.Label60.Size = New System.Drawing.Size(165, 25)
-        Me.Label60.TabIndex = 12
-        Me.Label60.Text = "Nombre Articulo"
-        '
-        'PictureBox16
-        '
-        Me.PictureBox16.BackColor = System.Drawing.Color.Gray
-        Me.PictureBox16.Location = New System.Drawing.Point(68, 29)
-        Me.PictureBox16.Name = "PictureBox16"
-        Me.PictureBox16.Size = New System.Drawing.Size(143, 150)
-        Me.PictureBox16.TabIndex = 17
-        Me.PictureBox16.TabStop = False
-        '
-        'PictureBox23
-        '
-        Me.PictureBox23.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.PictureBox23.BackColor = System.Drawing.Color.Gray
-        Me.PictureBox23.Location = New System.Drawing.Point(391, 306)
-        Me.PictureBox23.Name = "PictureBox23"
-        Me.PictureBox23.Size = New System.Drawing.Size(149, 144)
-        Me.PictureBox23.TabIndex = 9
-        Me.PictureBox23.TabStop = False
+        Me.pbCambiarImg2.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.pbCambiarImg2.BackColor = System.Drawing.Color.Gray
+        Me.pbCambiarImg2.Location = New System.Drawing.Point(391, 306)
+        Me.pbCambiarImg2.Name = "pbCambiarImg2"
+        Me.pbCambiarImg2.Size = New System.Drawing.Size(149, 144)
+        Me.pbCambiarImg2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbCambiarImg2.TabIndex = 9
+        Me.pbCambiarImg2.TabStop = False
         '
         'tbEnCarrito
         '
@@ -2825,7 +2754,7 @@ Partial Class frmPrincipal
         Me.btnCerrarSesion.ForeColor = System.Drawing.Color.White
         Me.btnCerrarSesion.Location = New System.Drawing.Point(0, 222)
         Me.btnCerrarSesion.Name = "btnCerrarSesion"
-        Me.btnCerrarSesion.Size = New System.Drawing.Size(167, 30)
+        Me.btnCerrarSesion.Size = New System.Drawing.Size(170, 30)
         Me.btnCerrarSesion.TabIndex = 20
         Me.btnCerrarSesion.Text = "CERRAR SESION"
         Me.btnCerrarSesion.UseVisualStyleBackColor = True
@@ -2907,7 +2836,7 @@ Partial Class frmPrincipal
         Me.Button7.ForeColor = System.Drawing.Color.White
         Me.Button7.Location = New System.Drawing.Point(0, 525)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(167, 28)
+        Me.Button7.Size = New System.Drawing.Size(170, 28)
         Me.Button7.TabIndex = 18
         Me.Button7.Text = "¿QUIENES SOMOS?"
         Me.Button7.UseVisualStyleBackColor = False
@@ -2925,9 +2854,9 @@ Partial Class frmPrincipal
         Me.pnlPerfil.Controls.Add(Me.btnMisArticulos)
         Me.pnlPerfil.Controls.Add(Me.pnlMiInfo)
         Me.pnlPerfil.Controls.Add(Me.Button28)
-        Me.pnlPerfil.Location = New System.Drawing.Point(796, 82)
+        Me.pnlPerfil.Location = New System.Drawing.Point(793, 82)
         Me.pnlPerfil.Name = "pnlPerfil"
-        Me.pnlPerfil.Size = New System.Drawing.Size(167, 553)
+        Me.pnlPerfil.Size = New System.Drawing.Size(170, 553)
         Me.pnlPerfil.TabIndex = 3
         Me.pnlPerfil.Visible = False
         '
@@ -2942,7 +2871,7 @@ Partial Class frmPrincipal
         Me.btnMisVentas.ForeColor = System.Drawing.Color.White
         Me.btnMisVentas.Location = New System.Drawing.Point(0, 195)
         Me.btnMisVentas.Name = "btnMisVentas"
-        Me.btnMisVentas.Size = New System.Drawing.Size(167, 27)
+        Me.btnMisVentas.Size = New System.Drawing.Size(170, 27)
         Me.btnMisVentas.TabIndex = 23
         Me.btnMisVentas.Text = "MIS VENTAS"
         Me.btnMisVentas.UseVisualStyleBackColor = True
@@ -2975,7 +2904,7 @@ Partial Class frmPrincipal
         Me.btnCambiarPass.ForeColor = System.Drawing.Color.White
         Me.btnCambiarPass.Location = New System.Drawing.Point(0, 168)
         Me.btnCambiarPass.Name = "btnCambiarPass"
-        Me.btnCambiarPass.Size = New System.Drawing.Size(167, 27)
+        Me.btnCambiarPass.Size = New System.Drawing.Size(170, 27)
         Me.btnCambiarPass.TabIndex = 22
         Me.btnCambiarPass.Text = "CAMBIAR CONTRASEÑA"
         Me.btnCambiarPass.UseVisualStyleBackColor = True
@@ -2991,7 +2920,7 @@ Partial Class frmPrincipal
         Me.btnMisArticulos.ForeColor = System.Drawing.Color.White
         Me.btnMisArticulos.Location = New System.Drawing.Point(0, 141)
         Me.btnMisArticulos.Name = "btnMisArticulos"
-        Me.btnMisArticulos.Size = New System.Drawing.Size(167, 27)
+        Me.btnMisArticulos.Size = New System.Drawing.Size(170, 27)
         Me.btnMisArticulos.TabIndex = 20
         Me.btnMisArticulos.Text = "MIS ARTICULOS"
         Me.btnMisArticulos.UseVisualStyleBackColor = True
@@ -3008,7 +2937,7 @@ Partial Class frmPrincipal
         Me.pnlMiInfo.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlMiInfo.Location = New System.Drawing.Point(0, 39)
         Me.pnlMiInfo.Name = "pnlMiInfo"
-        Me.pnlMiInfo.Size = New System.Drawing.Size(167, 102)
+        Me.pnlMiInfo.Size = New System.Drawing.Size(170, 102)
         Me.pnlMiInfo.TabIndex = 17
         Me.pnlMiInfo.Visible = False
         '
@@ -3100,7 +3029,7 @@ Partial Class frmPrincipal
         Me.Button28.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button28.Location = New System.Drawing.Point(0, 0)
         Me.Button28.Name = "Button28"
-        Me.Button28.Size = New System.Drawing.Size(167, 39)
+        Me.Button28.Size = New System.Drawing.Size(170, 39)
         Me.Button28.TabIndex = 15
         Me.Button28.Text = "     MI INFO"
         Me.Button28.UseVisualStyleBackColor = True
@@ -3121,18 +3050,62 @@ Partial Class frmPrincipal
         '
         Me.OpenFilePortada.FileName = "OpenFileDialog4"
         '
-        'btnVolverEditarArticulos
+        'txtEditarNombreArticulo
         '
-        Me.btnVolverEditarArticulos.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnVolverEditarArticulos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnVolverEditarArticulos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnVolverEditarArticulos.ForeColor = System.Drawing.Color.Black
-        Me.btnVolverEditarArticulos.Location = New System.Drawing.Point(42, 506)
-        Me.btnVolverEditarArticulos.Name = "btnVolverEditarArticulos"
-        Me.btnVolverEditarArticulos.Size = New System.Drawing.Size(77, 27)
-        Me.btnVolverEditarArticulos.TabIndex = 31
-        Me.btnVolverEditarArticulos.Text = "VOLVER"
-        Me.btnVolverEditarArticulos.UseVisualStyleBackColor = True
+        Me.txtEditarNombreArticulo.Location = New System.Drawing.Point(217, 31)
+        Me.txtEditarNombreArticulo.Name = "txtEditarNombreArticulo"
+        Me.txtEditarNombreArticulo.Size = New System.Drawing.Size(217, 20)
+        Me.txtEditarNombreArticulo.TabIndex = 32
+        '
+        'txtEditarPrecio
+        '
+        Me.txtEditarPrecio.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtEditarPrecio.Location = New System.Drawing.Point(832, 462)
+        Me.txtEditarPrecio.Name = "txtEditarPrecio"
+        Me.txtEditarPrecio.Size = New System.Drawing.Size(100, 20)
+        Me.txtEditarPrecio.TabIndex = 33
+        '
+        'lblStock
+        '
+        Me.lblStock.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblStock.AutoSize = True
+        Me.lblStock.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStock.Location = New System.Drawing.Point(647, 29)
+        Me.lblStock.Name = "lblStock"
+        Me.lblStock.Size = New System.Drawing.Size(72, 25)
+        Me.lblStock.TabIndex = 34
+        Me.lblStock.Text = "Stock:"
+        '
+        'txtStock
+        '
+        Me.txtStock.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtStock.Location = New System.Drawing.Point(714, 33)
+        Me.txtStock.Name = "txtStock"
+        Me.txtStock.Size = New System.Drawing.Size(100, 20)
+        Me.txtStock.TabIndex = 35
+        '
+        'btnGuardarCambios
+        '
+        Me.btnGuardarCambios.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.btnGuardarCambios.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnGuardarCambios.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnGuardarCambios.ForeColor = System.Drawing.Color.Black
+        Me.btnGuardarCambios.Location = New System.Drawing.Point(385, 523)
+        Me.btnGuardarCambios.Name = "btnGuardarCambios"
+        Me.btnGuardarCambios.Size = New System.Drawing.Size(160, 27)
+        Me.btnGuardarCambios.TabIndex = 36
+        Me.btnGuardarCambios.Text = "GUARDAR CAMBIOS" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.btnGuardarCambios.UseVisualStyleBackColor = True
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(219, 56)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(43, 13)
+        Me.Label7.TabIndex = 37
+        Me.Label7.Text = "Codigo:"
         '
         'frmPrincipal
         '
@@ -3175,10 +3148,10 @@ Partial Class frmPrincipal
         CType(Me.PictureBoxImagen1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tbDescripcion.ResumeLayout(False)
         Me.tbDescripcion.PerformLayout()
-        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox16, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox23, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbCambiarImg3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbCambiarImg1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbCambiarPortada, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbCambiarImg2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tbEnCarrito.ResumeLayout(False)
         Me.tbEnCarrito.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3256,18 +3229,13 @@ Partial Class frmPrincipal
     Friend WithEvents PictureBoxImagen1 As PictureBox
     Friend WithEvents PictureBoxPortada As PictureBox
     Friend WithEvents tbDescripcion As TabPage
-    Friend WithEvents Button22 As Button
-    Friend WithEvents Button21 As Button
-    Friend WithEvents Button20 As Button
-    Friend WithEvents Button19 As Button
-    Friend WithEvents Button18 As Button
-    Friend WithEvents PictureBox16 As PictureBox
-    Friend WithEvents Button15 As Button
-    Friend WithEvents Label47 As Label
-    Friend WithEvents Label58 As Label
-    Friend WithEvents Label59 As Label
-    Friend WithEvents Label60 As Label
-    Friend WithEvents PictureBox23 As PictureBox
+    Friend WithEvents btnCambiarPortada As Button
+    Friend WithEvents pbCambiarPortada As PictureBox
+    Friend WithEvents btnStock As Button
+    Friend WithEvents lblCodigoEditar As Label
+    Friend WithEvents lblPrecio As Label
+    Friend WithEvents txtDescripcion As Label
+    Friend WithEvents pbCambiarImg2 As PictureBox
     Friend WithEvents tbEnCarrito As TabPage
     Friend WithEvents tbCompr As TabPage
     Friend WithEvents Label67 As Label
@@ -3329,7 +3297,7 @@ Partial Class frmPrincipal
     Friend WithEvents Label87 As Label
     Friend WithEvents Button12 As Button
     Friend WithEvents btnOcultarMiInfo As Button
-    Friend WithEvents TextBox22 As TextBox
+    Friend WithEvents txtCambiarDescripcion As TextBox
     Friend WithEvents txtTelefonoModificarPerfil As TextBox
     Friend WithEvents Label89 As Label
     Friend WithEvents txtDomicilioModificarPerfil As TextBox
@@ -3390,11 +3358,9 @@ Partial Class frmPrincipal
     Friend WithEvents PictureBoxImagen3Ficha As PictureBox
     Friend WithEvents PictureBoxImagen2Ficha As PictureBox
     Friend WithEvents Button16 As Button
-    Friend WithEvents Button17 As Button
-    Friend WithEvents PictureBox12 As PictureBox
+    Friend WithEvents pbCambiarImg3 As PictureBox
     Friend WithEvents Button3 As Button
-    Friend WithEvents Button4 As Button
-    Friend WithEvents PictureBox11 As PictureBox
+    Friend WithEvents pbCambiarImg1 As PictureBox
     Friend WithEvents Label122 As Label
     Friend WithEvents lblRegistradoCorrectamente As Label
     Friend WithEvents lblBienvenido As Label
@@ -3429,4 +3395,10 @@ Partial Class frmPrincipal
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents grdMisArticulos As DataGridView
     Friend WithEvents btnVolverEditarArticulos As Button
+    Friend WithEvents txtEditarNombreArticulo As TextBox
+    Friend WithEvents btnGuardarCambios As Button
+    Friend WithEvents txtStock As TextBox
+    Friend WithEvents lblStock As Label
+    Friend WithEvents txtEditarPrecio As TextBox
+    Friend WithEvents Label7 As Label
 End Class
