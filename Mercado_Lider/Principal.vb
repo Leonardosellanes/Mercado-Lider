@@ -279,6 +279,12 @@ Public Class frmPrincipal
     End Sub
 
     ''BOTONES DE IMPORTACION DE IMAGENES A EL PICTURE BOX''
+    Private Sub button_agregarPortada_Click(sender As Object, e As EventArgs) Handles button_agregarPortada.Click
+        If OpenFilePortada.ShowDialog() = DialogResult.OK Then
+            PictureBoxPortada.Load(OpenFilePortada.FileName)
+        End If
+        lblErrorPortada.Visible = False
+    End Sub
     Private Sub button_agregarImagen1_Click(sender As Object, e As EventArgs) Handles button_agregarImagen1.Click
         If OpenFileImagen1.ShowDialog() = DialogResult.OK Then
             PictureBoxImagen1.Load(OpenFileImagen1.FileName)
@@ -297,31 +303,49 @@ Public Class frmPrincipal
             lblErrorImagen3.Visible = False
         End If
     End Sub
-
-
+    ''BOTONES DE IMPORTACION DE IMAGENES EN EL EDITOR DE ARTICULOS PUBLICADOS POR EL USUARIO
+    Private Sub btnCambiarPortada_Click(sender As Object, e As EventArgs) Handles btnCambiarPortada.Click
+        If ofdEditarPortada.ShowDialog() = DialogResult.OK Then
+            pbCambiarPortada.Load(ofdEditarPortada.FileName)
+        End If
+    End Sub
+    Private Sub btnEditarImagen1_Click(sender As Object, e As EventArgs) Handles btnEditarImagen1.Click
+        If ofdEditarImagen1.ShowDialog() = DialogResult.OK Then
+            pbCambiarImg1.Load(ofdEditarImagen1.FileName)
+        End If
+    End Sub
+    Private Sub btnEditarImagen2_Click(sender As Object, e As EventArgs) Handles btnEditarImagen2.Click
+        If ofdEditarImagen2.ShowDialog() = DialogResult.OK Then
+            pbCambiarImg2.Load(ofdEditarImagen2.FileName)
+        End If
+    End Sub
+    Private Sub btnEditarImagen3_Click(sender As Object, e As EventArgs) Handles btnEditarImagen3.Click
+        If ofdEditarImagen3.ShowDialog() = DialogResult.OK Then
+            pbCambiarImg3.Load(ofdEditarImagen3.FileName)
+        End If
+    End Sub
     Private Sub UpdateGridCart(ByVal cartArray As ArrayList)
-
-
-        For Each elem In cartArray
-
-        Next
-
+        DataGridCart.Rows.Clear()
         Try
             conexion.Open()
-            cmd.CommandText = ""
+            cmd.CommandText = "SELECT articulos.Nombre,articulos.Precio,articulos.portada FROM articulos WHERE articulos.id =@idArticulo"
+            For Each elem In cartArray
+                cmd.Parameters.Clear()
+                cmd.Parameters.AddWithValue("@idArticulo", elem)
+                r = cmd.ExecuteReader
+                If r.Read Then
+                    Dim nombre = r("Nombre")
+                    Dim precio = r("Precio")
+                    Dim portada = r("portada")
+                    DataGridCart.Rows.Add(nombre, precio, portada)
+                End If
+                r.Close()
+            Next
+            conexion.Close()
         Catch ex As Exception
-
+            MsgBox(ex.ToString)
+            conexion.Close()
         End Try
-
-    End Sub
-
-
-
-    Private Sub button_agregarPortada_Click(sender As Object, e As EventArgs) Handles button_agregarPortada.Click
-        If OpenFilePortada.ShowDialog() = DialogResult.OK Then
-            PictureBoxPortada.Load(OpenFilePortada.FileName)
-        End If
-        lblErrorPortada.Visible = False
     End Sub
 
     ''EVENTO DE EL BOTON DE CAMBIAR CONTRASEÑA 
@@ -494,6 +518,7 @@ Public Class frmPrincipal
         End If
         log = 0
     End Sub
+
 
 
 
@@ -908,12 +933,6 @@ Public Class frmPrincipal
         Ocultarpaneles()
         ocultarbarritas()
     End Sub
-    Private Sub Button31_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        tbTodos.SelectedTab = tbTodos.TabPages.Item(3)
-        Ocultarpaneles()
-        pnlMiInfo.Visible = False
-        btnConfigOcultar.Visible = False
-    End Sub
     Private Sub btnCarrito_Click(sender As Object, e As EventArgs) Handles btnCarrito.Click
         tbTodos.SelectedTab = tbTodos.TabPages.Item(7)
         Ocultarpaneles()
@@ -921,6 +940,7 @@ Public Class frmPrincipal
         ocultarbarritas()
         pnlEnca.Visible = True
         pnlCarrito.Visible = True
+        UpdateGridCart(carrito)
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         tbTodos.SelectedTab = tbTodos.TabPages.Item(7)
@@ -1200,10 +1220,11 @@ Public Class frmPrincipal
         pnlConfig.Visible = False
         tbTodos.SelectedTab = tbTodos.TabPages.Item(0)
         pnlInicio.Visible = True
-
+        Ocultarpaneles()
 
         'Destruye la sesion'
         sesion = False
+        carrito.Clear()
         ActualizarSelectArticulos()
         ajustarGrid()
     End Sub
@@ -1315,6 +1336,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
     Private Sub ComboBoxCategorias_TextChanged(sender As Object, e As EventArgs) Handles ComboBoxCategorias.TextChanged
 
         ''Evento que registra cuando se cambia o se seleciona un Item de el combobox
+        tbTodos.SelectedTab = tbTodos.TabPages.Item(0)
         lblCategoria.Text = ComboBoxCategorias.Text()
         Dim ds As DataSet = New DataSet
         Dim adaptador As MySqlDataAdapter = New MySqlDataAdapter
@@ -1419,7 +1441,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
 
     Private Sub grdMisArticulos_SelectionChanged(sender As Object, e As EventArgs) Handles grdMisArticulos.SelectionChanged
         If (grdMisArticulos.SelectedRows.Count > 0) Then
-            Dim articuloID = grdMisArticulos.Item("id", grdInicio.SelectedRows(0).Index).Value
+            Dim articuloID = grdMisArticulos.Item("id", grdMisArticulos.SelectedRows(0).Index).Value
 
             txtEditarNombreArticulo.Text = grdMisArticulos.Item("Nombre", grdMisArticulos.SelectedRows(0).Index).Value
             lblCodigoEditar.Text = grdMisArticulos.Item("id", grdMisArticulos.SelectedRows(0).Index).Value
@@ -1435,7 +1457,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
             Try
                 conexion.Close()
                 conexion.Open()
-                cmd.CommandText = "SELECT articulos.id,articulos.nombre,articulos.descripcion,articulos.portada,articulos.Precio,articulos.stock FROM articulos WHERE articulos.id = @idArt "
+                cmd.CommandText = "SELECT articulos.descripcion,articulos.stock FROM articulos WHERE articulos.id = @idArt "
                 cmd.Parameters.Clear()
                 cmd.Parameters.AddWithValue("@idArt", articuloID)
                 r = cmd.ExecuteReader()
@@ -1444,7 +1466,10 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
                     txtStock.Text = r("stock")
                 End If
                 r.Close()
-                cmd.CommandText = "SELECT galeria.fotos from galeria,articulos WHERE articulos.id=@idArt and articulos.id=galeria.articulo_id"
+                cmd.Parameters.Clear()
+                cmd.CommandText = "SELECT galeria.fotos FROM galeria WHERE galeria.articulo_id = @idArt"
+                cmd.Parameters.Clear()
+                cmd.Parameters.AddWithValue("@idArt", articuloID)
                 r = cmd.ExecuteReader()
 
                 Dim arrayFotosFicha(2) As PictureBox
@@ -1452,18 +1477,18 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
                 arrayFotosFicha(1) = pbCambiarImg2
                 arrayFotosFicha(2) = pbCambiarImg3
 
-                Dim cont99 = 0
+                Dim cont = 0
                 While r.Read()
                     Dim foto2() As Byte = r("fotos")
                     Dim ms3 = New System.IO.MemoryStream(foto2)
-                    arrayFotosFicha(cont99).Image = System.Drawing.Image.FromStream(ms3)
+                    arrayFotosFicha(cont).Image = System.Drawing.Image.FromStream(ms3)
                     ms3.Close()
-                    cont99 = cont99 + 1
+                    cont = cont + 1
                 End While
                 r.Close()
                 conexion.Close()
             Catch ex As Exception
-                MsgBox(ex.ToString())
+                MsgBox(ex.ToString)
             End Try
             conexion.Close()
         End If
