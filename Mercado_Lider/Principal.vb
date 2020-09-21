@@ -328,7 +328,7 @@ Public Class frmPrincipal
         DataGridCart.Rows.Clear()
         Try
             conexion.Open()
-            cmd.CommandText = "SELECT articulos.Nombre,articulos.Precio,articulos.portada FROM articulos WHERE articulos.id =@idArticulo"
+            cmd.CommandText = "SELECT articulos.portada,articulos.Nombre,articulos.precio FROM articulos WHERE articulos.id =@idArticulo"
             For Each elem In cartArray
                 cmd.Parameters.Clear()
                 cmd.Parameters.AddWithValue("@idArticulo", elem)
@@ -852,9 +852,9 @@ Public Class frmPrincipal
         loadComboBoxCategoria()
         ActualizarSelectArticulos()
         grdInicio.Columns(0).Width = 200
-        grdInicio.Columns(1).Width = 200
-        grdInicio.Columns(2).Width = 200
-        grdInicio.Columns(3).Width = 200
+        grdInicio.Columns(1).Width = 250
+        grdInicio.Columns(2).Width = 250
+        grdInicio.Columns(3).Width = 240
         ajustarGrid()
     End Sub
     Private Sub Ocultarpaneles()
@@ -941,6 +941,18 @@ Public Class frmPrincipal
         pnlEnca.Visible = True
         pnlCarrito.Visible = True
         UpdateGridCart(carrito)
+
+        Dim contador As Integer
+        For Each grd In DataGridCart.Rows
+            Dim row As DataGridViewRow = DataGridCart.Rows(contador)
+            row.Height = 150
+            contador = contador + 1
+        Next
+        DataGridCart.Columns(0).Width = 150
+        DataGridCart.Columns(1).Width = 150
+        DataGridCart.Columns(2).Width = 150
+        DataGridCart.Columns(3).Width = 150
+
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         tbTodos.SelectedTab = tbTodos.TabPages.Item(7)
@@ -1235,6 +1247,7 @@ Public Class frmPrincipal
 
     Private Sub btnVolver_Click(sender As Object, e As EventArgs) Handles btnVolver.Click
         tbTodos.SelectedTab = tbTodos.TabPages.Item(0)
+        ajustarGrid()
     End Sub
 
 
@@ -1350,7 +1363,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
                 Else
 
                     ''Seleciona todos los articulos.
-                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre FROM articulos"
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos"
                 End If
             Else
                 If (sesion = True) Then
@@ -1425,20 +1438,6 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
         grdMisArticulos.Columns(2).Width = 200
         grdMisArticulos.Columns(3).Width = 200
     End Sub
-
-    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles btnStock.Click
-
-        If stock = False Then
-            btnStock.Text = "SIN STOCK"
-            btnStock.ForeColor = Color.Red
-            stock = True
-        Else
-            btnStock.Text = "CON STOCK"
-            btnStock.ForeColor = Color.DarkGreen
-            stock = False
-        End If
-    End Sub
-
     Private Sub grdMisArticulos_SelectionChanged(sender As Object, e As EventArgs) Handles grdMisArticulos.SelectionChanged
         If (grdMisArticulos.SelectedRows.Count > 0) Then
             Dim articuloID = grdMisArticulos.Item("id", grdMisArticulos.SelectedRows(0).Index).Value
@@ -1447,23 +1446,23 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
             lblCodigoEditar.Text = grdMisArticulos.Item("id", grdMisArticulos.SelectedRows(0).Index).Value
             txtEditarPrecio.Text = grdMisArticulos.Item("precio", grdMisArticulos.SelectedRows(0).Index).Value
 
-            Dim portadaByte() As Byte = grdMisArticulos.Item("portada", grdMisArticulos.SelectedRows(0).Index).Value
-            Dim ms As New System.IO.MemoryStream(portadaByte)
-            pbCambiarPortada.Image = System.Drawing.Image.FromStream(ms)
-            ms.Close()
 
             ''AGREGAR DATOS ADICIONALES A LA FICHA'
 
             Try
                 conexion.Close()
                 conexion.Open()
-                cmd.CommandText = "SELECT articulos.descripcion,articulos.stock FROM articulos WHERE articulos.id = @idArt "
+                cmd.CommandText = "SELECT articulos.portada,articulos.descripcion,articulos.stock FROM articulos WHERE articulos.id = @idArt "
                 cmd.Parameters.Clear()
                 cmd.Parameters.AddWithValue("@idArt", articuloID)
                 r = cmd.ExecuteReader()
                 If r.Read Then
                     txtCambiarDescripcion.Text = r("descripcion")
                     txtStock.Text = r("stock")
+                    Dim portadaByte() As Byte = r("portada")
+                    Dim ms As New System.IO.MemoryStream(portadaByte)
+                    pbCambiarPortada.Image = System.Drawing.Image.FromStream(ms)
+                    ms.Close()
                 End If
                 r.Close()
                 cmd.Parameters.Clear()
@@ -1492,5 +1491,131 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
             End Try
             conexion.Close()
         End If
+    End Sub
+    Private Sub txtStock_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtStock.KeyPress
+        Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
+        KeyAscii = CShort(SoloNumeros(KeyAscii))
+        If KeyAscii = 0 Then
+            e.Handled = True
+        End If
+    End Sub
+    Private Sub txtEditarPrecio_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtEditarPrecio.KeyPress
+        Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
+        KeyAscii = CShort(SoloNumeros(KeyAscii))
+        If KeyAscii = 0 Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub btnGuardarCambios_Click(sender As Object, e As EventArgs) Handles btnGuardarCambios.Click
+        Dim valores As Integer
+
+        'VALIDACION DE LOS CAMPOS AL MODIFICAR UN ARTICULO
+        If txtEditarNombreArticulo.Text = "" Then
+            lblNombreVacioEditarArticulo.Visible = True
+            lblNombreVacioEditarArticulo.Text = "*Este Campo no puede estar vacio"
+        Else
+            If txtEditarNombreArticulo.TextLength < 3 Then
+                lblNombreVacioEditarArticulo.Visible = True
+                lblNombreVacioEditarArticulo.Text = "*El nombre debe tener mas 3 o mas caracteres"
+            Else
+                valores = valores + 1
+            End If
+        End If
+        '==============================================
+        If txtCambiarDescripcion.Text = "" Then
+            lblEditarDescripcionVacia.Visible = True
+        Else
+            If txtCambiarDescripcion.TextLength < 10 Then
+                lblDescripcion10caracteres.Visible = True
+            Else
+                valores = valores + 1
+            End If
+        End If
+        '==============================================
+        If txtStock.Text = "" Then
+            lblStockVacio.Visible = True
+        Else
+            valores = valores + 1
+        End If
+        '==============================================
+        If txtEditarPrecio.Text = "" Then
+            lblEditarPrecioVacio.Visible = True
+        Else
+            valores = valores + 1
+        End If
+
+        'Actualizacion de los datos del articulo seleccionado
+        If valores = 4 Then
+
+            ''INSERCION DE ARTICULOS''
+
+            Dim ms As New System.IO.MemoryStream()   ''Crea un buffer o reserva un espacio en memoria ram directamente.
+            pbCambiarPortada.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg) ''Almacenamos la imagen cargada de el picturebox portada
+            Dim portada As Byte() = ms.GetBuffer  ''Guardamos en portada,la cadena de bytes de la imagen mediante el metodo getBuffer
+            ms.Close()                       ''Cerramos el buffer
+
+            Dim id_articulo As Integer = grdMisArticulos.Item("id", grdMisArticulos.SelectedRows(0).Index).Value
+
+            ''Actualizacion en la tabla articulos
+            Try
+                conexion.Open()
+                cmd.CommandText = "UPDATE `articulos` SET `Nombre`= @nombre,`Precio`=@precio,`Descripcion`=@descripcion,`portada`=@portada,`stock`=@stock WHERE articulos.id=@id_articulo"
+
+                cmd.Parameters.Clear()
+                cmd.Parameters.AddWithValue("@id_articulo", id_articulo)
+                cmd.Parameters.AddWithValue("@nombre", txtEditarNombreArticulo.Text)
+                cmd.Parameters.AddWithValue("@precio", txtEditarPrecio.Text)
+                cmd.Parameters.AddWithValue("@descripcion", txtCambiarDescripcion.Text)
+                cmd.Parameters.AddWithValue("@portada", portada)
+                cmd.Parameters.AddWithValue("@stock", txtStock.Text)
+                cmd.Parameters.AddWithValue("@usuario_id", ID)
+
+                cmd.ExecuteNonQuery()
+
+                ''ARRAY DE los 3 PictureBox 
+                Dim arrayFotos(2) As PictureBox
+                arrayFotos(0) = pbCambiarImg1
+                arrayFotos(1) = pbCambiarImg2
+                arrayFotos(2) = pbCambiarImg3
+
+                Dim nroFoto = 0
+
+                For Each fotito As PictureBox In arrayFotos ''BUCLE FOREACH que insertara las 3 imagenes ingresadas como fotos de los articulos en la tabla galeria 
+                    Dim ms2 = New System.IO.MemoryStream()
+
+                    fotito.Image.Save(ms2, System.Drawing.Imaging.ImageFormat.Jpeg)
+                    Dim foto As Byte() = ms2.GetBuffer
+                    cmd.CommandText = "UPDATE `galeria` SET `fotos`=@foto WHERE articulo_id=@id_articulo"
+                    cmd.Parameters.Clear()
+                    cmd.Parameters.AddWithValue("@id_articulo", id_articulo)
+                    cmd.Parameters.AddWithValue("@foto", foto)
+                    cmd.ExecuteNonQuery()
+                    ms2.Close()
+                    nroFoto = nroFoto + 1
+                Next
+                MsgBox("Articulo insertado correctamente")
+            Catch ex As Exception
+                MsgBox(ex.ToString)
+            End Try
+            conexion.Close()
+        End If
+    End Sub
+
+    Private Sub txtEditarNombreArticulo_Click(sender As Object, e As EventArgs) Handles txtEditarNombreArticulo.Click
+        lblNombreVacioEditarArticulo.Visible = False
+    End Sub
+
+    Private Sub txtCambiarDescripcion_Click(sender As Object, e As EventArgs) Handles txtCambiarDescripcion.Click
+        lblEditarDescripcionVacia.Visible = False
+        lblDescripcion10caracteres.Visible = False
+    End Sub
+
+    Private Sub txtStock_Click(sender As Object, e As EventArgs) Handles txtStock.Click
+        lblStockVacio.Visible = False
+    End Sub
+
+    Private Sub txtEditarPrecio_Click(sender As Object, e As EventArgs) Handles txtEditarPrecio.Click
+        lblEditarPrecioVacio.Visible = False
     End Sub
 End Class
