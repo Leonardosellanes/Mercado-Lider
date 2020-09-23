@@ -26,6 +26,7 @@ Public Class frmPrincipal
 
     Dim stock As Boolean
 
+
     'Objeto frmDomicilio para control de frm de domicilio'
     Dim frmDomicilio As Domicilio = New Domicilio
 
@@ -151,7 +152,6 @@ Public Class frmPrincipal
     Private Sub insertEmailTable(ByVal id As Integer, ByVal email As String, ByVal con As MySqlConnection)
         ''Para usar este metodo debe ya haber una conexion abierta
 
-
         cmd.CommandText = "INSERT INTO useremail VALUES(@user_email,@email)"
         cmd.Parameters.Clear()
         cmd.Parameters.AddWithValue("@user_email", id)
@@ -170,7 +170,6 @@ Public Class frmPrincipal
     Private Function UserExist(ByVal username As String, ByVal con As MySqlConnection)
 
         con.Open()
-
         cmd.CommandText = "SELECT * FROM usuario WHERE username=@user"
         cmd.Parameters.Clear()
         cmd.Parameters.AddWithValue("@user", username)
@@ -184,30 +183,21 @@ Public Class frmPrincipal
             con.Close()
             Return False
         End If
-
     End Function
-
     Private Sub loadComboBoxCategoria()
         Try
-
             conexion.Open()
             cmd.CommandText = "SELECT categoria.categoria FROM categoria"
-
             r = cmd.ExecuteReader()
 
             While r.Read()
                 Dim categoria = r.GetString("categoria")
                 ComboBoxCategorias.Items.Add(categoria)
-
-
-
             End While
-
             conexion.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
             conexion.Close()
-
         End Try
     End Sub
 
@@ -224,14 +214,11 @@ Public Class frmPrincipal
                 cmd.Parameters.Clear()
                 cmd.Parameters.AddWithValue("@userID", ID)
             End If
-
-
             adaptador.SelectCommand = cmd
             adaptador.Fill(ds, "Tabla")
             grdInicio.DataSource = ds
             grdInicio.DataMember = "Tabla"
             conexion.Close()
-
         Catch ex As Exception
             MsgBox(ex.ToString)
             conexion.Close()
@@ -343,18 +330,13 @@ Public Class frmPrincipal
 
                     precioTotal = precioTotal + (precio * elem.cantidad)
 
-
                     Dim subtotal = (precio * elem.cantidad).ToString + "$"
 
-
-                    DataGridCart.Rows.Add(id, portada, nombre, precio, elem.cantidad, subtotal)
+                    DataGridCart.Rows.Add(portada, id, nombre, precio, elem.cantidad, subtotal)
                 End If
-
                 r.Close()
             Next
-
             lblPrecioTotalCart.Text = precioTotal
-
             conexion.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -964,12 +946,14 @@ Public Class frmPrincipal
             Dim row As DataGridViewRow = DataGridCart.Rows(contador)
             row.Height = 150
             contador = contador + 1
+
         Next
         DataGridCart.Columns(0).Width = 150
         DataGridCart.Columns(1).Width = 150
         DataGridCart.Columns(2).Width = 150
-
-
+        DataGridCart.Columns(3).Width = 100
+        DataGridCart.Columns(4).Width = 100
+        DataGridCart.Columns(5).Width = 120
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         tbTodos.SelectedTab = tbTodos.TabPages.Item(7)
@@ -1054,11 +1038,7 @@ Public Class frmPrincipal
             row.Height = 200
             contador = contador + 1
             CType(grdInicio.Columns("portada"), DataGridViewImageColumn).ImageLayout = DataGridViewImageCellLayout.Stretch
-
         Next
-
-
-
     End Sub
     Private Sub Button49_Click(sender As Object, e As EventArgs) Handles btnConfigOcultar.Click
         pnlPerfil.Visible = False
@@ -1136,6 +1116,38 @@ Public Class frmPrincipal
         pnlMiInfo.Visible = False
         btnConfigOcultar.Visible = False
         Ocultarpaneles()
+
+        Dim da As DataSet = New DataSet
+        Dim adapta2r As MySqlDataAdapter = New MySqlDataAdapter
+        Try
+            conexion.Open()
+
+            cmd.CommandText = "SELECT articulos.portada,articulos.Nombre,detalle_compra.Cantidad,detalle_compra.PrecioUnitario,compras.Fecha,compras.PrecioTotal,usuario.username from articulos,detalle_compra,compras,usuario where detalle_compra.id_articulo = articulos.id and compras.usuario_id = usuario.id and articulos.usuario_id = @userID and compras.id = detalle_compra.id_compra"
+            cmd.Parameters.Clear()
+            cmd.Parameters.AddWithValue("@userID", ID)
+            adapta2r.SelectCommand = cmd
+            adapta2r.Fill(da, "Tabla")
+            grdMisVentas.DataSource = da
+            grdMisVentas.DataMember = "Tabla"
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        conexion.Close()
+
+        Dim contador4 As Integer
+        For Each grd In grdMisVentas.Rows
+            Dim row As DataGridViewRow = grdMisVentas.Rows(contador4)
+            row.Height = 150
+            contador4 = contador4 + 1
+            CType(grdMisVentas.Columns("portada"), DataGridViewImageColumn).ImageLayout = DataGridViewImageCellLayout.Stretch
+        Next
+        grdMisVentas.Columns(0).Width = 150
+        grdMisVentas.Columns(1).Width = 150
+        grdMisVentas.Columns(2).Width = 100
+        grdMisVentas.Columns(3).Width = 120
+        grdMisVentas.Columns(4).Width = 150
+        grdMisVentas.Columns(5).Width = 120
+        grdMisVentas.Columns(6).Width = 150
     End Sub
     Private Sub TextBox19_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCedulaModificarPerfil.KeyPress
         Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
@@ -1619,10 +1631,6 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
                     nroFoto = nroFoto + 1
                 Next
                 MsgBox("Articulo insertado correctamente")
-
-
-
-
             Catch ex As Exception
                 MsgBox(ex.ToString)
             End Try
@@ -1651,10 +1659,6 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
         If (DataGridCart.SelectedRows.Count > 0) Then
             lblArticuloCart.Text = DataGridCart.Item("ColumnArticuloCart", DataGridCart.SelectedRows(0).Index).Value
             txtCantidadCart.Text = DataGridCart.Item("ColumnCantidadCart", DataGridCart.SelectedRows(0).Index).Value
-
-
-
-
         End If
     End Sub
 
@@ -1668,12 +1672,6 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
 
     Private Sub deleteArtCart_Click(sender As Object, e As EventArgs) Handles deleteArtCart.Click
         Dim idArt = DataGridCart.Item("ColumnIDCart", DataGridCart.SelectedRows(0).Index).Value
-
-
-
-
-
-
         For i = 0 To carrito.Count - 1
             If idArt = carrito(i).ID Then
                 carrito.RemoveAt(i)
@@ -1684,12 +1682,6 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
 
         UpdateGridCart(carrito)
         ajustarGrid()
-
-
-
-
-
-
     End Sub
 
     Private Sub ActualizarCantidadCartButton_Click(sender As Object, e As EventArgs) Handles ActualizarCantidadCartButton.Click
@@ -1705,7 +1697,15 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
         Next
 
         UpdateGridCart(carrito)
-
+        Dim contador As Integer
+        For Each grd In DataGridCart.Rows
+            Dim row As DataGridViewRow = DataGridCart.Rows(contador)
+            row.Height = 150
+            contador = contador + 1
+        Next
+        DataGridCart.Columns(0).Width = 150
+        DataGridCart.Columns(1).Width = 150
+        DataGridCart.Columns(2).Width = 150
     End Sub
 
 
@@ -1759,11 +1759,8 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
                 cantidadArt = CInt(d.Cells("ColumnCantidadCart").Value())
                 precio = CInt(d.Cells("ColumnPrecioCart").Value())
 
-
                 MsgBox(idCompra)
                 MsgBox(articuloID)
-
-
 
                 cmd.CommandText = "INSERT INTO detalle_compra(id_compra,id_articulo,Cantidad,PrecioUnitario) VALUES(@idCompra,@idArt,@cant,@price)"
                 cmd.Parameters.Clear()
@@ -1771,29 +1768,13 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
                 cmd.Parameters.AddWithValue("@idArt", articuloID)
                 cmd.Parameters.AddWithValue("@cant", cantidadArt)
                 cmd.Parameters.AddWithValue("@price", precio)
-
                 cmd.ExecuteNonQuery()
-
-
-
-
             Next
-
-
-
-
-
-
             conexion.Close()
-
 
         Catch ex As Exception
             conexion.Close()
             MsgBox(ex.ToString)
-
-
-
-
         End Try
     End Sub
 End Class
