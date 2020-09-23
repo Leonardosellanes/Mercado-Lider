@@ -328,19 +328,33 @@ Public Class frmPrincipal
         DataGridCart.Rows.Clear()
         Try
             conexion.Open()
-            cmd.CommandText = "SELECT articulos.portada,articulos.Nombre,articulos.precio FROM articulos WHERE articulos.id =@idArticulo"
+            cmd.CommandText = "SELECT articulos.id,articulos.portada,articulos.Nombre,articulos.precio FROM articulos WHERE articulos.id =@idArticulo"
+
+            Dim precioTotal As Integer
             For Each elem In cartArray
                 cmd.Parameters.Clear()
-                cmd.Parameters.AddWithValue("@idArticulo", elem)
+                cmd.Parameters.AddWithValue("@idArticulo", elem.ID)
                 r = cmd.ExecuteReader
                 If r.Read Then
+                    Dim id = r("id")
                     Dim nombre = r("Nombre")
                     Dim precio = r("Precio")
                     Dim portada = r("portada")
-                    DataGridCart.Rows.Add(nombre, precio, portada)
+
+                    precioTotal = precioTotal + (precio * elem.cantidad)
+
+
+                    Dim subtotal = (precio * elem.cantidad).ToString + "$"
+
+
+                    DataGridCart.Rows.Add(id, portada, nombre, precio, elem.cantidad, subtotal)
                 End If
+
                 r.Close()
             Next
+
+            lblPrecioTotalCart.Text = precioTotal
+
             conexion.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -407,7 +421,7 @@ Public Class frmPrincipal
 
                 txtRepetirContraseña.Clear()
             End If
-          
+
         End If
         '==========================================
 
@@ -933,6 +947,9 @@ Public Class frmPrincipal
         Ocultarpaneles()
         ocultarbarritas()
     End Sub
+
+
+    ''EVENTO DE EL BOTON DE EL FORMULARIO DE LA FICHA DE EL ARTICULO PARA
     Private Sub btnCarrito_Click(sender As Object, e As EventArgs) Handles btnCarrito.Click
         tbTodos.SelectedTab = tbTodos.TabPages.Item(7)
         Ocultarpaneles()
@@ -951,7 +968,7 @@ Public Class frmPrincipal
         DataGridCart.Columns(0).Width = 150
         DataGridCart.Columns(1).Width = 150
         DataGridCart.Columns(2).Width = 150
-        DataGridCart.Columns(3).Width = 150
+
 
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -1036,7 +1053,12 @@ Public Class frmPrincipal
             Dim row As DataGridViewRow = grdInicio.Rows(contador)
             row.Height = 200
             contador = contador + 1
+            CType(grdInicio.Columns("portada"), DataGridViewImageColumn).ImageLayout = DataGridViewImageCellLayout.Stretch
+
         Next
+
+
+
     End Sub
     Private Sub Button49_Click(sender As Object, e As EventArgs) Handles btnConfigOcultar.Click
         pnlPerfil.Visible = False
@@ -1391,14 +1413,16 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
             MsgBox("Necesitas iniciar sesion para agregar al carrito")
         Else
             Dim repetido As Boolean = False
+            Dim codigoArticuloFicha = CInt(Int(codigoFichaLbl.Text))
 
-            For Each num In carrito
-                If (codigoFichaLbl.Text = num) Then
+            For Each elem In carrito
+                If (codigoArticuloFicha = elem.ID) Then
                     repetido = True
                 End If
             Next
             If (Not repetido) Then
-                carrito.Add(codigoFichaLbl.Text)
+
+                carrito.Add(New ArticuloEnCarrito(codigoArticuloFicha, 1))
             Else
                 MsgBox("Ya esta este producto en el carrito")
             End If
@@ -1595,6 +1619,10 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
                     nroFoto = nroFoto + 1
                 Next
                 MsgBox("Articulo insertado correctamente")
+
+
+
+
             Catch ex As Exception
                 MsgBox(ex.ToString)
             End Try
@@ -1617,5 +1645,155 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
 
     Private Sub txtEditarPrecio_Click(sender As Object, e As EventArgs) Handles txtEditarPrecio.Click
         lblEditarPrecioVacio.Visible = False
+    End Sub
+
+    Private Sub DataGridCart_SelectionChanged(sender As Object, e As EventArgs) Handles DataGridCart.SelectionChanged
+        If (DataGridCart.SelectedRows.Count > 0) Then
+            lblArticuloCart.Text = DataGridCart.Item("ColumnArticuloCart", DataGridCart.SelectedRows(0).Index).Value
+            txtCantidadCart.Text = DataGridCart.Item("ColumnCantidadCart", DataGridCart.SelectedRows(0).Index).Value
+
+
+
+
+        End If
+    End Sub
+
+    Private Sub txtCantidadCart_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCantidadCart.KeyPress
+        Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
+        KeyAscii = CShort(SoloNumeros(KeyAscii))
+        If KeyAscii = 0 Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub deleteArtCart_Click(sender As Object, e As EventArgs) Handles deleteArtCart.Click
+        Dim idArt = DataGridCart.Item("ColumnIDCart", DataGridCart.SelectedRows(0).Index).Value
+
+
+
+
+
+
+        For i = 0 To carrito.Count - 1
+            If idArt = carrito(i).ID Then
+                carrito.RemoveAt(i)
+                Exit For
+
+            End If
+        Next
+
+        UpdateGridCart(carrito)
+        ajustarGrid()
+
+
+
+
+
+
+    End Sub
+
+    Private Sub ActualizarCantidadCartButton_Click(sender As Object, e As EventArgs) Handles ActualizarCantidadCartButton.Click
+        Dim idArt = DataGridCart.Item("ColumnIDCart", DataGridCart.SelectedRows(0).Index).Value
+        Dim cantidad = CInt(Int(txtCantidadCart.Text))
+
+        For i = 0 To carrito.Count - 1
+            If idArt = carrito(i).ID Then
+                carrito(i).cantidad = cantidad
+                Exit For
+
+            End If
+        Next
+
+        UpdateGridCart(carrito)
+
+    End Sub
+
+
+    'Vacia todos los articulos de el carrito y actualiza el datagrid
+    Private Sub Button36_Click(sender As Object, e As EventArgs) Handles Button36.Click
+        carrito.Clear()
+        UpdateGridCart(carrito)
+    End Sub
+
+    Private Sub Button35_Click(sender As Object, e As EventArgs) Handles Button35.Click
+        Try
+            conexion.Open()
+
+            Dim precioTotal = CInt(Int(lblPrecioTotalCart.Text))
+            Dim fechaActual As Date = Date.Now
+            Dim idCompra As Integer
+
+
+
+            cmd.CommandText = "INSERT INTO compras(usuario_id,Fecha,PrecioTotal) VALUES(@idUser,@fecha,@preciototal)"
+
+            cmd.Parameters.Clear()
+            cmd.Parameters.AddWithValue("@idUser", ID)
+            cmd.Parameters.AddWithValue("@fecha", fechaActual)
+            cmd.Parameters.AddWithValue("@preciototal", precioTotal)
+
+            cmd.ExecuteNonQuery()
+
+
+            cmd.CommandText = "SELECT MAX(id) As id FROM compras"
+            r = cmd.ExecuteReader
+
+            If (r.HasRows) Then
+                If r.Read() Then
+                    idCompra = CInt(Int(r("id")))
+
+
+
+                End If
+
+            End If
+            r.Close()
+
+            Dim articuloID As Integer
+            Dim cantidadArt As Integer
+            Dim precio As Integer
+            For Each d As DataGridViewRow In DataGridCart.Rows
+
+
+                articuloID = CInt(d.Cells("ColumnIDCart").Value())
+                cantidadArt = CInt(d.Cells("ColumnCantidadCart").Value())
+                precio = CInt(d.Cells("ColumnPrecioCart").Value())
+
+
+                MsgBox(idCompra)
+                MsgBox(articuloID)
+
+
+
+                cmd.CommandText = "INSERT INTO detalle_compra(id_compra,id_articulo,Cantidad,PrecioUnitario) VALUES(@idCompra,@idArt,@cant,@price)"
+                cmd.Parameters.Clear()
+                cmd.Parameters.AddWithValue("@idCompra", idCompra)
+                cmd.Parameters.AddWithValue("@idArt", articuloID)
+                cmd.Parameters.AddWithValue("@cant", cantidadArt)
+                cmd.Parameters.AddWithValue("@price", precio)
+
+                cmd.ExecuteNonQuery()
+
+
+
+
+            Next
+
+
+
+
+
+
+            conexion.Close()
+
+
+        Catch ex As Exception
+            conexion.Close()
+            MsgBox(ex.ToString)
+
+
+
+
+        End Try
     End Sub
 End Class
