@@ -993,6 +993,7 @@ Public Class frmPrincipal
         DataGridCart.Columns(3).Width = 100
         DataGridCart.Columns(4).Width = 100
         DataGridCart.Columns(5).Width = 120
+        DataGridCart.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 20)
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         tbTodos.SelectedTab = tbTodos.TabPages.Item(7)
@@ -1052,10 +1053,9 @@ Public Class frmPrincipal
     End Sub
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnPublicar.Click
 
-
         If (Rol = "Cliente") Then
             Dim resultado As String
-            resultado = MsgBox("No puedes publicar articulos por que tienes rol de Comprador,¿Quieres cambiar de rol y ademas tener previlegio de vendedor?", vbOKCancel, "CAMBIAR ROL")
+            resultado = MsgBox("No puedes publicar articulos por que tienes rol de Cliente,¿Quieres cambiar de rol y ademas tener previlegio de vendedor?", vbOKCancel, "CAMBIAR ROL")
             If resultado = vbOK Then
                 Try
                     conexion.Open()
@@ -1069,27 +1069,17 @@ Public Class frmPrincipal
                     lblRolInfo.Text = "Vendedor" ''Cambia la informacion  del label de el panel derecho que contiene informacion minima de el usuario logeado.
 
                     conexion.Close()
-
                 Catch ex As Exception
                     MsgBox(ex.ToString)
                     conexion.Close()
-
                 End Try
-
-
             End If
         Else
-
             tbTodos.SelectedTab = tbTodos.TabPages.Item(5)
             Ocultarpaneles()
             ocultarbarritas()
             Panel9.Visible = True
-
         End If
-
-
-
-
     End Sub
     Private Sub Button28_Click(sender As Object, e As EventArgs) Handles Button28.Click
         pnlMiInfo.Visible = True
@@ -1131,7 +1121,7 @@ Public Class frmPrincipal
             Dim row As DataGridViewRow = grdInicio.Rows(contador)
             row.Height = 200
             contador = contador + 1
-            CType(grdInicio.Columns("portada"), DataGridViewImageColumn).ImageLayout = DataGridViewImageCellLayout.Stretch
+            CType(grdInicio.Columns("portada"), DataGridViewImageColumn).ImageLayout = DataGridViewImageCellLayout.Zoom
         Next
     End Sub
     Private Sub Button49_Click(sender As Object, e As EventArgs) Handles btnConfigOcultar.Click
@@ -1188,10 +1178,6 @@ Public Class frmPrincipal
         lblPassVaciaLogin.Visible = False
         lblNoExisteUser.Visible = False
     End Sub
-    Private Sub tbxBuscar_Click(sender As Object, e As EventArgs) Handles txtBuscar.Click
-        txtBuscar.Clear()
-        txtBuscar.ForeColor = Color.Black
-    End Sub
     Private Sub TextBox13_Click(sender As Object, e As EventArgs) Handles txtUsernameModificarPerfil.Click
         LabelErrorUsername.Visible = False
     End Sub
@@ -1206,42 +1192,49 @@ Public Class frmPrincipal
         btnOcultarMiInfo.Visible = False
     End Sub
     Private Sub Button55_Click(sender As Object, e As EventArgs) Handles btnMisVentas.Click
-        tbTodos.SelectedTab = tbTodos.TabPages.Item(11)
-        pnlMiInfo.Visible = False
-        btnConfigOcultar.Visible = False
-        Ocultarpaneles()
 
-        Dim da As DataSet = New DataSet
-        Dim adapta2r As MySqlDataAdapter = New MySqlDataAdapter
-        Try
-            conexion.Open()
+        If (Rol = "Cliente") Then
+            MsgBox("Usted esta registrado como cliente,para poder ver sus Ventas Realizadas,dirijase a 'Mi info > Modificar > Rol' y seleccione vendedor,asi podra publicar nuevos articulos y ver los que ha vendido")
+        Else
+            tbTodos.SelectedTab = tbTodos.TabPages.Item(11)
+            pnlMiInfo.Visible = False
+            btnConfigOcultar.Visible = False
+            Ocultarpaneles()
 
-            cmd.CommandText = "SELECT articulos.portada,articulos.Nombre,detalle_compra.Cantidad,detalle_compra.PrecioUnitario,compras.Fecha,compras.PrecioTotal,usuario.username from articulos,detalle_compra,compras,usuario where detalle_compra.id_articulo = articulos.id and compras.usuario_id = usuario.id and articulos.usuario_id = @userID and compras.id = detalle_compra.id_compra"
-            cmd.Parameters.Clear()
-            cmd.Parameters.AddWithValue("@userID", ID)
-            adapta2r.SelectCommand = cmd
-            adapta2r.Fill(da, "Tabla")
-            grdMisVentas.DataSource = da
-            grdMisVentas.DataMember = "Tabla"
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-        conexion.Close()
+            Dim da As DataSet = New DataSet
+            Dim adapta2r As MySqlDataAdapter = New MySqlDataAdapter
+            Try
+                conexion.Open()
 
-        Dim contador4 As Integer
-        For Each grd In grdMisVentas.Rows
-            Dim row As DataGridViewRow = grdMisVentas.Rows(contador4)
-            row.Height = 150
-            contador4 = contador4 + 1
-            CType(grdMisVentas.Columns("portada"), DataGridViewImageColumn).ImageLayout = DataGridViewImageCellLayout.Stretch
-        Next
-        grdMisVentas.Columns(0).Width = 150
-        grdMisVentas.Columns(1).Width = 150
-        grdMisVentas.Columns(2).Width = 100
-        grdMisVentas.Columns(3).Width = 120
-        grdMisVentas.Columns(4).Width = 150
-        grdMisVentas.Columns(5).Width = 120
-        grdMisVentas.Columns(6).Width = 150
+                cmd.CommandText = "SELECT articulos.portada,articulos.Nombre,detalle_compra.Cantidad,detalle_compra.PrecioUnitario,compras.Fecha,compras.PrecioTotal,usuario.username from articulos,detalle_compra,compras,usuario where detalle_compra.id_articulo = articulos.id and compras.usuario_id = usuario.id and articulos.usuario_id = @userID and compras.id = detalle_compra.id_compra"
+                cmd.Parameters.Clear()
+                cmd.Parameters.AddWithValue("@userID", ID)
+                adapta2r.SelectCommand = cmd
+                adapta2r.Fill(da, "Tabla")
+                grdMisVentas.DataSource = da
+                grdMisVentas.DataMember = "Tabla"
+            Catch ex As Exception
+                MsgBox(ex.ToString)
+            End Try
+            conexion.Close()
+
+            Dim contador4 As Integer
+            For Each grd In grdMisVentas.Rows
+                Dim row As DataGridViewRow = grdMisVentas.Rows(contador4)
+                row.Height = 150
+                contador4 = contador4 + 1
+                CType(grdMisVentas.Columns("portada"), DataGridViewImageColumn).ImageLayout = DataGridViewImageCellLayout.Zoom
+            Next
+            grdMisVentas.Columns(0).Width = 150
+            grdMisVentas.Columns(1).Width = 150
+            grdMisVentas.Columns(2).Width = 100
+            grdMisVentas.Columns(3).Width = 120
+            grdMisVentas.Columns(4).Width = 150
+            grdMisVentas.Columns(5).Width = 120
+            grdMisVentas.Columns(6).Width = 150
+            grdMisVentas.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 20)
+        End If
+
     End Sub
     Private Sub TextBox19_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCedulaModificarPerfil.KeyPress
         Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
@@ -1314,40 +1307,47 @@ Public Class frmPrincipal
         Label117.Visible = False
     End Sub
     Private Sub btnMisArticulos_Click(sender As Object, e As EventArgs) Handles btnMisArticulos.Click
-        tbTodos.SelectedTab = tbTodos.TabPages.Item(3)
-        pnlMiInfo.Visible = False
-        btnConfigOcultar.Visible = False
-        Ocultarpaneles()
 
-        Dim ds As DataSet = New DataSet
-        Dim adaptador As MySqlDataAdapter = New MySqlDataAdapter
-        Try
-            conexion.Open()
+        If (Rol = "Cliente") Then
+            MsgBox("Usted esta registrado como cliente,para poder ver sus articulos publicados,dirijase a 'Mi info > Modificar > Rol' y seleccione vendedor,asi podra publicar nuevos articulos y ver los que ya ha publicado")
+        Else
+            tbTodos.SelectedTab = tbTodos.TabPages.Item(3)
+            pnlMiInfo.Visible = False
+            btnConfigOcultar.Visible = False
+            Ocultarpaneles()
+
+            Dim ds As DataSet = New DataSet
+            Dim adaptador As MySqlDataAdapter = New MySqlDataAdapter
+            Try
+                conexion.Open()
 
 
-            cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,usuario WHERE usuario.id=articulos.usuario_id and articulos.usuario_id = @userID"
-            cmd.Parameters.Clear()
-            cmd.Parameters.AddWithValue("@userID", ID)
+                cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,usuario WHERE usuario.id=articulos.usuario_id and articulos.usuario_id = @userID"
+                cmd.Parameters.Clear()
+                cmd.Parameters.AddWithValue("@userID", ID)
 
-            adaptador.SelectCommand = cmd
-            adaptador.Fill(ds, "Tabla")
-            grdMisArticulos.DataSource = ds
-            grdMisArticulos.DataMember = "Tabla"
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-        conexion.Close()
+                adaptador.SelectCommand = cmd
+                adaptador.Fill(ds, "Tabla")
+                grdMisArticulos.DataSource = ds
+                grdMisArticulos.DataMember = "Tabla"
+            Catch ex As Exception
+                MsgBox(ex.ToString)
+            End Try
+            conexion.Close()
 
-        Dim contador3 As Integer
-        For Each grd In grdMisArticulos.Rows
-            Dim row As DataGridViewRow = grdMisArticulos.Rows(contador3)
-            row.Height = 200
-            contador3 = contador3 + 1
-        Next
-        grdMisArticulos.Columns(0).Width = 200
-        grdMisArticulos.Columns(1).Width = 200
-        grdMisArticulos.Columns(2).Width = 200
-        grdMisArticulos.Columns(3).Width = 200
+            Dim contador3 As Integer
+            For Each grd In grdMisArticulos.Rows
+                Dim row As DataGridViewRow = grdMisArticulos.Rows(contador3)
+                row.Height = 200
+                contador3 = contador3 + 1
+                CType(grdMisArticulos.Columns("portada"), DataGridViewImageColumn).ImageLayout = DataGridViewImageCellLayout.Zoom
+            Next
+            grdMisArticulos.Columns(0).Width = 200
+            grdMisArticulos.Columns(1).Width = 200
+            grdMisArticulos.Columns(2).Width = 200
+            grdMisArticulos.Columns(3).Width = 200
+            grdMisArticulos.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 20)
+        End If
     End Sub
     Private Sub grdMisArticulos_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles grdMisArticulos.CellClick
         tbTodos.SelectedTab = tbTodos.TabPages.Item(6)

@@ -46,6 +46,9 @@ Partial Class frmPrincipal
         Me.tbTodos = New System.Windows.Forms.TabControl()
         Me.tbPrincipal = New System.Windows.Forms.TabPage()
         Me.pnlOcultarheaders = New System.Windows.Forms.Panel()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.lblCategoria = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -90,6 +93,9 @@ Partial Class frmPrincipal
         Me.lblUsernameLogin = New System.Windows.Forms.Label()
         Me.tbMisArticulos = New System.Windows.Forms.TabPage()
         Me.pnlHeadersMisArticulos = New System.Windows.Forms.Panel()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
         Me.Label40 = New System.Windows.Forms.Label()
         Me.grdMisArticulos = New System.Windows.Forms.DataGridView()
         Me.tbArticulos = New System.Windows.Forms.TabPage()
@@ -188,6 +194,8 @@ Partial Class frmPrincipal
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Button36 = New System.Windows.Forms.Button()
         Me.Button35 = New System.Windows.Forms.Button()
+        Me.tbCompr = New System.Windows.Forms.TabPage()
+        Me.DataGridCompras = New System.Windows.Forms.DataGridView()
         Me.tbCambiarContraseña = New System.Windows.Forms.TabPage()
         Me.Label117 = New System.Windows.Forms.Label()
         Me.txtContraseñaActual = New System.Windows.Forms.TextBox()
@@ -281,8 +289,6 @@ Partial Class frmPrincipal
         Me.ofdEditarImagen2 = New System.Windows.Forms.OpenFileDialog()
         Me.ofdEditarImagen3 = New System.Windows.Forms.OpenFileDialog()
         Me.DataGridViewImageColumn1 = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.tbCompr = New System.Windows.Forms.TabPage()
-        Me.DataGridCompras = New System.Windows.Forms.DataGridView()
         Me.tbTodos.SuspendLayout()
         Me.tbPrincipal.SuspendLayout()
         Me.pnlOcultarheaders.SuspendLayout()
@@ -310,6 +316,8 @@ Partial Class frmPrincipal
         Me.tbEnCarrito.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.DataGridCart, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tbCompr.SuspendLayout()
+        CType(Me.DataGridCompras, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tbCambiarContraseña.SuspendLayout()
         Me.tbInfoPersonal.SuspendLayout()
         Me.tbHistorialVentas.SuspendLayout()
@@ -318,8 +326,6 @@ Partial Class frmPrincipal
         Me.pnlMiInfo.SuspendLayout()
         Me.pnlMenu.SuspendLayout()
         Me.panelbotonescarrito.SuspendLayout()
-        Me.tbCompr.SuspendLayout()
-        CType(Me.DataGridCompras, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tbTodos
@@ -364,6 +370,9 @@ Partial Class frmPrincipal
         Me.pnlOcultarheaders.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlOcultarheaders.BackColor = System.Drawing.Color.White
+        Me.pnlOcultarheaders.Controls.Add(Me.Label14)
+        Me.pnlOcultarheaders.Controls.Add(Me.Label15)
+        Me.pnlOcultarheaders.Controls.Add(Me.Label16)
         Me.pnlOcultarheaders.Controls.Add(Me.Label3)
         Me.pnlOcultarheaders.Controls.Add(Me.lblCategoria)
         Me.pnlOcultarheaders.Location = New System.Drawing.Point(0, -6)
@@ -371,12 +380,48 @@ Partial Class frmPrincipal
         Me.pnlOcultarheaders.Size = New System.Drawing.Size(970, 49)
         Me.pnlOcultarheaders.TabIndex = 4
         '
+        'Label14
+        '
+        Me.Label14.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label14.Location = New System.Drawing.Point(698, 29)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(53, 13)
+        Me.Label14.TabIndex = 56
+        Me.Label14.Text = "PRECIO"
+        '
+        'Label15
+        '
+        Me.Label15.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label15.Location = New System.Drawing.Point(489, 29)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(60, 13)
+        Me.Label15.TabIndex = 55
+        Me.Label15.Text = "NOMBRE"
+        '
+        'Label16
+        '
+        Me.Label16.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label16.AutoSize = True
+        Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label16.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label16.Location = New System.Drawing.Point(272, 29)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(86, 13)
+        Me.Label16.TabIndex = 54
+        Me.Label16.Text = "ID ARTICULO"
+        '
         'Label3
         '
         Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(166, 25)
+        Me.Label3.Location = New System.Drawing.Point(12, 24)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(106, 20)
         Me.Label3.TabIndex = 1
@@ -387,7 +432,7 @@ Partial Class frmPrincipal
         Me.lblCategoria.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.lblCategoria.AutoSize = True
         Me.lblCategoria.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCategoria.Location = New System.Drawing.Point(268, 27)
+        Me.lblCategoria.Location = New System.Drawing.Point(114, 24)
         Me.lblCategoria.Name = "lblCategoria"
         Me.lblCategoria.Size = New System.Drawing.Size(87, 20)
         Me.lblCategoria.TabIndex = 2
@@ -938,11 +983,50 @@ Partial Class frmPrincipal
         '
         Me.pnlHeadersMisArticulos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlHeadersMisArticulos.Controls.Add(Me.Label17)
+        Me.pnlHeadersMisArticulos.Controls.Add(Me.Label18)
+        Me.pnlHeadersMisArticulos.Controls.Add(Me.Label20)
         Me.pnlHeadersMisArticulos.Controls.Add(Me.Label40)
         Me.pnlHeadersMisArticulos.Location = New System.Drawing.Point(0, 5)
         Me.pnlHeadersMisArticulos.Name = "pnlHeadersMisArticulos"
-        Me.pnlHeadersMisArticulos.Size = New System.Drawing.Size(970, 55)
+        Me.pnlHeadersMisArticulos.Size = New System.Drawing.Size(970, 99)
         Me.pnlHeadersMisArticulos.TabIndex = 29
+        '
+        'Label17
+        '
+        Me.Label17.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label17.Location = New System.Drawing.Point(665, 75)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(135, 13)
+        Me.Label17.TabIndex = 56
+        Me.Label17.Text = "PRECIO POR UNIDAD"
+        '
+        'Label18
+        '
+        Me.Label18.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label18.Location = New System.Drawing.Point(509, 75)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(60, 13)
+        Me.Label18.TabIndex = 55
+        Me.Label18.Text = "NOMBRE"
+        '
+        'Label20
+        '
+        Me.Label20.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label20.AutoSize = True
+        Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label20.Location = New System.Drawing.Point(329, 75)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(86, 13)
+        Me.Label20.TabIndex = 54
+        Me.Label20.Text = "ID ARTICULO"
         '
         'Label40
         '
@@ -986,7 +1070,7 @@ Partial Class frmPrincipal
         DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.grdMisArticulos.DefaultCellStyle = DataGridViewCellStyle8
         Me.grdMisArticulos.GridColor = System.Drawing.Color.White
-        Me.grdMisArticulos.Location = New System.Drawing.Point(47, 13)
+        Me.grdMisArticulos.Location = New System.Drawing.Point(47, 62)
         Me.grdMisArticulos.Name = "grdMisArticulos"
         Me.grdMisArticulos.ReadOnly = True
         Me.grdMisArticulos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -2107,7 +2191,7 @@ Partial Class frmPrincipal
         'ColumnPortadaCart
         '
         Me.ColumnPortadaCart.HeaderText = "portada"
-        Me.ColumnPortadaCart.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch
+        Me.ColumnPortadaCart.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom
         Me.ColumnPortadaCart.Name = "ColumnPortadaCart"
         Me.ColumnPortadaCart.ReadOnly = True
         Me.ColumnPortadaCart.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -2205,6 +2289,26 @@ Partial Class frmPrincipal
         Me.Button35.TabIndex = 33
         Me.Button35.Text = "EFECTUAR COMPRA"
         Me.Button35.UseVisualStyleBackColor = False
+        '
+        'tbCompr
+        '
+        Me.tbCompr.AutoScroll = True
+        Me.tbCompr.Controls.Add(Me.DataGridCompras)
+        Me.tbCompr.Location = New System.Drawing.Point(4, 22)
+        Me.tbCompr.Name = "tbCompr"
+        Me.tbCompr.Padding = New System.Windows.Forms.Padding(3)
+        Me.tbCompr.Size = New System.Drawing.Size(1059, 565)
+        Me.tbCompr.TabIndex = 10
+        Me.tbCompr.Text = "1-Compras"
+        Me.tbCompr.UseVisualStyleBackColor = True
+        '
+        'DataGridCompras
+        '
+        Me.DataGridCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridCompras.Location = New System.Drawing.Point(176, 33)
+        Me.DataGridCompras.Name = "DataGridCompras"
+        Me.DataGridCompras.Size = New System.Drawing.Size(877, 453)
+        Me.DataGridCompras.TabIndex = 0
         '
         'tbCambiarContraseña
         '
@@ -2951,7 +3055,7 @@ Partial Class frmPrincipal
         Me.btnModificarInfo.ForeColor = System.Drawing.Color.White
         Me.btnModificarInfo.Location = New System.Drawing.Point(0, 76)
         Me.btnModificarInfo.Name = "btnModificarInfo"
-        Me.btnModificarInfo.Size = New System.Drawing.Size(153, 23)
+        Me.btnModificarInfo.Size = New System.Drawing.Size(167, 23)
         Me.btnModificarInfo.TabIndex = 16
         Me.btnModificarInfo.Text = "Modificar"
         Me.btnModificarInfo.UseVisualStyleBackColor = True
@@ -3257,13 +3361,12 @@ Partial Class frmPrincipal
         '
         Me.txtBuscar.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.txtBuscar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtBuscar.ForeColor = System.Drawing.Color.Gray
+        Me.txtBuscar.ForeColor = System.Drawing.Color.Black
         Me.txtBuscar.Location = New System.Drawing.Point(291, 9)
         Me.txtBuscar.Multiline = True
         Me.txtBuscar.Name = "txtBuscar"
         Me.txtBuscar.Size = New System.Drawing.Size(345, 25)
-        Me.txtBuscar.TabIndex = 0
-        Me.txtBuscar.Text = "Buscar Artículos"
+        Me.txtBuscar.TabIndex = 20
         '
         'panelbotonescarrito
         '
@@ -3372,26 +3475,6 @@ Partial Class frmPrincipal
         Me.DataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
-        'tbCompr
-        '
-        Me.tbCompr.AutoScroll = True
-        Me.tbCompr.Controls.Add(Me.DataGridCompras)
-        Me.tbCompr.Location = New System.Drawing.Point(4, 22)
-        Me.tbCompr.Name = "tbCompr"
-        Me.tbCompr.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbCompr.Size = New System.Drawing.Size(1059, 565)
-        Me.tbCompr.TabIndex = 10
-        Me.tbCompr.Text = "1-Compras"
-        Me.tbCompr.UseVisualStyleBackColor = True
-        '
-        'DataGridCompras
-        '
-        Me.DataGridCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridCompras.Location = New System.Drawing.Point(176, 33)
-        Me.DataGridCompras.Name = "DataGridCompras"
-        Me.DataGridCompras.Size = New System.Drawing.Size(877, 453)
-        Me.DataGridCompras.TabIndex = 0
-        '
         'frmPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3445,6 +3528,8 @@ Partial Class frmPrincipal
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.DataGridCart, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tbCompr.ResumeLayout(False)
+        CType(Me.DataGridCompras, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tbCambiarContraseña.ResumeLayout(False)
         Me.tbCambiarContraseña.PerformLayout()
         Me.tbInfoPersonal.ResumeLayout(False)
@@ -3458,8 +3543,6 @@ Partial Class frmPrincipal
         Me.pnlMenu.ResumeLayout(False)
         Me.pnlMenu.PerformLayout()
         Me.panelbotonescarrito.ResumeLayout(False)
-        Me.tbCompr.ResumeLayout(False)
-        CType(Me.DataGridCompras, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3686,12 +3769,6 @@ Partial Class frmPrincipal
     Friend WithEvents lblArticuloCart As Label
     Friend WithEvents lblPrecioTotalCart As Label
     Friend WithEvents Label7 As Label
-    Friend WithEvents ColumnPortadaCart As DataGridViewImageColumn
-    Friend WithEvents ColumnIDCart As DataGridViewTextBoxColumn
-    Friend WithEvents ColumnArticuloCart As DataGridViewTextBoxColumn
-    Friend WithEvents ColumnPrecioCart As DataGridViewTextBoxColumn
-    Friend WithEvents ColumnCantidadCart As DataGridViewTextBoxColumn
-    Friend WithEvents ColumnSubTotal As DataGridViewTextBoxColumn
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label13 As Label
     Friend WithEvents Label12 As Label
@@ -3704,4 +3781,16 @@ Partial Class frmPrincipal
     Friend WithEvents grdMisVentas As DataGridView
     Friend WithEvents tbCompr As TabPage
     Friend WithEvents DataGridCompras As DataGridView
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Label15 As Label
+    Friend WithEvents Label16 As Label
+    Friend WithEvents Label17 As Label
+    Friend WithEvents Label18 As Label
+    Friend WithEvents Label20 As Label
+    Friend WithEvents ColumnPortadaCart As DataGridViewImageColumn
+    Friend WithEvents ColumnIDCart As DataGridViewTextBoxColumn
+    Friend WithEvents ColumnArticuloCart As DataGridViewTextBoxColumn
+    Friend WithEvents ColumnPrecioCart As DataGridViewTextBoxColumn
+    Friend WithEvents ColumnCantidadCart As DataGridViewTextBoxColumn
+    Friend WithEvents ColumnSubTotal As DataGridViewTextBoxColumn
 End Class
