@@ -48,6 +48,9 @@ Public Class frmPrincipal
     'Metodos utiles que usaremos
     'Checkea la validacion ,retorna true si fue correcta o false si hay un error,modificando los labels de error durante el flujo.'
 
+
+
+
     Private Function checkvalidacion()
         Dim contador As Integer = 0
         '==========================================
@@ -165,6 +168,10 @@ Public Class frmPrincipal
         cbxRol.Text = "Cliente"
         ocultarregistro(False, True)
     End Sub
+
+
+
+
 
     ''Check if Username existe''
     Private Function UserExist(ByVal username As String, ByVal con As MySqlConnection)
@@ -377,34 +384,63 @@ Public Class frmPrincipal
             End If
         End If
         '==========================================
-        If (H = 2) Then
-            Dim resultado As String
-            resultado = MsgBox("ESTA SEGURO DE QUE DESEA CAMBIAR LA CONTRASEÑA", vbOKCancel, "CONFIRMACION")
 
-            If resultado = vbOK Then
-                LabelCorrectChangePass.Visible = True
-                Try
-                    conexion.Open()
+        Try
+            conexion.Open()
+
+
+            cmd.CommandText = "SELECT password FROM usuario WHERE id=@id"
+            cmd.Parameters.Clear()
+            cmd.Parameters.AddWithValue("@id", ID)
+            r = cmd.ExecuteReader()
+
+            If (r.HasRows) Then
+                If (r.Read()) Then
+                    If (generarClaveSHA1(txtContraseñaActual.Text) = r("password")) Then
+                        H = H + 1
+
+                    Else
+                        If (txtContraseñaActual.Text <> "") Then
+                            MsgBox("La contraseña actual es incorrecta")
+                        End If
+                    End If
+                End If
+            End If
+
+            r.Close()
+            If (H = 3) Then
+
+                Dim resultado As String
+                resultado = MsgBox("ESTA SEGURO DE QUE DESEA CAMBIAR LA CONTRASEÑA", vbOKCancel, "CONFIRMACION")
+
+                If resultado = vbOK Then
+                    LabelCorrectChangePass.Visible = True
                     cmd.CommandText = "UPDATE usuario SET password=@pass WHERE id=@id"
                     cmd.Parameters.Clear()
                     cmd.Parameters.AddWithValue("@pass", generarClaveSHA1(txtContraseñaNueva.Text))
                     cmd.Parameters.AddWithValue("@id", ID)
                     cmd.ExecuteNonQuery()
+                    MsgBox("Password cambiada correctamente")
                     LabelCorrectChangePass.Visible = True
                     txtContraseñaNueva.Clear()
                     txtContraseñaActual.Clear()
                     txtRepetirContraseña.Clear()
-                Catch ex As Exception
-                    MsgBox(ex.ToString)
-                End Try
-            Else
-                txtContraseñaNueva.Clear()
-                txtContraseñaActual.Clear()
 
-                txtRepetirContraseña.Clear()
+                End If
             End If
 
-        End If
+            conexion.Close()
+         Catch ex As Exception
+            MsgBox(ex.ToString)
+            conexion.Close()
+        End Try
+
+        txtContraseñaNueva.Clear()
+        txtContraseñaActual.Clear()
+        txtRepetirContraseña.Clear()
+
+
+
         '==========================================
 
 
@@ -614,6 +650,7 @@ Public Class frmPrincipal
                     cmd.Parameters.AddWithValue("@id", ID)
                     cmd.ExecuteNonQuery()
                     MsgBox("Datos Actualizados correctamente")
+                    Rol = ComboBoxRolModificarPerfil.Text()  ''Modifica una de las propiedades de la clase que es informacion de el usuario
                     conexion.Close()
                     UpdateUserInfo(ID)
                 Catch ex As Exception
@@ -826,6 +863,8 @@ Public Class frmPrincipal
     End Sub
 
     ''A PARTIR DE AQUI HACIA ABAJO ES CODIGO DE  DE ITERACCION DE USUARIO DENTRO DE LA INTERFAZ CON LOS DISTINTOS ELEMENTOS
+
+
     Private Sub modificarButton(sender As Object, e As EventArgs) Handles btnModificarInfo.Click
         UpdateUserInfo(ID)
         tbTodos.SelectedTab = tbTodos.TabPages.Item(10)
@@ -966,6 +1005,26 @@ Public Class frmPrincipal
         pnlPerfil.Visible = False
         subbarritas()
         pnlCom.Visible = True
+
+
+        Dim ds As DataSet = New DataSet
+        Dim adaptador As MySqlDataAdapter = New MySqlDataAdapter
+        Try
+            conexion.Open()
+
+            cmd.CommandText = "SELECT compras.id,compras.fecha ,compras.preciototal FROM compras WHERE usuario_id=@userID"
+            cmd.Parameters.Clear()
+            cmd.Parameters.AddWithValue("@userID", ID)
+
+            adaptador.SelectCommand = cmd
+            adaptador.Fill(ds, "Tabla")
+            DataGridCompras.DataSource = ds
+            DataGridCompras.DataMember = "Tabla"
+            conexion.Close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            conexion.Close()
+        End Try
     End Sub
     Private Sub btnArticulos_Click(sender As Object, e As EventArgs)
         tbTodos.SelectedTab = tbTodos.TabPages.Item(9)
@@ -992,10 +1051,45 @@ Public Class frmPrincipal
         btnConfigOcultar.Visible = True
     End Sub
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnPublicar.Click
-        tbTodos.SelectedTab = tbTodos.TabPages.Item(5)
-        Ocultarpaneles()
-        ocultarbarritas()
-        Panel9.Visible = True
+
+
+        If (Rol = "Cliente") Then
+            Dim resultado As String
+            resultado = MsgBox("No puedes publicar articulos por que tienes rol de Comprador,¿Quieres cambiar de rol y ademas tener previlegio de vendedor?", vbOKCancel, "CAMBIAR ROL")
+            If resultado = vbOK Then
+                Try
+                    conexion.Open()
+                    cmd.CommandText = "UPDATE usuario SET rol='Vendedor' WHERE id=@idUser"
+                    cmd.Parameters.Clear()
+                    cmd.Parameters.AddWithValue("@idUser", ID)
+                    cmd.ExecuteNonQuery()
+                    MsgBox("Ahora eres un vendedor,ya puedes publicar articulos")
+
+                    Rol = "Vendedor"  ''Cambia la propiedad de la clase que representa informacion de  el usuario a vendedor
+                    lblRolInfo.Text = "Vendedor" ''Cambia la informacion  del label de el panel derecho que contiene informacion minima de el usuario logeado.
+
+                    conexion.Close()
+
+                Catch ex As Exception
+                    MsgBox(ex.ToString)
+                    conexion.Close()
+
+                End Try
+
+
+            End If
+        Else
+
+            tbTodos.SelectedTab = tbTodos.TabPages.Item(5)
+            Ocultarpaneles()
+            ocultarbarritas()
+            Panel9.Visible = True
+
+        End If
+
+
+
+
     End Sub
     Private Sub Button28_Click(sender As Object, e As EventArgs) Handles Button28.Click
         pnlMiInfo.Visible = True
@@ -1671,41 +1765,60 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
     End Sub
 
     Private Sub deleteArtCart_Click(sender As Object, e As EventArgs) Handles deleteArtCart.Click
-        Dim idArt = DataGridCart.Item("ColumnIDCart", DataGridCart.SelectedRows(0).Index).Value
-        For i = 0 To carrito.Count - 1
-            If idArt = carrito(i).ID Then
-                carrito.RemoveAt(i)
-                Exit For
+        If (DataGridCart.SelectedRows.Count = 0) Then
+            MsgBox("No puede ejecutar esta accion por que el carrito esta vacio")
 
-            End If
-        Next
+        Else
 
-        UpdateGridCart(carrito)
-        ajustarGrid()
+            Dim idArt = DataGridCart.Item("ColumnIDCart", DataGridCart.SelectedRows(0).Index).Value
+            For i = 0 To carrito.Count - 1
+                If idArt = carrito(i).ID Then
+                    carrito.RemoveAt(i)
+                    Exit For
+
+                End If
+            Next
+
+            UpdateGridCart(carrito)
+            ajustarGrid()
+
+        End If
     End Sub
 
     Private Sub ActualizarCantidadCartButton_Click(sender As Object, e As EventArgs) Handles ActualizarCantidadCartButton.Click
-        Dim idArt = DataGridCart.Item("ColumnIDCart", DataGridCart.SelectedRows(0).Index).Value
-        Dim cantidad = CInt(Int(txtCantidadCart.Text))
 
-        For i = 0 To carrito.Count - 1
-            If idArt = carrito(i).ID Then
-                carrito(i).cantidad = cantidad
-                Exit For
+        If (DataGridCart.SelectedRows.Count = 0) Then
+            MsgBox("No puede ejecutar esta accion por que el carrito esta vacio")
 
-            End If
-        Next
+        Else
 
-        UpdateGridCart(carrito)
-        Dim contador As Integer
-        For Each grd In DataGridCart.Rows
-            Dim row As DataGridViewRow = DataGridCart.Rows(contador)
-            row.Height = 150
-            contador = contador + 1
-        Next
-        DataGridCart.Columns(0).Width = 150
-        DataGridCart.Columns(1).Width = 150
-        DataGridCart.Columns(2).Width = 150
+            Dim idArt = DataGridCart.Item("ColumnIDCart", DataGridCart.SelectedRows(0).Index).Value ''Extraemos el id de el articulo selecionado en el datagrid
+            Dim cantidad = CInt(Int(txtCantidadCart.Text))  ''Extraemos la nueva cantidad ingresada por el usuario
+
+            For i = 0 To carrito.Count - 1      ''Busca el objeto de el articuloEnCarrito de el arraylist ,cuando lo encuentra,lo modifica a la nueva cantidad
+                If idArt = carrito(i).ID Then
+                    carrito(i).cantidad = cantidad
+                    Exit For
+
+                End If
+            Next
+
+            UpdateGridCart(carrito)   ''Actualiza el grid carrito
+
+
+            Dim contador As Integer  ''????????'''
+            For Each grd In DataGridCart.Rows
+                Dim row As DataGridViewRow = DataGridCart.Rows(contador)
+                row.Height = 150
+                contador = contador + 1
+            Next
+            DataGridCart.Columns(0).Width = 150
+            DataGridCart.Columns(1).Width = 150
+            DataGridCart.Columns(2).Width = 150
+
+
+        End If
+
     End Sub
 
 
@@ -1716,65 +1829,78 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
     End Sub
 
     Private Sub Button35_Click(sender As Object, e As EventArgs) Handles Button35.Click
-        Try
-            conexion.Open()
 
-            Dim precioTotal = CInt(Int(lblPrecioTotalCart.Text))
-            Dim fechaActual As Date = Date.Now
-            Dim idCompra As Integer
+        If (DataGridCart.SelectedRows.Count = 0) Then
 
+            MsgBox("No puede ejecutar esta accion por que el carrito esta vacio")
+        Else
 
-
-            cmd.CommandText = "INSERT INTO compras(usuario_id,Fecha,PrecioTotal) VALUES(@idUser,@fecha,@preciototal)"
-
-            cmd.Parameters.Clear()
-            cmd.Parameters.AddWithValue("@idUser", ID)
-            cmd.Parameters.AddWithValue("@fecha", fechaActual)
-            cmd.Parameters.AddWithValue("@preciototal", precioTotal)
-
-            cmd.ExecuteNonQuery()
+            Try
 
 
-            cmd.CommandText = "SELECT MAX(id) As id FROM compras"
-            r = cmd.ExecuteReader
 
-            If (r.HasRows) Then
-                If r.Read() Then
-                    idCompra = CInt(Int(r("id")))
+                conexion.Open()
+
+                Dim precioTotal = CInt(Int(lblPrecioTotalCart.Text))
+                Dim fechaActual As Date = Date.Now
+                Dim idCompra As Integer
 
 
+
+                cmd.CommandText = "INSERT INTO compras(usuario_id,Fecha,PrecioTotal) VALUES(@idUser,@fecha,@preciototal)"
+
+                cmd.Parameters.Clear()
+                cmd.Parameters.AddWithValue("@idUser", ID)
+                cmd.Parameters.AddWithValue("@fecha", fechaActual)
+                cmd.Parameters.AddWithValue("@preciototal", precioTotal)
+
+                cmd.ExecuteNonQuery()
+
+
+                cmd.CommandText = "SELECT MAX(id) As id FROM compras"
+                r = cmd.ExecuteReader
+
+                If (r.HasRows) Then
+                    If r.Read() Then
+                        idCompra = CInt(Int(r("id")))
+
+
+
+                    End If
 
                 End If
+                r.Close()
 
-            End If
-            r.Close()
-
-            Dim articuloID As Integer
-            Dim cantidadArt As Integer
-            Dim precio As Integer
-            For Each d As DataGridViewRow In DataGridCart.Rows
+                Dim articuloID As Integer
+                Dim cantidadArt As Integer
+                Dim precio As Integer
+                For Each d As DataGridViewRow In DataGridCart.Rows
 
 
-                articuloID = CInt(d.Cells("ColumnIDCart").Value())
-                cantidadArt = CInt(d.Cells("ColumnCantidadCart").Value())
-                precio = CInt(d.Cells("ColumnPrecioCart").Value())
+                    articuloID = CInt(d.Cells("ColumnIDCart").Value())
+                    cantidadArt = CInt(d.Cells("ColumnCantidadCart").Value())
+                    precio = CInt(d.Cells("ColumnPrecioCart").Value())
 
-                MsgBox(idCompra)
-                MsgBox(articuloID)
+                    MsgBox(idCompra)
+                    MsgBox(articuloID)
 
-                cmd.CommandText = "INSERT INTO detalle_compra(id_compra,id_articulo,Cantidad,PrecioUnitario) VALUES(@idCompra,@idArt,@cant,@price)"
-                cmd.Parameters.Clear()
-                cmd.Parameters.AddWithValue("@idCompra", idCompra)
-                cmd.Parameters.AddWithValue("@idArt", articuloID)
-                cmd.Parameters.AddWithValue("@cant", cantidadArt)
-                cmd.Parameters.AddWithValue("@price", precio)
-                cmd.ExecuteNonQuery()
-            Next
-            conexion.Close()
+                    cmd.CommandText = "INSERT INTO detalle_compra(id_compra,id_articulo,Cantidad,PrecioUnitario) VALUES(@idCompra,@idArt,@cant,@price)"
+                    cmd.Parameters.Clear()
+                    cmd.Parameters.AddWithValue("@idCompra", idCompra)
+                    cmd.Parameters.AddWithValue("@idArt", articuloID)
+                    cmd.Parameters.AddWithValue("@cant", cantidadArt)
+                    cmd.Parameters.AddWithValue("@price", precio)
+                    cmd.ExecuteNonQuery()
+                Next
+                conexion.Close()
 
-        Catch ex As Exception
-            conexion.Close()
-            MsgBox(ex.ToString)
-        End Try
+            Catch ex As Exception
+                conexion.Close()
+                MsgBox(ex.ToString)
+            End Try
+
+
+        End If
+
     End Sub
 End Class
