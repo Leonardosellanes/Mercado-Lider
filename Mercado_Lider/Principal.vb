@@ -411,7 +411,7 @@ Public Class frmPrincipal
             If (H = 3) Then
 
                 Dim resultado As String
-                resultado = MsgBox("ESTA SEGURO DE QUE DESEA CAMBIAR LA CONTRASEÑA", vbOKCancel, "CONFIRMACION")
+                resultado = MsgBox("¿ESTA SEGURO DE QUE DESEA CAMBIAR LA CONTRASEÑA?", vbOKCancel, "CONFIRMACION")
 
                 If resultado = vbOK Then
                     LabelCorrectChangePass.Visible = True
@@ -420,7 +420,6 @@ Public Class frmPrincipal
                     cmd.Parameters.AddWithValue("@pass", generarClaveSHA1(txtContraseñaNueva.Text))
                     cmd.Parameters.AddWithValue("@id", ID)
                     cmd.ExecuteNonQuery()
-                    MsgBox("Password cambiada correctamente")
                     LabelCorrectChangePass.Visible = True
                     txtContraseñaNueva.Clear()
                     txtContraseñaActual.Clear()
@@ -428,23 +427,14 @@ Public Class frmPrincipal
 
                 End If
             End If
-
             conexion.Close()
-         Catch ex As Exception
+        Catch ex As Exception
             MsgBox(ex.ToString)
             conexion.Close()
         End Try
-
         txtContraseñaNueva.Clear()
         txtContraseñaActual.Clear()
         txtRepetirContraseña.Clear()
-
-
-
-        '==========================================
-
-
-
     End Sub
 
     'EVENTO DE BOTON DE EL FORMULARIO DE REGISTRO DE USUARIO
@@ -880,6 +870,7 @@ Public Class frmPrincipal
         pnlMiInfo.Visible = False
         btnConfigOcultar.Visible = False
         Ocultarpaneles()
+        LabelCorrectChangePass.Visible = False
     End Sub
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Domicilio.Hide()
@@ -960,6 +951,7 @@ Public Class frmPrincipal
         pnlInicio.Visible = True
         ActualizarSelectArticulos()
         ajustarGrid()
+        ComboBoxCategorias.Text = "TODOS"
     End Sub
     Private Sub btnRegistrar_Click(sender As Object, e As EventArgs) Handles btnRegistrar.Click
         tbTodos.SelectedTab = tbTodos.TabPages.Item(1)
@@ -989,7 +981,6 @@ Public Class frmPrincipal
             Dim row As DataGridViewRow = DataGridCart.Rows(contador)
             row.Height = 150
             contador = contador + 1
-
         Next
         DataGridCart.Columns(0).Width = 150
         DataGridCart.Columns(1).Width = 150
@@ -1273,11 +1264,13 @@ Public Class frmPrincipal
         Label107.Visible = False
         Label110.Visible = False
         Label109.Visible = False
+        LabelCorrectChangePass.Visible = False
     End Sub
     Private Sub TextBox18_Click(sender As Object, e As EventArgs) Handles txtRepetirContraseña.Click
         Label108.Visible = False
         Label111.Visible = False
         Label109.Visible = False
+        LabelCorrectChangePass.Visible = False
     End Sub
     Private Sub TextBox10_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtStockArticulo.KeyPress
         Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
@@ -1309,6 +1302,7 @@ Public Class frmPrincipal
     End Sub
     Private Sub TextBox24_Click(sender As Object, e As EventArgs) Handles txtContraseñaActual.Click
         Label117.Visible = False
+        LabelCorrectChangePass.Visible = False
     End Sub
     Private Sub btnMisArticulos_Click(sender As Object, e As EventArgs) Handles btnMisArticulos.Click
 

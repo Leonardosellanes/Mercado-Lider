@@ -289,6 +289,12 @@ Partial Class frmPrincipal
         Me.ofdEditarImagen2 = New System.Windows.Forms.OpenFileDialog()
         Me.ofdEditarImagen3 = New System.Windows.Forms.OpenFileDialog()
         Me.DataGridViewImageColumn1 = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.Label29 = New System.Windows.Forms.Label()
         Me.tbTodos.SuspendLayout()
         Me.tbPrincipal.SuspendLayout()
         Me.pnlOcultarheaders.SuspendLayout()
@@ -321,6 +327,7 @@ Partial Class frmPrincipal
         Me.tbCambiarContraseña.SuspendLayout()
         Me.tbInfoPersonal.SuspendLayout()
         Me.tbHistorialVentas.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         CType(Me.grdMisVentas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlPerfil.SuspendLayout()
         Me.pnlMiInfo.SuspendLayout()
@@ -360,7 +367,7 @@ Partial Class frmPrincipal
         Me.tbPrincipal.Location = New System.Drawing.Point(4, 22)
         Me.tbPrincipal.Name = "tbPrincipal"
         Me.tbPrincipal.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbPrincipal.Size = New System.Drawing.Size(1059, 565)
+        Me.tbPrincipal.Size = New System.Drawing.Size(1095, 565)
         Me.tbPrincipal.TabIndex = 0
         Me.tbPrincipal.Text = "Inicio"
         Me.tbPrincipal.UseVisualStyleBackColor = True
@@ -480,6 +487,7 @@ Partial Class frmPrincipal
         Me.grdInicio.DefaultCellStyle = DataGridViewCellStyle23
         Me.grdInicio.GridColor = System.Drawing.Color.White
         Me.grdInicio.Location = New System.Drawing.Point(-55, -6)
+        Me.grdInicio.MultiSelect = False
         Me.grdInicio.Name = "grdInicio"
         Me.grdInicio.ReadOnly = True
         Me.grdInicio.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -528,7 +536,7 @@ Partial Class frmPrincipal
         Me.tbRegristro.Location = New System.Drawing.Point(4, 22)
         Me.tbRegristro.Name = "tbRegristro"
         Me.tbRegristro.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbRegristro.Size = New System.Drawing.Size(1059, 565)
+        Me.tbRegristro.Size = New System.Drawing.Size(1095, 565)
         Me.tbRegristro.TabIndex = 3
         Me.tbRegristro.Text = "Registro"
         Me.tbRegristro.UseVisualStyleBackColor = True
@@ -822,7 +830,7 @@ Partial Class frmPrincipal
         Me.tbSesion.Location = New System.Drawing.Point(4, 22)
         Me.tbSesion.Name = "tbSesion"
         Me.tbSesion.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbSesion.Size = New System.Drawing.Size(1059, 565)
+        Me.tbSesion.Size = New System.Drawing.Size(1095, 565)
         Me.tbSesion.TabIndex = 4
         Me.tbSesion.Text = "Inicio Sesion"
         Me.tbSesion.UseVisualStyleBackColor = True
@@ -833,7 +841,7 @@ Partial Class frmPrincipal
         Me.lblNoExisteUser.AutoSize = True
         Me.lblNoExisteUser.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblNoExisteUser.ForeColor = System.Drawing.Color.Red
-        Me.lblNoExisteUser.Location = New System.Drawing.Point(145, 120)
+        Me.lblNoExisteUser.Location = New System.Drawing.Point(173, 125)
         Me.lblNoExisteUser.Name = "lblNoExisteUser"
         Me.lblNoExisteUser.Size = New System.Drawing.Size(652, 25)
         Me.lblNoExisteUser.TabIndex = 13
@@ -975,7 +983,7 @@ Partial Class frmPrincipal
         Me.tbMisArticulos.Location = New System.Drawing.Point(4, 22)
         Me.tbMisArticulos.Name = "tbMisArticulos"
         Me.tbMisArticulos.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbMisArticulos.Size = New System.Drawing.Size(1059, 565)
+        Me.tbMisArticulos.Size = New System.Drawing.Size(1095, 565)
         Me.tbMisArticulos.TabIndex = 5
         Me.tbMisArticulos.Text = "MIs articulos"
         '
@@ -1190,47 +1198,47 @@ Partial Class frmPrincipal
         'PictureBoxImagen3Ficha
         '
         Me.PictureBoxImagen3Ficha.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.PictureBoxImagen3Ficha.BackColor = System.Drawing.Color.Gray
+        Me.PictureBoxImagen3Ficha.BackColor = System.Drawing.Color.White
         Me.PictureBoxImagen3Ficha.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PictureBoxImagen3Ficha.Location = New System.Drawing.Point(630, 309)
         Me.PictureBoxImagen3Ficha.Name = "PictureBoxImagen3Ficha"
         Me.PictureBoxImagen3Ficha.Size = New System.Drawing.Size(144, 146)
-        Me.PictureBoxImagen3Ficha.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBoxImagen3Ficha.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBoxImagen3Ficha.TabIndex = 10
         Me.PictureBoxImagen3Ficha.TabStop = False
         '
         'PictureBoxImagen2Ficha
         '
         Me.PictureBoxImagen2Ficha.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.PictureBoxImagen2Ficha.BackColor = System.Drawing.Color.Gray
+        Me.PictureBoxImagen2Ficha.BackColor = System.Drawing.Color.White
         Me.PictureBoxImagen2Ficha.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PictureBoxImagen2Ficha.Location = New System.Drawing.Point(421, 309)
         Me.PictureBoxImagen2Ficha.Name = "PictureBoxImagen2Ficha"
         Me.PictureBoxImagen2Ficha.Size = New System.Drawing.Size(144, 146)
-        Me.PictureBoxImagen2Ficha.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBoxImagen2Ficha.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBoxImagen2Ficha.TabIndex = 9
         Me.PictureBoxImagen2Ficha.TabStop = False
         '
         'PictureBoxPortadaFicha
         '
-        Me.PictureBoxPortadaFicha.BackColor = System.Drawing.Color.Gray
+        Me.PictureBoxPortadaFicha.BackColor = System.Drawing.Color.White
         Me.PictureBoxPortadaFicha.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PictureBoxPortadaFicha.Location = New System.Drawing.Point(29, 54)
         Me.PictureBoxPortadaFicha.Name = "PictureBoxPortadaFicha"
         Me.PictureBoxPortadaFicha.Size = New System.Drawing.Size(147, 152)
-        Me.PictureBoxPortadaFicha.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBoxPortadaFicha.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBoxPortadaFicha.TabIndex = 8
         Me.PictureBoxPortadaFicha.TabStop = False
         '
         'PictureBoxImagen1Ficha
         '
         Me.PictureBoxImagen1Ficha.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.PictureBoxImagen1Ficha.BackColor = System.Drawing.Color.Gray
+        Me.PictureBoxImagen1Ficha.BackColor = System.Drawing.Color.White
         Me.PictureBoxImagen1Ficha.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PictureBoxImagen1Ficha.Location = New System.Drawing.Point(209, 309)
         Me.PictureBoxImagen1Ficha.Name = "PictureBoxImagen1Ficha"
         Me.PictureBoxImagen1Ficha.Size = New System.Drawing.Size(144, 146)
-        Me.PictureBoxImagen1Ficha.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBoxImagen1Ficha.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBoxImagen1Ficha.TabIndex = 0
         Me.PictureBoxImagen1Ficha.TabStop = False
         '
@@ -1633,7 +1641,7 @@ Partial Class frmPrincipal
         Me.PictureBoxImagen3.Location = New System.Drawing.Point(557, 374)
         Me.PictureBoxImagen3.Name = "PictureBoxImagen3"
         Me.PictureBoxImagen3.Size = New System.Drawing.Size(114, 110)
-        Me.PictureBoxImagen3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBoxImagen3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBoxImagen3.TabIndex = 37
         Me.PictureBoxImagen3.TabStop = False
         '
@@ -1645,7 +1653,7 @@ Partial Class frmPrincipal
         Me.PictureBoxImagen2.Location = New System.Drawing.Point(383, 374)
         Me.PictureBoxImagen2.Name = "PictureBoxImagen2"
         Me.PictureBoxImagen2.Size = New System.Drawing.Size(114, 110)
-        Me.PictureBoxImagen2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBoxImagen2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBoxImagen2.TabIndex = 35
         Me.PictureBoxImagen2.TabStop = False
         '
@@ -1657,7 +1665,7 @@ Partial Class frmPrincipal
         Me.PictureBoxPortada.Location = New System.Drawing.Point(577, 62)
         Me.PictureBoxPortada.Name = "PictureBoxPortada"
         Me.PictureBoxPortada.Size = New System.Drawing.Size(114, 110)
-        Me.PictureBoxPortada.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBoxPortada.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBoxPortada.TabIndex = 11
         Me.PictureBoxPortada.TabStop = False
         '
@@ -1669,7 +1677,7 @@ Partial Class frmPrincipal
         Me.PictureBoxImagen1.Location = New System.Drawing.Point(206, 374)
         Me.PictureBoxImagen1.Name = "PictureBoxImagen1"
         Me.PictureBoxImagen1.Size = New System.Drawing.Size(114, 110)
-        Me.PictureBoxImagen1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBoxImagen1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBoxImagen1.TabIndex = 1
         Me.PictureBoxImagen1.TabStop = False
         '
@@ -1702,7 +1710,7 @@ Partial Class frmPrincipal
         Me.tbDescripcion.Location = New System.Drawing.Point(4, 22)
         Me.tbDescripcion.Name = "tbDescripcion"
         Me.tbDescripcion.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbDescripcion.Size = New System.Drawing.Size(1059, 565)
+        Me.tbDescripcion.Size = New System.Drawing.Size(1095, 565)
         Me.tbDescripcion.TabIndex = 8
         Me.tbDescripcion.Text = "descripcion"
         Me.tbDescripcion.UseVisualStyleBackColor = True
@@ -1928,47 +1936,47 @@ Partial Class frmPrincipal
         'pbCambiarImg3
         '
         Me.pbCambiarImg3.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.pbCambiarImg3.BackColor = System.Drawing.Color.Gray
+        Me.pbCambiarImg3.BackColor = System.Drawing.Color.White
         Me.pbCambiarImg3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pbCambiarImg3.Location = New System.Drawing.Point(599, 306)
         Me.pbCambiarImg3.Name = "pbCambiarImg3"
         Me.pbCambiarImg3.Size = New System.Drawing.Size(149, 144)
-        Me.pbCambiarImg3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbCambiarImg3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pbCambiarImg3.TabIndex = 28
         Me.pbCambiarImg3.TabStop = False
         '
         'pbCambiarImg1
         '
         Me.pbCambiarImg1.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.pbCambiarImg1.BackColor = System.Drawing.Color.Gray
+        Me.pbCambiarImg1.BackColor = System.Drawing.Color.White
         Me.pbCambiarImg1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pbCambiarImg1.Location = New System.Drawing.Point(177, 306)
         Me.pbCambiarImg1.Name = "pbCambiarImg1"
         Me.pbCambiarImg1.Size = New System.Drawing.Size(149, 144)
-        Me.pbCambiarImg1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbCambiarImg1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pbCambiarImg1.TabIndex = 25
         Me.pbCambiarImg1.TabStop = False
         '
         'pbCambiarPortada
         '
-        Me.pbCambiarPortada.BackColor = System.Drawing.Color.Gray
+        Me.pbCambiarPortada.BackColor = System.Drawing.Color.White
         Me.pbCambiarPortada.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pbCambiarPortada.Location = New System.Drawing.Point(68, 29)
         Me.pbCambiarPortada.Name = "pbCambiarPortada"
         Me.pbCambiarPortada.Size = New System.Drawing.Size(143, 150)
-        Me.pbCambiarPortada.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbCambiarPortada.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pbCambiarPortada.TabIndex = 17
         Me.pbCambiarPortada.TabStop = False
         '
         'pbCambiarImg2
         '
         Me.pbCambiarImg2.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.pbCambiarImg2.BackColor = System.Drawing.Color.Gray
+        Me.pbCambiarImg2.BackColor = System.Drawing.Color.White
         Me.pbCambiarImg2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pbCambiarImg2.Location = New System.Drawing.Point(391, 306)
         Me.pbCambiarImg2.Name = "pbCambiarImg2"
         Me.pbCambiarImg2.Size = New System.Drawing.Size(149, 144)
-        Me.pbCambiarImg2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbCambiarImg2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pbCambiarImg2.TabIndex = 9
         Me.pbCambiarImg2.TabStop = False
         '
@@ -2297,7 +2305,7 @@ Partial Class frmPrincipal
         Me.tbCompr.Location = New System.Drawing.Point(4, 22)
         Me.tbCompr.Name = "tbCompr"
         Me.tbCompr.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbCompr.Size = New System.Drawing.Size(1059, 565)
+        Me.tbCompr.Size = New System.Drawing.Size(1095, 565)
         Me.tbCompr.TabIndex = 10
         Me.tbCompr.Text = "1-Compras"
         Me.tbCompr.UseVisualStyleBackColor = True
@@ -2330,7 +2338,7 @@ Partial Class frmPrincipal
         Me.tbCambiarContraseña.Location = New System.Drawing.Point(4, 22)
         Me.tbCambiarContraseña.Name = "tbCambiarContraseña"
         Me.tbCambiarContraseña.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbCambiarContraseña.Size = New System.Drawing.Size(1059, 565)
+        Me.tbCambiarContraseña.Size = New System.Drawing.Size(1095, 565)
         Me.tbCambiarContraseña.TabIndex = 15
         Me.tbCambiarContraseña.Text = "Cambiar password"
         Me.tbCambiarContraseña.UseVisualStyleBackColor = True
@@ -2483,7 +2491,7 @@ Partial Class frmPrincipal
         Me.btnAceptarPasswd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAceptarPasswd.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAceptarPasswd.ForeColor = System.Drawing.Color.Black
-        Me.btnAceptarPasswd.Location = New System.Drawing.Point(422, 482)
+        Me.btnAceptarPasswd.Location = New System.Drawing.Point(420, 482)
         Me.btnAceptarPasswd.Name = "btnAceptarPasswd"
         Me.btnAceptarPasswd.Size = New System.Drawing.Size(145, 23)
         Me.btnAceptarPasswd.TabIndex = 15
@@ -2539,7 +2547,7 @@ Partial Class frmPrincipal
         Me.tbInfoPersonal.Location = New System.Drawing.Point(4, 22)
         Me.tbInfoPersonal.Name = "tbInfoPersonal"
         Me.tbInfoPersonal.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbInfoPersonal.Size = New System.Drawing.Size(1059, 565)
+        Me.tbInfoPersonal.Size = New System.Drawing.Size(1095, 565)
         Me.tbInfoPersonal.TabIndex = 16
         Me.tbInfoPersonal.Text = "InfoPersonal"
         Me.tbInfoPersonal.UseVisualStyleBackColor = True
@@ -2816,7 +2824,7 @@ Partial Class frmPrincipal
         Me.tbHistorialVentas.Location = New System.Drawing.Point(4, 22)
         Me.tbHistorialVentas.Name = "tbHistorialVentas"
         Me.tbHistorialVentas.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbHistorialVentas.Size = New System.Drawing.Size(1059, 565)
+        Me.tbHistorialVentas.Size = New System.Drawing.Size(1095, 565)
         Me.tbHistorialVentas.TabIndex = 17
         Me.tbHistorialVentas.Text = "Historial Ventas"
         Me.tbHistorialVentas.UseVisualStyleBackColor = True
@@ -2826,6 +2834,12 @@ Partial Class frmPrincipal
         Me.Panel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel2.BackColor = System.Drawing.Color.White
+        Me.Panel2.Controls.Add(Me.Label29)
+        Me.Panel2.Controls.Add(Me.Label28)
+        Me.Panel2.Controls.Add(Me.Label25)
+        Me.Panel2.Controls.Add(Me.Label24)
+        Me.Panel2.Controls.Add(Me.Label23)
+        Me.Panel2.Controls.Add(Me.Label22)
         Me.Panel2.Location = New System.Drawing.Point(3, 50)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(953, 43)
@@ -3475,6 +3489,78 @@ Partial Class frmPrincipal
         Me.DataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
+        'Label22
+        '
+        Me.Label22.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label22.AutoSize = True
+        Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label22.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label22.Location = New System.Drawing.Point(174, 16)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(69, 13)
+        Me.Label22.TabIndex = 55
+        Me.Label22.Text = "ARTICULO"
+        '
+        'Label23
+        '
+        Me.Label23.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label23.AutoSize = True
+        Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label23.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label23.Location = New System.Drawing.Point(279, 16)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(70, 13)
+        Me.Label23.TabIndex = 56
+        Me.Label23.Text = "CANTIDAD"
+        '
+        'Label24
+        '
+        Me.Label24.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label24.AutoSize = True
+        Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label24.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label24.Location = New System.Drawing.Point(396, 16)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(117, 13)
+        Me.Label24.TabIndex = 57
+        Me.Label24.Text = "PRECIO UNITARIO"
+        '
+        'Label25
+        '
+        Me.Label25.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label25.Location = New System.Drawing.Point(568, 16)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(47, 13)
+        Me.Label25.TabIndex = 58
+        Me.Label25.Text = "FECHA"
+        '
+        'Label28
+        '
+        Me.Label28.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label28.AutoSize = True
+        Me.Label28.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label28.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label28.Location = New System.Drawing.Point(668, 16)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(72, 13)
+        Me.Label28.TabIndex = 59
+        Me.Label28.Text = "SUBTOTAL"
+        '
+        'Label29
+        '
+        Me.Label29.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label29.AutoSize = True
+        Me.Label29.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label29.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label29.Location = New System.Drawing.Point(813, 16)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(86, 13)
+        Me.Label29.TabIndex = 60
+        Me.Label29.Text = "COMPRADOR"
+        '
         'frmPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3536,6 +3622,8 @@ Partial Class frmPrincipal
         Me.tbInfoPersonal.PerformLayout()
         Me.tbHistorialVentas.ResumeLayout(False)
         Me.tbHistorialVentas.PerformLayout()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         CType(Me.grdMisVentas, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlPerfil.ResumeLayout(False)
         Me.pnlMiInfo.ResumeLayout(False)
@@ -3793,4 +3881,10 @@ Partial Class frmPrincipal
     Friend WithEvents ColumnPrecioCart As DataGridViewTextBoxColumn
     Friend WithEvents ColumnCantidadCart As DataGridViewTextBoxColumn
     Friend WithEvents ColumnSubTotal As DataGridViewTextBoxColumn
+    Friend WithEvents Label29 As Label
+    Friend WithEvents Label28 As Label
+    Friend WithEvents Label25 As Label
+    Friend WithEvents Label24 As Label
+    Friend WithEvents Label23 As Label
+    Friend WithEvents Label22 As Label
 End Class
