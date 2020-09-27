@@ -24,28 +24,18 @@ Partial Class Administrador
     Private Sub InitializeComponent()
         Me.tcAdmin = New System.Windows.Forms.TabControl()
         Me.tpArticulos = New System.Windows.Forms.TabPage()
+        Me.NomArtLbl = New System.Windows.Forms.Label()
+        Me.idArtLabel = New System.Windows.Forms.Label()
+        Me.lblIDArt = New System.Windows.Forms.Label()
+        Me.lblNomArt = New System.Windows.Forms.Label()
+        Me.dataGridArticulos = New System.Windows.Forms.DataGridView()
         Me.btnEliminar1 = New System.Windows.Forms.Button()
-        Me.btnEliminar3 = New System.Windows.Forms.Button()
-        Me.btnEliminar2 = New System.Windows.Forms.Button()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox5 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox6 = New System.Windows.Forms.PictureBox()
         Me.tpUsuarios = New System.Windows.Forms.TabPage()
         Me.Label127 = New System.Windows.Forms.Label()
         Me.btnAgregarAdmin = New System.Windows.Forms.Button()
         Me.grdUsuarios = New System.Windows.Forms.DataGridView()
         Me.btnEliminarUser = New System.Windows.Forms.Button()
         Me.btnContraseña = New System.Windows.Forms.Button()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
         Me.tpTransacciones = New System.Windows.Forms.TabPage()
         Me.Label126 = New System.Windows.Forms.Label()
         Me.grdTransacciones = New System.Windows.Forms.DataGridView()
@@ -59,11 +49,14 @@ Partial Class Administrador
         Me.pnlArticulos = New System.Windows.Forms.Panel()
         Me.btnArticulos = New System.Windows.Forms.Button()
         Me.pnlSuperior = New System.Windows.Forms.Panel()
+        Me.idCompraColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CompradorColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FechaColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PagoColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VendedorColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tcAdmin.SuspendLayout()
         Me.tpArticulos.SuspendLayout()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dataGridArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tpUsuarios.SuspendLayout()
         CType(Me.grdUsuarios, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tpTransacciones.SuspendLayout()
@@ -87,18 +80,12 @@ Partial Class Administrador
         '
         'tpArticulos
         '
+        Me.tpArticulos.Controls.Add(Me.NomArtLbl)
+        Me.tpArticulos.Controls.Add(Me.idArtLabel)
+        Me.tpArticulos.Controls.Add(Me.lblIDArt)
+        Me.tpArticulos.Controls.Add(Me.lblNomArt)
+        Me.tpArticulos.Controls.Add(Me.dataGridArticulos)
         Me.tpArticulos.Controls.Add(Me.btnEliminar1)
-        Me.tpArticulos.Controls.Add(Me.btnEliminar3)
-        Me.tpArticulos.Controls.Add(Me.btnEliminar2)
-        Me.tpArticulos.Controls.Add(Me.Label9)
-        Me.tpArticulos.Controls.Add(Me.Label10)
-        Me.tpArticulos.Controls.Add(Me.Label11)
-        Me.tpArticulos.Controls.Add(Me.Label12)
-        Me.tpArticulos.Controls.Add(Me.Label13)
-        Me.tpArticulos.Controls.Add(Me.Label14)
-        Me.tpArticulos.Controls.Add(Me.PictureBox4)
-        Me.tpArticulos.Controls.Add(Me.PictureBox5)
-        Me.tpArticulos.Controls.Add(Me.PictureBox6)
         Me.tpArticulos.Location = New System.Drawing.Point(4, 22)
         Me.tpArticulos.Name = "tpArticulos"
         Me.tpArticulos.Padding = New System.Windows.Forms.Padding(3)
@@ -107,131 +94,64 @@ Partial Class Administrador
         Me.tpArticulos.Text = "Articulos"
         Me.tpArticulos.UseVisualStyleBackColor = True
         '
+        'NomArtLbl
+        '
+        Me.NomArtLbl.AutoSize = True
+        Me.NomArtLbl.Location = New System.Drawing.Point(522, 438)
+        Me.NomArtLbl.Name = "NomArtLbl"
+        Me.NomArtLbl.Size = New System.Drawing.Size(39, 13)
+        Me.NomArtLbl.TabIndex = 50
+        Me.NomArtLbl.Text = "Label4"
+        '
+        'idArtLabel
+        '
+        Me.idArtLabel.AutoSize = True
+        Me.idArtLabel.Location = New System.Drawing.Point(480, 402)
+        Me.idArtLabel.Name = "idArtLabel"
+        Me.idArtLabel.Size = New System.Drawing.Size(39, 13)
+        Me.idArtLabel.TabIndex = 49
+        Me.idArtLabel.Text = "Label3"
+        '
+        'lblIDArt
+        '
+        Me.lblIDArt.AutoSize = True
+        Me.lblIDArt.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblIDArt.Location = New System.Drawing.Point(441, 397)
+        Me.lblIDArt.Name = "lblIDArt"
+        Me.lblIDArt.Size = New System.Drawing.Size(33, 20)
+        Me.lblIDArt.TabIndex = 48
+        Me.lblIDArt.Text = "ID:"
+        '
+        'lblNomArt
+        '
+        Me.lblNomArt.AutoSize = True
+        Me.lblNomArt.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNomArt.Location = New System.Drawing.Point(441, 433)
+        Me.lblNomArt.Name = "lblNomArt"
+        Me.lblNomArt.Size = New System.Drawing.Size(75, 20)
+        Me.lblNomArt.TabIndex = 47
+        Me.lblNomArt.Text = "Articulo:"
+        '
+        'dataGridArticulos
+        '
+        Me.dataGridArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dataGridArticulos.Location = New System.Drawing.Point(167, 19)
+        Me.dataGridArticulos.Name = "dataGridArticulos"
+        Me.dataGridArticulos.Size = New System.Drawing.Size(788, 375)
+        Me.dataGridArticulos.TabIndex = 46
+        '
         'btnEliminar1
         '
         Me.btnEliminar1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEliminar1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnEliminar1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEliminar1.ForeColor = System.Drawing.Color.Black
-        Me.btnEliminar1.Location = New System.Drawing.Point(783, 68)
+        Me.btnEliminar1.Location = New System.Drawing.Point(445, 456)
         Me.btnEliminar1.Name = "btnEliminar1"
         Me.btnEliminar1.Size = New System.Drawing.Size(158, 27)
         Me.btnEliminar1.TabIndex = 45
         Me.btnEliminar1.Text = "ELIMINAR ARTICULO"
         Me.btnEliminar1.UseVisualStyleBackColor = True
-        '
-        'btnEliminar3
-        '
-        Me.btnEliminar3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnEliminar3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnEliminar3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnEliminar3.ForeColor = System.Drawing.Color.Black
-        Me.btnEliminar3.Location = New System.Drawing.Point(785, 358)
-        Me.btnEliminar3.Name = "btnEliminar3"
-        Me.btnEliminar3.Size = New System.Drawing.Size(158, 27)
-        Me.btnEliminar3.TabIndex = 44
-        Me.btnEliminar3.Text = "ELIMINAR ARTICULO"
-        Me.btnEliminar3.UseVisualStyleBackColor = True
-        '
-        'btnEliminar2
-        '
-        Me.btnEliminar2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnEliminar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnEliminar2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnEliminar2.ForeColor = System.Drawing.Color.Black
-        Me.btnEliminar2.Location = New System.Drawing.Point(783, 212)
-        Me.btnEliminar2.Name = "btnEliminar2"
-        Me.btnEliminar2.Size = New System.Drawing.Size(158, 27)
-        Me.btnEliminar2.TabIndex = 43
-        Me.btnEliminar2.Text = "ELIMINAR ARTICULO"
-        Me.btnEliminar2.UseVisualStyleBackColor = True
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(332, 403)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(53, 20)
-        Me.Label9.TabIndex = 42
-        Me.Label9.Text = "Precio"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(279, 358)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(165, 25)
-        Me.Label10.TabIndex = 41
-        Me.Label10.Text = "Nombre Articulo"
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(332, 257)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(53, 20)
-        Me.Label11.TabIndex = 39
-        Me.Label11.Text = "Precio"
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(279, 212)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(165, 25)
-        Me.Label12.TabIndex = 38
-        Me.Label12.Text = "Nombre Articulo"
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(332, 114)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(53, 20)
-        Me.Label13.TabIndex = 36
-        Me.Label13.Text = "Precio"
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(279, 69)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(165, 25)
-        Me.Label14.TabIndex = 35
-        Me.Label14.Text = "Nombre Articulo"
-        '
-        'PictureBox4
-        '
-        Me.PictureBox4.BackColor = System.Drawing.Color.Gray
-        Me.PictureBox4.Location = New System.Drawing.Point(159, 342)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(97, 93)
-        Me.PictureBox4.TabIndex = 40
-        Me.PictureBox4.TabStop = False
-        '
-        'PictureBox5
-        '
-        Me.PictureBox5.BackColor = System.Drawing.Color.Gray
-        Me.PictureBox5.Location = New System.Drawing.Point(159, 196)
-        Me.PictureBox5.Name = "PictureBox5"
-        Me.PictureBox5.Size = New System.Drawing.Size(97, 93)
-        Me.PictureBox5.TabIndex = 37
-        Me.PictureBox5.TabStop = False
-        '
-        'PictureBox6
-        '
-        Me.PictureBox6.BackColor = System.Drawing.Color.Gray
-        Me.PictureBox6.Location = New System.Drawing.Point(159, 53)
-        Me.PictureBox6.Name = "PictureBox6"
-        Me.PictureBox6.Size = New System.Drawing.Size(97, 93)
-        Me.PictureBox6.TabIndex = 34
-        Me.PictureBox6.TabStop = False
         '
         'tpUsuarios
         '
@@ -240,10 +160,6 @@ Partial Class Administrador
         Me.tpUsuarios.Controls.Add(Me.grdUsuarios)
         Me.tpUsuarios.Controls.Add(Me.btnEliminarUser)
         Me.tpUsuarios.Controls.Add(Me.btnContraseña)
-        Me.tpUsuarios.Controls.Add(Me.Label15)
-        Me.tpUsuarios.Controls.Add(Me.Label16)
-        Me.tpUsuarios.Controls.Add(Me.Label17)
-        Me.tpUsuarios.Controls.Add(Me.Label18)
         Me.tpUsuarios.Location = New System.Drawing.Point(4, 22)
         Me.tpUsuarios.Name = "tpUsuarios"
         Me.tpUsuarios.Padding = New System.Windows.Forms.Padding(3)
@@ -257,7 +173,7 @@ Partial Class Administrador
         Me.Label127.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label127.AutoSize = True
         Me.Label127.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label127.Location = New System.Drawing.Point(434, 44)
+        Me.Label127.Location = New System.Drawing.Point(442, 16)
         Me.Label127.Name = "Label127"
         Me.Label127.Size = New System.Drawing.Size(205, 39)
         Me.Label127.TabIndex = 37
@@ -269,7 +185,7 @@ Partial Class Administrador
         Me.btnAgregarAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAgregarAdmin.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAgregarAdmin.ForeColor = System.Drawing.Color.Black
-        Me.btnAgregarAdmin.Location = New System.Drawing.Point(636, 438)
+        Me.btnAgregarAdmin.Location = New System.Drawing.Point(689, 438)
         Me.btnAgregarAdmin.Name = "btnAgregarAdmin"
         Me.btnAgregarAdmin.Size = New System.Drawing.Size(131, 22)
         Me.btnAgregarAdmin.TabIndex = 36
@@ -280,9 +196,9 @@ Partial Class Administrador
         '
         Me.grdUsuarios.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.grdUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.grdUsuarios.Location = New System.Drawing.Point(297, 143)
+        Me.grdUsuarios.Location = New System.Drawing.Point(220, 58)
         Me.grdUsuarios.Name = "grdUsuarios"
-        Me.grdUsuarios.Size = New System.Drawing.Size(488, 269)
+        Me.grdUsuarios.Size = New System.Drawing.Size(680, 361)
         Me.grdUsuarios.TabIndex = 35
         '
         'btnEliminarUser
@@ -291,7 +207,7 @@ Partial Class Administrador
         Me.btnEliminarUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnEliminarUser.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEliminarUser.ForeColor = System.Drawing.Color.Black
-        Me.btnEliminarUser.Location = New System.Drawing.Point(321, 438)
+        Me.btnEliminarUser.Location = New System.Drawing.Point(292, 438)
         Me.btnEliminarUser.Name = "btnEliminarUser"
         Me.btnEliminarUser.Size = New System.Drawing.Size(131, 22)
         Me.btnEliminarUser.TabIndex = 34
@@ -305,52 +221,12 @@ Partial Class Administrador
         Me.btnContraseña.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnContraseña.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnContraseña.ForeColor = System.Drawing.Color.Black
-        Me.btnContraseña.Location = New System.Drawing.Point(458, 438)
+        Me.btnContraseña.Location = New System.Drawing.Point(464, 438)
         Me.btnContraseña.Name = "btnContraseña"
         Me.btnContraseña.Size = New System.Drawing.Size(172, 22)
         Me.btnContraseña.TabIndex = 33
         Me.btnContraseña.Text = "CAMBIAR CONTRASEÑA"
         Me.btnContraseña.UseVisualStyleBackColor = True
-        '
-        'Label15
-        '
-        Me.Label15.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(689, 120)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(29, 13)
-        Me.Label15.TabIndex = 32
-        Me.Label15.Text = "ROL"
-        '
-        'Label16
-        '
-        Me.Label16.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(556, 120)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(81, 13)
-        Me.Label16.TabIndex = 31
-        Me.Label16.Text = "CONTRASEÑA"
-        '
-        'Label17
-        '
-        Me.Label17.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(450, 120)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(53, 13)
-        Me.Label17.TabIndex = 30
-        Me.Label17.Text = "CORREO"
-        '
-        'Label18
-        '
-        Me.Label18.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(335, 120)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(56, 13)
-        Me.Label18.TabIndex = 29
-        Me.Label18.Text = "USUARIO"
         '
         'tpTransacciones
         '
@@ -379,6 +255,7 @@ Partial Class Administrador
         '
         Me.grdTransacciones.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.grdTransacciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.grdTransacciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.idCompraColumn, Me.CompradorColumn, Me.FechaColumn, Me.PagoColumn, Me.VendedorColumn})
         Me.grdTransacciones.Location = New System.Drawing.Point(208, 71)
         Me.grdTransacciones.Name = "grdTransacciones"
         Me.grdTransacciones.Size = New System.Drawing.Size(651, 408)
@@ -506,6 +383,35 @@ Partial Class Administrador
         Me.pnlSuperior.Size = New System.Drawing.Size(841, 36)
         Me.pnlSuperior.TabIndex = 8
         '
+        'idCompraColumn
+        '
+        Me.idCompraColumn.HeaderText = "IDCOMPRA"
+        Me.idCompraColumn.Name = "idCompraColumn"
+        Me.idCompraColumn.ReadOnly = True
+        '
+        'CompradorColumn
+        '
+        Me.CompradorColumn.HeaderText = "Comprador"
+        Me.CompradorColumn.Name = "CompradorColumn"
+        Me.CompradorColumn.ReadOnly = True
+        '
+        'FechaColumn
+        '
+        Me.FechaColumn.HeaderText = "Fecha"
+        Me.FechaColumn.Name = "FechaColumn"
+        '
+        'PagoColumn
+        '
+        Me.PagoColumn.HeaderText = "Pago"
+        Me.PagoColumn.Name = "PagoColumn"
+        Me.PagoColumn.ReadOnly = True
+        '
+        'VendedorColumn
+        '
+        Me.VendedorColumn.HeaderText = "Vendedor"
+        Me.VendedorColumn.Name = "VendedorColumn"
+        Me.VendedorColumn.ReadOnly = True
+        '
         'Administrador
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -522,9 +428,7 @@ Partial Class Administrador
         Me.tcAdmin.ResumeLayout(False)
         Me.tpArticulos.ResumeLayout(False)
         Me.tpArticulos.PerformLayout()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dataGridArticulos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tpUsuarios.ResumeLayout(False)
         Me.tpUsuarios.PerformLayout()
         CType(Me.grdUsuarios, System.ComponentModel.ISupportInitialize).EndInit()
@@ -551,26 +455,21 @@ Partial Class Administrador
     Friend WithEvents tpTransacciones As TabPage
     Friend WithEvents pnlSuperior As Panel
     Friend WithEvents btnEliminar1 As Button
-    Friend WithEvents btnEliminar3 As Button
-    Friend WithEvents btnEliminar2 As Button
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Label10 As Label
-    Friend WithEvents Label11 As Label
-    Friend WithEvents Label12 As Label
-    Friend WithEvents Label13 As Label
-    Friend WithEvents Label14 As Label
-    Friend WithEvents PictureBox4 As PictureBox
-    Friend WithEvents PictureBox5 As PictureBox
-    Friend WithEvents PictureBox6 As PictureBox
     Friend WithEvents Label127 As Label
     Friend WithEvents btnAgregarAdmin As Button
     Friend WithEvents grdUsuarios As DataGridView
     Friend WithEvents btnEliminarUser As Button
     Friend WithEvents btnContraseña As Button
-    Friend WithEvents Label15 As Label
-    Friend WithEvents Label16 As Label
-    Friend WithEvents Label17 As Label
-    Friend WithEvents Label18 As Label
     Friend WithEvents Label126 As Label
     Friend WithEvents grdTransacciones As DataGridView
+    Friend WithEvents lblIDArt As Label
+    Friend WithEvents lblNomArt As Label
+    Friend WithEvents dataGridArticulos As DataGridView
+    Friend WithEvents NomArtLbl As Label
+    Friend WithEvents idArtLabel As Label
+    Friend WithEvents idCompraColumn As DataGridViewTextBoxColumn
+    Friend WithEvents CompradorColumn As DataGridViewTextBoxColumn
+    Friend WithEvents FechaColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PagoColumn As DataGridViewTextBoxColumn
+    Friend WithEvents VendedorColumn As DataGridViewTextBoxColumn
 End Class
