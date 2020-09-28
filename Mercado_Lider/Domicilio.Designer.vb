@@ -74,6 +74,7 @@ Partial Class Domicilio
         'TextBox1
         '
         Me.TextBox1.Location = New System.Drawing.Point(82, 19)
+        Me.TextBox1.MaxLength = 11
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(55, 20)
         Me.TextBox1.TabIndex = 3
@@ -81,6 +82,7 @@ Partial Class Domicilio
         'TextBox2
         '
         Me.TextBox2.Location = New System.Drawing.Point(188, 19)
+        Me.TextBox2.MaxLength = 30
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(143, 20)
         Me.TextBox2.TabIndex = 5
@@ -88,7 +90,7 @@ Partial Class Domicilio
         'lblCalle
         '
         Me.lblCalle.AutoSize = True
-        Me.lblCalle.Location = New System.Drawing.Point(143, 22)
+        Me.lblCalle.Location = New System.Drawing.Point(149, 22)
         Me.lblCalle.Name = "lblCalle"
         Me.lblCalle.Size = New System.Drawing.Size(33, 13)
         Me.lblCalle.TabIndex = 4
@@ -97,6 +99,7 @@ Partial Class Domicilio
         'TextBox3
         '
         Me.TextBox3.Location = New System.Drawing.Point(61, 58)
+        Me.TextBox3.MaxLength = 30
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(143, 20)
         Me.TextBox3.TabIndex = 7
@@ -113,6 +116,7 @@ Partial Class Domicilio
         'TextBox4
         '
         Me.TextBox4.Location = New System.Drawing.Point(276, 61)
+        Me.TextBox4.MaxLength = 11
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(55, 20)
         Me.TextBox4.TabIndex = 9
@@ -129,6 +133,7 @@ Partial Class Domicilio
         'TextBox5
         '
         Me.TextBox5.Location = New System.Drawing.Point(109, 98)
+        Me.TextBox5.MaxLength = 30
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(143, 20)
         Me.TextBox5.TabIndex = 11

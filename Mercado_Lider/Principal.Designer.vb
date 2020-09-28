@@ -215,7 +215,6 @@ Partial Class frmPrincipal
         Me.tbInfoPersonal = New System.Windows.Forms.TabPage()
         Me.Label100 = New System.Windows.Forms.Label()
         Me.Label99 = New System.Windows.Forms.Label()
-        Me.Label98 = New System.Windows.Forms.Label()
         Me.Label97 = New System.Windows.Forms.Label()
         Me.LabelErrorUsername = New System.Windows.Forms.Label()
         Me.LabelErrorCorreo = New System.Windows.Forms.Label()
@@ -223,8 +222,6 @@ Partial Class frmPrincipal
         Me.Label89 = New System.Windows.Forms.Label()
         Me.txtDomicilioModificarPerfil = New System.Windows.Forms.TextBox()
         Me.Label88 = New System.Windows.Forms.Label()
-        Me.txtCedulaModificarPerfil = New System.Windows.Forms.TextBox()
-        Me.Label85 = New System.Windows.Forms.Label()
         Me.txtApellidoModificarPerfil = New System.Windows.Forms.TextBox()
         Me.Label78 = New System.Windows.Forms.Label()
         Me.txtNombreModificarPerfil = New System.Windows.Forms.TextBox()
@@ -295,6 +292,10 @@ Partial Class frmPrincipal
         Me.ofdEditarImagen2 = New System.Windows.Forms.OpenFileDialog()
         Me.ofdEditarImagen3 = New System.Windows.Forms.OpenFileDialog()
         Me.DataGridViewImageColumn1 = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.lblVendedor = New System.Windows.Forms.Label()
+        Me.lblVendedorName = New System.Windows.Forms.Label()
+        Me.lblFichaStock = New System.Windows.Forms.Label()
+        Me.lblFichaCantidad = New System.Windows.Forms.Label()
         Me.tbTodos.SuspendLayout()
         Me.tbPrincipal.SuspendLayout()
         Me.pnlOcultarheaders.SuspendLayout()
@@ -623,7 +624,7 @@ Partial Class frmPrincipal
         Me.Label101.Name = "Label101"
         Me.Label101.Size = New System.Drawing.Size(213, 12)
         Me.Label101.TabIndex = 26
-        Me.Label101.Text = "*Debe ingresar un nombre con mas de 3 caracteres"
+        Me.Label101.Text = "*Debe ingresar un nombre con mas de 6 caracteres"
         Me.Label101.Visible = False
         '
         'Label86
@@ -643,6 +644,7 @@ Partial Class frmPrincipal
         '
         Me.txtUsername.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.txtUsername.Location = New System.Drawing.Point(370, 142)
+        Me.txtUsername.MaxLength = 20
         Me.txtUsername.Name = "txtUsername"
         Me.txtUsername.Size = New System.Drawing.Size(220, 20)
         Me.txtUsername.TabIndex = 1
@@ -734,6 +736,7 @@ Partial Class frmPrincipal
         '
         Me.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.txtEmail.Location = New System.Drawing.Point(370, 205)
+        Me.txtEmail.MaxLength = 30
         Me.txtEmail.Name = "txtEmail"
         Me.txtEmail.Size = New System.Drawing.Size(220, 20)
         Me.txtEmail.TabIndex = 3
@@ -742,6 +745,7 @@ Partial Class frmPrincipal
         '
         Me.txtPass.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.txtPass.Location = New System.Drawing.Point(370, 397)
+        Me.txtPass.MaxLength = 255
         Me.txtPass.Name = "txtPass"
         Me.txtPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPass.Size = New System.Drawing.Size(220, 20)
@@ -1079,6 +1083,7 @@ Partial Class frmPrincipal
         Me.grdMisArticulos.DefaultCellStyle = DataGridViewCellStyle8
         Me.grdMisArticulos.GridColor = System.Drawing.Color.White
         Me.grdMisArticulos.Location = New System.Drawing.Point(47, 62)
+        Me.grdMisArticulos.MultiSelect = False
         Me.grdMisArticulos.Name = "grdMisArticulos"
         Me.grdMisArticulos.ReadOnly = True
         Me.grdMisArticulos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -1101,6 +1106,10 @@ Partial Class frmPrincipal
         '
         'tbArticulos
         '
+        Me.tbArticulos.Controls.Add(Me.lblFichaCantidad)
+        Me.tbArticulos.Controls.Add(Me.lblFichaStock)
+        Me.tbArticulos.Controls.Add(Me.lblVendedorName)
+        Me.tbArticulos.Controls.Add(Me.lblVendedor)
         Me.tbArticulos.Controls.Add(Me.codigoFichaLbl)
         Me.tbArticulos.Controls.Add(Me.btnVolver)
         Me.tbArticulos.Controls.Add(Me.btnAgregarAlCarrito)
@@ -1528,6 +1537,7 @@ Partial Class frmPrincipal
         '
         Me.txtDescripcionArticulo.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.txtDescripcionArticulo.Location = New System.Drawing.Point(166, 248)
+        Me.txtDescripcionArticulo.MaxLength = 50
         Me.txtDescripcionArticulo.Multiline = True
         Me.txtDescripcionArticulo.Name = "txtDescripcionArticulo"
         Me.txtDescripcionArticulo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -1583,6 +1593,7 @@ Partial Class frmPrincipal
         '
         Me.txtStockArticulo.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.txtStockArticulo.Location = New System.Drawing.Point(307, 62)
+        Me.txtStockArticulo.MaxLength = 11
         Me.txtStockArticulo.Name = "txtStockArticulo"
         Me.txtStockArticulo.Size = New System.Drawing.Size(178, 20)
         Me.txtStockArticulo.TabIndex = 15
@@ -1601,6 +1612,7 @@ Partial Class frmPrincipal
         '
         Me.txtPrecio.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.txtPrecio.Location = New System.Drawing.Point(307, 184)
+        Me.txtPrecio.MaxLength = 11
         Me.txtPrecio.Name = "txtPrecio"
         Me.txtPrecio.Size = New System.Drawing.Size(178, 20)
         Me.txtPrecio.TabIndex = 10
@@ -1619,6 +1631,7 @@ Partial Class frmPrincipal
         '
         Me.txtNombreArticulo.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.txtNombreArticulo.Location = New System.Drawing.Point(307, 120)
+        Me.txtNombreArticulo.MaxLength = 30
         Me.txtNombreArticulo.Name = "txtNombreArticulo"
         Me.txtNombreArticulo.Size = New System.Drawing.Size(178, 20)
         Me.txtNombreArticulo.TabIndex = 8
@@ -1799,6 +1812,7 @@ Partial Class frmPrincipal
         '
         Me.txtStock.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtStock.Location = New System.Drawing.Point(714, 33)
+        Me.txtStock.MaxLength = 11
         Me.txtStock.Name = "txtStock"
         Me.txtStock.Size = New System.Drawing.Size(100, 20)
         Me.txtStock.TabIndex = 35
@@ -1818,6 +1832,7 @@ Partial Class frmPrincipal
         '
         Me.txtEditarPrecio.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtEditarPrecio.Location = New System.Drawing.Point(826, 522)
+        Me.txtEditarPrecio.MaxLength = 11
         Me.txtEditarPrecio.Name = "txtEditarPrecio"
         Me.txtEditarPrecio.Size = New System.Drawing.Size(100, 20)
         Me.txtEditarPrecio.TabIndex = 33
@@ -1825,6 +1840,7 @@ Partial Class frmPrincipal
         'txtEditarNombreArticulo
         '
         Me.txtEditarNombreArticulo.Location = New System.Drawing.Point(217, 31)
+        Me.txtEditarNombreArticulo.MaxLength = 30
         Me.txtEditarNombreArticulo.Name = "txtEditarNombreArticulo"
         Me.txtEditarNombreArticulo.Size = New System.Drawing.Size(217, 20)
         Me.txtEditarNombreArticulo.TabIndex = 32
@@ -1884,6 +1900,7 @@ Partial Class frmPrincipal
         'txtCambiarDescripcion
         '
         Me.txtCambiarDescripcion.Location = New System.Drawing.Point(217, 120)
+        Me.txtCambiarDescripcion.MaxLength = 50
         Me.txtCambiarDescripcion.Multiline = True
         Me.txtCambiarDescripcion.Name = "txtCambiarDescripcion"
         Me.txtCambiarDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -2108,6 +2125,7 @@ Partial Class frmPrincipal
         '
         Me.txtCantidadCart.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.txtCantidadCart.Location = New System.Drawing.Point(420, 499)
+        Me.txtCantidadCart.MaxLength = 11
         Me.txtCantidadCart.Name = "txtCantidadCart"
         Me.txtCantidadCart.Size = New System.Drawing.Size(87, 20)
         Me.txtCantidadCart.TabIndex = 48
@@ -2251,7 +2269,7 @@ Partial Class frmPrincipal
         Me.lblPrecioTotalCart.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblPrecioTotalCart.AutoSize = True
         Me.lblPrecioTotalCart.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPrecioTotalCart.Location = New System.Drawing.Point(641, 530)
+        Me.lblPrecioTotalCart.Location = New System.Drawing.Point(874, 496)
         Me.lblPrecioTotalCart.Name = "lblPrecioTotalCart"
         Me.lblPrecioTotalCart.Size = New System.Drawing.Size(39, 20)
         Me.lblPrecioTotalCart.TabIndex = 51
@@ -2262,7 +2280,7 @@ Partial Class frmPrincipal
         Me.Label7.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(537, 532)
+        Me.Label7.Location = New System.Drawing.Point(771, 496)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(102, 21)
         Me.Label7.TabIndex = 50
@@ -2468,6 +2486,7 @@ Partial Class frmPrincipal
         '
         Me.txtRepetirContraseña.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.txtRepetirContraseña.Location = New System.Drawing.Point(378, 356)
+        Me.txtRepetirContraseña.MaxLength = 255
         Me.txtRepetirContraseña.Name = "txtRepetirContraseña"
         Me.txtRepetirContraseña.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtRepetirContraseña.Size = New System.Drawing.Size(218, 20)
@@ -2502,6 +2521,7 @@ Partial Class frmPrincipal
         '
         Me.txtContraseñaNueva.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.txtContraseñaNueva.Location = New System.Drawing.Point(378, 280)
+        Me.txtContraseñaNueva.MaxLength = 255
         Me.txtContraseñaNueva.Name = "txtContraseñaNueva"
         Me.txtContraseñaNueva.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtContraseñaNueva.Size = New System.Drawing.Size(218, 20)
@@ -2521,7 +2541,6 @@ Partial Class frmPrincipal
         '
         Me.tbInfoPersonal.Controls.Add(Me.Label100)
         Me.tbInfoPersonal.Controls.Add(Me.Label99)
-        Me.tbInfoPersonal.Controls.Add(Me.Label98)
         Me.tbInfoPersonal.Controls.Add(Me.Label97)
         Me.tbInfoPersonal.Controls.Add(Me.LabelErrorUsername)
         Me.tbInfoPersonal.Controls.Add(Me.LabelErrorCorreo)
@@ -2529,8 +2548,6 @@ Partial Class frmPrincipal
         Me.tbInfoPersonal.Controls.Add(Me.Label89)
         Me.tbInfoPersonal.Controls.Add(Me.txtDomicilioModificarPerfil)
         Me.tbInfoPersonal.Controls.Add(Me.Label88)
-        Me.tbInfoPersonal.Controls.Add(Me.txtCedulaModificarPerfil)
-        Me.tbInfoPersonal.Controls.Add(Me.Label85)
         Me.tbInfoPersonal.Controls.Add(Me.txtApellidoModificarPerfil)
         Me.tbInfoPersonal.Controls.Add(Me.Label78)
         Me.tbInfoPersonal.Controls.Add(Me.txtNombreModificarPerfil)
@@ -2571,25 +2588,12 @@ Partial Class frmPrincipal
         Me.Label99.AutoSize = True
         Me.Label99.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label99.ForeColor = System.Drawing.Color.Red
-        Me.Label99.Location = New System.Drawing.Point(311, 372)
+        Me.Label99.Location = New System.Drawing.Point(311, 316)
         Me.Label99.Name = "Label99"
         Me.Label99.Size = New System.Drawing.Size(137, 12)
         Me.Label99.TabIndex = 29
         Me.Label99.Text = "*El telefono debe tener 9 numero"
         Me.Label99.Visible = False
-        '
-        'Label98
-        '
-        Me.Label98.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label98.AutoSize = True
-        Me.Label98.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label98.ForeColor = System.Drawing.Color.Red
-        Me.Label98.Location = New System.Drawing.Point(311, 316)
-        Me.Label98.Name = "Label98"
-        Me.Label98.Size = New System.Drawing.Size(138, 12)
-        Me.Label98.TabIndex = 28
-        Me.Label98.Text = "*La cedula debe tener 8 numeros"
-        Me.Label98.Visible = False
         '
         'Label97
         '
@@ -2633,7 +2637,7 @@ Partial Class frmPrincipal
         'txtTelefonoModificarPerfil
         '
         Me.txtTelefonoModificarPerfil.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.txtTelefonoModificarPerfil.Location = New System.Drawing.Point(303, 349)
+        Me.txtTelefonoModificarPerfil.Location = New System.Drawing.Point(303, 293)
         Me.txtTelefonoModificarPerfil.MaxLength = 9
         Me.txtTelefonoModificarPerfil.Name = "txtTelefonoModificarPerfil"
         Me.txtTelefonoModificarPerfil.Size = New System.Drawing.Size(163, 20)
@@ -2643,7 +2647,7 @@ Partial Class frmPrincipal
         '
         Me.Label89.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label89.AutoSize = True
-        Me.Label89.Location = New System.Drawing.Point(300, 333)
+        Me.Label89.Location = New System.Drawing.Point(300, 277)
         Me.Label89.Name = "Label89"
         Me.Label89.Size = New System.Drawing.Size(52, 13)
         Me.Label89.TabIndex = 23
@@ -2667,29 +2671,11 @@ Partial Class frmPrincipal
         Me.Label88.TabIndex = 21
         Me.Label88.Text = "Domicilio:"
         '
-        'txtCedulaModificarPerfil
-        '
-        Me.txtCedulaModificarPerfil.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.txtCedulaModificarPerfil.Location = New System.Drawing.Point(303, 293)
-        Me.txtCedulaModificarPerfil.MaxLength = 8
-        Me.txtCedulaModificarPerfil.Name = "txtCedulaModificarPerfil"
-        Me.txtCedulaModificarPerfil.Size = New System.Drawing.Size(163, 20)
-        Me.txtCedulaModificarPerfil.TabIndex = 20
-        '
-        'Label85
-        '
-        Me.Label85.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label85.AutoSize = True
-        Me.Label85.Location = New System.Drawing.Point(300, 277)
-        Me.Label85.Name = "Label85"
-        Me.Label85.Size = New System.Drawing.Size(105, 13)
-        Me.Label85.TabIndex = 19
-        Me.Label85.Text = "Cedula de Identidad:"
-        '
         'txtApellidoModificarPerfil
         '
         Me.txtApellidoModificarPerfil.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.txtApellidoModificarPerfil.Location = New System.Drawing.Point(512, 240)
+        Me.txtApellidoModificarPerfil.MaxLength = 30
         Me.txtApellidoModificarPerfil.Name = "txtApellidoModificarPerfil"
         Me.txtApellidoModificarPerfil.Size = New System.Drawing.Size(187, 20)
         Me.txtApellidoModificarPerfil.TabIndex = 18
@@ -2708,6 +2694,7 @@ Partial Class frmPrincipal
         '
         Me.txtNombreModificarPerfil.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.txtNombreModificarPerfil.Location = New System.Drawing.Point(303, 240)
+        Me.txtNombreModificarPerfil.MaxLength = 30
         Me.txtNombreModificarPerfil.Name = "txtNombreModificarPerfil"
         Me.txtNombreModificarPerfil.Size = New System.Drawing.Size(163, 20)
         Me.txtNombreModificarPerfil.TabIndex = 16
@@ -2727,7 +2714,7 @@ Partial Class frmPrincipal
         Me.Button12.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Button12.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button12.Location = New System.Drawing.Point(706, 348)
+        Me.Button12.Location = New System.Drawing.Point(589, 351)
         Me.Button12.Name = "Button12"
         Me.Button12.Size = New System.Drawing.Size(25, 21)
         Me.Button12.TabIndex = 14
@@ -2753,7 +2740,7 @@ Partial Class frmPrincipal
         Me.buttonSetInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.buttonSetInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.buttonSetInfo.ForeColor = System.Drawing.Color.DarkGreen
-        Me.buttonSetInfo.Location = New System.Drawing.Point(378, 489)
+        Me.buttonSetInfo.Location = New System.Drawing.Point(391, 489)
         Me.buttonSetInfo.Name = "buttonSetInfo"
         Me.buttonSetInfo.Size = New System.Drawing.Size(223, 23)
         Me.buttonSetInfo.TabIndex = 11
@@ -2765,7 +2752,7 @@ Partial Class frmPrincipal
         Me.ComboBoxRolModificarPerfil.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.ComboBoxRolModificarPerfil.FormattingEnabled = True
         Me.ComboBoxRolModificarPerfil.Items.AddRange(New Object() {"Cliente", "Vendedor"})
-        Me.ComboBoxRolModificarPerfil.Location = New System.Drawing.Point(512, 348)
+        Me.ComboBoxRolModificarPerfil.Location = New System.Drawing.Point(395, 351)
         Me.ComboBoxRolModificarPerfil.Name = "ComboBoxRolModificarPerfil"
         Me.ComboBoxRolModificarPerfil.Size = New System.Drawing.Size(188, 21)
         Me.ComboBoxRolModificarPerfil.TabIndex = 5
@@ -2774,7 +2761,7 @@ Partial Class frmPrincipal
         '
         Me.Label27.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(509, 332)
+        Me.Label27.Location = New System.Drawing.Point(392, 335)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(26, 13)
         Me.Label27.TabIndex = 4
@@ -2784,6 +2771,7 @@ Partial Class frmPrincipal
         '
         Me.txtCorreoModificarPerfil.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.txtCorreoModificarPerfil.Location = New System.Drawing.Point(512, 188)
+        Me.txtCorreoModificarPerfil.MaxLength = 30
         Me.txtCorreoModificarPerfil.Name = "txtCorreoModificarPerfil"
         Me.txtCorreoModificarPerfil.Size = New System.Drawing.Size(187, 20)
         Me.txtCorreoModificarPerfil.TabIndex = 3
@@ -2802,6 +2790,7 @@ Partial Class frmPrincipal
         '
         Me.txtUsernameModificarPerfil.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.txtUsernameModificarPerfil.Location = New System.Drawing.Point(303, 188)
+        Me.txtUsernameModificarPerfil.MaxLength = 20
         Me.txtUsernameModificarPerfil.Name = "txtUsernameModificarPerfil"
         Me.txtUsernameModificarPerfil.Size = New System.Drawing.Size(163, 20)
         Me.txtUsernameModificarPerfil.TabIndex = 1
@@ -3561,6 +3550,50 @@ Partial Class frmPrincipal
         Me.DataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
+        'lblVendedor
+        '
+        Me.lblVendedor.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblVendedor.AutoSize = True
+        Me.lblVendedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblVendedor.Location = New System.Drawing.Point(728, 54)
+        Me.lblVendedor.Name = "lblVendedor"
+        Me.lblVendedor.Size = New System.Drawing.Size(111, 25)
+        Me.lblVendedor.TabIndex = 13
+        Me.lblVendedor.Text = "Vendedor:"
+        '
+        'lblVendedorName
+        '
+        Me.lblVendedorName.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblVendedorName.AutoSize = True
+        Me.lblVendedorName.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblVendedorName.Location = New System.Drawing.Point(835, 54)
+        Me.lblVendedorName.Name = "lblVendedorName"
+        Me.lblVendedorName.Size = New System.Drawing.Size(30, 25)
+        Me.lblVendedorName.TabIndex = 14
+        Me.lblVendedorName.Text = "..."
+        '
+        'lblFichaStock
+        '
+        Me.lblFichaStock.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblFichaStock.AutoSize = True
+        Me.lblFichaStock.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFichaStock.Location = New System.Drawing.Point(745, 93)
+        Me.lblFichaStock.Name = "lblFichaStock"
+        Me.lblFichaStock.Size = New System.Drawing.Size(72, 25)
+        Me.lblFichaStock.TabIndex = 15
+        Me.lblFichaStock.Text = "Stock:"
+        '
+        'lblFichaCantidad
+        '
+        Me.lblFichaCantidad.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblFichaCantidad.AutoSize = True
+        Me.lblFichaCantidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFichaCantidad.Location = New System.Drawing.Point(835, 93)
+        Me.lblFichaCantidad.Name = "lblFichaCantidad"
+        Me.lblFichaCantidad.Size = New System.Drawing.Size(30, 25)
+        Me.lblFichaCantidad.TabIndex = 16
+        Me.lblFichaCantidad.Text = "..."
+        '
         'frmPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3745,8 +3778,6 @@ Partial Class frmPrincipal
     Friend WithEvents Label89 As Label
     Friend WithEvents txtDomicilioModificarPerfil As TextBox
     Friend WithEvents Label88 As Label
-    Friend WithEvents txtCedulaModificarPerfil As TextBox
-    Friend WithEvents Label85 As Label
     Friend WithEvents txtApellidoModificarPerfil As TextBox
     Friend WithEvents Label78 As Label
     Friend WithEvents txtNombreModificarPerfil As TextBox
@@ -3772,7 +3803,6 @@ Partial Class frmPrincipal
     Friend WithEvents LabelErrorUsername As Label
     Friend WithEvents Label100 As Label
     Friend WithEvents Label99 As Label
-    Friend WithEvents Label98 As Label
     Friend WithEvents Label97 As Label
     Friend WithEvents Label101 As Label
     Friend WithEvents Label40 As Label
@@ -3887,4 +3917,8 @@ Partial Class frmPrincipal
     Friend WithEvents Label24 As Label
     Friend WithEvents Label23 As Label
     Friend WithEvents Label22 As Label
+    Friend WithEvents lblFichaCantidad As Label
+    Friend WithEvents lblFichaStock As Label
+    Friend WithEvents lblVendedorName As Label
+    Friend WithEvents lblVendedor As Label
 End Class

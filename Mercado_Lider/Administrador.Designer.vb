@@ -26,13 +26,13 @@ Partial Class Administrador
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.tcAdmin = New System.Windows.Forms.TabControl()
         Me.tpArticulos = New System.Windows.Forms.TabPage()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -48,6 +48,12 @@ Partial Class Administrador
         Me.dataGridArticulos = New System.Windows.Forms.DataGridView()
         Me.btnEliminar1 = New System.Windows.Forms.Button()
         Me.tpUsuarios = New System.Windows.Forms.TabPage()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.grdUsuarios = New System.Windows.Forms.DataGridView()
         Me.lblTituloUser = New System.Windows.Forms.Label()
         Me.btnAgregarAdmin = New System.Windows.Forms.Button()
         Me.btnEliminarUser = New System.Windows.Forms.Button()
@@ -70,22 +76,16 @@ Partial Class Administrador
         Me.pnlArticulos = New System.Windows.Forms.Panel()
         Me.btnArticulos = New System.Windows.Forms.Button()
         Me.pnlSuperior = New System.Windows.Forms.Panel()
-        Me.grdUsuarios = New System.Windows.Forms.DataGridView()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
         Me.tcAdmin.SuspendLayout()
         Me.tpArticulos.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.dataGridArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tpUsuarios.SuspendLayout()
+        Me.Panel2.SuspendLayout()
+        CType(Me.grdUsuarios, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tpTransacciones.SuspendLayout()
         CType(Me.grdTransacciones, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlAdmin.SuspendLayout()
-        CType(Me.grdUsuarios, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'tcAdmin
@@ -313,6 +313,116 @@ Partial Class Administrador
         Me.tpUsuarios.Text = "Usuarios"
         Me.tpUsuarios.UseVisualStyleBackColor = True
         '
+        'Panel2
+        '
+        Me.Panel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel2.Controls.Add(Me.Label3)
+        Me.Panel2.Controls.Add(Me.Label4)
+        Me.Panel2.Controls.Add(Me.Label5)
+        Me.Panel2.Controls.Add(Me.Label6)
+        Me.Panel2.Location = New System.Drawing.Point(-16, 58)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(988, 34)
+        Me.Panel2.TabIndex = 48
+        '
+        'Label3
+        '
+        Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label3.Location = New System.Drawing.Point(811, 12)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(32, 13)
+        Me.Label3.TabIndex = 64
+        Me.Label3.Text = "ROL"
+        '
+        'Label4
+        '
+        Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label4.Location = New System.Drawing.Point(612, 12)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(91, 13)
+        Me.Label4.TabIndex = 63
+        Me.Label4.Text = "CONTRASEÑA"
+        '
+        'Label5
+        '
+        Me.Label5.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label5.Location = New System.Drawing.Point(416, 12)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(48, 13)
+        Me.Label5.TabIndex = 62
+        Me.Label5.Text = "E-MAIL"
+        '
+        'Label6
+        '
+        Me.Label6.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label6.Location = New System.Drawing.Point(211, 12)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(76, 13)
+        Me.Label6.TabIndex = 61
+        Me.Label6.Text = "USERNAME"
+        '
+        'grdUsuarios
+        '
+        Me.grdUsuarios.AllowUserToAddRows = False
+        Me.grdUsuarios.AllowUserToDeleteRows = False
+        Me.grdUsuarios.AllowUserToResizeColumns = False
+        Me.grdUsuarios.AllowUserToResizeRows = False
+        Me.grdUsuarios.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
+        Me.grdUsuarios.BackgroundColor = System.Drawing.Color.White
+        Me.grdUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.grdUsuarios.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.grdUsuarios.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        Me.grdUsuarios.ColumnHeadersHeight = 30
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.grdUsuarios.DefaultCellStyle = DataGridViewCellStyle6
+        Me.grdUsuarios.GridColor = System.Drawing.Color.White
+        Me.grdUsuarios.Location = New System.Drawing.Point(126, 58)
+        Me.grdUsuarios.Name = "grdUsuarios"
+        Me.grdUsuarios.ReadOnly = True
+        Me.grdUsuarios.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.grdUsuarios.RowHeadersDefaultCellStyle = DataGridViewCellStyle7
+        Me.grdUsuarios.RowHeadersWidth = 30
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black
+        Me.grdUsuarios.RowsDefaultCellStyle = DataGridViewCellStyle8
+        Me.grdUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.grdUsuarios.Size = New System.Drawing.Size(846, 374)
+        Me.grdUsuarios.TabIndex = 47
+        '
         'lblTituloUser
         '
         Me.lblTituloUser.Anchor = System.Windows.Forms.AnchorStyles.Top
@@ -393,7 +503,7 @@ Partial Class Administrador
         Me.grdTransacciones.AllowUserToDeleteRows = False
         Me.grdTransacciones.AllowUserToResizeColumns = False
         Me.grdTransacciones.AllowUserToResizeRows = False
-        Me.grdTransacciones.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.grdTransacciones.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
         Me.grdTransacciones.BackgroundColor = System.Drawing.Color.White
         Me.grdTransacciones.BorderStyle = System.Windows.Forms.BorderStyle.None
         DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
@@ -581,116 +691,6 @@ Partial Class Administrador
         Me.pnlSuperior.Size = New System.Drawing.Size(841, 36)
         Me.pnlSuperior.TabIndex = 8
         '
-        'grdUsuarios
-        '
-        Me.grdUsuarios.AllowUserToAddRows = False
-        Me.grdUsuarios.AllowUserToDeleteRows = False
-        Me.grdUsuarios.AllowUserToResizeColumns = False
-        Me.grdUsuarios.AllowUserToResizeRows = False
-        Me.grdUsuarios.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
-        Me.grdUsuarios.BackgroundColor = System.Drawing.Color.White
-        Me.grdUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.grdUsuarios.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Silver
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.grdUsuarios.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
-        Me.grdUsuarios.ColumnHeadersHeight = 30
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.grdUsuarios.DefaultCellStyle = DataGridViewCellStyle6
-        Me.grdUsuarios.GridColor = System.Drawing.Color.White
-        Me.grdUsuarios.Location = New System.Drawing.Point(126, 58)
-        Me.grdUsuarios.Name = "grdUsuarios"
-        Me.grdUsuarios.ReadOnly = True
-        Me.grdUsuarios.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Silver
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.grdUsuarios.RowHeadersDefaultCellStyle = DataGridViewCellStyle7
-        Me.grdUsuarios.RowHeadersWidth = 30
-        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Silver
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black
-        Me.grdUsuarios.RowsDefaultCellStyle = DataGridViewCellStyle8
-        Me.grdUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.grdUsuarios.Size = New System.Drawing.Size(846, 374)
-        Me.grdUsuarios.TabIndex = 47
-        '
-        'Panel2
-        '
-        Me.Panel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel2.Controls.Add(Me.Label3)
-        Me.Panel2.Controls.Add(Me.Label4)
-        Me.Panel2.Controls.Add(Me.Label5)
-        Me.Panel2.Controls.Add(Me.Label6)
-        Me.Panel2.Location = New System.Drawing.Point(-16, 58)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(988, 34)
-        Me.Panel2.TabIndex = 48
-        '
-        'Label3
-        '
-        Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Label3.Location = New System.Drawing.Point(811, 12)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(32, 13)
-        Me.Label3.TabIndex = 64
-        Me.Label3.Text = "ROL"
-        '
-        'Label4
-        '
-        Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Label4.Location = New System.Drawing.Point(612, 12)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(91, 13)
-        Me.Label4.TabIndex = 63
-        Me.Label4.Text = "CONTRASEÑA"
-        '
-        'Label5
-        '
-        Me.Label5.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Label5.Location = New System.Drawing.Point(416, 12)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(48, 13)
-        Me.Label5.TabIndex = 62
-        Me.Label5.Text = "E-MAIL"
-        '
-        'Label6
-        '
-        Me.Label6.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Label6.Location = New System.Drawing.Point(211, 12)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(76, 13)
-        Me.Label6.TabIndex = 61
-        Me.Label6.Text = "USERNAME"
-        '
         'Administrador
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -712,13 +712,13 @@ Partial Class Administrador
         CType(Me.dataGridArticulos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tpUsuarios.ResumeLayout(False)
         Me.tpUsuarios.PerformLayout()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
+        CType(Me.grdUsuarios, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tpTransacciones.ResumeLayout(False)
         Me.tpTransacciones.PerformLayout()
         CType(Me.grdTransacciones, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlAdmin.ResumeLayout(False)
-        CType(Me.grdUsuarios, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel2.ResumeLayout(False)
-        Me.Panel2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

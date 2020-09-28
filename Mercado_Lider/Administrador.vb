@@ -8,7 +8,7 @@ Public Class Administrador
     Public Sub New()
         'Esta llamada es exigida por el diseñador.
         conexion = New MySqlConnection
-        conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=root; pwd=;"
+        conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=administrador; pwd=administrador;"
         cmd.Connection = conexion
         InitializeComponent()
         'Agregue cualquier inicialización después de la llamada a InitializeComponent().
@@ -144,7 +144,7 @@ Public Class Administrador
         Try
 
             conexion.Open()
-            MsgBox("Conexion establecida")
+            ' MsgBox("Conexion establecida")
             cmd.CommandText = "SELECT compras.id,usuario.username,compras.Fecha,compras.PrecioTotal FROM usuario,compras WHERE compras.usuario_id=usuario.id"
             r = cmd.ExecuteReader()
 
@@ -172,11 +172,7 @@ Public Class Administrador
         r.Close()
         conexion.Close()
 
-
-
-
-
-        grdTransacciones.Columns(0).Width = 200
+        grdTransacciones.Columns(0).Width = 100
         grdTransacciones.Columns(1).Width = 200
         grdTransacciones.Columns(2).Width = 200
         grdTransacciones.Columns(3).Width = 190

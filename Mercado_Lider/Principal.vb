@@ -34,12 +34,10 @@ Public Class frmPrincipal
     Public Sub New()
         'Esta llamada es exigida por el diseñador.
         conexion = New MySqlConnection
-        conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=root; pwd=;"
+        conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=cliente; pwd=cliente;"
         cmd.Connection = conexion
 
         InitializeComponent()
-
-
 
         'Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
@@ -57,7 +55,7 @@ Public Class frmPrincipal
         If txtUsername.Text = "" Then
             Label87.Visible = True
         Else
-            If txtUsername.TextLength < 3 Then
+            If txtUsername.TextLength < 6 Then
                 Label101.Visible = True
             Else
                 contador = contador + 1
@@ -759,26 +757,18 @@ Public Class frmPrincipal
                 cmd.Parameters.AddWithValue("@stock", txtStockArticulo.Text)
                 cmd.Parameters.AddWithValue("@usuario_id", ID)
                 cmd.Parameters.AddWithValue("@deleted", 0)
-
-
-
                 cmd.ExecuteNonQuery()
 
                 ''EXTRAER EL ID DE EL ARTICULO INGRESADO ANTERIORMENTE'
-
                 Dim idArticulo As Integer
                 cmd.CommandText = "SELECT MAX(id) As id FROM articulos"
                 r = cmd.ExecuteReader
                 If (r.HasRows) Then
-
-
                     If r.Read Then
                         idArticulo = r("id")
                     End If
                 End If
                 r.Close()
-
-
 
                 ''ARRAY DE los 3 PictureBox ya cargados''
                 Dim arrayFotos(2) As PictureBox
@@ -786,14 +776,11 @@ Public Class frmPrincipal
                 arrayFotos(1) = PictureBoxImagen2
                 arrayFotos(2) = PictureBoxImagen3
 
-
                 Dim nroFoto = 0
 
                 For Each fotito As PictureBox In arrayFotos ''BUCLE FOREACH que insertara las 3 imagenes ingresadas como fotos de los articulos en la tabla galeria 
                     Dim ms2 = New System.IO.MemoryStream()
-
                     nroFoto = nroFoto + 1
-
                     fotito.Image.Save(ms2, System.Drawing.Imaging.ImageFormat.Jpeg)
                     Dim foto As Byte() = ms2.GetBuffer
                     cmd.CommandText = "INSERT INTO galeria(articulo_id,fotos,nroFoto) VALUES(@articulo_id,@foto,@nroFoto)"
@@ -806,12 +793,9 @@ Public Class frmPrincipal
                 Next
 
                 For Each check As CheckBox In ArrayChecksCategoria  ''Bucle foreach que recorre cada valor de el array
-
                     If check.Checked Then    ''Checkea si el checkbox fue selecionado
-
                         cmd.CommandText = "SELECT id FROM `categoria` WHERE categoria.categoria = @nomb"
                         cmd.Parameters.AddWithValue("@nomb", check.Text)
-
                         r = cmd.ExecuteReader
                         If r.HasRows Then
                             If r.Read Then
@@ -822,10 +806,6 @@ Public Class frmPrincipal
                                 cmd.Parameters.AddWithValue("@articulo", idArticulo)
                                 cmd.Parameters.AddWithValue("@categoria", idcategoria)
                                 cmd.ExecuteNonQuery()  ''Inserta el id de el articulo ultimamente registrado y el id de categoria
-
-
-
-
                                 MsgBox("Categorias insertada correctamente")
                             End If
                         End If
@@ -833,9 +813,6 @@ Public Class frmPrincipal
 
 
                 Next
-
-
-
                 MsgBox("Articulo insertado correctamente")
                 PictureBoxPortada.Image.Dispose()
                 PictureBoxPortada.Image = Nothing
@@ -849,6 +826,10 @@ Public Class frmPrincipal
                 txtStockArticulo.Clear()
                 txtNombreArticulo.Clear()
                 txtPrecio.Clear()
+                cbRopa.Checked = False
+                cbElectronico.Checked = False
+                cbAutomovil.Checked = False
+                cbHogar.Checked = False
             Catch ex As Exception
                 MsgBox(ex.ToString)
             End Try
@@ -1145,7 +1126,6 @@ Public Class frmPrincipal
         Label91.Visible = False
     End Sub
     Private Sub TextBox15_Click(sender As Object, e As EventArgs)
-        Label85.Visible = False
         txtApellidoModificarPerfil.Clear()
         txtApellidoModificarPerfil.ForeColor = Color.Black
     End Sub
@@ -1231,7 +1211,7 @@ Public Class frmPrincipal
         End If
 
     End Sub
-    Private Sub TextBox19_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCedulaModificarPerfil.KeyPress
+    Private Sub TextBox19_KeyPress(sender As Object, e As KeyPressEventArgs)
         Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
         KeyAscii = CShort(SoloNumeros(KeyAscii))
         If KeyAscii = 0 Then
@@ -1247,9 +1227,6 @@ Public Class frmPrincipal
     End Sub
     Private Sub TextBox5_Click_1(sender As Object, e As EventArgs) Handles txtNombreModificarPerfil.Click
         Label97.Visible = False
-    End Sub
-    Private Sub TextBox19_Click(sender As Object, e As EventArgs) Handles txtCedulaModificarPerfil.Click
-        Label98.Visible = False
     End Sub
     Private Sub TextBox21_Click(sender As Object, e As EventArgs) Handles txtTelefonoModificarPerfil.Click
         Label99.Visible = False
@@ -1368,7 +1345,6 @@ Public Class frmPrincipal
     End Sub
     Private Sub grdInicio_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles grdInicio.CellClick
         tbTodos.SelectedTab = tbTodos.TabPages.Item(4)
-
     End Sub
 
     Private Sub btnVolver_Click(sender As Object, e As EventArgs) Handles btnVolver.Click
@@ -1396,13 +1372,15 @@ Public Class frmPrincipal
             Try
                 conexion.Close()
                 conexion.Open()
-                cmd.CommandText = "SELECT articulos.Precio,articulos.Descripcion FROM articulos WHERE articulos.id = @idArt AND articulos.deleted=0"
+                cmd.CommandText = "SELECT articulos.Precio,articulos.Descripcion,articulos.stock,usuario.username FROM articulos,usuario WHERE articulos.id = @idArt AND articulos.deleted=0 and articulos.usuario_id = usuario.id"
                 cmd.Parameters.Clear()
                 cmd.Parameters.AddWithValue("@idArt", articuloID)
                 r = cmd.ExecuteReader()
                 If (r.Read()) Then
                     lblPrecioArticulo.Text = r("Precio") & "$"
                     txtDescripcionArticuloFicha.Text = r("Descripcion")
+                    lblVendedorName.Text = r("username")
+                    lblFichaCantidad.Text = r("stock")
                 End If
                 r.Close()
                 cmd.CommandText = "SELECT galeria.fotos from galeria,articulos WHERE articulos.id=@idArt and articulos.id=galeria.articulo_id AND articulos.deleted=0"
@@ -1526,10 +1504,10 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
                 End If
             Next
             If (Not repetido) Then
-
                 carrito.Add(New ArticuloEnCarrito(codigoArticuloFicha, 1))
+                MsgBox("¡Producto agregado correctamente!")
             Else
-                MsgBox("Ya esta este producto en el carrito")
+                MsgBox("¡este producto ya esta en el carrito!")
             End If
         End If
     End Sub
