@@ -34,7 +34,7 @@ Public Class frmPrincipal
     Public Sub New()
         'Esta llamada es exigida por el diseñador.
         conexion = New MySqlConnection
-        conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=cliente; pwd=cliente;"
+        conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=root; pwd=;"
         cmd.Connection = conexion
 
         InitializeComponent()
@@ -297,6 +297,7 @@ Public Class frmPrincipal
     End Sub
     ''BOTONES DE IMPORTACION DE IMAGENES EN EL EDITOR DE ARTICULOS PUBLICADOS POR EL USUARIO
     Private Sub btnCambiarPortada_Click(sender As Object, e As EventArgs) Handles btnCambiarPortada.Click
+
         If ofdEditarPortada.ShowDialog() = DialogResult.OK Then
             pbCambiarPortada.Load(ofdEditarPortada.FileName)
         End If
@@ -1473,10 +1474,10 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
             Else
                 If (sesion = True) Then
                     ''Seleciona todos los articulos filtrados unicamente por categoria ,sin incluir los articulos de el usuario
-                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,categoria,articulo_categoria,usuario WHERE articulos.id=articulo_categoria.articulo_id AND categoria.id = articulo_categoria.categoria_id AND categoria.categoria='" + ComboBoxCategorias.Text + "' AND articulos.usuario_id=usuario.id AND usuario.id!=" + ID + " AND articulos.deleted=0"
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,categoria,articulo_categoria,usuario WHERE articulos.id=articulo_categoria.articulo_id AND categoria.id = articulo_categoria.categoria_id AND categoria.categoria='" & ComboBoxCategorias.Text & "' AND articulos.usuario_id=usuario.id AND usuario.id!=" & ID & " AND articulos.deleted=0"
                 Else
                     ''Seleciona todos los articulos filtrados unicamente por su categoria
-                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,categoria,articulo_categoria WHERE articulos.id=articulo_categoria.articulo_id AND categoria.id = articulo_categoria.categoria_id AND categoria.categoria='" + ComboBoxCategorias.Text + "' AND articulos.deleted=0"
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,categoria,articulo_categoria WHERE articulos.id=articulo_categoria.articulo_id AND categoria.id = articulo_categoria.categoria_id AND categoria.categoria='" & ComboBoxCategorias.Text & "' AND articulos.deleted=0"
                 End If
             End If
             adaptador.SelectCommand = cmd
@@ -1492,23 +1493,36 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
     End Sub
 
     Private Sub btnAgregarAlCarrito_Click(sender As Object, e As EventArgs) Handles btnAgregarAlCarrito.Click
+
+
+
         If (Not sesion) Then
             MsgBox("Necesitas iniciar sesion para agregar al carrito")
         Else
+
+
             Dim repetido As Boolean = False
             Dim codigoArticuloFicha = CInt(Int(codigoFichaLbl.Text))
+            Dim stock = CInt(Int(lblFichaCantidad.Text))
 
-            For Each elem In carrito
-                If (codigoArticuloFicha = elem.ID) Then
-                    repetido = True
+            If (stock > 0) Then
+
+                For Each elem In carrito
+                    If (codigoArticuloFicha = elem.ID) Then
+                        repetido = True
+                    End If
+                Next
+                If (Not repetido) Then
+                    carrito.Add(New ArticuloEnCarrito(codigoArticuloFicha, 1))
+                    MsgBox("¡Producto agregado correctamente!")
+                Else
+                    MsgBox("¡este producto ya esta en el carrito!")
                 End If
-            Next
-            If (Not repetido) Then
-                carrito.Add(New ArticuloEnCarrito(codigoArticuloFicha, 1))
-                MsgBox("¡Producto agregado correctamente!")
             Else
-                MsgBox("¡este producto ya esta en el carrito!")
+                MsgBox("No hay stock para este producto")
             End If
+
+
         End If
     End Sub
 
@@ -1566,9 +1580,13 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
                 If r.Read Then
                     txtCambiarDescripcion.Text = r("descripcion")
                     txtStock.Text = r("stock")
+
+
                     Dim portadaByte() As Byte = r("portada")
                     Dim ms As New System.IO.MemoryStream(portadaByte)
-                    pbCambiarPortada.Image = System.Drawing.Image.FromStream(ms)
+                    pbCambiarPortada.Image =  New Bitmap(Image.FromStream(ms))
+
+
                     ms.Close()
                 End If
                 r.Close()
@@ -1587,7 +1605,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
                 While r.Read()
                     Dim foto2() As Byte = r("fotos")
                     Dim ms3 = New System.IO.MemoryStream(foto2)
-                    arrayFotosFicha(cont).Image = System.Drawing.Image.FromStream(ms3)
+                    arrayFotosFicha(cont).Image = New Bitmap(Image.FromStream(ms3))
                     ms3.Close()
                     cont = cont + 1
                 End While
@@ -1769,18 +1787,50 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
 
         Else
 
+
             Dim idArt = DataGridCart.Item("ColumnIDCart", DataGridCart.SelectedRows(0).Index).Value ''Extraemos el id de el articulo selecionado en el datagrid
             Dim cantidad = CInt(Int(txtCantidadCart.Text))  ''Extraemos la nueva cantidad ingresada por el usuario
+            Try
+                conexion.Open()
+                cmd.CommandText = "SELECT Nombre,stock FROM articulos WHERE id=@idArt"
+                cmd.Parameters.Clear()
+                cmd.Parameters.AddWithValue("@idArt", idArt)
 
-            For i = 0 To carrito.Count - 1      ''Busca el objeto de el articuloEnCarrito de el arraylist ,cuando lo encuentra,lo modifica a la nueva cantidad
-                If idArt = carrito(i).ID Then
-                    carrito(i).cantidad = cantidad
-                    Exit For
+                r = cmd.ExecuteReader
+                If (r.Read()) Then
+                    Dim stock = CInt(Int(r("stock")))
+                    Dim articulo = r("Nombre")
 
+                    If ((stock - cantidad) < 0) Then
+                        MsgBox("No hay suficientes unidades para el articulo: " & articulo & " unidades disponibles: " & stock)
+
+                    Else
+                        For i = 0 To carrito.Count - 1      ''Busca el objeto de el articuloEnCarrito de el arraylist ,cuando lo encuentra,lo modifica a la nueva cantidad
+                            If idArt = carrito(i).ID Then
+                                carrito(i).cantidad = cantidad
+                                Exit For
+
+                            End If
+                        Next
+
+
+
+
+                    End If
                 End If
-            Next
 
-            UpdateGridCart(carrito)   ''Actualiza el grid carrito
+                r.Close()
+                conexion.Close()
+                UpdateGridCart(carrito)
+
+
+
+            Catch ex As Exception
+                MsgBox(ex.ToString)
+
+            End Try
+
+
 
 
             Dim contador As Integer  ''????????'''
@@ -1813,11 +1863,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
         Else
 
             Try
-
-
-
                 conexion.Open()
-
                 Dim precioTotal = CInt(Int(lblPrecioTotalCart.Text))
                 Dim fechaActual As Date = Date.Now
                 Dim idCompra As Integer
@@ -1858,8 +1904,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
                     cantidadArt = CInt(d.Cells("ColumnCantidadCart").Value())
                     precio = CInt(d.Cells("ColumnPrecioCart").Value())
 
-                    MsgBox(idCompra)
-                    MsgBox(articuloID)
+
 
                     cmd.CommandText = "INSERT INTO detalle_compra(id_compra,id_articulo,Cantidad,PrecioUnitario) VALUES(@idCompra,@idArt,@cant,@price)"
                     cmd.Parameters.Clear()
@@ -1868,8 +1913,34 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
                     cmd.Parameters.AddWithValue("@cant", cantidadArt)
                     cmd.Parameters.AddWithValue("@price", precio)
                     cmd.ExecuteNonQuery()
+
+                    cmd.CommandText = "SELECT stock FROM articulos WHERE id=@idArt"
+                    cmd.Parameters.Clear()
+                    cmd.Parameters.AddWithValue("@idArt", articuloID)
+                    r = cmd.ExecuteReader
+
+
+
+                    r.Read()
+                    Dim stock = CInt(Int(r("stock")))
+                    Dim newStock = stock - cantidadArt
+
+
+
+                    r.Close()
+
+                    cmd.CommandText = "UPDATE articulos SET stock=@newstock WHERE id=@idArt"
+                    cmd.Parameters.Clear()
+                    cmd.Parameters.AddWithValue("@newstock", newStock)
+                    cmd.Parameters.AddWithValue("@idArt", articuloID)
+                    cmd.ExecuteNonQuery()
+
                 Next
+
+                MsgBox("Compra efectuada correctamente")
+                carrito.Clear()
                 conexion.Close()
+                UpdateGridCart(carrito)
 
             Catch ex As Exception
                 conexion.Close()
@@ -1880,4 +1951,6 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
         End If
 
     End Sub
+
+
 End Class

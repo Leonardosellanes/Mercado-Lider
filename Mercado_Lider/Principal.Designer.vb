@@ -99,6 +99,10 @@ Partial Class frmPrincipal
         Me.Label40 = New System.Windows.Forms.Label()
         Me.grdMisArticulos = New System.Windows.Forms.DataGridView()
         Me.tbArticulos = New System.Windows.Forms.TabPage()
+        Me.lblFichaCantidad = New System.Windows.Forms.Label()
+        Me.lblFichaStock = New System.Windows.Forms.Label()
+        Me.lblVendedorName = New System.Windows.Forms.Label()
+        Me.lblVendedor = New System.Windows.Forms.Label()
         Me.codigoFichaLbl = New System.Windows.Forms.Label()
         Me.btnVolver = New System.Windows.Forms.Button()
         Me.btnAgregarAlCarrito = New System.Windows.Forms.Button()
@@ -292,10 +296,6 @@ Partial Class frmPrincipal
         Me.ofdEditarImagen2 = New System.Windows.Forms.OpenFileDialog()
         Me.ofdEditarImagen3 = New System.Windows.Forms.OpenFileDialog()
         Me.DataGridViewImageColumn1 = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.lblVendedor = New System.Windows.Forms.Label()
-        Me.lblVendedorName = New System.Windows.Forms.Label()
-        Me.lblFichaStock = New System.Windows.Forms.Label()
-        Me.lblFichaCantidad = New System.Windows.Forms.Label()
         Me.tbTodos.SuspendLayout()
         Me.tbPrincipal.SuspendLayout()
         Me.pnlOcultarheaders.SuspendLayout()
@@ -356,7 +356,7 @@ Partial Class frmPrincipal
         Me.tbTodos.Location = New System.Drawing.Point(-8, 49)
         Me.tbTodos.Name = "tbTodos"
         Me.tbTodos.SelectedIndex = 0
-        Me.tbTodos.Size = New System.Drawing.Size(1103, 591)
+        Me.tbTodos.Size = New System.Drawing.Size(1103, 611)
         Me.tbTodos.TabIndex = 0
         '
         'tbPrincipal
@@ -987,7 +987,7 @@ Partial Class frmPrincipal
         Me.tbMisArticulos.Location = New System.Drawing.Point(4, 22)
         Me.tbMisArticulos.Name = "tbMisArticulos"
         Me.tbMisArticulos.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbMisArticulos.Size = New System.Drawing.Size(1095, 565)
+        Me.tbMisArticulos.Size = New System.Drawing.Size(1095, 585)
         Me.tbMisArticulos.TabIndex = 5
         Me.tbMisArticulos.Text = "MIs articulos"
         '
@@ -1101,7 +1101,7 @@ Partial Class frmPrincipal
         DataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black
         Me.grdMisArticulos.RowsDefaultCellStyle = DataGridViewCellStyle10
         Me.grdMisArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.grdMisArticulos.Size = New System.Drawing.Size(880, 552)
+        Me.grdMisArticulos.Size = New System.Drawing.Size(880, 572)
         Me.grdMisArticulos.TabIndex = 28
         '
         'tbArticulos
@@ -1128,6 +1128,50 @@ Partial Class frmPrincipal
         Me.tbArticulos.TabIndex = 6
         Me.tbArticulos.Text = "Articulos"
         Me.tbArticulos.UseVisualStyleBackColor = True
+        '
+        'lblFichaCantidad
+        '
+        Me.lblFichaCantidad.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblFichaCantidad.AutoSize = True
+        Me.lblFichaCantidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFichaCantidad.Location = New System.Drawing.Point(835, 93)
+        Me.lblFichaCantidad.Name = "lblFichaCantidad"
+        Me.lblFichaCantidad.Size = New System.Drawing.Size(30, 25)
+        Me.lblFichaCantidad.TabIndex = 16
+        Me.lblFichaCantidad.Text = "..."
+        '
+        'lblFichaStock
+        '
+        Me.lblFichaStock.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblFichaStock.AutoSize = True
+        Me.lblFichaStock.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFichaStock.Location = New System.Drawing.Point(745, 93)
+        Me.lblFichaStock.Name = "lblFichaStock"
+        Me.lblFichaStock.Size = New System.Drawing.Size(72, 25)
+        Me.lblFichaStock.TabIndex = 15
+        Me.lblFichaStock.Text = "Stock:"
+        '
+        'lblVendedorName
+        '
+        Me.lblVendedorName.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblVendedorName.AutoSize = True
+        Me.lblVendedorName.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblVendedorName.Location = New System.Drawing.Point(835, 54)
+        Me.lblVendedorName.Name = "lblVendedorName"
+        Me.lblVendedorName.Size = New System.Drawing.Size(30, 25)
+        Me.lblVendedorName.TabIndex = 14
+        Me.lblVendedorName.Text = "..."
+        '
+        'lblVendedor
+        '
+        Me.lblVendedor.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblVendedor.AutoSize = True
+        Me.lblVendedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblVendedor.Location = New System.Drawing.Point(728, 54)
+        Me.lblVendedor.Name = "lblVendedor"
+        Me.lblVendedor.Size = New System.Drawing.Size(111, 25)
+        Me.lblVendedor.TabIndex = 13
+        Me.lblVendedor.Text = "Vendedor:"
         '
         'codigoFichaLbl
         '
@@ -1723,7 +1767,7 @@ Partial Class frmPrincipal
         Me.tbDescripcion.Location = New System.Drawing.Point(4, 22)
         Me.tbDescripcion.Name = "tbDescripcion"
         Me.tbDescripcion.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbDescripcion.Size = New System.Drawing.Size(1095, 565)
+        Me.tbDescripcion.Size = New System.Drawing.Size(1095, 585)
         Me.tbDescripcion.TabIndex = 8
         Me.tbDescripcion.Text = "descripcion"
         Me.tbDescripcion.UseVisualStyleBackColor = True
@@ -1733,7 +1777,7 @@ Partial Class frmPrincipal
         Me.lblEditarPrecioVacio.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblEditarPrecioVacio.AutoSize = True
         Me.lblEditarPrecioVacio.ForeColor = System.Drawing.Color.Red
-        Me.lblEditarPrecioVacio.Location = New System.Drawing.Point(783, 545)
+        Me.lblEditarPrecioVacio.Location = New System.Drawing.Point(783, 565)
         Me.lblEditarPrecioVacio.Name = "lblEditarPrecioVacio"
         Me.lblEditarPrecioVacio.Size = New System.Drawing.Size(170, 13)
         Me.lblEditarPrecioVacio.TabIndex = 42
@@ -1801,7 +1845,7 @@ Partial Class frmPrincipal
         Me.btnGuardarCambios.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnGuardarCambios.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnGuardarCambios.ForeColor = System.Drawing.Color.Black
-        Me.btnGuardarCambios.Location = New System.Drawing.Point(385, 523)
+        Me.btnGuardarCambios.Location = New System.Drawing.Point(385, 543)
         Me.btnGuardarCambios.Name = "btnGuardarCambios"
         Me.btnGuardarCambios.Size = New System.Drawing.Size(160, 27)
         Me.btnGuardarCambios.TabIndex = 36
@@ -1831,7 +1875,7 @@ Partial Class frmPrincipal
         'txtEditarPrecio
         '
         Me.txtEditarPrecio.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtEditarPrecio.Location = New System.Drawing.Point(826, 522)
+        Me.txtEditarPrecio.Location = New System.Drawing.Point(826, 542)
         Me.txtEditarPrecio.MaxLength = 11
         Me.txtEditarPrecio.Name = "txtEditarPrecio"
         Me.txtEditarPrecio.Size = New System.Drawing.Size(100, 20)
@@ -1851,7 +1895,7 @@ Partial Class frmPrincipal
         Me.btnVolverEditarArticulos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnVolverEditarArticulos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnVolverEditarArticulos.ForeColor = System.Drawing.Color.Black
-        Me.btnVolverEditarArticulos.Location = New System.Drawing.Point(27, 523)
+        Me.btnVolverEditarArticulos.Location = New System.Drawing.Point(27, 543)
         Me.btnVolverEditarArticulos.Name = "btnVolverEditarArticulos"
         Me.btnVolverEditarArticulos.Size = New System.Drawing.Size(77, 27)
         Me.btnVolverEditarArticulos.TabIndex = 31
@@ -1864,7 +1908,7 @@ Partial Class frmPrincipal
         Me.btnEditarImagen3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnEditarImagen3.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEditarImagen3.ForeColor = System.Drawing.Color.Black
-        Me.btnEditarImagen3.Location = New System.Drawing.Point(599, 456)
+        Me.btnEditarImagen3.Location = New System.Drawing.Point(599, 466)
         Me.btnEditarImagen3.Name = "btnEditarImagen3"
         Me.btnEditarImagen3.Size = New System.Drawing.Size(149, 19)
         Me.btnEditarImagen3.TabIndex = 30
@@ -1877,7 +1921,7 @@ Partial Class frmPrincipal
         Me.btnEditarImagen1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnEditarImagen1.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEditarImagen1.ForeColor = System.Drawing.Color.Black
-        Me.btnEditarImagen1.Location = New System.Drawing.Point(177, 456)
+        Me.btnEditarImagen1.Location = New System.Drawing.Point(177, 466)
         Me.btnEditarImagen1.Name = "btnEditarImagen1"
         Me.btnEditarImagen1.Size = New System.Drawing.Size(149, 19)
         Me.btnEditarImagen1.TabIndex = 27
@@ -1890,7 +1934,7 @@ Partial Class frmPrincipal
         Me.btnEditarImagen2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnEditarImagen2.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEditarImagen2.ForeColor = System.Drawing.Color.Black
-        Me.btnEditarImagen2.Location = New System.Drawing.Point(391, 456)
+        Me.btnEditarImagen2.Location = New System.Drawing.Point(391, 466)
         Me.btnEditarImagen2.Name = "btnEditarImagen2"
         Me.btnEditarImagen2.Size = New System.Drawing.Size(149, 19)
         Me.btnEditarImagen2.TabIndex = 24
@@ -1934,7 +1978,7 @@ Partial Class frmPrincipal
         Me.lblPrecio.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblPrecio.AutoSize = True
         Me.lblPrecio.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPrecio.Location = New System.Drawing.Point(821, 494)
+        Me.lblPrecio.Location = New System.Drawing.Point(821, 514)
         Me.lblPrecio.Name = "lblPrecio"
         Me.lblPrecio.Size = New System.Drawing.Size(73, 25)
         Me.lblPrecio.TabIndex = 14
@@ -1955,7 +1999,7 @@ Partial Class frmPrincipal
         Me.pbCambiarImg3.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.pbCambiarImg3.BackColor = System.Drawing.Color.White
         Me.pbCambiarImg3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pbCambiarImg3.Location = New System.Drawing.Point(599, 306)
+        Me.pbCambiarImg3.Location = New System.Drawing.Point(599, 316)
         Me.pbCambiarImg3.Name = "pbCambiarImg3"
         Me.pbCambiarImg3.Size = New System.Drawing.Size(149, 144)
         Me.pbCambiarImg3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -1967,7 +2011,7 @@ Partial Class frmPrincipal
         Me.pbCambiarImg1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.pbCambiarImg1.BackColor = System.Drawing.Color.White
         Me.pbCambiarImg1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pbCambiarImg1.Location = New System.Drawing.Point(177, 306)
+        Me.pbCambiarImg1.Location = New System.Drawing.Point(177, 316)
         Me.pbCambiarImg1.Name = "pbCambiarImg1"
         Me.pbCambiarImg1.Size = New System.Drawing.Size(149, 144)
         Me.pbCambiarImg1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -1990,7 +2034,7 @@ Partial Class frmPrincipal
         Me.pbCambiarImg2.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.pbCambiarImg2.BackColor = System.Drawing.Color.White
         Me.pbCambiarImg2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pbCambiarImg2.Location = New System.Drawing.Point(391, 306)
+        Me.pbCambiarImg2.Location = New System.Drawing.Point(391, 316)
         Me.pbCambiarImg2.Name = "pbCambiarImg2"
         Me.pbCambiarImg2.Size = New System.Drawing.Size(149, 144)
         Me.pbCambiarImg2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -2981,9 +3025,9 @@ Partial Class frmPrincipal
         Me.pnlPerfil.Controls.Add(Me.btnMisArticulos)
         Me.pnlPerfil.Controls.Add(Me.pnlMiInfo)
         Me.pnlPerfil.Controls.Add(Me.Button28)
-        Me.pnlPerfil.Location = New System.Drawing.Point(838, 86)
+        Me.pnlPerfil.Location = New System.Drawing.Point(808, 86)
         Me.pnlPerfil.Name = "pnlPerfil"
-        Me.pnlPerfil.Size = New System.Drawing.Size(147, 550)
+        Me.pnlPerfil.Size = New System.Drawing.Size(177, 570)
         Me.pnlPerfil.TabIndex = 3
         Me.pnlPerfil.Visible = False
         '
@@ -2999,7 +3043,7 @@ Partial Class frmPrincipal
         Me.btnCerrarSesion.ForeColor = System.Drawing.Color.White
         Me.btnCerrarSesion.Location = New System.Drawing.Point(0, 222)
         Me.btnCerrarSesion.Name = "btnCerrarSesion"
-        Me.btnCerrarSesion.Size = New System.Drawing.Size(147, 30)
+        Me.btnCerrarSesion.Size = New System.Drawing.Size(177, 30)
         Me.btnCerrarSesion.TabIndex = 20
         Me.btnCerrarSesion.Text = "CERRAR SESION"
         Me.btnCerrarSesion.UseVisualStyleBackColor = True
@@ -3015,7 +3059,7 @@ Partial Class frmPrincipal
         Me.btnMisVentas.ForeColor = System.Drawing.Color.White
         Me.btnMisVentas.Location = New System.Drawing.Point(0, 195)
         Me.btnMisVentas.Name = "btnMisVentas"
-        Me.btnMisVentas.Size = New System.Drawing.Size(147, 27)
+        Me.btnMisVentas.Size = New System.Drawing.Size(177, 27)
         Me.btnMisVentas.TabIndex = 23
         Me.btnMisVentas.Text = "MIS VENTAS"
         Me.btnMisVentas.UseVisualStyleBackColor = True
@@ -3045,9 +3089,9 @@ Partial Class frmPrincipal
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button7.ForeColor = System.Drawing.Color.White
-        Me.Button7.Location = New System.Drawing.Point(0, 522)
+        Me.Button7.Location = New System.Drawing.Point(0, 542)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(147, 28)
+        Me.Button7.Size = New System.Drawing.Size(177, 28)
         Me.Button7.TabIndex = 18
         Me.Button7.Text = "¿QUIENES SOMOS?"
         Me.Button7.UseVisualStyleBackColor = False
@@ -3063,7 +3107,7 @@ Partial Class frmPrincipal
         Me.btnCambiarPass.ForeColor = System.Drawing.Color.White
         Me.btnCambiarPass.Location = New System.Drawing.Point(0, 168)
         Me.btnCambiarPass.Name = "btnCambiarPass"
-        Me.btnCambiarPass.Size = New System.Drawing.Size(147, 27)
+        Me.btnCambiarPass.Size = New System.Drawing.Size(177, 27)
         Me.btnCambiarPass.TabIndex = 22
         Me.btnCambiarPass.Text = "CAMBIAR CONTRASEÑA"
         Me.btnCambiarPass.UseVisualStyleBackColor = True
@@ -3079,7 +3123,7 @@ Partial Class frmPrincipal
         Me.btnMisArticulos.ForeColor = System.Drawing.Color.White
         Me.btnMisArticulos.Location = New System.Drawing.Point(0, 141)
         Me.btnMisArticulos.Name = "btnMisArticulos"
-        Me.btnMisArticulos.Size = New System.Drawing.Size(147, 27)
+        Me.btnMisArticulos.Size = New System.Drawing.Size(177, 27)
         Me.btnMisArticulos.TabIndex = 20
         Me.btnMisArticulos.Text = "MIS ARTICULOS"
         Me.btnMisArticulos.UseVisualStyleBackColor = True
@@ -3096,7 +3140,7 @@ Partial Class frmPrincipal
         Me.pnlMiInfo.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlMiInfo.Location = New System.Drawing.Point(0, 39)
         Me.pnlMiInfo.Name = "pnlMiInfo"
-        Me.pnlMiInfo.Size = New System.Drawing.Size(147, 102)
+        Me.pnlMiInfo.Size = New System.Drawing.Size(177, 102)
         Me.pnlMiInfo.TabIndex = 17
         Me.pnlMiInfo.Visible = False
         '
@@ -3188,7 +3232,7 @@ Partial Class frmPrincipal
         Me.Button28.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button28.Location = New System.Drawing.Point(0, 0)
         Me.Button28.Name = "Button28"
-        Me.Button28.Size = New System.Drawing.Size(147, 39)
+        Me.Button28.Size = New System.Drawing.Size(177, 39)
         Me.Button28.TabIndex = 15
         Me.Button28.Text = "     MI INFO"
         Me.Button28.UseVisualStyleBackColor = True
@@ -3454,7 +3498,7 @@ Partial Class frmPrincipal
         Me.panelbotonescarrito.Controls.Add(Me.Button1)
         Me.panelbotonescarrito.Location = New System.Drawing.Point(-1, 0)
         Me.panelbotonescarrito.Name = "panelbotonescarrito"
-        Me.panelbotonescarrito.Size = New System.Drawing.Size(142, 640)
+        Me.panelbotonescarrito.Size = New System.Drawing.Size(142, 660)
         Me.panelbotonescarrito.TabIndex = 4
         Me.panelbotonescarrito.Visible = False
         '
@@ -3550,57 +3594,13 @@ Partial Class frmPrincipal
         Me.DataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
-        'lblVendedor
-        '
-        Me.lblVendedor.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblVendedor.AutoSize = True
-        Me.lblVendedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblVendedor.Location = New System.Drawing.Point(728, 54)
-        Me.lblVendedor.Name = "lblVendedor"
-        Me.lblVendedor.Size = New System.Drawing.Size(111, 25)
-        Me.lblVendedor.TabIndex = 13
-        Me.lblVendedor.Text = "Vendedor:"
-        '
-        'lblVendedorName
-        '
-        Me.lblVendedorName.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblVendedorName.AutoSize = True
-        Me.lblVendedorName.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblVendedorName.Location = New System.Drawing.Point(835, 54)
-        Me.lblVendedorName.Name = "lblVendedorName"
-        Me.lblVendedorName.Size = New System.Drawing.Size(30, 25)
-        Me.lblVendedorName.TabIndex = 14
-        Me.lblVendedorName.Text = "..."
-        '
-        'lblFichaStock
-        '
-        Me.lblFichaStock.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblFichaStock.AutoSize = True
-        Me.lblFichaStock.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFichaStock.Location = New System.Drawing.Point(745, 93)
-        Me.lblFichaStock.Name = "lblFichaStock"
-        Me.lblFichaStock.Size = New System.Drawing.Size(72, 25)
-        Me.lblFichaStock.TabIndex = 15
-        Me.lblFichaStock.Text = "Stock:"
-        '
-        'lblFichaCantidad
-        '
-        Me.lblFichaCantidad.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblFichaCantidad.AutoSize = True
-        Me.lblFichaCantidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFichaCantidad.Location = New System.Drawing.Point(835, 93)
-        Me.lblFichaCantidad.Name = "lblFichaCantidad"
-        Me.lblFichaCantidad.Size = New System.Drawing.Size(30, 25)
-        Me.lblFichaCantidad.TabIndex = 16
-        Me.lblFichaCantidad.Text = "..."
-        '
         'frmPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(16, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(36, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(983, 633)
+        Me.ClientSize = New System.Drawing.Size(983, 653)
         Me.Controls.Add(Me.pnlPerfil)
         Me.Controls.Add(Me.pnlMenu)
         Me.Controls.Add(Me.panelbotonescarrito)

@@ -8,7 +8,7 @@ Public Class Administrador
     Public Sub New()
         'Esta llamada es exigida por el diseñador.
         conexion = New MySqlConnection
-        conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=administrador; pwd=administrador;"
+        conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=root; pwd=;"
         cmd.Connection = conexion
         InitializeComponent()
         'Agregue cualquier inicialización después de la llamada a InitializeComponent().
@@ -78,7 +78,7 @@ Public Class Administrador
             con.Open()
             cmd.Connection = con
 
-            cmd.CommandText = "SELECT usuario.id,usuario.username As Vendedor, (detalle_compra.Cantidad * detalle_compra.PrecioUnitario) As Precio FROM usuario,compras,detalle_compra,articulos WHERE compras.id = detalle_compra.id_compra AND articulos.id = detalle_compra.id_articulo AND articulos.usuario_id = usuario.id AND compras.id=@idCompra"
+            cmd.CommandText = "SELECT usuario.id,usuario.username As Vendedor, (detalle_compra.Cantidad * detalle_compra.PrecioUnitario) As Precio FROM usuario,compras,detalle_compra,articulos WHERE compras.id = detalle_compra.id_compra AND articulos.id = detalle_compra.id_articulo AND articulos.usuario_id = usuario.id AND compras.id=@idCompra ORDER BY Vendedor"
             cmd.Parameters.AddWithValue("@idCompra", idCompra)
 
             rd = cmd.ExecuteReader
