@@ -64,62 +64,117 @@ Public Class Administrador
         grdUsuarios.Columns(3).Width = 190
     End Sub
 
-    Private Sub updateGridTransacciones()
-        grdTransacciones.Rows.Clear()
 
-        Dim idCompra As Integer
-        Dim comprador As String
-        Dim fecha As Date
-        Dim precioTotal As Integer
-        Dim vendedor As String
+
+    Private Sub getPagoYVendedor(ByVal idCompra As Integer, ByVal comprador As String, ByVal fecha As Date)
+
+        Dim con As New MySqlConnection
+        con.ConnectionString = "Server=localhost; database=mercadolider; Uid=root; pwd=;"
+
+        Dim cmd As New MySqlCommand
+        Dim rd As MySqlDataReader
 
         Try
+            con.Open()
+            cmd.Connection = con
+
+            cmd.CommandText = "SELECT usuario.id,usuario.username As Vendedor, (detalle_compra.Cantidad * detalle_compra.PrecioUnitario) As Precio FROM usuario,compras,detalle_compra,articulos WHERE compras.id = detalle_compra.id_compra AND articulos.id = detalle_compra.id_articulo AND articulos.usuario_id = usuario.id AND compras.id=@idCompra"
+            cmd.Parameters.AddWithValue("@idCompra", idCompra)
+
+            rd = cmd.ExecuteReader
+
+            Dim anteriorID = 0
+            Dim anteriorPrecioTotal = 0
+            Dim anteriorVendedor = ""
+
+            Dim precioTotal = 0
+            Dim Vendedor = ""
+
+            While (rd.Read())
+
+                Dim idVendedor = CInt(Int(rd("id")))
+                If (idVendedor = anteriorID) Then
+
+
+                    precioTotal = precioTotal + CInt(Int(rd("Precio")))
+
+
+                Else
+                    If (anteriorID <> 0) Then 'entra aqui sabemos que se trata de el primer registro con ese id
+
+                        precioTotal = 0
+                        precioTotal = rd("Precio")
+                        Vendedor = rd("Vendedor")
+                        grdTransacciones.Rows.Add(idCompra, comprador, fecha, anteriorPrecioTotal, anteriorVendedor)
+
+
+                    Else
+                        precioTotal = rd("Precio") '' Si entra aqui sabemos que se trata de el primer registro
+                        Vendedor = rd("Vendedor")
+
+                    End If
+                End If
+                anteriorID = rd("id")
+                anteriorPrecioTotal = precioTotal
+                anteriorVendedor = Vendedor
+
+
+            End While
+
+            grdTransacciones.Rows.Add(idCompra, comprador, fecha, anteriorPrecioTotal, anteriorVendedor)
+
+
+
+            rd.Close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+
+
+
+
+        End Try
+        con.Close()
+
+
+    End Sub
+
+    Private Sub updateGridTransacciones()
+
+        grdTransacciones.Rows.Clear()
+        Try
+
             conexion.Open()
+            MsgBox("Conexion establecida")
             cmd.CommandText = "SELECT compras.id,usuario.username,compras.Fecha,compras.PrecioTotal FROM usuario,compras WHERE compras.usuario_id=usuario.id"
             r = cmd.ExecuteReader()
-            Dim r2 As MySqlDataReader
-            While (r.Read)
+
+            Dim idCompra As Integer
+            Dim comprador As String
+            Dim fecha As Date
+
+
+            While (r.Read())
+
                 idCompra = r("id")
                 comprador = r("username")
                 fecha = r("Fecha")
-                cmd.CommandText = "SELECT usuario.id,usuario.username As Vendedor, (detalle_compra.Cantidad * detalle_compra.PrecioUnitario) As Precio FROM usuario,compras,detalle_compra,articulos WHERE compras.id = detalle_compra.id_compra AND articulos.id = detalle_compra.id_articulo AND articulos.usuario_id = usuario.id AND compras.id=@idCompra"
-                cmd.Parameters.Clear()
-                cmd.Parameters.AddWithValue("@idCompra", idCompra)
-                Dim precio As Integer = 0
-                Dim trackerNombre As String = ""
-                Dim trackerID As String = ""
-                r2 = cmd.ExecuteReader
-                While (r2.Read)
-                    MsgBox(r2("id"))
-                End While
-                r2.Close()
+                getPagoYVendedor(idCompra, comprador, fecha)
+
+
+
             End While
+
         Catch ex As Exception
             MsgBox(ex.ToString)
             conexion.Close()
         End Try
+
         r.Close()
+        conexion.Close()
 
-        'idCompra = r("id")
-        'comprador = r("username")
-        'precioTotal = r("Preciototal")
 
-        'Dim portada = r("portada")
-        'End If
-        'precioTotal = precioTotal + (precio * elem.cantidad)
 
-        'Dim subtotal = (precio * elem.cantidad).ToString + "$"
 
-        'DataGridCart.Rows.Add(portada, id, nombre, precio, elem.cantidad, subtotal)
-        'End If
-        'r.Close()
-        ' Next
-        ' lblPrecioTotalCart.Text = precioTotal
-        'conexion.Close()
-        ' Catch ex As Exception
-        '    MsgBox(ex.ToString)
-        '   conexion.Close()
-        '        End Try
 
         grdTransacciones.Columns(0).Width = 200
         grdTransacciones.Columns(1).Width = 200
@@ -163,7 +218,9 @@ Public Class Administrador
         tcAdmin.SelectedTab = tcAdmin.TabPages.Item(2)
         OcultarBarras()
         pnlTransacciones.Visible = True
+
         updateGridTransacciones()
+
     End Sub
     Private Sub Administrador_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         frmPrincipal.Show()
