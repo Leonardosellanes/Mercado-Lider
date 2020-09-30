@@ -8,7 +8,7 @@ Public Class Administrador
     Public Sub New()
         'Esta llamada es exigida por el diseñador.
         conexion = New MySqlConnection
-        conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=root; pwd=;"
+        conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=administrador; pwd=administrador;"
         cmd.Connection = conexion
         InitializeComponent()
         'Agregue cualquier inicialización después de la llamada a InitializeComponent().
@@ -220,6 +220,7 @@ Public Class Administrador
     End Sub
     Private Sub Administrador_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         frmPrincipal.Show()
+        frmPrincipal.tbTodos.SelectedTab = frmPrincipal.tbTodos.TabPages.Item(0)
     End Sub
 
     Private Sub dataGridArticulos_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridArticulos.SelectionChanged
@@ -244,9 +245,5 @@ Public Class Administrador
             MsgBox(ex.ToString)
             conexion.Close()
         End Try
-    End Sub
-
-    Private Sub grdUsuarios_SelectionChanged(sender As Object, e As EventArgs)
-
     End Sub
 End Class

@@ -34,7 +34,7 @@ Public Class frmPrincipal
     Public Sub New()
         'Esta llamada es exigida por el diseñador.
         conexion = New MySqlConnection
-        conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=root; pwd=;"
+        conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=cliente; pwd=cliente;"
         cmd.Connection = conexion
 
         InitializeComponent()
@@ -469,7 +469,6 @@ Public Class frmPrincipal
                     Else
                         rd.Close()
                     End If
-
                 Catch ex As Exception
                     MsgBox(ex.Message)
                 End Try
@@ -891,7 +890,6 @@ Public Class frmPrincipal
         cbxRol.DropDownStyle = ComboBoxStyle.DropDownList
     End Sub
     Private Sub ocultarregistro(ByVal h As Boolean, ByVal x As Boolean)
-        btnRegistrar.Visible = h
         txtUsername.Visible = h
         txtEmail.Visible = h
         txtTelefono.Visible = h
@@ -945,6 +943,8 @@ Public Class frmPrincipal
         tbTodos.SelectedTab = tbTodos.TabPages.Item(2)
         Ocultarpaneles()
         ocultarbarritas()
+        txtusernamelogin.Clear()
+        txtpasslogin.Clear()
     End Sub
 
 
@@ -1949,6 +1949,15 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
 
 
         End If
+
+
+        Try
+            'aca pones todo el codigode el boton
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+
 
     End Sub
 
