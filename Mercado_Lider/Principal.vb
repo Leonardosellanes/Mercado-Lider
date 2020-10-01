@@ -807,7 +807,7 @@ Public Class frmPrincipal
                                 cmd.Parameters.AddWithValue("@articulo", idArticulo)
                                 cmd.Parameters.AddWithValue("@categoria", idcategoria)
                                 cmd.ExecuteNonQuery()  ''Inserta el id de el articulo ultimamente registrado y el id de categoria
-                                MsgBox("Categorias insertada correctamente")
+
                             End If
                         End If
                     End If
@@ -991,7 +991,7 @@ Public Class frmPrincipal
         Try
             conexion.Open()
 
-            cmd.CommandText = "SELECT compras.id,compras.fecha ,compras.preciototal FROM compras WHERE usuario_id=@userID AND usuario.deleted=0"
+            cmd.CommandText = "SELECT compras.id,compras.fecha ,compras.preciototal FROM compras WHERE usuario_id=@userID"
             cmd.Parameters.Clear()
             cmd.Parameters.AddWithValue("@userID", ID)
 
