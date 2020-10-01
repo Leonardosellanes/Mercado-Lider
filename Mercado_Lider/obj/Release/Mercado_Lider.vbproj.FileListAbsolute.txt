@@ -1,0 +1,16 @@
+C:\Users\artec\OneDrive\Documentos\GitHub\Mercado-Lider\Mercado_Lider\bin\Release\Mercado_Lider.exe.config
+C:\Users\artec\OneDrive\Documentos\GitHub\Mercado-Lider\Mercado_Lider\bin\Release\Mercado_Lider.exe
+C:\Users\artec\OneDrive\Documentos\GitHub\Mercado-Lider\Mercado_Lider\bin\Release\Mercado_Lider.pdb
+C:\Users\artec\OneDrive\Documentos\GitHub\Mercado-Lider\Mercado_Lider\bin\Release\Mercado_Lider.xml
+C:\Users\artec\OneDrive\Documentos\GitHub\Mercado-Lider\Mercado_Lider\bin\Release\MySql.Data.dll
+C:\Users\artec\OneDrive\Documentos\GitHub\Mercado-Lider\Mercado_Lider\obj\Release\Mercado_Lider.vbprojAssemblyReference.cache
+C:\Users\artec\OneDrive\Documentos\GitHub\Mercado-Lider\Mercado_Lider\obj\Release\Mercado_Lider.Domicilio.resources
+C:\Users\artec\OneDrive\Documentos\GitHub\Mercado-Lider\Mercado_Lider\obj\Release\Mercado_Lider.frmPrincipal.resources
+C:\Users\artec\OneDrive\Documentos\GitHub\Mercado-Lider\Mercado_Lider\obj\Release\Mercado_Lider.Administrador.resources
+C:\Users\artec\OneDrive\Documentos\GitHub\Mercado-Lider\Mercado_Lider\obj\Release\Mercado_Lider.Resources.resources
+C:\Users\artec\OneDrive\Documentos\GitHub\Mercado-Lider\Mercado_Lider\obj\Release\Mercado_Lider.vbproj.GenerateResource.cache
+C:\Users\artec\OneDrive\Documentos\GitHub\Mercado-Lider\Mercado_Lider\obj\Release\Mercado_Lider.vbproj.CoreCompileInputs.cache
+C:\Users\artec\OneDrive\Documentos\GitHub\Mercado-Lider\Mercado_Lider\obj\Release\Mercado_Lider.vbproj.CopyComplete
+C:\Users\artec\OneDrive\Documentos\GitHub\Mercado-Lider\Mercado_Lider\obj\Release\Mercado_Lider.exe
+C:\Users\artec\OneDrive\Documentos\GitHub\Mercado-Lider\Mercado_Lider\obj\Release\Mercado_Lider.xml
+C:\Users\artec\OneDrive\Documentos\GitHub\Mercado-Lider\Mercado_Lider\obj\Release\Mercado_Lider.pdb

@@ -87,6 +87,11 @@ Mercado_Lider
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:Mercado_Lider.My.Resources.Resources.quitar">
+<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:Mercado_Lider.My.Resources.Resources.Sin_título_1">
 <summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
