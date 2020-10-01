@@ -175,7 +175,7 @@ Public Class frmPrincipal
     Private Function UserExist(ByVal username As String, ByVal con As MySqlConnection)
 
         con.Open()
-        cmd.CommandText = "SELECT * FROM usuario WHERE username=@user"
+        cmd.CommandText = "SELECT * FROM usuario WHERE username=@user AND deleted=0"
         cmd.Parameters.Clear()
         cmd.Parameters.AddWithValue("@user", username)
         r = cmd.ExecuteReader
@@ -213,9 +213,9 @@ Public Class frmPrincipal
             conexion.Open()
 
             If (sesion = False) Then
-                cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,usuario WHERE usuario.id=articulos.usuario_id AND articulos.deleted=0 ORDER BY nombre ASC"
+                cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,usuario WHERE usuario.id=articulos.usuario_id AND articulos.deleted=0 AND usuario.deleted=0 ORDER BY nombre ASC"
             Else
-                cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,usuario WHERE usuario.id=articulos.usuario_id and usuario.id!=@userID AND articulos.deleted=0 ORDER BY nombre ASC"
+                cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,usuario WHERE usuario.id=articulos.usuario_id and usuario.id!=@userID AND articulos.deleted=0 AND usuario.deleted=0 ORDER BY nombre ASC"
                 cmd.Parameters.Clear()
                 cmd.Parameters.AddWithValue("@userID", ID)
             End If
@@ -236,7 +236,7 @@ Public Class frmPrincipal
             conexion.Open()
             cmd.Connection = conexion
 
-            cmd.CommandText = "SELECT * FROM usuario,useremail WHERE usuario.id=@id"
+            cmd.CommandText = "SELECT * FROM usuario,useremail WHERE usuario.id=@id AND usuario.deleted=0"
             cmd.Parameters.Clear()
             cmd.Parameters.AddWithValue("@id", id)
             r = cmd.ExecuteReader
@@ -388,7 +388,7 @@ Public Class frmPrincipal
             conexion.Open()
 
 
-            cmd.CommandText = "SELECT password FROM usuario WHERE id=@id"
+            cmd.CommandText = "SELECT password FROM usuario WHERE id=@id AND deleted=0"
             cmd.Parameters.Clear()
             cmd.Parameters.AddWithValue("@id", ID)
             r = cmd.ExecuteReader()
@@ -447,16 +447,17 @@ Public Class frmPrincipal
 
                     ''INSERCION EN LA TABLA usuarios
 
-                    cmd.CommandText = "INSERT INTO usuario (id,username, password, Nombre, Apellido, telefono, rol, nroCalle, calle, nroApto, esq) VALUES (NULL,@username , @password, NULL, NULL, @telefono, @rol, NULL, NULL, NULL, NULL);"
+                    cmd.CommandText = "INSERT INTO usuario (id,username, password, Nombre, Apellido, telefono, rol, nroCalle, calle, nroApto, esq,deleted) VALUES (NULL,@username , @password, NULL, NULL, @telefono, @rol, NULL, NULL, NULL, NULL,@deleted);"
                     cmd.Prepare()
                     cmd.Parameters.Clear()
                     cmd.Parameters.AddWithValue("@username", txtUsername.Text)
                     cmd.Parameters.AddWithValue("@password", generarClaveSHA1(txtPass.Text))
                     cmd.Parameters.AddWithValue("@telefono", txtTelefono.Text)
                     cmd.Parameters.AddWithValue("@rol", cbxRol.Text)
+                    cmd.Parameters.AddWithValue("@deleted", 0)
                     cmd.ExecuteNonQuery()
                     ''Extraccion de ID de el registro anteriormente registrado para la insercion en otras tablas
-                    cmd.CommandText = "SELECT id FROM usuario WHERE username=@username"
+                    cmd.CommandText = "SELECT id FROM usuario WHERE username=@username AND deleted=0"
                     cmd.Parameters.Clear()
                     cmd.Parameters.AddWithValue("@username", txtUsername.Text)
                     Dim rd As MySqlDataReader = cmd.ExecuteReader
@@ -497,7 +498,7 @@ Public Class frmPrincipal
             conexion.Open()
             cmd.Connection = conexion
 
-            cmd.CommandText = "SELECT usuario.id, usuario.username,usuario.Nombre, usuario.Apellido, usuario.telefono, usuario.rol , useremail.email from usuario,useremail where username=@nombre and password=@pass and useremail.user_id = usuario.id"
+            cmd.CommandText = "SELECT usuario.id, usuario.username,usuario.Nombre, usuario.Apellido, usuario.telefono, usuario.rol , useremail.email from usuario,useremail where username=@nombre and password=@pass and useremail.user_id = usuario.id AND usuario.deleted=0"
             cmd.Prepare()
             cmd.Parameters.Clear()
             cmd.Parameters.AddWithValue("@nombre", txtusernamelogin.Text)
@@ -990,7 +991,7 @@ Public Class frmPrincipal
         Try
             conexion.Open()
 
-            cmd.CommandText = "SELECT compras.id,compras.fecha ,compras.preciototal FROM compras WHERE usuario_id=@userID"
+            cmd.CommandText = "SELECT compras.id,compras.fecha ,compras.preciototal FROM compras WHERE usuario_id=@userID AND usuario.deleted=0"
             cmd.Parameters.Clear()
             cmd.Parameters.AddWithValue("@userID", ID)
 
@@ -1182,7 +1183,7 @@ Public Class frmPrincipal
             Try
                 conexion.Open()
 
-                cmd.CommandText = "SELECT articulos.portada,articulos.Nombre,detalle_compra.Cantidad,detalle_compra.PrecioUnitario,compras.Fecha,compras.PrecioTotal,usuario.username from articulos,detalle_compra,compras,usuario where detalle_compra.id_articulo = articulos.id and compras.usuario_id = usuario.id and articulos.usuario_id = @userID and compras.id = detalle_compra.id_compra"
+                cmd.CommandText = "SELECT articulos.portada,articulos.Nombre,detalle_compra.Cantidad,detalle_compra.PrecioUnitario,compras.Fecha,compras.PrecioTotal,usuario.username from articulos,detalle_compra,compras,usuario where detalle_compra.id_articulo = articulos.id and compras.usuario_id = usuario.id and articulos.usuario_id = @userID and compras.id = detalle_compra.id_compra AND usuario.deleted=0"
                 cmd.Parameters.Clear()
                 cmd.Parameters.AddWithValue("@userID", ID)
                 adapta2r.SelectCommand = cmd
@@ -1298,7 +1299,7 @@ Public Class frmPrincipal
                 conexion.Open()
 
 
-                cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,usuario WHERE usuario.id=articulos.usuario_id and articulos.usuario_id = @userID AND articulos.deleted = 0"
+                cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,usuario WHERE usuario.id=articulos.usuario_id and articulos.usuario_id = @userID AND articulos.deleted = 0 AND usuario.deleted=0"
                 cmd.Parameters.Clear()
                 cmd.Parameters.AddWithValue("@userID", ID)
 
@@ -1421,10 +1422,10 @@ Public Class frmPrincipal
             If ComboBoxCategorias.Text = "TODOS" Then  ''Si el combobox categoria tiene valor todos
                 If (sesion = True) Then   ''Si existe una sesion de usuario abierta
                     ''Seleciona todos los articulos menos los publicados por el usuario con sesion de la sesion, filtrado por descripcion pasado a traves de el TextBox de busqueda 
-                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,Articulos.precio FROM articulos,usuario WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.usuario_id=usuario.id AND usuario.id!=" & ID & " AND articulos.deleted=0"  '
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,Articulos.precio FROM articulos,usuario WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.usuario_id=usuario.id AND usuario.id!=" & ID & " AND articulos.deleted=0 AND usuario.deleted=0"  '
                 Else
                     ''De lo contrario seleciona todos los articulos
-                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,Articulos.precio FROM articulos WHERE  articulos.deleted=0 AND articulos.Descripcion LIKE '%" & txtBuscar.Text & "%'"
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,Articulos.precio FROM articulos WHERE  articulos.deleted=0 AND articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' "
 
                 End If
 
@@ -1433,7 +1434,7 @@ Public Class frmPrincipal
                 If (sesion = True) Then
                     'Si existe una sesion,selecciona todos los articulos menos los de el usuario de la sesion,filtrado por descripcion y categoria
                     cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,Articulos.precio FROM articulos,categoria,articulo_categoria,usuario
-WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=articulo_categoria.articulo_id AND categoria.id = articulo_categoria.categoria_id AND categoria.categoria='" & ComboBoxCategorias.Text & "' AND articulos.usuario_id=usuario.id AND usuario.id!=" & ID & " AND articulos.deleted=0"
+WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=articulo_categoria.articulo_id AND categoria.id = articulo_categoria.categoria_id AND categoria.categoria='" & ComboBoxCategorias.Text & "' AND articulos.usuario_id=usuario.id AND usuario.id!=" & ID & " AND articulos.deleted=0 AND usuario.deleted=0"
                 Else
                     ''Si no existe una sesion ,filtra igual por descripcion y categoria,pero incluye los de el usuario de la sesion
                     cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,Articulos.precio FROM articulos,categoria,articulo_categoria WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=articulo_categoria.articulo_id AND categoria.id = articulo_categoria.categoria_id AND categoria.categoria='" & ComboBoxCategorias.Text & "' AND articulos.deleted=0"
@@ -1464,17 +1465,17 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
             If ComboBoxCategorias.Text = "TODOS" Then
                 If (sesion = True) Then
                     ''Seleciona todos los articulos ,sin incluir los articulos de el usuario logeado
-                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,usuario WHERE  articulos.usuario_id=usuario.id AND usuario.id!= " & ID & " AND articulos.deleted=0"
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,usuario WHERE  articulos.usuario_id=usuario.id AND usuario.id!= " & ID & " AND articulos.deleted=0 AND usuario.deleted=0"
                 Else
 
                     ''Seleciona todos los articulos.
 
-                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos WHERE articulos.deleted=0"
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos WHERE articulos.deleted=0 "
                 End If
             Else
                 If (sesion = True) Then
                     ''Seleciona todos los articulos filtrados unicamente por categoria ,sin incluir los articulos de el usuario
-                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,categoria,articulo_categoria,usuario WHERE articulos.id=articulo_categoria.articulo_id AND categoria.id = articulo_categoria.categoria_id AND categoria.categoria='" & ComboBoxCategorias.Text & "' AND articulos.usuario_id=usuario.id AND usuario.id!=" & ID & " AND articulos.deleted=0"
+                    cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,categoria,articulo_categoria,usuario WHERE articulos.id=articulo_categoria.articulo_id AND categoria.id = articulo_categoria.categoria_id AND categoria.categoria='" & ComboBoxCategorias.Text & "' AND articulos.usuario_id=usuario.id AND usuario.id!=" & ID & " AND articulos.deleted=0 AND usuario.deleted=0"
                 Else
                     ''Seleciona todos los articulos filtrados unicamente por su categoria
                     cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,categoria,articulo_categoria WHERE articulos.id=articulo_categoria.articulo_id AND categoria.id = articulo_categoria.categoria_id AND categoria.categoria='" & ComboBoxCategorias.Text & "' AND articulos.deleted=0"
@@ -1529,24 +1530,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
     Private Sub btnVolverEditarArticulos_Click(sender As Object, e As EventArgs) Handles btnVolverEditarArticulos.Click
         tbTodos.SelectedTab = tbTodos.TabPages.Item(3)
 
-        'Dim ds As DataSet = New DataSet
-        ' Dim adaptador As MySqlDataAdapter = New MySqlDataAdapter
-        'Try
-        'conexion.Open()
 
-
-        'cmd.CommandText = "SELECT articulos.portada,articulos.id,articulos.Nombre,articulos.precio FROM articulos,usuario WHERE usuario.id=articulos.usuario_id and articulos.usuario_id = @userID"
-        'cmd.Parameters.Clear()
-        ' cmd.Parameters.AddWithValue("@userID", ID)
-
-        'adaptador.SelectCommand = cmd
-        'adaptador.Fill(ds, "Tabla")
-        'grdMisArticulos.DataSource = ds
-        'grdMisArticulos.DataMember = "Tabla"
-        'Catch ex As Exception
-        'MsgBox(ex.ToString)
-        'End Try
-        'conexion.Close()
 
         Dim contador3 As Integer
         For Each grd In grdMisArticulos.Rows

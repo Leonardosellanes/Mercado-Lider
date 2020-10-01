@@ -1,4 +1,6 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Security.Cryptography
+Imports System.Text
+Imports MySql.Data.MySqlClient
 
 Public Class Administrador
     Dim conexion As MySqlConnection
@@ -13,6 +15,34 @@ Public Class Administrador
         InitializeComponent()
         'Agregue cualquier inicialización después de la llamada a InitializeComponent().
     End Sub
+
+    Function generarClaveSHA1(ByVal cadena As String) As String
+        Dim enc As New UTF8Encoding
+        Dim data() As Byte = enc.GetBytes(cadena)
+        Dim result() As Byte
+        Dim sha As New SHA1CryptoServiceProvider
+
+        result = sha.ComputeHash(data)
+        Dim sb As New StringBuilder
+        Dim max As Int32 = result.Length
+
+        For i As Integer = 0 To max - 1
+            'Convertimos los valores en hexadecimal
+            'cuando tiene una cifra hay que rellenarlo con cero
+            'para que siempre ocupen dos dígitos.
+            If (result(i) < 16) Then
+                sb.Append("0")
+            End If
+            sb.Append(result(i).ToString("x"))
+        Next
+        'Devolvemos la cadena con el hash en mayúsculas
+        generarClaveSHA1 = sb.ToString().ToUpper()
+        Return generarClaveSHA1
+    End Function
+
+
+
+
     Private Sub AjustarGridArticulos()
         Dim contador As Integer
         For Each grd In dataGridArticulos.Rows
@@ -48,7 +78,7 @@ Public Class Administrador
             conexion.Open()
 
 
-            cmd.CommandText = "SELECT usuario.username,useremail.email,usuario.password,usuario.rol FROM usuario,useremail WHERE usuario.id=useremail.user_id"
+            cmd.CommandText = "SELECT usuario.id,usuario.username,useremail.email,usuario.password,usuario.rol FROM usuario,useremail WHERE usuario.id=useremail.user_id"
             adaptador.SelectCommand = cmd
             adaptador.Fill(ds, "Tabla")
             grdUsuarios.DataSource = ds
@@ -58,7 +88,7 @@ Public Class Administrador
             MsgBox(ex.ToString)
             conexion.Close()
         End Try
-        grdUsuarios.Columns(0).Width = 200
+        grdUsuarios.Columns(0).Width = 80
         grdUsuarios.Columns(1).Width = 200
         grdUsuarios.Columns(2).Width = 200
         grdUsuarios.Columns(3).Width = 190
@@ -145,7 +175,7 @@ Public Class Administrador
 
             conexion.Open()
             ' MsgBox("Conexion establecida")
-            cmd.CommandText = "SELECT compras.id,usuario.username,compras.Fecha,compras.PrecioTotal FROM usuario,compras WHERE compras.usuario_id=usuario.id"
+            cmd.CommandText = "SELECT compras.id,usuario.username,compras.Fecha,compras.PrecioTotal FROM usuario,compras WHERE compras.usuario_id=usuario.id ORDER BY compras.Fecha DESC"
             r = cmd.ExecuteReader()
 
             Dim idCompra As Integer
@@ -245,5 +275,97 @@ Public Class Administrador
             MsgBox(ex.ToString)
             conexion.Close()
         End Try
+    End Sub
+
+    Private Sub btnEliminarUser_Click(sender As Object, e As EventArgs) Handles btnEliminarUser.Click
+
+        Dim id = dataGridArticulos.Item("id", dataGridArticulos.SelectedRows(0).Index).Value
+        Dim username = dataGridArticulos.Item("USERNAME", dataGridArticulos.SelectedRows(0).Index).Value
+        Dim resultado = MsgBox("Seguro que quieres eliminar al usuario:" & username & " con ID:" & id & " ", vbOKCancel, "ELIMINAR USUARIO")
+
+        If resultado = vbOK Then
+            Try
+                conexion.Open()
+                cmd.CommandText = "UPDATE usuario SET deleted=@deleted WHERE id=@idUser"
+                cmd.Parameters.Clear()
+                cmd.Parameters.AddWithValue("@deleted", 1)
+                cmd.Parameters.AddWithValue("@idUser", id)
+
+                cmd.ExecuteNonQuery()
+                updateGridUser()
+
+
+                MsgBox("Usuario eliminado exitosamente")
+
+                conexion.Close()
+                updateGridUser()
+
+
+
+            Catch ex As Exception
+                MsgBox(ex.ToString)
+                conexion.Close()
+            End Try
+        End If
+
+
+    End Sub
+
+    Private Sub btnContraseña_Click(sender As Object, e As EventArgs) Handles btnContraseña.Click
+        Dim id = grdUsuarios.Item("id", dataGridArticulos.SelectedRows(0).Index).Value
+        Dim username = grdUsuarios.Item("username", dataGridArticulos.SelectedRows(0).Index).Value
+        Dim resultado = MsgBox("Seguro que quieres cambiarle la contraseña al usuario:" & username & " con ID:" & id & " ", vbOKCancel, "CAMBIAR CONTRASEÑA")
+
+        If resultado = vbOK Then
+            Try
+                conexion.Open()
+                cmd.CommandText = "UPDATE usuario SET password=@passEncrypy WHERE id=@idUser"
+                cmd.Parameters.Clear()
+                cmd.Parameters.AddWithValue("@passEncrypy", generarClaveSHA1(txtSetContra.Text))
+                cmd.Parameters.AddWithValue("@idUser", id)
+
+                cmd.ExecuteNonQuery()
+                MsgBox("Contraseña cambiada exitosamente")
+
+
+
+                conexion.Close()
+                updateGridUser()
+            Catch ex As Exception
+                MsgBox(ex.ToString)
+                conexion.Close()
+            End Try
+        End If
+
+    End Sub
+
+    Private Sub btnAgregarAdmin_Click(sender As Object, e As EventArgs) Handles btnAgregarAdmin.Click
+        Dim id = grdUsuarios.Item("id", dataGridArticulos.SelectedRows(0).Index).Value
+        Dim username = grdUsuarios.Item("username", dataGridArticulos.SelectedRows(0).Index).Value
+        Dim resultado = MsgBox("Seguro que quieres asignarle el rol de aministrador a :" & username & " con ID:" & id & " ?", vbOKCancel, "CAMBIAR ROL")
+
+        If resultado = vbOK Then
+            Try
+                conexion.Open()
+                cmd.CommandText = "UPDATE usuario SET rol='Administrador' WHERE id=@idUser"
+                cmd.Parameters.Clear()
+
+                cmd.Parameters.AddWithValue("@idUser", id)
+
+                cmd.ExecuteNonQuery()
+
+                MsgBox("Ahora el usuario:" & username & " tiene rol administrador")
+
+
+
+
+                conexion.Close()
+
+                updateGridUser()
+            Catch ex As Exception
+                MsgBox(ex.ToString)
+                conexion.Close()
+            End Try
+        End If
     End Sub
 End Class
