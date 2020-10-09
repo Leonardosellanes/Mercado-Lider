@@ -77,7 +77,6 @@ Public Class Administrador
         Try
             conexion.Open()
 
-
             cmd.CommandText = "SELECT usuario.id,usuario.username,useremail.email,usuario.password,usuario.rol FROM usuario,useremail WHERE usuario.id=useremail.user_id"
             adaptador.SelectCommand = cmd
             adaptador.Fill(ds, "Tabla")
@@ -279,8 +278,8 @@ Public Class Administrador
 
     Private Sub btnEliminarUser_Click(sender As Object, e As EventArgs) Handles btnEliminarUser.Click
 
-        Dim id = dataGridArticulos.Item("id", dataGridArticulos.SelectedRows(0).Index).Value
-        Dim username = dataGridArticulos.Item("USERNAME", dataGridArticulos.SelectedRows(0).Index).Value
+        Dim id = grdUsuarios.Item("id", dataGridArticulos.SelectedRows(0).Index).Value
+        Dim username = grdUsuarios.Item("username", dataGridArticulos.SelectedRows(0).Index).Value
         Dim resultado = MsgBox("Seguro que quieres eliminar al usuario:" & username & " con ID:" & id & " ", vbOKCancel, "ELIMINAR USUARIO")
 
         If resultado = vbOK Then

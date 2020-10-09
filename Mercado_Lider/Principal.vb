@@ -34,7 +34,7 @@ Public Class frmPrincipal
     Public Sub New()
         'Esta llamada es exigida por el diseñador.
         conexion = New MySqlConnection
-        conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=cliente; pwd=cliente;"
+        conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=root; pwd=;"
         cmd.Connection = conexion
 
         InitializeComponent()
@@ -868,6 +868,7 @@ Public Class frmPrincipal
         grdInicio.Columns(2).Width = 250
         grdInicio.Columns(3).Width = 240
         ajustarGrid()
+
     End Sub
     Private Sub Ocultarpaneles()
         panelbotonescarrito.Visible = False
@@ -1057,6 +1058,7 @@ Public Class frmPrincipal
             Ocultarpaneles()
             ocultarbarritas()
             Panel9.Visible = True
+            AgregarCategorias()
         End If
     End Sub
     Private Sub Button28_Click(sender As Object, e As EventArgs) Handles Button28.Click
@@ -1107,6 +1109,26 @@ Public Class frmPrincipal
         pnlMiInfo.Visible = False
         pnlConfig.Visible = False
         btnConfigOcultar.Visible = False
+    End Sub
+    Private Sub AgregarCategorias()
+        Dim ds As DataSet = New DataSet
+        Dim adaptador As MySqlDataAdapter = New MySqlDataAdapter
+        Try
+            conexion.Open()
+
+            cmd.CommandText = "SELECT categoria FROM categoria"
+            cmd.Parameters.Clear()
+            r = cmd.ExecuteReader()
+            While r.Read()
+                Dim categoria = r.GetString("categoria")
+                cbxCategorias.Items.Add(categoria)
+            End While
+            conexion.Close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            conexion.Close()
+        End Try
+        cbxCategorias.DropDownStyle = ComboBoxStyle.DropDownList
     End Sub
     Private Sub TextBox15_KeyPress(sender As Object, e As KeyPressEventArgs)
         Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
@@ -1213,6 +1235,7 @@ Public Class frmPrincipal
         End If
 
     End Sub
+
     Private Sub TextBox19_KeyPress(sender As Object, e As KeyPressEventArgs)
         Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
         KeyAscii = CShort(SoloNumeros(KeyAscii))
@@ -1568,7 +1591,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
 
                     Dim portadaByte() As Byte = r("portada")
                     Dim ms As New System.IO.MemoryStream(portadaByte)
-                    pbCambiarPortada.Image =  New Bitmap(Image.FromStream(ms))
+                    pbCambiarPortada.Image = New Bitmap(Image.FromStream(ms))
 
 
                     ms.Close()
@@ -1944,6 +1967,22 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
 
 
     End Sub
-
-
+    Private Sub cbxCategorias_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxCategorias.SelectedIndexChanged
+        lvCategorias.Items.Add(cbxCategorias.SelectedItem)
+        cbxCategorias.Items.Remove(cbxCategorias.Text)
+    End Sub
+    'Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    ' For Each lista In lvCategorias.SelectedItems
+    '    lista.remove()
+    ' cbxCategorias.Items.Add(lista)
+    'Next
+    ' End Sub
+    Private Sub lvCategorias_DoubleClick(sender As Object, e As EventArgs) Handles lvCategorias.DoubleClick
+        Dim h As String
+        For Each lista In lvCategorias.SelectedItems
+            h = lvCategorias.SelectedItems(0).SubItems(0).Text
+            cbxCategorias.Items.Add(h)
+            lista.remove()
+        Next
+    End Sub
 End Class
