@@ -10,7 +10,7 @@ Public Class Administrador
     Public Sub New()
         'Esta llamada es exigida por el diseñador.
         conexion = New MySqlConnection
-        conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=administrador; pwd=administrador;"
+        conexion.ConnectionString = "Server=localhost;  database=mercadolider; Uid=root; pwd=;"
         cmd.Connection = conexion
         InitializeComponent()
         'Agregue cualquier inicialización después de la llamada a InitializeComponent().
@@ -212,6 +212,9 @@ Public Class Administrador
         updateGridArticulos() 'Actualiza el datagrid de articulos'
         AjustarGridArticulos()
 
+
+        Me.Timer1.Enabled = True
+
         dataGridArticulos.Columns(0).Width = 150
         dataGridArticulos.Columns(1).Width = 100
         dataGridArticulos.Columns(2).Width = 160
@@ -339,8 +342,8 @@ Public Class Administrador
     End Sub
 
     Private Sub btnAgregarAdmin_Click(sender As Object, e As EventArgs) Handles btnAgregarAdmin.Click
-        Dim id = grdUsuarios.Item("id", dataGridArticulos.SelectedRows(0).Index).Value
-        Dim username = grdUsuarios.Item("username", dataGridArticulos.SelectedRows(0).Index).Value
+        Dim id = grdUsuarios.Item("id", grdUsuarios.SelectedRows(0).Index).Value
+        Dim username = grdUsuarios.Item("username", grdUsuarios.SelectedRows(0).Index).Value
         Dim resultado = MsgBox("Seguro que quieres asignarle el rol de aministrador a :" & username & " con ID:" & id & " ?", vbOKCancel, "CAMBIAR ROL")
 
         If resultado = vbOK Then
@@ -366,5 +369,9 @@ Public Class Administrador
                 conexion.Close()
             End Try
         End If
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick  ''Evento Timer que ejecuta el bloque interno cada 3 segundos'
+        updateGridTransacciones()    ''Llama a la funcion que actualiza el datagrid de visualizacion de transacciones.
     End Sub
 End Class
