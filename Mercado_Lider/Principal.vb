@@ -34,7 +34,7 @@ Public Class frmPrincipal
     Public Sub New()
         'Esta llamada es exigida por el diseñador.
         conexion = New MySqlConnection
-        conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=cliente; pwd=cliente;"
+        conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=root; pwd=;"
         cmd.Connection = conexion
 
         InitializeComponent()
@@ -710,29 +710,10 @@ Public Class frmPrincipal
             lblErrorImagen3.Visible = True
         End If
 
-        Dim valid As Integer = 0
-        Dim ArrayChecksCategoria(3) As CheckBox
-
-        ArrayChecksCategoria(0) = cbRopa
-        ArrayChecksCategoria(1) = cbElectronico
-        ArrayChecksCategoria(2) = cbHogar
-        ArrayChecksCategoria(3) = cbAutomovil
-
-
-
-        ''Bucle foreach que valida que haya al menos un checkbox seleccionado
-        For Each check As CheckBox In ArrayChecksCategoria
-            If check.Checked Then
-                valid = valid + 1
-            Else
-                ''  MsgBox("Checkbox:" & valid & "No esta marcado")
-            End If
-        Next
-
-        If valid < 1 Then
-            MsgBox("debe seleccionar una categoria")
+        If lvCategorias.Items.Count = 0 Then
+            lblErrorCategoria.Visible = True
         Else
-            validacionFrmArticulo = validacionFrmArticulo + 1
+            validacionFrmArticulo += 1
         End If
 
         If validacionFrmArticulo = 9 Then
@@ -793,26 +774,44 @@ Public Class frmPrincipal
                     ms2.Close()
                 Next
 
-                For Each check As CheckBox In ArrayChecksCategoria  ''Bucle foreach que recorre cada valor de el array
-                    If check.Checked Then    ''Checkea si el checkbox fue selecionado
-                        cmd.CommandText = "SELECT id FROM `categoria` WHERE categoria.categoria = @nomb"
-                        cmd.Parameters.AddWithValue("@nomb", check.Text)
-                        r = cmd.ExecuteReader
-                        If r.HasRows Then
-                            If r.Read Then
-                                Dim idcategoria As String = r("id")  ''Extrae el id de la categoria selecionada
-                                r.Close()
-                                cmd.CommandText = "insert into articulo_categoria(articulo_id,categoria_id) values (@articulo,@categoria)"
-                                cmd.Parameters.Clear()
-                                cmd.Parameters.AddWithValue("@articulo", idArticulo)
-                                cmd.Parameters.AddWithValue("@categoria", idcategoria)
-                                cmd.ExecuteNonQuery()  ''Inserta el id de el articulo ultimamente registrado y el id de categoria
+                ' For Each check As CheckBox In ArrayChecksCategoria  ''Bucle foreach que recorre cada valor de el array
+                '     If check.Checked Then    ''Checkea si el checkbox fue selecionado
+                '         cmd.CommandText = "SELECT id FROM `categoria` WHERE categoria.categoria = @nomb"
+                '         cmd.Parameters.AddWithValue("@nomb", check.Text)
+                '         r = cmd.ExecuteReader
+                '         If r.HasRows Then
+                '             If r.Read Then
+                '                 Dim idcategoria As String = r("id")  ''Extrae el id de la categoria selecionada
+                '                 r.Close()
+                '                 cmd.CommandText = "insert into articulo_categoria(articulo_id,categoria_id) values (@articulo,@categoria)"
+                '                 cmd.Parameters.Clear()
+                '                 cmd.Parameters.AddWithValue("@articulo", idArticulo)
+                '                 cmd.Parameters.AddWithValue("@categoria", idcategoria)
+                '                 cmd.ExecuteNonQuery()  ''Inserta el id de el articulo ultimamente registrado y el id de categoria
+                '
+                '             End If
+                '         End If
+                '     End If
+                ' Next
 
-                            End If
+                Dim contador As Integer = 0
+                For Each item In lvCategorias.Items
+                    Dim name As String = lvCategorias.Items(contador).Text
+                    cmd.CommandText = "SELECT id FROM `categoria` WHERE categoria.categoria = @nomb"
+                    cmd.Parameters.AddWithValue("@nomb", name)
+                    r = cmd.ExecuteReader
+                    If r.HasRows Then
+                        contador += 1
+                        If r.Read Then
+                            Dim idcategoria As String = r("id")  ''Extrae el id de la categoria selecionada
+                            r.Close()
+                            cmd.CommandText = "insert into articulo_categoria(articulo_id,categoria_id) values (@articulo,@categoria)"
+                            cmd.Parameters.Clear()
+                            cmd.Parameters.AddWithValue("@articulo", idArticulo)
+                            cmd.Parameters.AddWithValue("@categoria", idcategoria)
+                            cmd.ExecuteNonQuery()  ''Inserta el id de el articulo ultimamente registrado y el id de categoria
                         End If
                     End If
-
-
                 Next
                 MsgBox("Articulo insertado correctamente")
                 PictureBoxPortada.Image.Dispose()
@@ -827,10 +826,13 @@ Public Class frmPrincipal
                 txtStockArticulo.Clear()
                 txtNombreArticulo.Clear()
                 txtPrecio.Clear()
-                cbRopa.Checked = False
-                cbElectronico.Checked = False
-                cbAutomovil.Checked = False
-                cbHogar.Checked = False
+
+                Dim h As String
+                For Each lista In lvCategorias.Items
+                    h = lvCategorias.Items(0).Text
+                    cbxCategorias.Items.Add(h)
+                    lista.remove()
+                Next
             Catch ex As Exception
                 MsgBox(ex.ToString)
             End Try
@@ -1984,5 +1986,12 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
             cbxCategorias.Items.Add(h)
             lista.remove()
         Next
+    End Sub
+
+    Private Sub cbxCategorias_Click(sender As Object, e As EventArgs) Handles cbxCategorias.Click
+        lblErrorCategoria.Visible = False
+    End Sub
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        MsgBox("Para seleccionar una categoria,debe desplegar la lista y presionar click sobre la categoria deseada,si se equivoca y selecciona una categoria incorrecta,pede ir a la lista que aparece abajo de esta caja y presionar doble click sobre la categoria")
     End Sub
 End Class
