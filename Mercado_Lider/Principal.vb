@@ -223,6 +223,14 @@ Public Class frmPrincipal
             adaptador.Fill(ds, "Tabla")
             grdInicio.DataSource = ds
             grdInicio.DataMember = "Tabla"
+
+            If grdInicio.RowCount = 0 Then
+                lblSinProductos.Visible = True
+            Else
+                lblSinProductos.Visible = False
+
+            End If
+
             conexion.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -340,6 +348,14 @@ Public Class frmPrincipal
 
                     DataGridCart.Rows.Add(portada, id, nombre, precio, elem.cantidad, subtotal)
                 End If
+
+                If DataGridCart.RowCount = 0 Then
+                    lblSinArticulosCart.Visible = True
+                Else
+                    lblSinArticulosCart.Visible = False
+                End If
+
+
                 r.Close()
             Next
             lblPrecioTotalCart.Text = precioTotal
@@ -1214,6 +1230,15 @@ Public Class frmPrincipal
                 adapta2r.Fill(da, "Tabla")
                 grdMisVentas.DataSource = da
                 grdMisVentas.DataMember = "Tabla"
+
+                If grdMisVentas.RowCount = 0 Then
+                    lblSinVentas.Visible = True
+
+                Else
+                    lblSinVentas.Visible = False
+
+                End If
+
             Catch ex As Exception
                 MsgBox(ex.ToString)
             End Try
@@ -1332,6 +1357,16 @@ Public Class frmPrincipal
                 adaptador.Fill(ds, "Tabla")
                 grdMisArticulos.DataSource = ds
                 grdMisArticulos.DataMember = "Tabla"
+
+                If grdMisArticulos.RowCount = 0 Then
+                    lblSinArticulos.Visible = True
+
+                Else
+                    lblSinArticulos.Visible = False
+
+                End If
+
+
             Catch ex As Exception
                 MsgBox(ex.ToString)
             End Try
@@ -1469,6 +1504,13 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
             adaptador.Fill(ds, "Tabla")
             grdInicio.DataSource = ds
             grdInicio.DataMember = "Tabla"
+
+
+            If grdInicio.RowCount = 0 Then
+                lblSinProductos.Visible = True
+            Else
+                lblSinProductos.Visible = False
+            End If
             conexion.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1510,6 +1552,13 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
             adaptador.Fill(ds, "Tabla")
             grdInicio.DataSource = ds
             grdInicio.DataMember = "Tabla"
+
+
+            If grdInicio.RowCount = 0 Then
+                lblSinProductos.Visible = True
+            Else
+                lblSinProductos.Visible = False
+            End If
             conexion.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
