@@ -7,7 +7,12 @@ Public Class Administrador
     Dim cmd As New MySqlCommand
     Dim r As MySqlDataReader
 
-    Public Sub New()
+    Dim id As Integer
+
+    Public Sub New(ByVal idAdmin As Integer)
+
+        Me.id = idAdmin
+
         'Esta llamada es exigida por el diseñador.
         conexion = New MySqlConnection
         conexion.ConnectionString = "Server=localhost;  database=mercadolider; Uid=root; pwd=;"
@@ -77,7 +82,10 @@ Public Class Administrador
         Try
             conexion.Open()
 
-            cmd.CommandText = "SELECT usuario.id,usuario.username,useremail.email,usuario.password,usuario.rol FROM usuario,useremail WHERE usuario.id=useremail.user_id"
+            cmd.CommandText = "SELECT usuario.id,usuario.username,useremail.email,usuario.password,usuario.rol FROM usuario,useremail WHERE usuario.id=useremail.user_id AND usuario.id!=@idadmin AND usuario.deleted=0"
+            cmd.Parameters.Clear()
+            cmd.Parameters.AddWithValue("@idadmin", id)
+
             adaptador.SelectCommand = cmd
             adaptador.Fill(ds, "Tabla")
             grdUsuarios.DataSource = ds
@@ -168,38 +176,51 @@ Public Class Administrador
     End Sub
 
     Private Sub updateGridTransacciones()
+        Dim con As New MySqlConnection
+        con.ConnectionString = "Server=localhost; database=mercadolider; Uid=root; pwd=;"
+
+        Dim cmd As New MySqlCommand
+        cmd.Connection = con
+        Dim rd As MySqlDataReader
+
+
+
+
 
         grdTransacciones.Rows.Clear()
         Try
 
-            conexion.Open()
-            ' MsgBox("Conexion establecida")
+            con.Open()
+
             cmd.CommandText = "SELECT compras.id,usuario.username,compras.Fecha,compras.PrecioTotal FROM usuario,compras WHERE compras.usuario_id=usuario.id ORDER BY compras.Fecha DESC"
-            r = cmd.ExecuteReader()
+            rd = cmd.ExecuteReader()
 
             Dim idCompra As Integer
             Dim comprador As String
             Dim fecha As Date
 
 
-            While (r.Read())
+            While (rd.Read())
 
-                idCompra = r("id")
-                comprador = r("username")
-                fecha = r("Fecha")
+                idCompra = rd("id")
+                comprador = rd("username")
+                fecha = rd("Fecha")
+
+
                 getPagoYVendedor(idCompra, comprador, fecha)
 
 
 
-            End While
 
+            End While
+            rd.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
-            conexion.Close()
-        End Try
 
-        r.Close()
-        conexion.Close()
+        End Try
+        con.Close()
+
+
 
         grdTransacciones.Columns(0).Width = 100
         grdTransacciones.Columns(1).Width = 200
@@ -264,25 +285,31 @@ Public Class Administrador
 
     Private Sub btnEliminar1_Click(sender As Object, e As EventArgs) Handles btnEliminar1.Click
         Dim idArt = idArtLabel.Text()
+        Dim NombreArt = dataGridArticulos.Item("Nombre", dataGridArticulos.SelectedRows(0).Index).Value
 
-        Try
-            conexion.Open()
-            cmd.CommandText = "UPDATE articulos SET deleted=1 WHERE id=@idArt"
-            cmd.Parameters.Clear()
-            cmd.Parameters.AddWithValue("@idArt", idArt)
-            cmd.ExecuteNonQuery()
-            conexion.Close()
-            updateGridArticulos()
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-            conexion.Close()
-        End Try
+        Dim resultado = MsgBox("Seguro que quieres eliminar el articulo:" & NombreArt & " con ID:" & idArt & " ", vbOKCancel, "ELIMINAR ARTICULO")
+
+        If resultado = vbOK Then
+
+            Try
+                conexion.Open()
+                cmd.CommandText = "UPDATE articulos SET deleted=1 WHERE id=@idArt"
+                cmd.Parameters.Clear()
+                cmd.Parameters.AddWithValue("@idArt", idArt)
+                cmd.ExecuteNonQuery()
+                conexion.Close()
+                updateGridArticulos()
+            Catch ex As Exception
+                MsgBox(ex.ToString)
+                conexion.Close()
+            End Try
+        End If
     End Sub
 
     Private Sub btnEliminarUser_Click(sender As Object, e As EventArgs) Handles btnEliminarUser.Click
 
-        Dim id = grdUsuarios.Item("id", dataGridArticulos.SelectedRows(0).Index).Value
-        Dim username = grdUsuarios.Item("username", dataGridArticulos.SelectedRows(0).Index).Value
+        Dim id = grdUsuarios.Item("id", grdUsuarios.SelectedRows(0).Index).Value
+        Dim username = grdUsuarios.Item("username", grdUsuarios.SelectedRows(0).Index).Value
         Dim resultado = MsgBox("Seguro que quieres eliminar al usuario:" & username & " con ID:" & id & " ", vbOKCancel, "ELIMINAR USUARIO")
 
         If resultado = vbOK Then
@@ -294,12 +321,13 @@ Public Class Administrador
                 cmd.Parameters.AddWithValue("@idUser", id)
 
                 cmd.ExecuteNonQuery()
-                updateGridUser()
+
 
 
                 MsgBox("Usuario eliminado exitosamente")
 
                 conexion.Close()
+
                 updateGridUser()
 
 
@@ -373,5 +401,9 @@ Public Class Administrador
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick  ''Evento Timer que ejecuta el bloque interno cada 3 segundos'
         updateGridTransacciones()    ''Llama a la funcion que actualiza el datagrid de visualizacion de transacciones.
+    End Sub
+
+    Private Sub grdUsuarios_SelectionChanged(sender As Object, e As EventArgs) Handles grdUsuarios.SelectionChanged
+
     End Sub
 End Class

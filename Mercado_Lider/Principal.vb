@@ -99,22 +99,82 @@ Public Class frmPrincipal
 
     ''Verifica si el Username existe''
     Private Function UserExist(ByVal username As String, ByVal con As MySqlConnection)
+        Try
+            con.Open()
+            cmd.CommandText = "SELECT * FROM usuario WHERE username=@user AND deleted=0"
+            cmd.Parameters.Clear()
+            cmd.Parameters.AddWithValue("@user", username)
+            r = cmd.ExecuteReader
+            If (r.HasRows) Then
+                r.Close()
+                con.Close()
+                Return True
+            Else
+                r.Close()
+                con.Close()
+                Return False
+            End If
 
-        con.Open()
-        cmd.CommandText = "SELECT * FROM usuario WHERE username=@user AND deleted=0"
-        cmd.Parameters.Clear()
-        cmd.Parameters.AddWithValue("@user", username)
-        r = cmd.ExecuteReader
-        If (r.HasRows) Then
-            r.Close()
-            con.Close()
-            Return True
-        Else
-            r.Close()
-            con.Close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
             Return False
-        End If
+
+        End Try
+
+
     End Function
+
+    Private Function TelefonoExist(ByVal telefono As String, ByVal con As MySqlConnection)
+        Try
+            con.Open()
+            cmd.CommandText = "SELECT * FROM usuario  WHERE Telefono=@telefono AND deleted=0"
+            cmd.Parameters.Clear()
+            cmd.Parameters.AddWithValue("@telefono", telefono)
+            r = cmd.ExecuteReader
+            If (r.HasRows) Then
+                r.Close()
+                con.Close()
+                Return True
+            Else
+                r.Close()
+                con.Close()
+                Return False
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            Return False
+
+        End Try
+
+    End Function
+
+
+    Private Function EmailExist(ByVal email As String, ByVal con As MySqlConnection)
+        Try
+            con.Open()
+            cmd.CommandText = "SELECT * FROM useremail WHERE email=@email"
+            cmd.Parameters.Clear()
+            cmd.Parameters.AddWithValue("@email", email)
+            r = cmd.ExecuteReader
+            If (r.HasRows) Then
+                r.Close()
+                con.Close()
+                Return True
+            Else
+                r.Close()
+                con.Close()
+                Return False
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            Return False
+
+        End Try
+    End Function
+
+
     Private Sub ajustarGrid()
         grdInicio.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 20)
         Dim contador As Integer
@@ -710,40 +770,58 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
         ''Funcion que retorna true si la validacion es correcta
         If (checkvalidacion()) Then
             If UserExist(txtUsername.Text, conexion) = False Then
-                Try
-                    conexion.Open()
-                    cmd.Connection = conexion
+                If EmailExist(txtEmail.Text, conexion) = False Then
+                    If TelefonoExist(txtTelefono.Text, conexion) = False Then
 
-                    ''INSERCION EN LA TABLA usuarios
 
-                    cmd.CommandText = "INSERT INTO usuario (id,username, password, Nombre, Apellido, telefono, rol, nroCalle, calle, nroApto, esq,deleted) VALUES (NULL,@username , @password, NULL, NULL, @telefono, @rol, NULL, NULL, NULL, NULL,@deleted);"
-                    cmd.Prepare()
-                    cmd.Parameters.Clear()
-                    cmd.Parameters.AddWithValue("@username", txtUsername.Text)
-                    cmd.Parameters.AddWithValue("@password", generarClaveSHA1(txtPass.Text))
-                    cmd.Parameters.AddWithValue("@telefono", txtTelefono.Text)
-                    cmd.Parameters.AddWithValue("@rol", cbxRol.Text)
-                    cmd.Parameters.AddWithValue("@deleted", 0)
-                    cmd.ExecuteNonQuery()
-                    ''Extraccion de ID de el registro anteriormente registrado para la insercion en otras tablas
-                    cmd.CommandText = "SELECT id FROM usuario WHERE username=@username AND deleted=0"
-                    cmd.Parameters.Clear()
-                    cmd.Parameters.AddWithValue("@username", txtUsername.Text)
-                    Dim rd As MySqlDataReader = cmd.ExecuteReader
-                    If (rd.HasRows) Then    '
-                        If rd.Read Then
-                            Dim id As Integer = rd("id")
-                            rd.Close()   ''Cierre de DataReader''
-                            insertEmailTable(id, txtEmail.Text, conexion)   ''Inserta el email en la tabla 
-                        End If
+
+
+
+
+                        Try
+                            conexion.Open()
+                            cmd.Connection = conexion
+
+                            ''INSERCION EN LA TABLA usuarios
+
+                            cmd.CommandText = "INSERT INTO usuario (id,username, password, Nombre, Apellido, telefono, rol, nroCalle, calle, nroApto, esq,deleted) VALUES (NULL,@username , @password, NULL, NULL, @telefono, @rol, NULL, NULL, NULL, NULL,@deleted);"
+                            cmd.Prepare()
+                            cmd.Parameters.Clear()
+                            cmd.Parameters.AddWithValue("@username", txtUsername.Text)
+                            cmd.Parameters.AddWithValue("@password", generarClaveSHA1(txtPass.Text))
+                            cmd.Parameters.AddWithValue("@telefono", txtTelefono.Text)
+                            cmd.Parameters.AddWithValue("@rol", cbxRol.Text)
+                            cmd.Parameters.AddWithValue("@deleted", 0)
+                            cmd.ExecuteNonQuery()
+                            ''Extraccion de ID de el registro anteriormente registrado para la insercion en otras tablas
+                            cmd.CommandText = "SELECT id FROM usuario WHERE username=@username AND deleted=0"
+                            cmd.Parameters.Clear()
+                            cmd.Parameters.AddWithValue("@username", txtUsername.Text)
+                            Dim rd As MySqlDataReader = cmd.ExecuteReader
+                            If (rd.HasRows) Then    '
+                                If rd.Read Then
+                                    Dim id As Integer = rd("id")
+                                    rd.Close()   ''Cierre de DataReader''
+                                    insertEmailTable(id, txtEmail.Text, conexion)   ''Inserta el email en la tabla 
+                                End If
+                            Else
+                                rd.Close()
+                            End If
+                        Catch ex As Exception
+                            MsgBox(ex.Message)
+                        End Try
+
                     Else
-                        rd.Close()
+                        MsgBox("Este telefono ya está registrado")
+
+
                     End If
-                Catch ex As Exception
-                    MsgBox(ex.Message)
-                End Try
+                Else
+                    MsgBox("Este Email ya está registrado.")
+                End If
+
             Else
-                MsgBox("Ya existe un nombre de usuario con este nombre")
+                    MsgBox("Ya existe un nombre de usuario con este nombre")
             End If
             conexion.Close()
         End If
@@ -780,7 +858,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
 
 
 
-                    ID = r("id")
+                    ID = CInt(Int(r("id")))
                     Username = r("username")
                     Nombre = r("Nombre").ToString
                     Apellido = r("Apellido").ToString
@@ -790,7 +868,8 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
                     Telefono = r("telefono").ToString
                     If (Rol = "Administrador") Then
                         conexion.Close()
-                        Administrador.Show()
+                        Dim admin = New Administrador(ID)
+                        admin.Show()
                         Me.Hide()
                     Else
                         lblUserInfo.Text = Username
@@ -852,6 +931,8 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
 #End Region
 
 #Region "Mi Carrito"
+
+    ''Datagrid Compras''
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         tbTodos.SelectedTab = tbTodos.TabPages.Item(8)
         pnlPerfil.Visible = False
@@ -1137,7 +1218,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
             conexion.Open()
             cmd.Connection = conexion
 
-            cmd.CommandText = "SELECT * FROM usuario,useremail WHERE usuario.id=@id AND usuario.deleted=0"
+            cmd.CommandText = "SELECT * FROM usuario,useremail WHERE usuario.id=@id AND useremail.user_id = @id AND usuario.deleted=0"
             cmd.Parameters.Clear()
             cmd.Parameters.AddWithValue("@id", id)
             r = cmd.ExecuteReader
@@ -1667,46 +1748,57 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
             MsgBox("No puede ejecutar esta accion por que el carrito esta vacio")
         Else
 
+
+
             Dim idArt = DataGridCart.Item("ColumnIDCart", DataGridCart.SelectedRows(0).Index).Value ''Extraemos el id de el articulo selecionado en el datagrid
             Dim cantidad = CInt(Int(txtCantidadCart.Text))  ''Extraemos la nueva cantidad ingresada por el usuario
-            Try
-                conexion.Open()
-                cmd.CommandText = "SELECT Nombre,stock FROM articulos WHERE id=@idArt"
-                cmd.Parameters.Clear()
-                cmd.Parameters.AddWithValue("@idArt", idArt)
-                r = cmd.ExecuteReader
-                If (r.Read()) Then
-                    Dim stock = CInt(Int(r("stock")))
-                    Dim articulo = r("Nombre")
 
-                    If ((stock - cantidad) < 0) Then
-                        MsgBox("No hay suficientes unidades para el articulo: " & articulo & " unidades disponibles: " & stock)
-                    Else
-                        For i = 0 To carrito.Count - 1      ''Busca el objeto de el articuloEnCarrito de el arraylist ,cuando lo encuentra,lo modifica a la nueva cantidad
-                            If idArt = carrito(i).ID Then
-                                carrito(i).cantidad = cantidad
-                                Exit For
-                            End If
-                        Next
+            If (cantidad > 0) Then
+
+
+
+                Try
+                    conexion.Open()
+                    cmd.CommandText = "SELECT Nombre,stock FROM articulos WHERE id=@idArt"
+                    cmd.Parameters.Clear()
+                    cmd.Parameters.AddWithValue("@idArt", idArt)
+                    r = cmd.ExecuteReader
+                    If (r.Read()) Then
+                        Dim stock = CInt(Int(r("stock")))
+                        Dim articulo = r("Nombre")
+
+                        If ((stock - cantidad) < 0) Then
+                            MsgBox("No hay suficientes unidades para el articulo: " & articulo & " unidades disponibles: " & stock)
+                        Else
+                            For i = 0 To carrito.Count - 1      ''Busca el objeto de el articuloEnCarrito de el arraylist ,cuando lo encuentra,lo modifica a la nueva cantidad
+                                If idArt = carrito(i).ID Then
+                                    carrito(i).cantidad = cantidad
+                                    Exit For
+                                End If
+                            Next
+                        End If
                     End If
-                End If
-                r.Close()
-                conexion.Close()
-                UpdateGridCart(carrito)
-            Catch ex As Exception
-                MsgBox(ex.ToString)
-            End Try
+                    r.Close()
+                    conexion.Close()
+                    UpdateGridCart(carrito)
+                Catch ex As Exception
+                    MsgBox(ex.ToString)
+                End Try
+            Else
+                MsgBox("La cantidad ingresada no es valida")
+
+            End If
 
             Dim contador As Integer  ''????????'''
-            For Each grd In DataGridCart.Rows
-                Dim row As DataGridViewRow = DataGridCart.Rows(contador)
-                row.Height = 150
-                contador = contador + 1
-            Next
-            DataGridCart.Columns(0).Width = 150
-            DataGridCart.Columns(1).Width = 150
-            DataGridCart.Columns(2).Width = 150
-        End If
+                For Each grd In DataGridCart.Rows
+                    Dim row As DataGridViewRow = DataGridCart.Rows(contador)
+                    row.Height = 150
+                    contador = contador + 1
+                Next
+                DataGridCart.Columns(0).Width = 150
+                DataGridCart.Columns(1).Width = 150
+                DataGridCart.Columns(2).Width = 150
+            End If
     End Sub
 
     'Vacia todos los articulos de el carrito y actualiza el datagrid
@@ -1719,68 +1811,82 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
         If (DataGridCart.SelectedRows.Count = 0) Then
             MsgBox("No puede ejecutar esta accion por que el carrito esta vacio")
         Else
-            Try
-                conexion.Open()
-                Dim precioTotal = CInt(Int(lblPrecioTotalCart.Text))
-                Dim fechaActual As Date = Date.Now
-                Dim idCompra As Integer
+            Dim resultado As String
+            resultado = MsgBox("¿ESTAS SEGURO DE QUE DESEAS EFECTUAR COMPRA?", vbOKCancel, "CONFIRMACION")
 
-                cmd.CommandText = "INSERT INTO compras(usuario_id,Fecha,PrecioTotal) VALUES(@idUser,@fecha,@preciototal)"
-                cmd.Parameters.Clear()
-                cmd.Parameters.AddWithValue("@idUser", ID)
-                cmd.Parameters.AddWithValue("@fecha", fechaActual)
-                cmd.Parameters.AddWithValue("@preciototal", precioTotal)
-                cmd.ExecuteNonQuery()
-                cmd.CommandText = "SELECT MAX(id) As id FROM compras"
-                r = cmd.ExecuteReader
-                If (r.HasRows) Then
-                    If r.Read() Then
-                        idCompra = CInt(Int(r("id")))
-                    End If
-                End If
-                r.Close()
+            If (resultado = vbOK) Then
 
-                Dim articuloID As Integer
-                Dim cantidadArt As Integer
-                Dim precio As Integer
-                For Each d As DataGridViewRow In DataGridCart.Rows
 
-                    articuloID = CInt(d.Cells("ColumnIDCart").Value())
-                    cantidadArt = CInt(d.Cells("ColumnCantidadCart").Value())
-                    precio = CInt(d.Cells("ColumnPrecioCart").Value())
+                Try
+                    conexion.Open()
+                    Dim precioTotal = CInt(Int(lblPrecioTotalCart.Text))
+                    Dim fechaActual As Date = Date.Now
+                    Dim idCompra As Integer
 
-                    cmd.CommandText = "INSERT INTO detalle_compra(id_compra,id_articulo,Cantidad,PrecioUnitario) VALUES(@idCompra,@idArt,@cant,@price)"
+                    cmd.CommandText = "INSERT INTO compras(usuario_id,Fecha,PrecioTotal) VALUES(@idUser,@fecha,@preciototal)"
                     cmd.Parameters.Clear()
-                    cmd.Parameters.AddWithValue("@idCompra", idCompra)
-                    cmd.Parameters.AddWithValue("@idArt", articuloID)
-                    cmd.Parameters.AddWithValue("@cant", cantidadArt)
-                    cmd.Parameters.AddWithValue("@price", precio)
+                    cmd.Parameters.AddWithValue("@idUser", ID)
+                    cmd.Parameters.AddWithValue("@fecha", fechaActual)
+                    cmd.Parameters.AddWithValue("@preciototal", precioTotal)
                     cmd.ExecuteNonQuery()
-
-                    cmd.CommandText = "SELECT stock FROM articulos WHERE id=@idArt"
-                    cmd.Parameters.Clear()
-                    cmd.Parameters.AddWithValue("@idArt", articuloID)
+                    cmd.CommandText = "SELECT MAX(id) As id FROM compras"
                     r = cmd.ExecuteReader
-                    r.Read()
-                    Dim stock = CInt(Int(r("stock")))
-                    Dim newStock = stock - cantidadArt
-
+                    If (r.HasRows) Then
+                        If r.Read() Then
+                            idCompra = CInt(Int(r("id")))
+                        End If
+                    End If
                     r.Close()
-                    cmd.CommandText = "UPDATE articulos SET stock=@newstock WHERE id=@idArt"
-                    cmd.Parameters.Clear()
-                    cmd.Parameters.AddWithValue("@newstock", newStock)
-                    cmd.Parameters.AddWithValue("@idArt", articuloID)
-                    cmd.ExecuteNonQuery()
-                Next
-                MsgBox("Compra efectuada correctamente")
-                carrito.Clear()
-                conexion.Close()
-                UpdateGridCart(carrito)
-            Catch ex As Exception
-                conexion.Close()
-                MsgBox(ex.ToString)
-            End Try
+
+                    Dim articuloID As Integer
+                    Dim cantidadArt As Integer
+                    Dim precio As Integer
+                    For Each d As DataGridViewRow In DataGridCart.Rows
+
+                        articuloID = CInt(d.Cells("ColumnIDCart").Value())
+                        cantidadArt = CInt(d.Cells("ColumnCantidadCart").Value())
+                        precio = CInt(d.Cells("ColumnPrecioCart").Value())
+
+                        cmd.CommandText = "INSERT INTO detalle_compra(id_compra,id_articulo,Cantidad,PrecioUnitario) VALUES(@idCompra,@idArt,@cant,@price)"
+                        cmd.Parameters.Clear()
+                        cmd.Parameters.AddWithValue("@idCompra", idCompra)
+                        cmd.Parameters.AddWithValue("@idArt", articuloID)
+                        cmd.Parameters.AddWithValue("@cant", cantidadArt)
+                        cmd.Parameters.AddWithValue("@price", precio)
+                        cmd.ExecuteNonQuery()
+
+                        cmd.CommandText = "SELECT stock FROM articulos WHERE id=@idArt"
+                        cmd.Parameters.Clear()
+                        cmd.Parameters.AddWithValue("@idArt", articuloID)
+                        r = cmd.ExecuteReader
+                        r.Read()
+                        Dim stock = CInt(Int(r("stock")))
+                        Dim newStock = stock - cantidadArt
+
+                        r.Close()
+                        cmd.CommandText = "UPDATE articulos SET stock=@newstock WHERE id=@idArt"
+                        cmd.Parameters.Clear()
+                        cmd.Parameters.AddWithValue("@newstock", newStock)
+                        cmd.Parameters.AddWithValue("@idArt", articuloID)
+                        cmd.ExecuteNonQuery()
+                    Next
+                    MsgBox("Compra efectuada correctamente")
+                    carrito.Clear()
+                    conexion.Close()
+                    UpdateGridCart(carrito)
+                Catch ex As Exception
+                    conexion.Close()
+                    MsgBox(ex.ToString)
+                End Try
+
+
+            End If
+
         End If
+
+
+
+
         Try
             'aca pones todo el codigode el boton
         Catch ex As Exception
