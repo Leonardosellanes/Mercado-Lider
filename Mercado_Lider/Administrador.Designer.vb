@@ -49,6 +49,8 @@ Partial Class Administrador
         Me.dataGridArticulos = New System.Windows.Forms.DataGridView()
         Me.btnEliminar1 = New System.Windows.Forms.Button()
         Me.tpUsuarios = New System.Windows.Forms.TabPage()
+        Me.lblPassCambiada = New System.Windows.Forms.Label()
+        Me.lblPassVacia = New System.Windows.Forms.Label()
         Me.txtSetContra = New System.Windows.Forms.TextBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -62,6 +64,12 @@ Partial Class Administrador
         Me.btnEliminarUser = New System.Windows.Forms.Button()
         Me.btnContraseña = New System.Windows.Forms.Button()
         Me.tpTransacciones = New System.Windows.Forms.TabPage()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.Label126 = New System.Windows.Forms.Label()
         Me.grdTransacciones = New System.Windows.Forms.DataGridView()
         Me.idCompraColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -88,6 +96,7 @@ Partial Class Administrador
         Me.Panel2.SuspendLayout()
         CType(Me.grdUsuarios, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tpTransacciones.SuspendLayout()
+        Me.Panel3.SuspendLayout()
         CType(Me.grdTransacciones, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlAdmin.SuspendLayout()
         Me.SuspendLayout()
@@ -268,6 +277,7 @@ Partial Class Administrador
         Me.dataGridArticulos.DefaultCellStyle = DataGridViewCellStyle2
         Me.dataGridArticulos.GridColor = System.Drawing.Color.White
         Me.dataGridArticulos.Location = New System.Drawing.Point(67, 21)
+        Me.dataGridArticulos.MultiSelect = False
         Me.dataGridArticulos.Name = "dataGridArticulos"
         Me.dataGridArticulos.ReadOnly = True
         Me.dataGridArticulos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -303,6 +313,8 @@ Partial Class Administrador
         '
         'tpUsuarios
         '
+        Me.tpUsuarios.Controls.Add(Me.lblPassCambiada)
+        Me.tpUsuarios.Controls.Add(Me.lblPassVacia)
         Me.tpUsuarios.Controls.Add(Me.txtSetContra)
         Me.tpUsuarios.Controls.Add(Me.Panel2)
         Me.tpUsuarios.Controls.Add(Me.grdUsuarios)
@@ -318,10 +330,34 @@ Partial Class Administrador
         Me.tpUsuarios.Text = "Usuarios"
         Me.tpUsuarios.UseVisualStyleBackColor = True
         '
+        'lblPassCambiada
+        '
+        Me.lblPassCambiada.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.lblPassCambiada.AutoSize = True
+        Me.lblPassCambiada.ForeColor = System.Drawing.Color.Green
+        Me.lblPassCambiada.Location = New System.Drawing.Point(449, 400)
+        Me.lblPassCambiada.Name = "lblPassCambiada"
+        Me.lblPassCambiada.Size = New System.Drawing.Size(187, 13)
+        Me.lblPassCambiada.TabIndex = 51
+        Me.lblPassCambiada.Text = "¡Contraseña cambiada correctamente!"
+        Me.lblPassCambiada.Visible = False
+        '
+        'lblPassVacia
+        '
+        Me.lblPassVacia.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.lblPassVacia.AutoSize = True
+        Me.lblPassVacia.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.lblPassVacia.Location = New System.Drawing.Point(458, 439)
+        Me.lblPassVacia.Name = "lblPassVacia"
+        Me.lblPassVacia.Size = New System.Drawing.Size(170, 13)
+        Me.lblPassVacia.TabIndex = 50
+        Me.lblPassVacia.Text = "*Este campo no puede estar vacio"
+        Me.lblPassVacia.Visible = False
+        '
         'txtSetContra
         '
         Me.txtSetContra.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.txtSetContra.Location = New System.Drawing.Point(474, 431)
+        Me.txtSetContra.Location = New System.Drawing.Point(479, 416)
         Me.txtSetContra.Name = "txtSetContra"
         Me.txtSetContra.Size = New System.Drawing.Size(127, 20)
         Me.txtSetContra.TabIndex = 49
@@ -429,6 +465,7 @@ Partial Class Administrador
         Me.grdUsuarios.DefaultCellStyle = DataGridViewCellStyle6
         Me.grdUsuarios.GridColor = System.Drawing.Color.White
         Me.grdUsuarios.Location = New System.Drawing.Point(126, 58)
+        Me.grdUsuarios.MultiSelect = False
         Me.grdUsuarios.Name = "grdUsuarios"
         Me.grdUsuarios.ReadOnly = True
         Me.grdUsuarios.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -446,7 +483,7 @@ Partial Class Administrador
         DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black
         Me.grdUsuarios.RowsDefaultCellStyle = DataGridViewCellStyle8
         Me.grdUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.grdUsuarios.Size = New System.Drawing.Size(846, 352)
+        Me.grdUsuarios.Size = New System.Drawing.Size(846, 340)
         Me.grdUsuarios.TabIndex = 47
         '
         'lblTituloUser
@@ -502,6 +539,7 @@ Partial Class Administrador
         '
         'tpTransacciones
         '
+        Me.tpTransacciones.Controls.Add(Me.Panel3)
         Me.tpTransacciones.Controls.Add(Me.Label126)
         Me.tpTransacciones.Controls.Add(Me.grdTransacciones)
         Me.tpTransacciones.Location = New System.Drawing.Point(4, 22)
@@ -512,12 +550,86 @@ Partial Class Administrador
         Me.tpTransacciones.Text = "Transacciones"
         Me.tpTransacciones.UseVisualStyleBackColor = True
         '
+        'Panel3
+        '
+        Me.Panel3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel3.Controls.Add(Me.Label8)
+        Me.Panel3.Controls.Add(Me.Label9)
+        Me.Panel3.Controls.Add(Me.Label10)
+        Me.Panel3.Controls.Add(Me.Label11)
+        Me.Panel3.Controls.Add(Me.Label12)
+        Me.Panel3.Location = New System.Drawing.Point(-18, 60)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(988, 34)
+        Me.Panel3.TabIndex = 49
+        '
+        'Label8
+        '
+        Me.Label8.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label8.Location = New System.Drawing.Point(174, 10)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(97, 13)
+        Me.Label8.TabIndex = 65
+        Me.Label8.Text = "ID DE COMPRA"
+        '
+        'Label9
+        '
+        Me.Label9.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label9.Location = New System.Drawing.Point(594, 10)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(76, 13)
+        Me.Label9.TabIndex = 64
+        Me.Label9.Text = "VENDEDOR"
+        '
+        'Label10
+        '
+        Me.Label10.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label10.Location = New System.Drawing.Point(500, 10)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(41, 13)
+        Me.Label10.TabIndex = 63
+        Me.Label10.Text = "PAGÓ"
+        '
+        'Label11
+        '
+        Me.Label11.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label11.Location = New System.Drawing.Point(397, 10)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(47, 13)
+        Me.Label11.TabIndex = 62
+        Me.Label11.Text = "FECHA"
+        '
+        'Label12
+        '
+        Me.Label12.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Label12.Location = New System.Drawing.Point(286, 10)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(86, 13)
+        Me.Label12.TabIndex = 61
+        Me.Label12.Text = "COMPRADOR"
+        '
         'Label126
         '
         Me.Label126.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Label126.AutoSize = True
         Me.Label126.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label126.Location = New System.Drawing.Point(357, 23)
+        Me.Label126.Location = New System.Drawing.Point(357, 15)
         Me.Label126.Name = "Label126"
         Me.Label126.Size = New System.Drawing.Size(327, 39)
         Me.Label126.TabIndex = 12
@@ -552,6 +664,7 @@ Partial Class Administrador
         Me.grdTransacciones.DefaultCellStyle = DataGridViewCellStyle10
         Me.grdTransacciones.GridColor = System.Drawing.Color.White
         Me.grdTransacciones.Location = New System.Drawing.Point(126, 71)
+        Me.grdTransacciones.MultiSelect = False
         Me.grdTransacciones.Name = "grdTransacciones"
         DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control
@@ -747,6 +860,8 @@ Partial Class Administrador
         CType(Me.grdUsuarios, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tpTransacciones.ResumeLayout(False)
         Me.tpTransacciones.PerformLayout()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
         CType(Me.grdTransacciones, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlAdmin.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -799,4 +914,12 @@ Partial Class Administrador
     Friend WithEvents txtSetContra As TextBox
     Friend WithEvents Label7 As Label
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents lblPassVacia As Label
+    Friend WithEvents lblPassCambiada As Label
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label12 As Label
 End Class

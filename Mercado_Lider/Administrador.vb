@@ -219,9 +219,6 @@ Public Class Administrador
 
         End Try
         con.Close()
-
-
-
         grdTransacciones.Columns(0).Width = 100
         grdTransacciones.Columns(1).Width = 200
         grdTransacciones.Columns(2).Width = 200
@@ -342,31 +339,37 @@ Public Class Administrador
     End Sub
 
     Private Sub btnContraseña_Click(sender As Object, e As EventArgs) Handles btnContraseña.Click
-        Dim id = grdUsuarios.Item("id", dataGridArticulos.SelectedRows(0).Index).Value
-        Dim username = grdUsuarios.Item("username", dataGridArticulos.SelectedRows(0).Index).Value
-        Dim resultado = MsgBox("Seguro que quieres cambiarle la contraseña al usuario:" & username & " con ID:" & id & " ", vbOKCancel, "CAMBIAR CONTRASEÑA")
+        If txtSetContra.Text = "" Then
+            lblPassVacia.Text = "*Este campo no puede estar vacio"
+            lblPassVacia.Visible = True
+        Else
+            If txtSetContra.TextLength < 6 Then
+                lblPassVacia.Text = "*La contraseña debe tener mas de 6 caracteres"
+                lblPassVacia.Visible = True
+            Else
+                Dim id = grdUsuarios.Item("id", grdUsuarios.SelectedRows(0).Index).Value
+                Dim username = grdUsuarios.Item("username", grdUsuarios.SelectedRows(0).Index).Value
+                Dim resultado = MsgBox("Seguro que quieres cambiarle la contraseña al usuario:" & username & " con ID:" & id & " ", vbOKCancel, "CAMBIAR CONTRASEÑA")
 
-        If resultado = vbOK Then
-            Try
-                conexion.Open()
-                cmd.CommandText = "UPDATE usuario SET password=@passEncrypy WHERE id=@idUser"
-                cmd.Parameters.Clear()
-                cmd.Parameters.AddWithValue("@passEncrypy", generarClaveSHA1(txtSetContra.Text))
-                cmd.Parameters.AddWithValue("@idUser", id)
+                If resultado = vbOK Then
+                    Try
+                        conexion.Open()
+                        cmd.CommandText = "UPDATE usuario SET password=@passEncrypy WHERE id=@idUser"
+                        cmd.Parameters.Clear()
+                        cmd.Parameters.AddWithValue("@passEncrypy", generarClaveSHA1(txtSetContra.Text))
+                        cmd.Parameters.AddWithValue("@idUser", id)
 
-                cmd.ExecuteNonQuery()
-                MsgBox("Contraseña cambiada exitosamente")
-
-
-
-                conexion.Close()
-                updateGridUser()
-            Catch ex As Exception
-                MsgBox(ex.ToString)
-                conexion.Close()
-            End Try
+                        cmd.ExecuteNonQuery()
+                        lblPassCambiada.Visible = True
+                        conexion.Close()
+                        updateGridUser()
+                    Catch ex As Exception
+                        MsgBox(ex.ToString)
+                        conexion.Close()
+                    End Try
+                End If
+            End If
         End If
-
     End Sub
 
     Private Sub btnAgregarAdmin_Click(sender As Object, e As EventArgs) Handles btnAgregarAdmin.Click
@@ -402,8 +405,12 @@ Public Class Administrador
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick  ''Evento Timer que ejecuta el bloque interno cada 3 segundos'
         updateGridTransacciones()    ''Llama a la funcion que actualiza el datagrid de visualizacion de transacciones.
     End Sub
-
-    Private Sub grdUsuarios_SelectionChanged(sender As Object, e As EventArgs) Handles grdUsuarios.SelectionChanged
-
+    Private Sub txtSetContra_Click(sender As Object, e As EventArgs) Handles txtSetContra.Click
+        lblPassVacia.Visible = False
+        lblPassCambiada.Visible = False
+    End Sub
+    Private Sub txtSetContra_TextChanged(sender As Object, e As EventArgs) Handles txtSetContra.TextChanged
+        lblPassVacia.Visible = False
+        lblPassCambiada.Visible = False
     End Sub
 End Class

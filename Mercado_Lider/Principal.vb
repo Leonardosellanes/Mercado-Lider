@@ -31,7 +31,6 @@ Public Class frmPrincipal
 
     'Objeto frmDomicilio para control de frm de domicilio'
     Dim frmDomicilio As Domicilio = New Domicilio
-
     Public Sub New()
         'Esta llamada es exigida por el diseñador.
         conexion = New MySqlConnection
@@ -307,6 +306,7 @@ Public Class frmPrincipal
         Ocultarpaneles()
         ocultarbarritas()
         lblRegistradoCorrectamente.Visible = False
+        ocultarregistro(True, False)
     End Sub
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         tbTodos.SelectedTab = tbTodos.TabPages.Item(2)
@@ -772,12 +772,6 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
             If UserExist(txtUsername.Text, conexion) = False Then
                 If EmailExist(txtEmail.Text, conexion) = False Then
                     If TelefonoExist(txtTelefono.Text, conexion) = False Then
-
-
-
-
-
-
                         Try
                             conexion.Open()
                             cmd.Connection = conexion
@@ -812,16 +806,13 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
                         End Try
 
                     Else
-                        MsgBox("Este telefono ya está registrado")
-
-
+                        lblTelefonoEnUso.Visible = True
                     End If
                 Else
-                    MsgBox("Este Email ya está registrado.")
+                    lblCorreoEnUso.Visible = True
                 End If
-
             Else
-                    MsgBox("Ya existe un nombre de usuario con este nombre")
+                lblUserEnUso.Visible = True
             End If
             conexion.Close()
         End If
@@ -899,6 +890,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
     Private Sub TextBox3_Click(sender As Object, e As EventArgs) Handles txtTelefono.Click
         Label84.Visible = False
         Label91.Visible = False
+        lblTelefonoEnUso.Visible = False
     End Sub
     Private Sub TextBox15_Click(sender As Object, e As EventArgs)
         txtApellidoModificarPerfil.Clear()
@@ -907,6 +899,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
     Private Sub TextBox1_Click(sender As Object, e As EventArgs) Handles txtUsername.Click
         Label87.Visible = False
         Label101.Visible = False
+        lblUserEnUso.Visible = False
     End Sub
     Private Sub TextBox5_Click(sender As Object, e As EventArgs)
         txtNombreModificarPerfil.Clear()
@@ -915,6 +908,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
     Private Sub TextBox2_Click(sender As Object, e As EventArgs) Handles txtEmail.Click
         Label90.Visible = False
         Label102.Visible = False
+        lblCorreoEnUso.Visible = False
     End Sub
     Private Sub TextBox4_Click(sender As Object, e As EventArgs) Handles txtPass.Click
         Label92.Visible = False
@@ -958,6 +952,10 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
             MsgBox(ex.ToString)
             conexion.Close()
         End Try
+
+        DataGridCompras.Columns(0).Width = 100
+        DataGridCompras.Columns(1).Width = 150
+        DataGridCompras.Columns(2).Width = 130
     End Sub
 #End Region
 
@@ -2051,7 +2049,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
             grdMisVentas.Columns(4).Width = 150
             grdMisVentas.Columns(5).Width = 120
             grdMisVentas.Columns(6).Width = 150
-            grdMisVentas.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 20)
+            grdMisVentas.DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 15)
         End If
 
     End Sub
@@ -2074,6 +2072,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
         ActualizarSelectArticulos()
         ajustarGrid()
     End Sub
+
 #End Region
 
 #End Region
