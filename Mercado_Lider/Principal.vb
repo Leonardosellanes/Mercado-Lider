@@ -1273,9 +1273,8 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
         If user = "" Then
             LabelErrorUsername.Text = "*Este campo no puede estar vacio"
         Else
-            If Not txtUsernameModificarPerfil.TextLength <= 6 Then
+            If Not txtUsernameModificarPerfil.TextLength < 6 Then
                 validacion = validacion + 1
-
             Else
                 LabelErrorUsername.Visible = True
                 LabelErrorUsername.Text = "*El nombre debe tener mas de 6 caracteres"
@@ -1302,8 +1301,6 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
             If txtNombreModificarPerfil.TextLength < 3 Then
                 Label97.Visible = True
             Else
-
-
 
             End If
         End If
