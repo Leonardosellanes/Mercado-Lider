@@ -1692,7 +1692,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
                     ms2.Close()
                     nroFoto = nroFoto + 1
                 Next
-                MsgBox("Articulo insertado correctamente")
+                MsgBox("Articulo actualizado correctamente")
             Catch ex As Exception
                 MsgBox(ex.ToString)
             End Try
