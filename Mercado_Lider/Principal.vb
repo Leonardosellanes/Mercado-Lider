@@ -962,24 +962,36 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
 #Region "Publicar"
     ''BOTONES DE IMPORTACION DE IMAGENES A EL PICTURE BOX''
     Private Sub button_agregarPortada_Click(sender As Object, e As EventArgs) Handles button_agregarPortada.Click
+        With OpenFilePortada
+            .Filter = "Image Files (*.png *.jpg .bmp) |.png; *.jpg; .bmp|All Files(.) |.*"
+        End With
         If OpenFilePortada.ShowDialog() = DialogResult.OK Then
             PictureBoxPortada.Load(OpenFilePortada.FileName)
         End If
         lblErrorPortada.Visible = False
     End Sub
     Private Sub button_agregarImagen1_Click(sender As Object, e As EventArgs) Handles button_agregarImagen1.Click
+        With OpenFileImagen1
+            .Filter = "Image Files (*.png *.jpg .bmp) |.png; *.jpg; .bmp|All Files(.) |.*"
+        End With
         If OpenFileImagen1.ShowDialog() = DialogResult.OK Then
             PictureBoxImagen1.Load(OpenFileImagen1.FileName)
             lblErrorImagen1.Visible = False
         End If
     End Sub
     Private Sub button_agregarImagen2_Click(sender As Object, e As EventArgs) Handles button_agregarImagen2.Click
+        With OpenFileImagen2
+            .Filter = "Image Files (*.png *.jpg .bmp) |.png; *.jpg; .bmp|All Files(.) |.*"
+        End With
         If OpenFileImagen2.ShowDialog() = DialogResult.OK Then
             PictureBoxImagen2.Load(OpenFileImagen2.FileName)
             lblErrorImagen2.Visible = False
         End If
     End Sub
     Private Sub button_agregarImagen3_Click(sender As Object, e As EventArgs) Handles button_agregarImagen3.Click
+        With OpenFileImagen3
+            .Filter = "Image Files (*.png *.jpg .bmp) |.png; *.jpg; .bmp|All Files(.) |.*"
+        End With
         If OpenFileImagen3.ShowDialog() = DialogResult.OK Then
             PictureBoxImagen3.Load(OpenFileImagen3.FileName)
             lblErrorImagen3.Visible = False
@@ -1400,22 +1412,33 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
 #Region "Mis articulos"
     ''BOTONES DE IMPORTACION DE IMAGENES EN EL EDITOR DE ARTICULOS PUBLICADOS POR EL USUARIO
     Private Sub btnCambiarPortada_Click(sender As Object, e As EventArgs) Handles btnCambiarPortada.Click
-
+        With ofdEditarPortada
+            .Filter = "Image Files (*.png *.jpg .bmp) |.png; *.jpg; .bmp|All Files(.) |.*"
+        End With
         If ofdEditarPortada.ShowDialog() = DialogResult.OK Then
             pbCambiarPortada.Load(ofdEditarPortada.FileName)
         End If
     End Sub
     Private Sub btnEditarImagen1_Click(sender As Object, e As EventArgs) Handles btnEditarImagen1.Click
+        With ofdEditarImagen1
+            .Filter = "Image Files (*.png *.jpg .bmp) |.png; *.jpg; .bmp|All Files(.) |.*"
+        End With
         If ofdEditarImagen1.ShowDialog() = DialogResult.OK Then
             pbCambiarImg1.Load(ofdEditarImagen1.FileName)
         End If
     End Sub
     Private Sub btnEditarImagen2_Click(sender As Object, e As EventArgs) Handles btnEditarImagen2.Click
+        With ofdEditarImagen2
+            .Filter = "Image Files (*.png *.jpg .bmp) |.png; *.jpg; .bmp|All Files(.) |.*"
+        End With
         If ofdEditarImagen2.ShowDialog() = DialogResult.OK Then
             pbCambiarImg2.Load(ofdEditarImagen2.FileName)
         End If
     End Sub
     Private Sub btnEditarImagen3_Click(sender As Object, e As EventArgs) Handles btnEditarImagen3.Click
+        With ofdEditarImagen3
+            .Filter = "Image Files (*.png *.jpg .bmp) |.png; *.jpg; .bmp|All Files(.) |.*"
+        End With
         If ofdEditarImagen3.ShowDialog() = DialogResult.OK Then
             pbCambiarImg3.Load(ofdEditarImagen3.FileName)
         End If
@@ -2069,7 +2092,6 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
         ActualizarSelectArticulos()
         ajustarGrid()
     End Sub
-
 #End Region
 
 #End Region
