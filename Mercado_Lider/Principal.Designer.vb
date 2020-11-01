@@ -3219,9 +3219,9 @@ Partial Class frmPrincipal
         Me.pnlPerfil.Controls.Add(Me.btnMisArticulos)
         Me.pnlPerfil.Controls.Add(Me.pnlMiInfo)
         Me.pnlPerfil.Controls.Add(Me.Button28)
-        Me.pnlPerfil.Location = New System.Drawing.Point(939, 86)
+        Me.pnlPerfil.Location = New System.Drawing.Point(815, 86)
         Me.pnlPerfil.Name = "pnlPerfil"
-        Me.pnlPerfil.Size = New System.Drawing.Size(46, 570)
+        Me.pnlPerfil.Size = New System.Drawing.Size(170, 570)
         Me.pnlPerfil.TabIndex = 3
         Me.pnlPerfil.Visible = False
         '
@@ -3237,7 +3237,7 @@ Partial Class frmPrincipal
         Me.btnCerrarSesion.ForeColor = System.Drawing.Color.White
         Me.btnCerrarSesion.Location = New System.Drawing.Point(0, 222)
         Me.btnCerrarSesion.Name = "btnCerrarSesion"
-        Me.btnCerrarSesion.Size = New System.Drawing.Size(46, 30)
+        Me.btnCerrarSesion.Size = New System.Drawing.Size(170, 30)
         Me.btnCerrarSesion.TabIndex = 20
         Me.btnCerrarSesion.Text = "CERRAR SESION"
         Me.btnCerrarSesion.UseVisualStyleBackColor = True
@@ -3253,7 +3253,7 @@ Partial Class frmPrincipal
         Me.btnMisVentas.ForeColor = System.Drawing.Color.White
         Me.btnMisVentas.Location = New System.Drawing.Point(0, 195)
         Me.btnMisVentas.Name = "btnMisVentas"
-        Me.btnMisVentas.Size = New System.Drawing.Size(46, 27)
+        Me.btnMisVentas.Size = New System.Drawing.Size(170, 27)
         Me.btnMisVentas.TabIndex = 23
         Me.btnMisVentas.Text = "MIS VENTAS"
         Me.btnMisVentas.UseVisualStyleBackColor = True
@@ -3285,7 +3285,7 @@ Partial Class frmPrincipal
         Me.Button7.ForeColor = System.Drawing.Color.White
         Me.Button7.Location = New System.Drawing.Point(0, 542)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(46, 28)
+        Me.Button7.Size = New System.Drawing.Size(170, 28)
         Me.Button7.TabIndex = 18
         Me.Button7.Text = "¿QUIENES SOMOS?"
         Me.Button7.UseVisualStyleBackColor = False
@@ -3301,7 +3301,7 @@ Partial Class frmPrincipal
         Me.btnCambiarPass.ForeColor = System.Drawing.Color.White
         Me.btnCambiarPass.Location = New System.Drawing.Point(0, 168)
         Me.btnCambiarPass.Name = "btnCambiarPass"
-        Me.btnCambiarPass.Size = New System.Drawing.Size(46, 27)
+        Me.btnCambiarPass.Size = New System.Drawing.Size(170, 27)
         Me.btnCambiarPass.TabIndex = 22
         Me.btnCambiarPass.Text = "CAMBIAR CONTRASEÑA"
         Me.btnCambiarPass.UseVisualStyleBackColor = True
@@ -3317,7 +3317,7 @@ Partial Class frmPrincipal
         Me.btnMisArticulos.ForeColor = System.Drawing.Color.White
         Me.btnMisArticulos.Location = New System.Drawing.Point(0, 141)
         Me.btnMisArticulos.Name = "btnMisArticulos"
-        Me.btnMisArticulos.Size = New System.Drawing.Size(46, 27)
+        Me.btnMisArticulos.Size = New System.Drawing.Size(170, 27)
         Me.btnMisArticulos.TabIndex = 20
         Me.btnMisArticulos.Text = "MIS ARTICULOS"
         Me.btnMisArticulos.UseVisualStyleBackColor = True
@@ -3334,7 +3334,7 @@ Partial Class frmPrincipal
         Me.pnlMiInfo.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlMiInfo.Location = New System.Drawing.Point(0, 39)
         Me.pnlMiInfo.Name = "pnlMiInfo"
-        Me.pnlMiInfo.Size = New System.Drawing.Size(46, 102)
+        Me.pnlMiInfo.Size = New System.Drawing.Size(170, 102)
         Me.pnlMiInfo.TabIndex = 17
         Me.pnlMiInfo.Visible = False
         '
@@ -3426,7 +3426,7 @@ Partial Class frmPrincipal
         Me.Button28.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button28.Location = New System.Drawing.Point(0, 0)
         Me.Button28.Name = "Button28"
-        Me.Button28.Size = New System.Drawing.Size(46, 39)
+        Me.Button28.Size = New System.Drawing.Size(170, 39)
         Me.Button28.TabIndex = 15
         Me.Button28.Text = "     MI INFO"
         Me.Button28.UseVisualStyleBackColor = True
