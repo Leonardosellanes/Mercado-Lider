@@ -1,11 +1,10 @@
-﻿Imports System.IO
+﻿Imports System.Drawing.Printing
+Imports System.IO
 Imports System.Security.Cryptography
 Imports System.Text
 Imports System.Text.RegularExpressions
 Imports MySql.Data.MySqlClient
 Public Class frmPrincipal
-
-#Region "Funciones del Programa y del formulario"
     Dim conexion As MySqlConnection
     Dim cmd As New MySqlCommand
 
@@ -42,6 +41,9 @@ Public Class frmPrincipal
         'Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
     End Sub
+
+#Region "Funciones del Programa y del formulario"
+
 
     'Metodos utiles que usaremos
 
@@ -427,6 +429,131 @@ Public Class frmPrincipal
         tbTodos.SelectedTab = tbTodos.TabPages.Item(4)
     End Sub
 
+
+
+
+    Private Sub print_PrintPage(ByVal sender As Object, ByVal e As PrintPageEventArgs)
+
+
+        Dim img As Image = My.Resources.WhileDev1
+        Dim idCompra As Integer
+
+        Dim cantidadArticulos As Integer
+
+        Try
+            conexion.Open()
+            cmd.CommandText = "SELECT MAX(compras.id) As idCompra FROM compras"
+            r = cmd.ExecuteReader()
+
+            r.Read()
+            idCompra = r("idCompra")
+
+
+            r.Close()
+
+
+            cmd.CommandText = "SELECT COUNT(*) As cantidadArticulos FROM detalle_compra WHERE id_compra=@idCompra"
+            cmd.Parameters.Clear()
+            cmd.Parameters.AddWithValue("@idCompra", idCompra)
+            r = cmd.ExecuteReader()
+
+            r.Read()
+
+            cantidadArticulos = r("cantidadArticulos")
+
+
+            r.Close()
+
+            conexion.Close()
+
+
+
+
+
+
+
+            Dim xpos As Single = e.MarginBounds.Left
+            Dim prFont As New Font("Arial", 13, FontStyle.Bold)
+            Dim prFontTwo As New Font("Arial", 20, FontStyle.Bold)
+
+            Dim ypos As Single = prFont.GetHeight(e.Graphics)
+
+            e.Graphics.DrawImage(img, 0, 0, 100, 100)
+
+            e.Graphics.DrawString("Mercado Lider", prFontTwo, Brushes.Black, 90, 100)
+
+            e.Graphics.DrawString("Comprador: " & Me.Username, prFont, Brushes.Black, 10, 160)
+
+            e.Graphics.DrawString("Id de compra: #" & idCompra, prFont, Brushes.Black, 10, 180)
+            e.Graphics.DrawString("Fecha: " & Date.Now, prFont, Brushes.Black, 10, 200)
+
+            e.Graphics.DrawString("Cantidad de articulos: " & cantidadArticulos, prFont, Brushes.Black, 10, 220)
+
+            e.Graphics.DrawString("---------------------------------", prFont, Brushes.Black, 10, 240)
+
+
+
+            Dim articulo As String
+            Dim precioUnitario As Integer
+            Dim cantidad As Integer
+            Dim LValor As Integer
+            Dim compensador As Integer = 0
+            Dim texto As String = ""
+            Dim tabulacion As String = ""
+            Dim precioTotal As Integer = 0
+            ypos = 280
+
+            For Each row As DataGridViewRow In DataGridCart.Rows
+                If Not row.IsNewRow Then
+
+
+                    cantidad = row.Cells(4).Value : articulo = row.Cells(2).Value : precioUnitario = row.Cells(3).FormattedValue
+
+
+                    LValor = Len(precioUnitario)
+                    compensador = Len(articulo)
+                    tabulacion = StrDup(40 - compensador, ".")
+
+                    texto = cantidad & "    " & articulo & tabulacion & precioUnitario & "$"
+
+                    e.Graphics.DrawString(texto, prFont, Brushes.Black, 10, ypos)
+
+
+                    precioTotal = precioTotal + (cantidad * precioUnitario)
+                    ypos = ypos + 20
+
+                End If
+
+            Next
+            ypos = ypos + 40
+
+            e.Graphics.DrawString("Precio total :  " & precioTotal & "$", prFont, Brushes.Black, 10, ypos)
+
+            ypos = ypos + 30
+            e.Graphics.DrawString("¡Muchas gracias por tu compra!,Mercado Lider", prFont, Brushes.Black, 15, ypos)
+
+
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+
+
+
+
+
+
+    End Sub
+
+
+
+    Private Sub ImprimirComprobante()
+        Dim printdoc As New PrintDocument
+
+        AddHandler printdoc.PrintPage, AddressOf print_PrintPage
+        printdoc.Print()
+
+    End Sub
 
 #End Region
 
@@ -1199,11 +1326,11 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
         Label119.Visible = False
     End Sub
 
-       Private Sub cbxCategorias_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxCategorias.SelectedIndexChanged
+    Private Sub cbxCategorias_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxCategorias.SelectedIndexChanged
         lvCategorias.Items.Add(cbxCategorias.SelectedItem)
         cbxCategorias.Items.Remove(cbxCategorias.Text)
     End Sub
-     Private Sub lvCategorias_DoubleClick(sender As Object, e As EventArgs) Handles lvCategorias.DoubleClick
+    Private Sub lvCategorias_DoubleClick(sender As Object, e As EventArgs) Handles lvCategorias.DoubleClick
         Dim h As String
         For Each lista In lvCategorias.SelectedItems
             h = lvCategorias.SelectedItems(0).SubItems(0).Text
@@ -1555,7 +1682,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
 #End Region
 
 #Region "Mis articulos"
-     Private Sub grdMisArticulos_SelectionChanged(sender As Object, e As EventArgs) Handles grdMisArticulos.SelectionChanged
+    Private Sub grdMisArticulos_SelectionChanged(sender As Object, e As EventArgs) Handles grdMisArticulos.SelectionChanged
         If (grdMisArticulos.SelectedRows.Count > 0) Then
             Dim articuloID = grdMisArticulos.Item("id", grdMisArticulos.SelectedRows(0).Index).Value
 
@@ -1614,21 +1741,21 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
         End If
     End Sub
 
-     Private Sub txtStock_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtStock.KeyPress
-        Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
-        KeyAscii = CShort(SoloNumeros(KeyAscii))
-        If KeyAscii = 0 Then
-            e.Handled = True
-        End If
-     End Sub
-     Private Sub txtEditarPrecio_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtEditarPrecio.KeyPress
+    Private Sub txtStock_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtStock.KeyPress
         Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
         KeyAscii = CShort(SoloNumeros(KeyAscii))
         If KeyAscii = 0 Then
             e.Handled = True
         End If
     End Sub
-     Private Sub btnGuardarCambios_Click(sender As Object, e As EventArgs) Handles btnGuardarCambios.Click
+    Private Sub txtEditarPrecio_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtEditarPrecio.KeyPress
+        Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
+        KeyAscii = CShort(SoloNumeros(KeyAscii))
+        If KeyAscii = 0 Then
+            e.Handled = True
+        End If
+    End Sub
+    Private Sub btnGuardarCambios_Click(sender As Object, e As EventArgs) Handles btnGuardarCambios.Click
         Dim valores As Integer
 
         'VALIDACION DE LOS CAMPOS AL MODIFICAR UN ARTICULO
@@ -1719,7 +1846,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
             conexion.Close()
         End If
     End Sub
-     Private Sub txtEditarNombreArticulo_Click(sender As Object, e As EventArgs) Handles txtEditarNombreArticulo.Click
+    Private Sub txtEditarNombreArticulo_Click(sender As Object, e As EventArgs) Handles txtEditarNombreArticulo.Click
         lblNombreVacioEditarArticulo.Visible = False
     End Sub
     Private Sub txtCambiarDescripcion_Click(sender As Object, e As EventArgs) Handles txtCambiarDescripcion.Click
@@ -1732,7 +1859,7 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
     Private Sub txtEditarPrecio_Click(sender As Object, e As EventArgs) Handles txtEditarPrecio.Click
         lblEditarPrecioVacio.Visible = False
     End Sub
-     Private Sub DataGridCart_SelectionChanged(sender As Object, e As EventArgs) Handles DataGridCart.SelectionChanged
+    Private Sub DataGridCart_SelectionChanged(sender As Object, e As EventArgs) Handles DataGridCart.SelectionChanged
         If (DataGridCart.SelectedRows.Count > 0) Then
             lblArticuloCart.Text = DataGridCart.Item("ColumnArticuloCart", DataGridCart.SelectedRows(0).Index).Value
             txtCantidadCart.Text = DataGridCart.Item("ColumnCantidadCart", DataGridCart.SelectedRows(0).Index).Value
@@ -1808,15 +1935,15 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
             End If
 
             Dim contador As Integer  ''????????'''
-                For Each grd In DataGridCart.Rows
-                    Dim row As DataGridViewRow = DataGridCart.Rows(contador)
-                    row.Height = 150
-                    contador = contador + 1
-                Next
-                DataGridCart.Columns(0).Width = 150
-                DataGridCart.Columns(1).Width = 150
-                DataGridCart.Columns(2).Width = 150
-            End If
+            For Each grd In DataGridCart.Rows
+                Dim row As DataGridViewRow = DataGridCart.Rows(contador)
+                row.Height = 150
+                contador = contador + 1
+            Next
+            DataGridCart.Columns(0).Width = 150
+            DataGridCart.Columns(1).Width = 150
+            DataGridCart.Columns(2).Width = 150
+        End If
     End Sub
 
     'Vacia todos los articulos de el carrito y actualiza el datagrid
@@ -1889,8 +2016,16 @@ WHERE articulos.Descripcion LIKE '%" & txtBuscar.Text & "%' AND articulos.id=art
                         cmd.ExecuteNonQuery()
                     Next
                     MsgBox("Compra efectuada correctamente")
+
                     carrito.Clear()
                     conexion.Close()
+                    Dim imprimirOK = MsgBox("¿Quieres imprimir un comprobante de compra?", vbOKCancel, "IMPRIMIR COMPROBANTE")
+
+                    If (imprimirOK = vbOK) Then
+                        ImprimirComprobante()
+
+                    End If
+
                     UpdateGridCart(carrito)
                 Catch ex As Exception
                     conexion.Close()
