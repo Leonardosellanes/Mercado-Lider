@@ -15,7 +15,7 @@ Public Class Administrador
 
         'Esta llamada es exigida por el diseñador.
         conexion = New MySqlConnection
-        conexion.ConnectionString = "Server=localhost;  database=mercadolider; Uid=root; pwd=;"
+        conexion.ConnectionString = "Server=localhost;  database=mercadolider; Uid=administrador; pwd=administrador;"
         cmd.Connection = conexion
         InitializeComponent()
         'Agregue cualquier inicialización después de la llamada a InitializeComponent().

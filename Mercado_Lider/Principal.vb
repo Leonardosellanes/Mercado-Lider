@@ -33,7 +33,7 @@ Public Class frmPrincipal
     Public Sub New()
         'Esta llamada es exigida por el diseñador.
         conexion = New MySqlConnection
-        conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=root; pwd=;"
+        conexion.ConnectionString = "Server=localhost; database=mercadolider; Uid=cliente; pwd=cliente;"
         cmd.Connection = conexion
 
         InitializeComponent()
@@ -266,8 +266,6 @@ Public Class frmPrincipal
         cbxRol.Visible = h
         txtPass.Visible = h
         buttonRegister.Visible = h
-        lblCamposAsterisco.Visible = h
-        lblAsterisco.Visible = h
         lblUsername.Visible = h
         lblEmail.Visible = h
         lblTelefono.Visible = h

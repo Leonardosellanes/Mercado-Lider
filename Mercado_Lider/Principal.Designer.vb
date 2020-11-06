@@ -63,7 +63,6 @@ Partial Class frmPrincipal
         Me.lblTelefonoEnUso = New System.Windows.Forms.Label()
         Me.lblCorreoEnUso = New System.Windows.Forms.Label()
         Me.lblRegistradoCorrectamente = New System.Windows.Forms.Label()
-        Me.lblCamposAsterisco = New System.Windows.Forms.Label()
         Me.buttonRegister = New System.Windows.Forms.Button()
         Me.lblUsername = New System.Windows.Forms.Label()
         Me.lblRegistroNuevoUser = New System.Windows.Forms.Label()
@@ -80,7 +79,6 @@ Partial Class frmPrincipal
         Me.txtEmail = New System.Windows.Forms.TextBox()
         Me.txtPass = New System.Windows.Forms.TextBox()
         Me.Label91 = New System.Windows.Forms.Label()
-        Me.lblAsterisco = New System.Windows.Forms.Label()
         Me.lblTelefono = New System.Windows.Forms.Label()
         Me.lblPass = New System.Windows.Forms.Label()
         Me.Label90 = New System.Windows.Forms.Label()
@@ -542,7 +540,6 @@ Partial Class frmPrincipal
         Me.tbRegristro.Controls.Add(Me.lblTelefonoEnUso)
         Me.tbRegristro.Controls.Add(Me.lblCorreoEnUso)
         Me.tbRegristro.Controls.Add(Me.lblRegistradoCorrectamente)
-        Me.tbRegristro.Controls.Add(Me.lblCamposAsterisco)
         Me.tbRegristro.Controls.Add(Me.buttonRegister)
         Me.tbRegristro.Controls.Add(Me.lblUsername)
         Me.tbRegristro.Controls.Add(Me.lblRegistroNuevoUser)
@@ -559,7 +556,6 @@ Partial Class frmPrincipal
         Me.tbRegristro.Controls.Add(Me.txtEmail)
         Me.tbRegristro.Controls.Add(Me.txtPass)
         Me.tbRegristro.Controls.Add(Me.Label91)
-        Me.tbRegristro.Controls.Add(Me.lblAsterisco)
         Me.tbRegristro.Controls.Add(Me.lblTelefono)
         Me.tbRegristro.Controls.Add(Me.lblPass)
         Me.tbRegristro.Controls.Add(Me.Label90)
@@ -635,18 +631,6 @@ Partial Class frmPrincipal
         Me.lblRegistradoCorrectamente.TabIndex = 27
         Me.lblRegistradoCorrectamente.Text = "¡Registrado Correctamente!"
         Me.lblRegistradoCorrectamente.Visible = False
-        '
-        'lblCamposAsterisco
-        '
-        Me.lblCamposAsterisco.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.lblCamposAsterisco.AutoSize = True
-        Me.lblCamposAsterisco.Location = New System.Drawing.Point(144, 145)
-        Me.lblCamposAsterisco.Name = "lblCamposAsterisco"
-        Me.lblCamposAsterisco.Size = New System.Drawing.Size(211, 65)
-        Me.lblCamposAsterisco.TabIndex = 21
-        Me.lblCamposAsterisco.Text = "Los campos con un asterisco (*)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "son opcionales." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Por Defecto,sera Registrado com" &
-    "o cliente," & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "si desea registrarse como vendedor,puede" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "hacerlo dese la configurac" &
-    "ion-info-modificar" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'buttonRegister
         '
@@ -832,17 +816,6 @@ Partial Class frmPrincipal
         Me.Label91.TabIndex = 23
         Me.Label91.Text = "*Este campo no puede estar vacio"
         Me.Label91.Visible = False
-        '
-        'lblAsterisco
-        '
-        Me.lblAsterisco.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.lblAsterisco.AutoSize = True
-        Me.lblAsterisco.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAsterisco.Location = New System.Drawing.Point(596, 336)
-        Me.lblAsterisco.Name = "lblAsterisco"
-        Me.lblAsterisco.Size = New System.Drawing.Size(13, 17)
-        Me.lblAsterisco.TabIndex = 20
-        Me.lblAsterisco.Text = "*"
         '
         'lblTelefono
         '
@@ -1665,7 +1638,7 @@ Partial Class frmPrincipal
         '
         Me.txtDescripcionArticulo.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.txtDescripcionArticulo.Location = New System.Drawing.Point(166, 248)
-        Me.txtDescripcionArticulo.MaxLength = 50
+        Me.txtDescripcionArticulo.MaxLength = 200
         Me.txtDescripcionArticulo.Multiline = True
         Me.txtDescripcionArticulo.Name = "txtDescripcionArticulo"
         Me.txtDescripcionArticulo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -3986,8 +3959,6 @@ Partial Class frmPrincipal
     Friend WithEvents btnEditarImagen2 As Button
     Friend WithEvents tbHistorialVentas As TabPage
     Friend WithEvents btnMisVentas As Button
-    Friend WithEvents lblCamposAsterisco As Label
-    Friend WithEvents lblAsterisco As Label
     Friend WithEvents lblRol As Label
     Friend WithEvents cbxRol As ComboBox
     Friend WithEvents Label92 As Label
